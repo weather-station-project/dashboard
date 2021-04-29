@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WeatherStationProject.Wind.Controllers
+namespace WeatherStationProject.AmbientTemperatureService.Controllers
 {
     [ApiController]
     [Route("[controller]")]

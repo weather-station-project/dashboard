@@ -1,6 +1,6 @@
 using System;
 
-namespace WeatherStationProject.Wind
+namespace WeatherStationProject.AmbientTemperatureService
 {
     public class WeatherForecast
     {

@@ -4,8 +4,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:65210",
-      "sslPort": 44398
+      "applicationUrl": "http://localhost:12698",
+      "sslPort": 44317
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WeatherStationProject.Rain": {
+    "WeatherStationProject.AmbientTemperatureService": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

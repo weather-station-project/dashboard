@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WeatherStationProject.GroundTemperature
+namespace WeatherStationProject.AmbientTemperatureService
 {
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace WeatherStationProject.GroundTemperature
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherStationProject.GroundTemperature", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherStationProject.AmbientTemperatureService", Version = "v1" });
             });
         }
 
@@ -41,7 +41,7 @@ namespace WeatherStationProject.GroundTemperature
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherStationProject.GroundTemperature v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherStationProject.AmbientTemperatureService v1"));
             }
 
             app.UseHttpsRedirection();
