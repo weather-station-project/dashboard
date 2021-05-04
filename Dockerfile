@@ -4,7 +4,7 @@ LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 
 # Fetch and install Node.js LTS
 # RUN curl --silent --location https://deb.nodesource.com/setup_lts.x | /bin/ash -
-RUN apk add --no-cache install --yes nodejs npm
+RUN apk add --no-cache install nodejs npm
 
 # Copy the source from your machine onto the container.
 WORKDIR /Code/src/WeatherStationProject.App
