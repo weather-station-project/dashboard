@@ -1,7 +1,6 @@
-LABEL maintainer="David Leon <david.leon.m@gmail.com>"
-
 # Pull down the image with .NET Core SDK
 FROM mcr.microsoft.com/dotnet/sdk:5.0.202-alpine3.13-amd64 AS Build
+LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 
 # Fetch and install Node.js LTS
 RUN curl --silent --location https://deb.nodesource.com/setup_lts.x | /bin/ash -

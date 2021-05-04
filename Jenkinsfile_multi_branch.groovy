@@ -25,16 +25,18 @@ pipeline {
       }
     }*/
 
-    /*stage('Execute unit tests and code coverage') {
+    stage('Execute unit tests and code coverage') {
       steps {
         script {
-          sh """
+          /*sh """
              ENV/bin/python -m unittest discover -s ${WORKSPACE}/WeatherStationSensorsReader
              ENV/bin/coverage run -m unittest discover -s ${WORKSPACE}/WeatherStationSensorsReader
              """
+          */
+          sh "dotnet test ${WORKSPACE}/Code"
         }
       }
-    }*/
+    }
 
     /*stage('SonarQube analysis') {
       environment {
