@@ -17,7 +17,7 @@ namespace WeatherStationProject.CoreTests
         public void Test2()
         {
             var a = new Class1();
-            Assert.Equal(expected: 2, actual: a.GetSomething());
+            Assert.Equal(expected: 1, actual: a.GetSomething());
         }
     }
 }
