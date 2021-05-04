@@ -8,7 +8,7 @@ pipeline {
     /*stage('Prepare Python ENV') {
       steps {
         script {
-          setBuildStatus('pending', "${WeatherStationSensorsReaderVariables.RepositoryName}")
+          setBuildStatus('pending', "${WeatherStationDashboardVariables.RepositoryName}")
 
           // Clean & Prepare new python environment
           sh '''
@@ -61,7 +61,7 @@ pipeline {
     stage('Deploy on staging') {
       steps {
         script {
-          deployContainerOnDockerHub("${WeatherStationSensorsReaderVariables.DockerHubStagingRegistryName}")
+          deployContainerOnDockerHub("${WeatherStationDashboardVariables.DockerHubStagingRegistryName}")
         }
       }
     }
@@ -69,13 +69,13 @@ pipeline {
   post {
     success {
       script {
-        setBuildStatus('success', "${WeatherStationSensorsReaderVariables.RepositoryName}")
+        setBuildStatus('success', "${WeatherStationDashboardVariables.RepositoryName}")
       }
     }
 
     failure {
       script {
-        setBuildStatus('failure', "${WeatherStationSensorsReaderVariables.RepositoryName}")
+        setBuildStatus('failure', "${WeatherStationDashboardVariables.RepositoryName}")
       }
     }
   }
