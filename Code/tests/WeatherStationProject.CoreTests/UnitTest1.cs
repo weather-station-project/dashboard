@@ -1,4 +1,5 @@
 using System;
+using WeatherStationProject.Core;
 using Xunit;
 
 namespace WeatherStationProject.CoreTests
@@ -8,7 +9,15 @@ namespace WeatherStationProject.CoreTests
         [Fact]
         public void Test1()
         {
+            var a = new Class1();
+            Assert.Equal(expected: 1, actual: a.GetSomething());
+        }
 
+        [Fact]
+        public void Test2()
+        {
+            var a = new Class1();
+            Assert.Equal(expected: 2, actual: a.GetSomething());
         }
     }
 }
