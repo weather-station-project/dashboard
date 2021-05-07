@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using WeatherStationProject.Dashboard.AmbientTemperatureService.Data;
 using WeatherStationProject.Dashboard.AmbientTemperatureService.Services;
+using WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel;
 
 namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Controllers
 {
@@ -13,16 +14,20 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Controllers
     public class AmbientTemperaturesController : ControllerBase
     {
         private readonly IAmbientTemperatureService _ambientTemperatureService;
+        private readonly IMapper _mapper;
 
-        public AmbientTemperaturesController(IAmbientTemperatureService ambientTemperatureService)
+        public AmbientTemperaturesController(IAmbientTemperatureService ambientTemperatureService,
+                                             IMapper mapper)
         {
             _ambientTemperatureService = ambientTemperatureService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<List<AmbientTemperature>> LastMeasurement()
+        public async Task<List<AmbientTemperatureDto>> LastMeasurement()
         {
-            return await _ambientTemperatureService.GetAmbientTemperaturesBetweenDatesAsync(since: DateTime.MinValue, until: DateTime.Now);
+            return (await _ambientTemperatureService.GetAmbientTemperaturesBetweenDatesAsync(since: DateTime.MinValue, until: DateTime.Now))
+                .Select(x => _mapper.Map<AmbientTemperatureDto>(x)).ToList();
         }
 
         /*[HttpGet]

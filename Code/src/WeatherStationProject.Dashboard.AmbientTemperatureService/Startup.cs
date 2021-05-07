@@ -18,10 +18,12 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
             services.AddSingleton<IAppConfiguration, AppConfiguration>();
 
             services.AddDbContext<AmbientTemperaturesDbContext>();
-            
+
             services.AddScoped<IRepository<AmbientTemperature>, AmbientTemperatureRepository>();
 
             services.AddScoped<IAmbientTemperatureService, Services.AmbientTemperatureService>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
 
