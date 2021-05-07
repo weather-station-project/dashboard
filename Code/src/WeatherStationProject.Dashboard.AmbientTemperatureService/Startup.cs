@@ -1,29 +1,33 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WeatherStationProject.Dashboard.AmbientTemperatureService.Data;
+using WeatherStationProject.Dashboard.AmbientTemperatureService.Services;
+using WeatherStationProject.Dashboard.Core.Configuration;
+using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.AmbientTemperatureService
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IAppConfiguration, AppConfiguration>();
+
+            services.AddDbContext<AmbientTemperaturesDbContext>();
+            
+            services.AddScoped<IRepository<AmbientTemperature>, AmbientTemperatureRepository>();
+
+            services.AddScoped<IAmbientTemperatureService, Services.AmbientTemperatureService>();
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherStationProject.Dashboard.AmbientTemperatureService", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather Station Project - Dashboard - AmbientTemperatureService", Version = "v1" });
             });
         }
 

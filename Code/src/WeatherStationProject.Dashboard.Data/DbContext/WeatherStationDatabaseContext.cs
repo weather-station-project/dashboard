@@ -2,14 +2,5 @@
 
 namespace WeatherStationProject.Dashboard.Data
 {
-    public partial class WeatherStationDatabaseContext : DbContext
-    {
-        public WeatherStationDatabaseContext()
-        {
-        }
-
-        public WeatherStationDatabaseContext(DbContextOptions<WeatherStationDatabaseContext> options) : base(options)
-        {
-        }
-    }
+    public class WeatherStationDatabaseContext : DbContext { }
 }
