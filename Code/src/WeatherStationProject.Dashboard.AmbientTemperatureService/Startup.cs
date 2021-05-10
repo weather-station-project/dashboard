@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -23,7 +25,19 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
 
             services.AddScoped<IAmbientTemperatureService, Services.AmbientTemperatureService>();
 
-            services.AddAutoMapper(typeof(Startup));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.AddApiVersioning(config =>
+            {
+                config.DefaultApiVersion = new ApiVersion(majorVersion: 1, minorVersion: 0);
+
+                config.AssumeDefaultVersionWhenUnspecified = true;
+
+                config.ReportApiVersions = true;
+
+                config.ApiVersionReader = ApiVersionReader.Combine(new HeaderApiVersionReader(headerNames: "X-version"),
+                                                                   new QueryStringApiVersionReader(parameterNames: "api-version"));
+            });
 
             services.AddControllers();
 

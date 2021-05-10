@@ -15,6 +15,11 @@ namespace WeatherStationProject.Dashboard.Data
             _weatherStationDatabaseContext = weatherStationDatabaseContext;
         }
 
+        public async Task<T> GetLastMeasurement()
+        {
+            return await _weatherStationDatabaseContext.Set<T>().OrderByDescending(x => x.DateTime).FirstOrDefaultAsync();
+        }
+
         public async Task<List<T>> GetMeasurementsBetweenDatesAsync(DateTime since, DateTime until)
         {
             return await _weatherStationDatabaseContext.Set<T>().Where(x => x.DateTime >= since && x.DateTime <= until).ToListAsync();

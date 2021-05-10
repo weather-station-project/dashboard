@@ -15,6 +15,11 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Services
             _repository = repository;
         }
 
+        public async Task<AmbientTemperature> GetLastTemperature()
+        {
+            return await _repository.GetLastMeasurement();
+        }
+
         public async Task<List<AmbientTemperature>> GetAmbientTemperaturesBetweenDatesAsync(DateTime since, DateTime until)
         {
             return await _repository.GetMeasurementsBetweenDatesAsync(since: since, until: until);

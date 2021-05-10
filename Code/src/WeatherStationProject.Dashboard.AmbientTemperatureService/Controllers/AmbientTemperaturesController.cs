@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherStationProject.Dashboard.AmbientTemperatureService.Services;
 using WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel;
@@ -10,37 +6,28 @@ using WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel;
 namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [ApiVersion("1.0")]
+    [Route(template: "api/v{version:apiVersion}/[controller]")]
     public class AmbientTemperaturesController : ControllerBase
     {
         private readonly IAmbientTemperatureService _ambientTemperatureService;
-        private readonly IMapper _mapper;
 
-        public AmbientTemperaturesController(IAmbientTemperatureService ambientTemperatureService,
-                                             IMapper mapper)
+        public AmbientTemperaturesController(IAmbientTemperatureService ambientTemperatureService)
         {
             _ambientTemperatureService = ambientTemperatureService;
-            _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<List<AmbientTemperatureDto>> LastMeasurement()
+        [HttpGet(template:"last")]
+        public async Task<ActionResult<AmbientTemperatureDTO>> LastMeasurement()
         {
-            return (await _ambientTemperatureService.GetAmbientTemperaturesBetweenDatesAsync(since: DateTime.MinValue, until: DateTime.Now))
-                .Select(x => _mapper.Map<AmbientTemperatureDto>(x)).ToList();
-        }
+            var last = await _ambientTemperatureService.GetLastTemperature();
 
-        /*[HttpGet]
-        public IEnumerable<WeatherForecast> LastMeasurement(DateTime since, DateTime until)
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-                {
-                    Date = DateTime.Now.AddDays(index),
-                    TemperatureC = rng.Next(-20, 55),
-                    Summary = Summaries[rng.Next(Summaries.Length)]
-                })
-                .ToArray();
-        }*/
+            if (null == last)
+            {
+                return NotFound();
+            }
+
+            return AmbientTemperatureDTO.FromEntity(last);
+        }
     }
 }
