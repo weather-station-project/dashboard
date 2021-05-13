@@ -1,5 +1,7 @@
 {
   "navmenu.current_data": "Current data",
   "navmenu.historical_data": "Historical data",
-  "navmenu.measurements_list": "Measurements list"
+  "navmenu.measurements_list": "Measurements list",
+  "navmenu.language_selector.english": "English",
+  "navmenu.language_selector.spanish": "Spanish"
 }

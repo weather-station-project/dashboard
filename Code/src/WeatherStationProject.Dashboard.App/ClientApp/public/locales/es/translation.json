@@ -1,5 +1,7 @@
 {
   "navmenu.current_data": "Datos actuales",
-  "navmenu.historical_data": "Datos hist�ricos",
-  "navmenu.measurements_list": "Lista de mediciones"
+  "navmenu.historical_data": "Datos históricos",
+  "navmenu.measurements_list": "Lista de mediciones",
+  "navmenu.language_selector.english": "Inglés",
+  "navmenu.language_selector.spanish": "Español"
 }
