@@ -18,9 +18,9 @@ function NavMenu() {
                         alt="Logo" />
                 </Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">{t('navmenu.current_data')}</Nav.Link>
-                    <Nav.Link href="/counter">{t('navmenu.historical_data')}</Nav.Link>
-                    <Nav.Link href="/fetch-data">{t('navmenu.measurements_list')}</Nav.Link>
+                    <Nav.Link href="/currentdata">{t('navmenu.current_data')}</Nav.Link>
+                    <Nav.Link href="/historicaldata">{t('navmenu.historical_data')}</Nav.Link>
+                    <Nav.Link href="/measurementslist">{t('navmenu.measurements_list')}</Nav.Link>
                 </Nav>
                 <Nav className="mr-sm-2">
                     <LanguageSelector />

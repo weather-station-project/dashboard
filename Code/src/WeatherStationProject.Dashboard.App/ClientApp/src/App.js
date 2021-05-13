@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route } from 'react-router';
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
+import { Layout } from './components/menu/Layout';
+import Home from './components/pages/Home';
+import CurrentData from './components/pages/CurrentData';
+import HistoricalData from './components/pages/HistoricalData';
+import MeasurementsList from './components/pages/MeasurementsList';
 
-export default class App extends Component {
-    static displayName = App.name;
-
-    render() {
-        return (
-            <Layout>
-                <Route exact path='/' component={Home} />
-                <Route path='/counter' component={Counter} />
-                <Route path='/fetch-data' component={FetchData} />
-            </Layout>
-        );
-    }
+function App() {
+    return (
+        <Layout>
+            <Route exact path='/' component={Home} />
+            <Route path='/currentdata' component={CurrentData} />
+            <Route path='/historicaldata' component={HistoricalData} />
+            <Route path='/measurementslist' component={MeasurementsList} />
+        </Layout>
+    );
 }
+
+export default App;
