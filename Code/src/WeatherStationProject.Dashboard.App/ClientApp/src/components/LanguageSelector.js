@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './LanguageSelector.css';
 
 function LanguageSelector() {
     const { t, i18n } = useTranslation();
@@ -9,7 +8,7 @@ function LanguageSelector() {
     };
 
     return (
-        <select class="selectpicker" value={i18n.language} onChange={handleChange}>
+        <select className="form-control form-control-sm" value={i18n.language} onChange={handleChange}>
             <option value="en">{t('navmenu.language_selector.english')}</option>
             <option value="es">{t('navmenu.language_selector.spanish')}</option>
         </select>
