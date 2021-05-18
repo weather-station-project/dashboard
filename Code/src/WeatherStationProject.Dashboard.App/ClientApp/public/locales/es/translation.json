@@ -3,5 +3,6 @@
   "navmenu.historical_data": "Datos históricos",
   "navmenu.measurements_list": "Lista de mediciones",
   "navmenu.language_selector.english": "Inglés",
-  "navmenu.language_selector.spanish": "Español"
+  "navmenu.language_selector.spanish": "Español",
+  "current_data.last_data_title": "Últimas lecturas de los sensores"
 }

@@ -14,6 +14,13 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
 {
     public class Startup
     {
+        private readonly bool IsDevelopment;
+
+        public Startup(IWebHostEnvironment env)
+        {
+            IsDevelopment = env.IsDevelopment();
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -39,6 +46,18 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
                                                                    new QueryStringApiVersionReader(parameterNames: "api-version"));
             });
 
+            if (IsDevelopment)
+            {
+                services.AddCors(options =>
+                {
+                    options.AddDefaultPolicy(
+                        builder =>
+                        {
+                            builder.WithOrigins("https://localhost:44301");
+                        });
+                });
+            }
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -47,14 +66,15 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (IsDevelopment)
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherStationProject.Dashboard.AmbientTemperatureService v1"));
+
+                app.UseCors();
             }
 
             app.UseHttpsRedirection();

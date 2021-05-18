@@ -3,7 +3,6 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from './LanguageSelector';
 import logo from './logo.png';
-import './NavMenu.css';
 
 function NavMenu() {
     const { t } = useTranslation();
@@ -15,7 +14,9 @@ function NavMenu() {
                     <img
                         src={logo}
                         className="d-inline-block align-top"
-                        alt="Logo" />
+                        alt="Logo"
+                        width="50px"
+                        height="50px" />
                 </Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/currentdata">{t('navmenu.current_data')}</Nav.Link>
