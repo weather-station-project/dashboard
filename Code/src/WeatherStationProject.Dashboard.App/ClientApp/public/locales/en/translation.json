@@ -5,5 +5,6 @@
   "navmenu.language_selector.english": "English",
   "navmenu.language_selector.spanish": "Spanish",
   "current_data.last_data_title": "Last data obtained from sensors",
+  "current_data.forecast_title": "7 days forecast from OpenWeather API",
   "current_data.last_data.ambient_temperature": "Ambient temperature of {{temperature}}ºC on {{dateTime, LLLL}}"
 }
