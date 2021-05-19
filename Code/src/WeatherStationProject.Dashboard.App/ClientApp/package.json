@@ -10,6 +10,7 @@
     "i18next-http-backend": "^1.2.2",
     "jquery": "^3.5.1",
     "merge": "^2.1.1",
+    "moment": "^2.29.1",
     "oidc-client": "^1.9.0",
     "react": "^16.0.0",
     "react-bootstrap": "^1.6.0",

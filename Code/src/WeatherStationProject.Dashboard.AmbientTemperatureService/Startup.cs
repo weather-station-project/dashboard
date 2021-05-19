@@ -14,11 +14,11 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
 {
     public class Startup
     {
-        private readonly bool IsDevelopment;
+        private readonly bool _isDevelopment;
 
         public Startup(IWebHostEnvironment env)
         {
-            IsDevelopment = env.IsDevelopment();
+            _isDevelopment = env.IsDevelopment();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -46,7 +46,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
                                                                    new QueryStringApiVersionReader(parameterNames: "api-version"));
             });
 
-            if (IsDevelopment)
+            if (_isDevelopment)
             {
                 services.AddCors(options =>
                 {
@@ -68,7 +68,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
 
         public void Configure(IApplicationBuilder app)
         {
-            if (IsDevelopment)
+            if (_isDevelopment)
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();

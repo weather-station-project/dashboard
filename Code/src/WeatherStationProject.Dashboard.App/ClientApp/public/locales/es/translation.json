@@ -4,5 +4,6 @@
   "navmenu.measurements_list": "Lista de mediciones",
   "navmenu.language_selector.english": "Inglés",
   "navmenu.language_selector.spanish": "Español",
-  "current_data.last_data_title": "Últimas lecturas de los sensores"
+  "current_data.last_data_title": "Últimas lecturas de los sensores",
+  "current_data.last_data.ambient_temperature": "Temperatura ambiental de {{temperature}}ºC el {{dateTime, LLLL}}"
 }
