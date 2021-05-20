@@ -4,11 +4,11 @@ using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.GroundTemperatureService.Data
 {
-    public class GroundTemperaturesDbContext : WeatherStationDatabaseContext
+    public class GroundTemperatureDbContext : WeatherStationDatabaseContext
     {
         private readonly IAppConfiguration _appConfiguration;
 
-        public GroundTemperaturesDbContext(IAppConfiguration appConfiguration)
+        public GroundTemperatureDbContext(IAppConfiguration appConfiguration)
         {
             _appConfiguration = appConfiguration;
         }

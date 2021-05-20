@@ -26,7 +26,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
         {
             services.AddSingleton<IAppConfiguration, AppConfiguration>();
 
-            services.AddDbContext<AmbientTemperaturesDbContext>();
+            services.AddDbContext<AmbientTemperatureDbContext>();
 
             services.AddScoped<IRepository<AmbientTemperature>, AmbientTemperatureRepository>();
 

@@ -1,16 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WeatherStationProject.Dashboard.AirParametersService.Data;
 using WeatherStationProject.Dashboard.Core.Configuration;
 using WeatherStationProject.Dashboard.Data;
-using WeatherStationProject.Dashboard.GroundTemperatureService.Data;
-using WeatherStationProject.Dashboard.GroundTemperatureService.Services;
+using WeatherStationProject.Dashboard.AirParametersService.Services;
 
-namespace WeatherStationProject.Dashboard.GroundTemperatureService
+namespace WeatherStationProject.Dashboard.AirParametersService
 {
     public class Startup
     {
@@ -26,11 +27,11 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
         {
             services.AddSingleton<IAppConfiguration, AppConfiguration>();
 
-            services.AddDbContext<GroundTemperatureDbContext>();
+            services.AddDbContext<AirParametersDbContext>();
 
-            services.AddScoped<IRepository<GroundTemperature>, GroundTemperatureRepository>();
+            services.AddScoped<IRepository<AirParameters>, AirParametersRepository>();
 
-            services.AddScoped<IGroundTemperatureService, Services.GroundTemperatureService>();
+            services.AddScoped<IAirParametersService, Services.AirParametersService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
@@ -61,7 +62,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather Station Project - Dashboard - GroundTemperatureService", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather Station Project - Dashboard - AirParametersService", Version = "v1" });
             });
         }
 
@@ -72,7 +73,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherStationProject.Dashboard.GroundTemperatureService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherStationProject.Dashboard.AirParametersService v1"));
 
                 app.UseCors();
             }

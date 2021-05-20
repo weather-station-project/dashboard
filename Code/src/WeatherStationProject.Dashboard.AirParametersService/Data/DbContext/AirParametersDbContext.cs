@@ -2,18 +2,18 @@
 using WeatherStationProject.Dashboard.Core.Configuration;
 using WeatherStationProject.Dashboard.Data;
 
-namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Data
+namespace WeatherStationProject.Dashboard.AirParametersService.Data
 {
-    public class AmbientTemperaturesDbContext : WeatherStationDatabaseContext
+    public class AirParametersDbContext : WeatherStationDatabaseContext
     {
         private readonly IAppConfiguration _appConfiguration;
 
-        public AmbientTemperaturesDbContext(IAppConfiguration appConfiguration)
+        public AirParametersDbContext(IAppConfiguration appConfiguration)
         {
             _appConfiguration = appConfiguration;
         }
 
-        public virtual DbSet<AmbientTemperature> AmbientTemperatures { get; set; }
+        public virtual DbSet<AirParameters> AirParameters { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
