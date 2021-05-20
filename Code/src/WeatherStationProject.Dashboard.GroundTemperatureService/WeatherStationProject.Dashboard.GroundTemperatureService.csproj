@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WeatherStationProject.Dashboard.Core\WeatherStationProject.Dashboard.Core.csproj" />
+    <ProjectReference Include="..\WeatherStationProject.Dashboard.Data\WeatherStationProject.Dashboard.Data.csproj" />
   </ItemGroup>
 
 </Project>
