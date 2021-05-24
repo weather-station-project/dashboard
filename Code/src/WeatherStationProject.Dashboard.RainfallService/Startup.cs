@@ -5,12 +5,11 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using WeatherStationProject.Dashboard.AmbientTemperatureService.Data;
-using WeatherStationProject.Dashboard.AmbientTemperatureService.Services;
 using WeatherStationProject.Dashboard.Core.Configuration;
-using WeatherStationProject.Dashboard.Data;
+using WeatherStationProject.Dashboard.RainfallService.Data;
+using WeatherStationProject.Dashboard.RainfallService.Services;
 
-namespace WeatherStationProject.Dashboard.AmbientTemperatureService
+namespace WeatherStationProject.Dashboard.RainfallService
 {
     public class Startup
     {
@@ -26,11 +25,11 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
         {
             services.AddSingleton<IAppConfiguration, AppConfiguration>();
 
-            services.AddDbContext<AmbientTemperatureDbContext>();
+            services.AddDbContext<RainfallDbContext>();
 
-            services.AddScoped<IRepository<AmbientTemperature>, AmbientTemperatureRepository>();
+            services.AddScoped<IRainfallRepository, RainfallRepository>();
 
-            services.AddScoped<IAmbientTemperatureService, Services.AmbientTemperatureService>();
+            services.AddScoped<IRainfallService, Services.RainfallService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
@@ -59,20 +58,20 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
             }
 
             services.AddControllers();
-
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather Station Project - Dashboard - AmbientTemperatureService", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather Station Project - Dashboard - RainfallService", Version = "v1" });
             });
         }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
             if (_isDevelopment)
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherStationProject.Dashboard.AmbientTemperatureService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherStationProject.Dashboard.RainfallService v1"));
 
                 app.UseCors();
             }

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace WeatherStationProject.Dashboard.WindMeasurementsService
+namespace WeatherStationProject.Dashboard.RainfallService
 {
     public class Program
     {

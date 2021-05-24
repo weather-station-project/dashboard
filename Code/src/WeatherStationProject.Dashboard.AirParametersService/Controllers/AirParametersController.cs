@@ -7,7 +7,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route(template: "api/v{version:apiVersion}/[controller]")]
+    [Route(template: "api/v{version:apiVersion}/air-parameters")]
     public class AirParametersController : ControllerBase
     {
         private readonly IAirParametersService _airParametersService;
@@ -20,7 +20,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Controllers
         [HttpGet(template: "last")]
         public async Task<ActionResult<AirParametersDTO>> LastMeasurement()
         {
-            var last = await _airParametersService.GetLastTemperature();
+            var last = await _airParametersService.GetLastAirParameters();
 
             if (null == last)
             {

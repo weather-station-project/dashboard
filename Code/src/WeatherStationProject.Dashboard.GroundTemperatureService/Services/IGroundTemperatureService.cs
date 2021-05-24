@@ -9,6 +9,6 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.Services
     {
         Task<GroundTemperature> GetLastTemperature();
 
-        Task<List<GroundTemperature>> GetAmbientTemperaturesBetweenDatesAsync(DateTime since, DateTime until);
+        Task<List<GroundTemperature>> GetGroundTemperaturesBetweenDatesAsync(DateTime since, DateTime until);
     }
 }

@@ -20,7 +20,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.Services
             return await _repository.GetLastMeasurement();
         }
 
-        public async Task<List<GroundTemperature>> GetAmbientTemperaturesBetweenDatesAsync(DateTime since, DateTime until)
+        public async Task<List<GroundTemperature>> GetGroundTemperaturesBetweenDatesAsync(DateTime since, DateTime until)
         {
             return await _repository.GetMeasurementsBetweenDatesAsync(since: since, until: until);
         }

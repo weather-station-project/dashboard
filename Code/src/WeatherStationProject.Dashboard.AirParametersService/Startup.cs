@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WeatherStationProject.Dashboard.AirParametersService.Data;
+using WeatherStationProject.Dashboard.AirParametersService.Services;
 using WeatherStationProject.Dashboard.Core.Configuration;
 using WeatherStationProject.Dashboard.Data;
-using WeatherStationProject.Dashboard.AirParametersService.Services;
 
 namespace WeatherStationProject.Dashboard.AirParametersService
 {
@@ -44,7 +43,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService
                 config.ReportApiVersions = true;
 
                 config.ApiVersionReader = ApiVersionReader.Combine(new HeaderApiVersionReader(headerNames: "X-version"),
-                    new QueryStringApiVersionReader(parameterNames: "api-version"));
+                                                                   new QueryStringApiVersionReader(parameterNames: "api-version"));
             });
 
             if (_isDevelopment)
@@ -54,7 +53,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService
                     options.AddDefaultPolicy(
                         builder =>
                         {
-                            builder.WithOrigins("https://localhost:44301");
+                            builder.WithOrigins(GlobalConstants.AppLocalhostUrl);
                         });
                 });
             }

@@ -7,7 +7,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route(template: "api/v{version:apiVersion}/[controller]")]
+    [Route(template: "api/v{version:apiVersion}/ambient-temperatures")]
     public class AmbientTemperatureController : ControllerBase
     {
         private readonly IAmbientTemperatureService _ambientTemperatureService;

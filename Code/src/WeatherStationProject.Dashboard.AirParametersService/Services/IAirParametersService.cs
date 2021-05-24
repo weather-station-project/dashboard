@@ -7,8 +7,8 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Services
 {
     public interface IAirParametersService
     {
-        Task<AirParameters> GetLastTemperature();
+        Task<AirParameters> GetLastAirParameters();
 
-        Task<List<AirParameters>> GetAmbientTemperaturesBetweenDatesAsync(DateTime since, DateTime until);
+        Task<List<AirParameters>> GetAirParametersBetweenDatesAsync(DateTime since, DateTime until);
     }
 }

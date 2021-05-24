@@ -15,12 +15,12 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Services
             _repository = repository;
         }
 
-        public async Task<AirParameters> GetLastTemperature()
+        public async Task<AirParameters> GetLastAirParameters()
         {
             return await _repository.GetLastMeasurement();
         }
 
-        public async Task<List<AirParameters>> GetAmbientTemperaturesBetweenDatesAsync(DateTime since, DateTime until)
+        public async Task<List<AirParameters>> GetAirParametersBetweenDatesAsync(DateTime since, DateTime until)
         {
             return await _repository.GetMeasurementsBetweenDatesAsync(since: since, until: until);
         }

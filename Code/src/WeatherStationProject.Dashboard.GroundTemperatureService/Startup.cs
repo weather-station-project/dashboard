@@ -43,7 +43,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
                 config.ReportApiVersions = true;
 
                 config.ApiVersionReader = ApiVersionReader.Combine(new HeaderApiVersionReader(headerNames: "X-version"),
-                    new QueryStringApiVersionReader(parameterNames: "api-version"));
+                                                                   new QueryStringApiVersionReader(parameterNames: "api-version"));
             });
 
             if (_isDevelopment)
@@ -53,7 +53,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
                     options.AddDefaultPolicy(
                         builder =>
                         {
-                            builder.WithOrigins("https://localhost:44301");
+                            builder.WithOrigins(GlobalConstants.AppLocalhostUrl);
                         });
                 });
             }
