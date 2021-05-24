@@ -7,7 +7,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel
     {
         public DateTime DateTime { get; set; }
 
-        public int Temperature { get; set; }
+        public decimal Temperature { get; set; }
 
         public static AmbientTemperatureDTO FromEntity(AmbientTemperature entity)
         {

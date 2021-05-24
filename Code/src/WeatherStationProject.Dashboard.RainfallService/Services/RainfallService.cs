@@ -13,7 +13,7 @@ namespace WeatherStationProject.Dashboard.RainfallService.Services
             _repository = repository;
         }
 
-        public async Task<int> GetRainfallDuringTime(DateTime since, DateTime until)
+        public async Task<decimal> GetRainfallDuringTime(DateTime since, DateTime until)
         {
             return await _repository.GetRainfallDuringTime(since: since, until: until);
         }

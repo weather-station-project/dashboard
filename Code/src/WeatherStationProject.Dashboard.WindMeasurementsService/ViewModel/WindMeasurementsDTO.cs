@@ -7,7 +7,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
     {
         public DateTime DateTime { get; set; }
 
-        public int Speed { get; set; }
+        public decimal Speed { get; set; }
 
         public string Direction { get; set; }
 

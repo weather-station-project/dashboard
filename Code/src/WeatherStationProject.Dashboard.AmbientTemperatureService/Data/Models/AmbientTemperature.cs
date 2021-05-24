@@ -7,6 +7,6 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Data
     public class AmbientTemperature : Measurement
     {
         [Column(name: "temperature")]
-        public int Temperature { get; set; }
+        public decimal Temperature { get; set; }
     }
 }

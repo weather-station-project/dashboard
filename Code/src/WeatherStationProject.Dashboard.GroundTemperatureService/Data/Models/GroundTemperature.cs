@@ -7,6 +7,6 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.Data
     public class GroundTemperature : Measurement
     {
         [Column(name: "temperature")]
-        public int Temperature { get; set; }
+        public decimal Temperature { get; set; }
     }
 }

@@ -6,6 +6,6 @@ namespace WeatherStationProject.Dashboard.RainfallService.Data
 {
     public interface IRainfallRepository : IRepository<Rainfall>
     {
-        Task<int> GetRainfallDuringTime(DateTime since, DateTime until);
+        Task<decimal> GetRainfallDuringTime(DateTime since, DateTime until);
     }
 }

@@ -7,6 +7,6 @@ namespace WeatherStationProject.Dashboard.RainfallService.Data
     public class Rainfall : Measurement
     {
         [Column(name: "amount")]
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
     }
 }

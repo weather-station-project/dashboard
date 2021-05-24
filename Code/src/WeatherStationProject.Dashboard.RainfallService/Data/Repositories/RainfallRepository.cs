@@ -15,7 +15,7 @@ namespace WeatherStationProject.Dashboard.RainfallService.Data
             _rainfallDbContext = rainfallDbContext;
         }
 
-        public async Task<int> GetRainfallDuringTime(DateTime since, DateTime until)
+        public async Task<decimal> GetRainfallDuringTime(DateTime since, DateTime until)
         {
             return await _rainfallDbContext.Rainfall
                 .Where(x => x.DateTime >= since && x.DateTime <= until)

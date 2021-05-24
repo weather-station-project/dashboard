@@ -7,9 +7,9 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
     {
         public DateTime DateTime { get; set; }
 
-        public int Pressure { get; set; }
+        public decimal Pressure { get; set; }
 
-        public int Humidity { get; set; }
+        public decimal Humidity { get; set; }
 
         public static AirParametersDTO FromEntity(AirParameters entity)
         {

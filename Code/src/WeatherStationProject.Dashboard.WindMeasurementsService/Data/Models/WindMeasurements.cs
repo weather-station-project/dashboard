@@ -7,7 +7,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Data
     public class WindMeasurements : Measurement
     {
         [Column(name: "speed")]
-        public int Speed { get; set; }
+        public decimal Speed { get; set; }
 
         [Column(name: "direction")]
         public string Direction { get; set; }

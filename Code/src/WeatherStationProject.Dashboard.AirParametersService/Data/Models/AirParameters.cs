@@ -7,9 +7,9 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Data
     public class AirParameters : Measurement
     {
         [Column(name: "pressure")]
-        public int Pressure { get; set; }
+        public decimal Pressure { get; set; }
 
         [Column(name: "humidity")]
-        public int Humidity { get; set; }
+        public decimal Humidity { get; set; }
     }
 }

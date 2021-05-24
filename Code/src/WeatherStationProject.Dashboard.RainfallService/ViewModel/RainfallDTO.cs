@@ -8,9 +8,9 @@ namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
 
         public DateTime ToDateTime { get; set; }
 
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
 
-        public static RainfallDTO FromEntity(int amount, DateTime since, DateTime until)
+        public static RainfallDTO FromEntity(decimal amount, DateTime since, DateTime until)
         {
             return new()
             {
