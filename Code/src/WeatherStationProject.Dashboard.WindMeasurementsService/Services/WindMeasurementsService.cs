@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using WeatherStationProject.Dashboard.WindMeasurementsService.Data;
 
 namespace WeatherStationProject.Dashboard.WindMeasurementsService.Services
@@ -17,11 +15,6 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Services
         public async Task<WindMeasurements> GetLastWindMeasurements()
         {
             return await _repository.GetLastMeasurement();
-        }
-
-        public async Task<List<WindMeasurements>> GetWindMeasurementsBetweenDatesAsync(DateTime since, DateTime until)
-        {
-            return await _repository.GetMeasurementsBetweenDatesAsync(since: since, until: until);
         }
 
         public async Task<WindMeasurements> GetGustInTime(int minutes)
