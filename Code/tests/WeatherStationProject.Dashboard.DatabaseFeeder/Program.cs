@@ -11,7 +11,7 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
     class Program
     {
         private const int MinutesBetweenMeasurements = 5;
-        private const int StoreInformationEachNumber = 5000;
+        private const int StoreInformationEachNumber = 10000;
         private static readonly string[] WindDirections = { "N", "N-NE", "N-E", "E-NE", "E", "E-SE", "S-E", "S-SE", "S", "S-SW", "S-W", "W-SW", "W", "W-NW", "N-W", "N-NW" };
         private static readonly Random random = new();
 
@@ -34,10 +34,10 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
             var rainfallDbContext = new RainfallDbContext(appConfiguration: configuration);
             var windMeasurementsDbContext = new WindMeasurementsDbContext(appConfiguration: configuration);
 
-            var initialDatetime = new DateTime(year: 2021, month: 1, day: 1, hour: 0, minute: 0, second: 0, DateTimeKind.Local);
-            var finalDatetime = initialDatetime.AddYears(value: 1);
+            var initialDatetime = new DateTime(year: 2018, month: 1, day: 1, hour: 0, minute: 0, second: 0, DateTimeKind.Local);
+            var finalDatetime = initialDatetime.AddYears(value: 2);
 
-            var i = 1;
+            var i = 0;
 
             do
             {
@@ -50,7 +50,10 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
                 i++;
                 if (i == StoreInformationEachNumber)
                 {
-                    i = 1;
+                    Console.WriteLine("Saving changes");
+                    Console.WriteLine();
+
+                    i = 0;
                     airParametersDbContext.SaveChanges();
                     ambientTemperatureDbContext.SaveChanges();
                     groundTemperatureDbContext.SaveChanges();
@@ -59,7 +62,7 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
                 }
 
                 initialDatetime = initialDatetime.AddMinutes(MinutesBetweenMeasurements);
-                Console.WriteLine("");
+                Console.WriteLine();
             } while (initialDatetime <= finalDatetime);
 
             airParametersDbContext.SaveChanges();
