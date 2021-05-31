@@ -53,7 +53,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService
                     options.AddDefaultPolicy(
                         builder =>
                         {
-                            builder.WithOrigins(GlobalConstants.AppLocalhostUrl);
+                            builder.AllowAnyOrigin();
                         });
                 });
             }
