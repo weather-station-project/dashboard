@@ -1,0 +1,83 @@
+{
+  "Routes": [
+    // Air-Parameters Service
+    {
+      "DownstreamPathTemplate": "/api/{version}/air-parameters/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44350
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/air-parameters/{everything}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "air-parameters-caching"
+      }
+    },
+    // Air-Parameters Service (Swagger)
+    {
+      "DownstreamPathTemplate": "/swagger/{version}/swagger.json",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44350
+        }
+      ],
+      "UpstreamPathTemplate": "/air-parameters/{version}/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
+
+    },
+    // Ambient-Temperatures Service
+    {
+      "DownstreamPathTemplate": "/api/{version}/ambient-temperatures/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44351
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/ambient-temperatures/{everything}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "air-parameters-caching"
+      }
+    },
+    // Ambient-Temperatures Service (Swagger)
+    {
+      "DownstreamPathTemplate": "/swagger/{version}/swagger.json",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44351
+        }
+      ],
+      "UpstreamPathTemplate": "/ambient-temperatures/{version}/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
+
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:44382"
+  }
+}

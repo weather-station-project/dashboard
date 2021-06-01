@@ -72,7 +72,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherStationProject.Dashboard.AirParametersService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AirParametersService v1"));
 
                 app.UseCors();
             }

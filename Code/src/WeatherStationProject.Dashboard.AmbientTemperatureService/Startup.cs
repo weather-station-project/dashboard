@@ -53,7 +53,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
                     options.AddDefaultPolicy(
                         builder =>
                         {
-                            builder.WithOrigins(GlobalConstants.AppLocalhostUrl);
+                            builder.AllowAnyOrigin();
                         });
                 });
             }
@@ -72,7 +72,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherStationProject.Dashboard.AmbientTemperatureService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AmbientTemperatureService v1"));
 
                 app.UseCors();
             }

@@ -16,7 +16,9 @@ namespace WeatherStationProject.Dashboard.GatewayService
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(config =>
                 {
-                    config.AddJsonFile(Path.Combine("Configuration", "configuration.json"));
+                    config.AddJsonFile(path: Path.Combine("Configuration", "configuration.json"),
+                                       optional: false,
+                                       reloadOnChange: true);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
