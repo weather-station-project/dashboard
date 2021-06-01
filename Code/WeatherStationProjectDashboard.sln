@@ -25,11 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.WindMeasurementsService", "src\WeatherStationProject.Dashboard.WindMeasurementsService\WeatherStationProject.Dashboard.WindMeasurementsService.csproj", "{3EC882E4-6401-4C1C-9A8D-0E10CC77CEF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherStationProject.Dashboard.RainfallService", "src\WeatherStationProject.Dashboard.RainfallService\WeatherStationProject.Dashboard.RainfallService.csproj", "{5EDF129B-338E-4FDB-86EF-CC1970B24AFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.RainfallService", "src\WeatherStationProject.Dashboard.RainfallService\WeatherStationProject.Dashboard.RainfallService.csproj", "{5EDF129B-338E-4FDB-86EF-CC1970B24AFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherStationProject.Dashboard.GatewayService", "src\WeatherStationProject.Dashboard.GatewayService\WeatherStationProject.Dashboard.GatewayService.csproj", "{1A6E9731-B842-4588-BFE3-6393056C0EF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.GatewayService", "src\WeatherStationProject.Dashboard.GatewayService\WeatherStationProject.Dashboard.GatewayService.csproj", "{1A6E9731-B842-4588-BFE3-6393056C0EF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherStationProject.Dashboard.DatabaseFeeder", "tests\WeatherStationProject.Dashboard.DatabaseFeeder\WeatherStationProject.Dashboard.DatabaseFeeder.csproj", "{597E22ED-C94D-45B5-975D-B026A51BAB9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.DatabaseFeeder", "tests\WeatherStationProject.Dashboard.DatabaseFeeder\WeatherStationProject.Dashboard.DatabaseFeeder.csproj", "{597E22ED-C94D-45B5-975D-B026A51BAB9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

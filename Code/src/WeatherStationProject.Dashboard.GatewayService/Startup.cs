@@ -44,6 +44,9 @@ namespace WeatherStationProject.Dashboard.GatewayService
                 {
                     c.SwaggerEndpoint(url: "/air-parameters/v1/swagger.json", name: "AirParametersService v1");
                     c.SwaggerEndpoint(url: "/ambient-temperatures/v1/swagger.json", name: "AmbientTemperatureService v1");
+                    c.SwaggerEndpoint(url: "/ground-temperatures/v1/swagger.json", name: "GroundTemperatureService v1");
+                    c.SwaggerEndpoint(url: "/rainfall/v1/swagger.json", name: "RainfallService v1");
+                    c.SwaggerEndpoint(url: "/wind-measurements/v1/swagger.json", name: "WindMeasurementsService v1");
                 });
             }
 
