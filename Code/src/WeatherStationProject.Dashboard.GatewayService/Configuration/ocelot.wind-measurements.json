@@ -1,0 +1,67 @@
+{
+  "Routes": [
+    // Wind-Measurements Service
+    {
+      "Key": "wind-measurements",
+      "DownstreamPathTemplate": "/api/{version}/wind-measurements/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44354
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/wind-measurements/{everything}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "wind-measurements-caching"
+      }
+    },
+    // Wind-Measurements Service - last gust
+    {
+      "Key": "wind-measurements-gust",
+      "DownstreamPathTemplate": "/api/{version}/wind-measurements/gust-in-time/60",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44354
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/wind-measurements/gust/last",
+      "UpstreamHttpMethod": [ "GET" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "wind-measurements-gust-caching"
+      }
+    },
+    // Wind-Measurements Service (Swagger)
+    {
+      "DownstreamPathTemplate": "/swagger/{version}/swagger.json",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44354
+        }
+      ],
+      "UpstreamPathTemplate": "/wind-measurements/{version}/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ]
+}

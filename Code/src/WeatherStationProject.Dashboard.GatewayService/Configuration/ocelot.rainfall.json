@@ -1,0 +1,42 @@
+{
+  "Routes": [
+    // Rainfall Service - last measurement
+    {
+      "Key": "rainfall",
+      "DownstreamPathTemplate": "/api/{version}/rainfall/amount-during-time/60",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44353
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/rainfall/last",
+      "UpstreamHttpMethod": [ "GET" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "rainfall-caching"
+      }
+    },
+    // Rainfall Service (Swagger)
+    {
+      "DownstreamPathTemplate": "/swagger/{version}/swagger.json",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44353
+        }
+      ],
+      "UpstreamPathTemplate": "/rainfall/{version}/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ]
+}

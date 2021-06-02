@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -13,10 +14,19 @@ namespace WeatherStationProject.Dashboard.GatewayService
     public class Startup
     {
         private readonly bool _isDevelopment;
+        private readonly IConfiguration _configuration;
 
         public Startup(IWebHostEnvironment env)
         {
             _isDevelopment = env.IsDevelopment();
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile(path:"appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile(path:$"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddOcelot(folder: "Configuration", env: env);
+
+            _configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -27,7 +37,7 @@ namespace WeatherStationProject.Dashboard.GatewayService
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherStationProject - Dashboard - GatewayService", Version = "v1" });
             });
-            services.AddOcelot()
+            services.AddOcelot(configuration:_configuration)
                 .AddCacheManager(x =>
                 {
                     x.WithDictionaryHandle();

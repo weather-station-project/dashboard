@@ -1,0 +1,43 @@
+{
+  "Routes": [
+    // Ground-temperatures Service
+    {
+      "Key": "ground-temperatures",
+      "DownstreamPathTemplate": "/api/{version}/ground-temperatures/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44352
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/ground-temperatures/{everything}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "ground-temperatures-caching"
+      }
+    },
+    // Ground-temperatures Service (Swagger)
+    {
+      "DownstreamPathTemplate": "/swagger/{version}/swagger.json",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44352
+        }
+      ],
+      "UpstreamPathTemplate": "/ground-temperatures/{version}/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
+
+    }
+  ]
+}
