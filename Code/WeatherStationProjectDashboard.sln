@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.DatabaseFeeder", "tests\WeatherStationProject.Dashboard.DatabaseFeeder\WeatherStationProject.Dashboard.DatabaseFeeder.csproj", "{597E22ED-C94D-45B5-975D-B026A51BAB9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherStationProject.Dashboard.AuthenticationService", "src\WeatherStationProject.Dashboard.AuthenticationService\WeatherStationProject.Dashboard.AuthenticationService.csproj", "{19DBB44F-F407-46D4-9318-AF0103B569D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{597E22ED-C94D-45B5-975D-B026A51BAB9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{597E22ED-C94D-45B5-975D-B026A51BAB9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{597E22ED-C94D-45B5-975D-B026A51BAB9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19DBB44F-F407-46D4-9318-AF0103B569D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19DBB44F-F407-46D4-9318-AF0103B569D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19DBB44F-F407-46D4-9318-AF0103B569D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19DBB44F-F407-46D4-9318-AF0103B569D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{5EDF129B-338E-4FDB-86EF-CC1970B24AFF} = {686035A9-4B76-4AC1-B8DA-8EEE91FAF5D1}
 		{1A6E9731-B842-4588-BFE3-6393056C0EF9} = {686035A9-4B76-4AC1-B8DA-8EEE91FAF5D1}
 		{597E22ED-C94D-45B5-975D-B026A51BAB9F} = {DAD62F6E-C113-4B17-9F73-AAE23645BC4F}
+		{19DBB44F-F407-46D4-9318-AF0103B569D0} = {686035A9-4B76-4AC1-B8DA-8EEE91FAF5D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86D3CEBA-7A2F-4C95-BE64-9A200C9D05F4}
