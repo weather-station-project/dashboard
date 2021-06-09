@@ -4,7 +4,7 @@
     {
         string DatabaseConnectionString { get; }
 
-        string HashedAuthenticationSecret { get; }
+        string AuthenticationSecret { get; }
 
         IAudience Audience { get; }
     }
