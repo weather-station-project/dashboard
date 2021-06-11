@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using WeatherStationProject.Dashboard.RainfallService.Services;
 using WeatherStationProject.Dashboard.RainfallService.ViewModel;
 
@@ -9,6 +10,7 @@ namespace WeatherStationProject.Dashboard.RainfallService.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
+    [Authorize]
     [Route(template: "api/v{version:apiVersion}/rainfall")]
     public class WindMeasurementsController : ControllerBase
     {

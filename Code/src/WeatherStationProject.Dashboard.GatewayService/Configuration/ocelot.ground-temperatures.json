@@ -23,6 +23,10 @@
       "FileCacheOptions": {
         "TtlSeconds": 15,
         "Region": "ground-temperatures-caching"
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
       }
     },
     // Ground-temperatures Service (Swagger)

@@ -6,18 +6,11 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Data
 {
     public class WindMeasurementsDbContext : WeatherStationDatabaseContext
     {
-        private readonly IAppConfiguration _appConfiguration;
-
-        public WindMeasurementsDbContext(IAppConfiguration appConfiguration)
-        {
-            _appConfiguration = appConfiguration;
-        }
-
         public virtual DbSet<WindMeasurements> WindMeasurements { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(connectionString: _appConfiguration.DatabaseConnectionString);
+            optionsBuilder.UseNpgsql(connectionString: AppConfiguration.DatabaseConnectionString);
             base.OnConfiguring(optionsBuilder);
         }
     }

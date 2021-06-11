@@ -6,18 +6,11 @@ namespace WeatherStationProject.Dashboard.RainfallService.Data
 {
     public class RainfallDbContext : WeatherStationDatabaseContext
     {
-        private readonly IAppConfiguration _appConfiguration;
-
-        public RainfallDbContext(IAppConfiguration appConfiguration)
-        {
-            _appConfiguration = appConfiguration;
-        }
-
         public virtual DbSet<Rainfall> Rainfall { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(connectionString: _appConfiguration.DatabaseConnectionString);
+            optionsBuilder.UseNpgsql(connectionString: AppConfiguration.DatabaseConnectionString);
             base.OnConfiguring(optionsBuilder);
         }
     }

@@ -2,14 +2,14 @@
 
 namespace WeatherStationProject.Dashboard.Core.Configuration
 {
-    public class Audience : IAudience
+    public static class Audience
     {
         private const string AudienceSecretVariableName = "AUDIENCE_SECRET";
 
-        public string Secret => Environment.GetEnvironmentVariable(AudienceSecretVariableName);
+        public static string Secret => Environment.GetEnvironmentVariable(AudienceSecretVariableName);
 
-        public string Issuer => "Weather Station Project";
+        public static string Issuer => "Weather Station Project";
 
-        public string ValidAudience => "localhost";
+        public static string ValidAudience => "localhost";
     }
 }

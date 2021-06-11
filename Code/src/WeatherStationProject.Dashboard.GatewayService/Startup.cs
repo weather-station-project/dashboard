@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using WeatherStationProject.Dashboard.Core.Security;
 
 namespace WeatherStationProject.Dashboard.GatewayService
 {
@@ -22,8 +24,8 @@ namespace WeatherStationProject.Dashboard.GatewayService
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile(path:"appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile(path:$"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile(path: "appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile(path: $"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddOcelot(folder: "Configuration", env: env);
 
             _configuration = builder.Build();
@@ -31,13 +33,24 @@ namespace WeatherStationProject.Dashboard.GatewayService
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(o =>
+                {
+                    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.TokenValidationParameters = JwtAuthenticationConfiguration.GetTokenValidationParameters();
+                });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherStationProject - Dashboard - GatewayService", Version = "v1" });
             });
-            services.AddOcelot(configuration:_configuration)
+            services.AddOcelot(configuration: _configuration)
                 .AddCacheManager(x =>
                 {
                     x.WithDictionaryHandle();
@@ -61,6 +74,8 @@ namespace WeatherStationProject.Dashboard.GatewayService
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 

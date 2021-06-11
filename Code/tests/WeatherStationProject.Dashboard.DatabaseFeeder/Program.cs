@@ -26,13 +26,11 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
 
         private static void InsertTestData()
         {
-            var configuration = new AppConfiguration();
-
-            var airParametersDbContext = new AirParametersDbContext(appConfiguration: configuration);
-            var ambientTemperatureDbContext = new AmbientTemperatureDbContext(appConfiguration: configuration);
-            var groundTemperatureDbContext = new GroundTemperatureDbContext(appConfiguration: configuration);
-            var rainfallDbContext = new RainfallDbContext(appConfiguration: configuration);
-            var windMeasurementsDbContext = new WindMeasurementsDbContext(appConfiguration: configuration);
+            var airParametersDbContext = new AirParametersDbContext();
+            var ambientTemperatureDbContext = new AmbientTemperatureDbContext();
+            var groundTemperatureDbContext = new GroundTemperatureDbContext();
+            var rainfallDbContext = new RainfallDbContext();
+            var windMeasurementsDbContext = new WindMeasurementsDbContext();
 
             var initialDatetime = new DateTime(year: 2018, month: 1, day: 1, hour: 0, minute: 0, second: 0, DateTimeKind.Local);
             var finalDatetime = initialDatetime.AddYears(value: 2);

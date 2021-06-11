@@ -6,18 +6,11 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Data
 {
     public class AmbientTemperatureDbContext : WeatherStationDatabaseContext
     {
-        private readonly IAppConfiguration _appConfiguration;
-
-        public AmbientTemperatureDbContext(IAppConfiguration appConfiguration)
-        {
-            _appConfiguration = appConfiguration;
-        }
-
         public virtual DbSet<AmbientTemperature> AmbientTemperatures { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(connectionString: _appConfiguration.DatabaseConnectionString);
+            optionsBuilder.UseNpgsql(connectionString: AppConfiguration.DatabaseConnectionString);
             base.OnConfiguring(optionsBuilder);
         }
     }

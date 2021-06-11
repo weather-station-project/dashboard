@@ -2,7 +2,7 @@
 
 namespace WeatherStationProject.Dashboard.Core.Configuration
 {
-    public class AppConfiguration : IAppConfiguration
+    public static class AppConfiguration
     {
         private const string DatabaseServerVariableName = "SERVER";
         private const string DatabaseNameVariableName = "DATABASE";
@@ -10,13 +10,11 @@ namespace WeatherStationProject.Dashboard.Core.Configuration
         private const string DatabasePasswordVariableName = "PASSWORD";
         private const string AuthenticationSecretVariableName = "AUTHENTICATION_SECRET";
 
-        public string DatabaseConnectionString => $"Host={Environment.GetEnvironmentVariable(DatabaseServerVariableName)};" +
+        public static string DatabaseConnectionString => $"Host={Environment.GetEnvironmentVariable(DatabaseServerVariableName)};" +
                                                   $"Database={Environment.GetEnvironmentVariable(DatabaseNameVariableName)};" +
                                                   $"Username={Environment.GetEnvironmentVariable(DatabaseUserVariableName)};" +
                                                   $"Password={Environment.GetEnvironmentVariable(DatabasePasswordVariableName)}";
 
-        public string AuthenticationSecret => Environment.GetEnvironmentVariable(AuthenticationSecretVariableName);
-
-        public IAudience Audience => new Audience();
+        public static string AuthenticationSecret => Environment.GetEnvironmentVariable(AuthenticationSecretVariableName);
     }
 }

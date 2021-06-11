@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using WeatherStationProject.Dashboard.WindMeasurementsService.Services;
 using WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel;
 
@@ -8,6 +9,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
+    [Authorize]
     [Route(template: "api/v{version:apiVersion}/wind-measurements")]
     public class WindMeasurementsController : ControllerBase
     {

@@ -23,6 +23,10 @@
       "FileCacheOptions": {
         "TtlSeconds": 15,
         "Region": "rainfall-caching"
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
       }
     },
     // Rainfall Service (Swagger)

@@ -23,6 +23,10 @@
       "FileCacheOptions": {
         "TtlSeconds": 15,
         "Region": "air-parameters-caching"
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
       }
     },
     // Air-Parameters Service (Swagger)
@@ -37,7 +41,6 @@
       ],
       "UpstreamPathTemplate": "/air-parameters/{version}/swagger.json",
       "UpstreamHttpMethod": [ "GET" ]
-
     }
   ]
 }

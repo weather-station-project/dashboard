@@ -23,6 +23,10 @@
       "FileCacheOptions": {
         "TtlSeconds": 15,
         "Region": "wind-measurements-caching"
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
       }
     },
     // Wind-Measurements Service - last gust
