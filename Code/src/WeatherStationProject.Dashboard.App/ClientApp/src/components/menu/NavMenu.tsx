@@ -1,10 +1,10 @@
-import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
-import LanguageSelector from './LanguageSelector';
-import logo from './logo.png';
+import React from "react";
+import { Navbar, Nav } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
+import LanguageSelector from "./LanguageSelector";
+import logo from "./logo.png";
 
-function NavMenu() {
+const navMenu: React.FC = () => {
     const { t } = useTranslation();
 
     return (
@@ -19,9 +19,9 @@ function NavMenu() {
                         height="50px" />
                 </Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="/currentdata">{t('navmenu.current_data')}</Nav.Link>
-                    <Nav.Link href="/historicaldata">{t('navmenu.historical_data')}</Nav.Link>
-                    <Nav.Link href="/measurementslist">{t('navmenu.measurements_list')}</Nav.Link>
+                    <Nav.Link href="/currentdata">{t("navmenu.current_data")}</Nav.Link>
+                    <Nav.Link href="/historicaldata">{t("navmenu.historical_data")}</Nav.Link>
+                    <Nav.Link href="/measurementslist">{t("navmenu.measurements_list")}</Nav.Link>
                 </Nav>
                 <Nav className="mr-sm-2">
                     <LanguageSelector />
@@ -31,4 +31,4 @@ function NavMenu() {
     );
 }
 
-export default NavMenu;
+export default navMenu;

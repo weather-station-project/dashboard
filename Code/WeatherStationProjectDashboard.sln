@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Tests", "3 - Tests", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Libraries", "0 - Libraries", "{785F5644-8454-424D-A1B5-017EA8CEB376}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.App", "src\WeatherStationProject.Dashboard.App\WeatherStationProject.Dashboard.App.csproj", "{AC6724D8-9F7C-40F8-92A4-FE8ECF96178C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.AmbientTemperatureService", "src\WeatherStationProject.Dashboard.AmbientTemperatureService\WeatherStationProject.Dashboard.AmbientTemperatureService.csproj", "{AE4C4075-62C4-4CA7-A876-370207EDAD90}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.Data", "src\WeatherStationProject.Dashboard.Data\WeatherStationProject.Dashboard.Data.csproj", "{B777E7A9-55E4-4E95-9250-1CF8517260A6}"
@@ -31,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.DatabaseFeeder", "tests\WeatherStationProject.Dashboard.DatabaseFeeder\WeatherStationProject.Dashboard.DatabaseFeeder.csproj", "{597E22ED-C94D-45B5-975D-B026A51BAB9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherStationProject.Dashboard.AuthenticationService", "src\WeatherStationProject.Dashboard.AuthenticationService\WeatherStationProject.Dashboard.AuthenticationService.csproj", "{F8668D58-1F23-4EB1-A567-5A8CA89BC01D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.AuthenticationService", "src\WeatherStationProject.Dashboard.AuthenticationService\WeatherStationProject.Dashboard.AuthenticationService.csproj", "{F8668D58-1F23-4EB1-A567-5A8CA89BC01D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStationProject.Dashboard.App", "src\WeatherStationProject.Dashboard.App\WeatherStationProject.Dashboard.App.csproj", "{60D60A0C-B073-415A-B4E2-17EA025542F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +39,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AC6724D8-9F7C-40F8-92A4-FE8ECF96178C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC6724D8-9F7C-40F8-92A4-FE8ECF96178C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC6724D8-9F7C-40F8-92A4-FE8ECF96178C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC6724D8-9F7C-40F8-92A4-FE8ECF96178C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AE4C4075-62C4-4CA7-A876-370207EDAD90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE4C4075-62C4-4CA7-A876-370207EDAD90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE4C4075-62C4-4CA7-A876-370207EDAD90}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -83,12 +79,15 @@ Global
 		{F8668D58-1F23-4EB1-A567-5A8CA89BC01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8668D58-1F23-4EB1-A567-5A8CA89BC01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8668D58-1F23-4EB1-A567-5A8CA89BC01D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60D60A0C-B073-415A-B4E2-17EA025542F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D60A0C-B073-415A-B4E2-17EA025542F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D60A0C-B073-415A-B4E2-17EA025542F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D60A0C-B073-415A-B4E2-17EA025542F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AC6724D8-9F7C-40F8-92A4-FE8ECF96178C} = {3890C6BC-091B-4273-AE4C-909D96CC778F}
 		{AE4C4075-62C4-4CA7-A876-370207EDAD90} = {686035A9-4B76-4AC1-B8DA-8EEE91FAF5D1}
 		{B777E7A9-55E4-4E95-9250-1CF8517260A6} = {785F5644-8454-424D-A1B5-017EA8CEB376}
 		{C7A54A24-0364-4D96-8C73-476FBEE10B26} = {785F5644-8454-424D-A1B5-017EA8CEB376}
@@ -99,6 +98,7 @@ Global
 		{1A6E9731-B842-4588-BFE3-6393056C0EF9} = {686035A9-4B76-4AC1-B8DA-8EEE91FAF5D1}
 		{597E22ED-C94D-45B5-975D-B026A51BAB9F} = {DAD62F6E-C113-4B17-9F73-AAE23645BC4F}
 		{F8668D58-1F23-4EB1-A567-5A8CA89BC01D} = {686035A9-4B76-4AC1-B8DA-8EEE91FAF5D1}
+		{60D60A0C-B073-415A-B4E2-17EA025542F2} = {3890C6BC-091B-4273-AE4C-909D96CC778F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86D3CEBA-7A2F-4C95-BE64-9A200C9D05F4}
