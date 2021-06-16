@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode } from "react";
+import React, { ErrorInfo, ReactNode } from "react";
 import { Alert } from "react-bootstrap";
 
 interface IProps {
@@ -10,7 +10,7 @@ interface IErrorInformation {
     errorInfo: ErrorInfo;
 }
 
-class ErrorBoundary extends React.Component<IProps> {
+export class ErrorBoundary extends React.Component<IProps> {
     public state: IErrorInformation = {} as IErrorInformation;
 
     constructor(props: IProps) {
@@ -35,5 +35,3 @@ class ErrorBoundary extends React.Component<IProps> {
         return this.props.children;
     }
 }
-
-export default ErrorBoundary;

@@ -5,7 +5,7 @@ import App from "./App";
 import Loading from "./Loading";
 import "./i18n";
 
-const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href");
+const baseUrl: string = document.getElementsByTagName("base")[0].getAttribute("href") || "";
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter basename={baseUrl}>
@@ -16,4 +16,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-

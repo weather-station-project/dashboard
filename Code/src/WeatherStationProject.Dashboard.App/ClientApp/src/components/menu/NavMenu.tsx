@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSelector from "./LanguageSelector";
 import logo from "./logo.png";
 
-const navMenu: React.FC = () => {
+const NavMenu: React.FC = () => {
     const { t } = useTranslation();
 
     return (
@@ -31,4 +31,4 @@ const navMenu: React.FC = () => {
     );
 }
 
-export default navMenu;
+export default NavMenu;

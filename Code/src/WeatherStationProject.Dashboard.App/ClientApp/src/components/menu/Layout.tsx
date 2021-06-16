@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Container } from "reactstrap";
 import NavMenu from "./NavMenu";
 import { ErrorBoundary } from "../../ErrorBoundary"
@@ -7,7 +7,7 @@ interface IProps {
     children: ReactNode;
 }
 
-const layout = (props: IProps): React.FC<IProps> => {
+const Layout: React.FC<IProps> = (props) => {
     return (
         <div>
             <ErrorBoundary>
@@ -20,4 +20,4 @@ const layout = (props: IProps): React.FC<IProps> => {
     );
 };
 
-export default layout;
+export default Layout;

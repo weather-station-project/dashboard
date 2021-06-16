@@ -1,9 +1,9 @@
 import React from "react";
 import { Route } from "react-router";
-import { Layout } from "./components/menu/Layout";
+import Layout from "./components/menu/Layout";
 import Home from "./components/pages/Home";
 
-const app: React.FC = () => {
+const App: React.FC = () => {
     return (
         <Layout>
             <Route exact path="/" component={Home} />
@@ -14,4 +14,4 @@ const app: React.FC = () => {
     );
 };
 
-export default app;
+export default App;
