@@ -39,8 +39,8 @@ namespace WeatherStationProject.Dashboard.AuthenticationService.Controllers
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
             var responseJson = new
             {
-                access_token = encodedJwt,
-                expires_in = (int)TimeSpan.FromMinutes(2).TotalSeconds
+                accessToken = encodedJwt,
+                expiresIn = (int)TimeSpan.FromMinutes(2).TotalSeconds
             };
 
             return Ok(responseJson);
