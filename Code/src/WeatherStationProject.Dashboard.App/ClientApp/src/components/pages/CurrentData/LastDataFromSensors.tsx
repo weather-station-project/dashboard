@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ListGroup } from "react-bootstrap";
 import Loading from "../../../Loading";
-import { WeatherStationDataApi } from "../../../consumers/WeatherStationDataApi";
+import axios from "axios";
+import { getAxiosInterceptor } from "../../../consumers/AuthenticationApiHelper";
 
 interface ICurrentDataProps {
     weatherApiHost: string;
@@ -10,24 +11,57 @@ interface ICurrentDataProps {
     secret: string;
 }
 
-interface ICurrentDataState {
-    data: string;
+interface ITemperature {
+    dateTime: Date;
+    temperature: Number;
 }
 
-export default class CurrentData extends Component<ICurrentDataProps, ICurrentDataState> {
-    api: WeatherStationDataApi;
+const useAsyncError = () => {
+    const [_, setError] = React.useState();
+    return React.useCallback(
+        e => {
+            setError(() => {
+                throw e;
+            });
+        },
+        [setError],
+    );
+};
 
-    constructor(props: ICurrentDataProps) {
-        super(props);
+const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceHost, secret }) => {
+    const { t } = useTranslation();
+    const [data, setData] = useState({} as ITemperature);
+    const [error2, setError] = useState(null);
+    const url = "/api/v1/AmbientTemperatures/last";
 
-        this.api = new WeatherStationDataApi(props.weatherApiHost, props.authServiceHost, props.secret);
+    useEffect(() => {
+        async function fetchData() {
+            axios.interceptors.request.use(() => getAxiosInterceptor(authServiceHost, secret), error => Promise.reject(error));
 
-        this.setState({
-            data: "lala " + this.api.apiHost
-        });
-    }
+            axios.get<ITemperature>(weatherApiHost + url).then((response) => setData(response.data)).catch(e => {
+                throw e;
+            });
+        };
 
-    render() {
-        return <p>{this.state.data}</p>
-    }
+        fetchData();
+    }, []);
+
+    return (
+        <div>
+            {/*{data !== null ?
+                <ListGroup>
+                    <ListGroup.Item>{t("current_data.last_data.ambient_temperature", {
+                        temperature: data.temperature,
+                        dateTime: new Date(data.dateTime)
+                    })}</ListGroup.Item>
+                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                    <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+                    <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                </ListGroup>
+                : <Loading />
+            }*/}
+        </div>);
 }
+
+export default CurrentData;
