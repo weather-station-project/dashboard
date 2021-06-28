@@ -65,6 +65,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
                         builder =>
                         {
                             builder.AllowAnyOrigin();
+                            builder.AllowAnyHeader();
                         });
                 });
             }

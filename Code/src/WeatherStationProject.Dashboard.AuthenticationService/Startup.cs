@@ -42,6 +42,7 @@ namespace WeatherStationProject.Dashboard.AuthenticationService
                         builder =>
                         {
                             builder.AllowAnyOrigin();
+                            builder.AllowAnyHeader();
                         });
                 });
             }

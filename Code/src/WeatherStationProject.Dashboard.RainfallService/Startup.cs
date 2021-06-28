@@ -65,6 +65,7 @@ namespace WeatherStationProject.Dashboard.RainfallService
                         builder =>
                         {
                             builder.AllowAnyOrigin();
+                            builder.AllowAnyHeader();
                         });
                 });
             }

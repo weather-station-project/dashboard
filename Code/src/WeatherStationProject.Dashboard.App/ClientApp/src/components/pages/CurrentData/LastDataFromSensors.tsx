@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ListGroup } from "react-bootstrap";
 import Loading from "../../../Loading";
-import axios from "axios";
-import { getAxiosInterceptor } from "../../../consumers/AuthenticationApiHelper";
+import axios, { AxiosInstance } from "axios";
+import { getAxiosRequestConfig } from "../../../consumers/AuthenticationApiHelper";
+import { ILastData } from "../../../model/LastDataTypes";
+
 
 interface ICurrentDataProps {
     weatherApiHost: string;
@@ -11,36 +13,20 @@ interface ICurrentDataProps {
     secret: string;
 }
 
-interface ITemperature {
-    dateTime: Date;
-    temperature: Number;
-}
-
-const useAsyncError = () => {
-    const [_, setError] = React.useState();
-    return React.useCallback(
-        e => {
-            setError(() => {
-                throw e;
-            });
-        },
-        [setError],
-    );
-};
-
 const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceHost, secret }) => {
     const { t } = useTranslation();
-    const [data, setData] = useState({} as ITemperature);
-    const [error2, setError] = useState(null);
-    const url = "/api/v1/AmbientTemperatures/last";
+    const [data, setData] = useState({} as ILastData);
+    const url = "/api/v1/weather-measurements/last";
 
     useEffect(() => {
         async function fetchData() {
-            axios.interceptors.request.use(() => getAxiosInterceptor(authServiceHost, secret), error => Promise.reject(error));
+            const api: AxiosInstance = axios.create(await getAxiosRequestConfig(weatherApiHost, authServiceHost, secret));
 
-            axios.get<ITemperature>(weatherApiHost + url).then((response) => setData(response.data)).catch(e => {
-                throw e;
-            });
+            api.get<ILastData>(url)
+                .then((response) => setData(response.data))
+                .catch(e => {
+                    setData((() => { throw e }) as any);
+                });
         };
 
         fetchData();

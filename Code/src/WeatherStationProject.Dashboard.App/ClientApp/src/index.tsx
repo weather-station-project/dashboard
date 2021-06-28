@@ -5,10 +5,10 @@ import App from "./App";
 import Loading from "./Loading";
 import "./i18n";
 
-const baseUrl: string = document.getElementsByTagName("base")[0].getAttribute("href") || "";
+const BaseUrl: string = document.getElementsByTagName("base")[0].getAttribute("href") || "";
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter basename={baseUrl}>
+        <BrowserRouter basename={BaseUrl}>
             <Suspense fallback={(<Loading />)}>
                 <App />
             </Suspense>

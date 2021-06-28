@@ -65,6 +65,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService
                         builder =>
                         {
                             builder.AllowAnyOrigin();
+                            builder.AllowAnyHeader();
                         });
                 });
             }

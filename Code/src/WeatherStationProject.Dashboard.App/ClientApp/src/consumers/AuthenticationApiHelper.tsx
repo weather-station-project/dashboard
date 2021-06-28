@@ -1,15 +1,20 @@
-﻿import { IAuthenticationToken } from "../model/AuthenticationToken";
-import { AxiosRequestConfig } from "axios";
+﻿import { AxiosRequestConfig } from "axios";
 
-export async function getAxiosInterceptor(host: string, secret: string): Promise<AxiosRequestConfig> {
-    const authToken = await GetAuthToken(host, secret);
+interface IAuthenticationToken {
+    accessToken: string;
+    expiresIn: number;
+}
+
+export async function getAxiosRequestConfig(apiHost:string, authHost: string, secret: string): Promise<AxiosRequestConfig> {
+    const authToken = await GetAuthToken(authHost, secret);
     const config: AxiosRequestConfig = {
         headers: {
             'Authorization': `Bearer ${authToken.accessToken}`,
             'Accept': "application/json",
-            'Content-Type': "application/json"
+            'Content-Type': "application/json",
         },
-        method: "GET"
+        method: "GET",
+        baseURL: apiHost
     }
 
     return config;

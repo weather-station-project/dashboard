@@ -65,6 +65,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService
                         builder =>
                         {
                             builder.AllowAnyOrigin();
+                            builder.AllowAnyHeader();
                         });
                 });
             }

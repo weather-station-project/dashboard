@@ -50,11 +50,25 @@ namespace WeatherStationProject.Dashboard.GatewayService
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherStationProject - Dashboard - GatewayService", Version = "v1" });
             });
+
             services.AddOcelot(configuration: _configuration)
                 .AddCacheManager(x =>
                 {
                     x.WithDictionaryHandle();
                 });
+
+            if (_isDevelopment)
+            {
+                services.AddCors(options =>
+                {
+                    options.AddDefaultPolicy(
+                        builder =>
+                        {
+                            builder.AllowAnyOrigin();
+                            builder.AllowAnyHeader();
+                        });
+                });
+            }
         }
 
         public async void Configure(IApplicationBuilder app)
@@ -71,6 +85,8 @@ namespace WeatherStationProject.Dashboard.GatewayService
                     c.SwaggerEndpoint(url: "/rainfall/v1/swagger.json", name: "RainfallService v1");
                     c.SwaggerEndpoint(url: "/wind-measurements/v1/swagger.json", name: "WindMeasurementsService v1");
                 });
+
+                app.UseCors();
             }
 
             app.UseHttpsRedirection();

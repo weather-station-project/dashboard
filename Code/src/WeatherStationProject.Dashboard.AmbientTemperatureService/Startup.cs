@@ -65,6 +65,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
                         builder =>
                         {
                             builder.AllowAnyOrigin();
+                            builder.AllowAnyHeader();
                         });
                 });
             }
