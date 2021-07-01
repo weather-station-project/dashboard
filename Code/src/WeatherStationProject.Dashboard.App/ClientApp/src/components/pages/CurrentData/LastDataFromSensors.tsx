@@ -34,16 +34,42 @@ const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceH
 
     return (
         <div>
-            {data.hasOwnProperty("air-parameters") ?
+            {data.hasOwnProperty("airParameters") ?
                 <ListGroup>
+                    <ListGroup.Item>
+                        {t("current_data.last_data.air_parameters", {
+                            pressure: data.airParameters.pressure,
+                            humidity: data.airParameters.humidity,
+                            dateTime: new Date(data.airParameters.dateTime)
+                        })}
+                    </ListGroup.Item>
                     <ListGroup.Item>{t("current_data.last_data.ambient_temperature", {
-                        temperature: data["air-parameters"].pressure,
-                        dateTime: new Date(data["air-parameters"].dateTime)
+                        temperature: data.ambientTemperatures.temperature,
+                        dateTime: new Date(data.ambientTemperatures.dateTime)
                     })}</ListGroup.Item>
-                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                    <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-                    <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                    <ListGroup.Item>{t("current_data.last_data.ground_temperature", {
+                        temperature: data.groundTemperatures.temperature,
+                        dateTime: new Date(data.groundTemperatures.dateTime)
+                    })}</ListGroup.Item>
+                    <ListGroup.Item>{t("current_data.last_data.rainfall", {
+                        amount: data.rainfall.amount,
+                        fromDateTime: new Date(data.rainfall.fromDateTime),
+                        toDateTime: new Date(data.rainfall.toDateTime)
+                    })}</ListGroup.Item>
+                    <ListGroup.Item>{t("current_data.last_data.wind_measurement", {
+                        speed: data.windMeasurements.speed,
+                        direction: data.windMeasurements.direction,
+                        dateTime: new Date(data.windMeasurements.dateTime)
+                    })}</ListGroup.Item>
+                    <ListGroup.Item>
+                        {data.windMeasurementsGust.dateTime ?
+                            t("current_data.last_data.wind_measurement_gust", {
+                                speed: data.windMeasurementsGust.speed,
+                                direction: data.windMeasurementsGust.direction,
+                                dateTime: new Date(data.windMeasurementsGust.dateTime)
+                            })
+                            : t("current_data.last_data.wind_measurement_gust_not_found")}
+                    </ListGroup.Item>
                 </ListGroup>
                 : <Loading />
             }

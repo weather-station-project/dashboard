@@ -2,12 +2,12 @@
   "Aggregates": [
     {
       "RouteKeys": [
-        "air-parameters",
-        "ambient-temperatures",
-        "ground-temperatures",
+        "airParameters",
+        "ambientTemperatures",
+        "groundTemperatures",
         "rainfall",
-        "wind-measurements",
-        "wind-measurements-gust"
+        "windMeasurements",
+        "windMeasurementsGust"
       ],
       "UpstreamPathTemplate": "/api/{version}/weather-measurements/{everything}"
     }

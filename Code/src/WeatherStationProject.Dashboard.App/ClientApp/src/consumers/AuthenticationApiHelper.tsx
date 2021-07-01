@@ -6,7 +6,7 @@ interface IAuthenticationToken {
 }
 
 export async function getAxiosRequestConfig(apiHost:string, authHost: string, secret: string): Promise<AxiosRequestConfig> {
-    const authToken = await GetAuthToken(authHost, secret);
+    const authToken = await getAuthToken(authHost, secret);
     const config: AxiosRequestConfig = {
         headers: {
             'Authorization': `Bearer ${authToken.accessToken}`,
@@ -20,7 +20,7 @@ export async function getAxiosRequestConfig(apiHost:string, authHost: string, se
     return config;
 }
 
-async function GetAuthToken(host: string, secret: string): Promise<IAuthenticationToken> {
+async function getAuthToken(host: string, secret: string): Promise<IAuthenticationToken> {
     const url = "/api/v1/authentication/";
     return fetch(host + url + secret, {
         method: "POST", headers: {
@@ -28,7 +28,7 @@ async function GetAuthToken(host: string, secret: string): Promise<IAuthenticati
         },
         body: `secret=${secret}`, }).then((response) => {
         if (response.status !== 200) {
-            throw new Error(`GetAuthToken Error: Did not get a 200 back... -> ${response.status}: ${response.statusText}`);
+            throw new Error(`getAuthToken Error: Did not get a 200 back... -> ${response.status}: ${response.statusText}`);
         }
 
         return response.json();

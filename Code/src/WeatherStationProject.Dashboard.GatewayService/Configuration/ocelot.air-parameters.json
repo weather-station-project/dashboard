@@ -2,7 +2,7 @@
   "Routes": [
     // Air-Parameters Service
     {
-      "Key": "air-parameters",
+      "Key": "airParameters",
       "DownstreamPathTemplate": "/api/{version}/air-parameters/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [

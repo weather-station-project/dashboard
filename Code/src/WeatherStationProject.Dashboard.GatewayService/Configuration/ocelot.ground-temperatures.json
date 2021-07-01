@@ -2,7 +2,7 @@
   "Routes": [
     // Ground-temperatures Service
     {
-      "Key": "ground-temperatures",
+      "Key": "groundTemperatures",
       "DownstreamPathTemplate": "/api/{version}/ground-temperatures/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [

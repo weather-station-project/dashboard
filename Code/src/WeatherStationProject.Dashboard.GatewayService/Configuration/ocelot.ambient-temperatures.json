@@ -2,7 +2,7 @@
   "Routes": [
     // Ambient-Temperatures Service
     {
-      "Key": "ambient-temperatures",
+      "Key": "ambientTemperatures",
       "DownstreamPathTemplate": "/api/{version}/ambient-temperatures/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [

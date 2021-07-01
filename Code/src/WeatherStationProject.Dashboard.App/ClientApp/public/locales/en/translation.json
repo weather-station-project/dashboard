@@ -6,5 +6,11 @@
   "navmenu.language_selector.spanish": "Spanish",
   "current_data.last_data_title": "Last data obtained from sensors",
   "current_data.forecast_title": "7 days forecast from OpenWeather API",
-  "current_data.last_data.ambient_temperature": "Ambient temperature of {{temperature}}ºC on {{dateTime, LLLL}}"
+  "current_data.last_data.air_parameters": "Atmospheric pressure of {{pressure}}hPa with {{humidity}}% of humidity on {{dateTime, LLLL}}",
+  "current_data.last_data.ambient_temperature": "Ambient temperature of {{temperature}}ºC on {{dateTime, LLLL}}",
+  "current_data.last_data.ground_temperature": "Ground temperature of {{temperature}}ºC on {{dateTime, LLLL}}",
+  "current_data.last_data.rainfall": "Rainfall in the last hour {{amount}}mm from {{fromDateTime, LLLL}} to {{toDateTime, LLLL}}",
+  "current_data.last_data.wind_measurement": "Wind speed {{speed}}km/h direction {{direction}} on {{dateTime, LLLL}}",
+  "current_data.last_data.wind_measurement_gust": "Wind gust during the last hour {{speed}}km/h direction {{direction}} on {{dateTime, LLLL}}",
+  "current_data.last_data.wind_measurement_gust_not_found": "Gust not found"
 }

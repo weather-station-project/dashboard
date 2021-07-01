@@ -1,11 +1,11 @@
 ﻿export interface ILastData
 {
-    "air-parameters": IAirParameters;
-    "ambient-temperatures": IAmbientTemperatures;
-    "ground-temperatures": IGroundTemperatures;
+    airParameters: IAirParameters;
+    ambientTemperatures: IAmbientTemperatures;
+    groundTemperatures: IGroundTemperatures;
     rainfall: IRainfall;
-    "wind-measurements": IWindMeasurements;
-    "wind-measurements-gust": IWindMeasurementsGust;
+    windMeasurements: IWindMeasurements;
+    windMeasurementsGust: IWindMeasurementsGust;
 }
 
 interface IAirParameters {
