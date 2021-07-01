@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Button } from "react-bootstrap";
 import Loading from "../../../Loading";
 import axios, { AxiosInstance } from "axios";
 import { getAxiosRequestConfig } from "../../../consumers/AuthenticationApiHelper";
@@ -34,11 +34,11 @@ const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceH
 
     return (
         <div>
-            {/*{data !== null ?
+            {data.hasOwnProperty("air-parameters") ?
                 <ListGroup>
                     <ListGroup.Item>{t("current_data.last_data.ambient_temperature", {
-                        temperature: data.temperature,
-                        dateTime: new Date(data.dateTime)
+                        temperature: data["air-parameters"].pressure,
+                        dateTime: new Date(data["air-parameters"].dateTime)
                     })}</ListGroup.Item>
                     <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
                     <ListGroup.Item>Morbi leo risus</ListGroup.Item>
@@ -46,7 +46,7 @@ const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceH
                     <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
                 </ListGroup>
                 : <Loading />
-            }*/}
+            }
         </div>);
 }
 

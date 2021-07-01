@@ -1,26 +1,26 @@
 ﻿export interface ILastData
 {
-    airParameters: IAirParameters;
-    ambientTemperatures: IAmbientTemperatures;
-    groundTemperatures: IGroundTemperatures;
+    "air-parameters": IAirParameters;
+    "ambient-temperatures": IAmbientTemperatures;
+    "ground-temperatures": IGroundTemperatures;
     rainfall: IRainfall;
-    windMeasurements: IWindMeasurements;
-    windMeasurementsGust: IWindMeasurementsGust;
+    "wind-measurements": IWindMeasurements;
+    "wind-measurements-gust": IWindMeasurementsGust;
 }
 
 interface IAirParameters {
-    datetime: Date;
+    dateTime: Date;
     pressure: Number;
     humidity: Number;
 }
 
 interface IAmbientTemperatures {
-    datetime: Date;
+    dateTime: Date;
     temperature: Number;
 }
 
 interface IGroundTemperatures {
-    datetime: Date;
+    dateTime: Date;
     temperature: Number;
 }
 
@@ -31,13 +31,13 @@ interface IRainfall {
 }
 
 interface IWindMeasurements {
-    datetime: Date;
+    dateTime: Date;
     speed: Number;
     direction: String;
 }
 
 interface IWindMeasurementsGust {
-    datetime: Date;
+    dateTime: Date;
     speed: Number;
     direction: String;
 }
