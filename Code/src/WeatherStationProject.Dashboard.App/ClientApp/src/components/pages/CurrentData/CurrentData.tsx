@@ -12,7 +12,10 @@ const CurrentData: React.FC = () => {
         <div style={{ paddingTop: 20 }}>
             <h1>{t("current_data.last_data_title")}</h1>
             <ErrorBoundary>
-                <LastDataFromSensors weatherApiHost="https://localhost:44375" authServiceHost="https://localhost:44394" secret="123456" />
+                <LastDataFromSensors
+                    weatherApiHost={(process.env.REACT_APP_WEATHER_API_HOST as string)}
+                    authServiceHost={(process.env.REACT_APP_AUTHENTICATION_SERVICE_HOST as string)}
+                    secret={(process.env.REACT_APP_AUTHENTICATION_SECRET as string)} />
             </ErrorBoundary>
             <br />
             <h1>{t("current_data.forecast_title")}</h1>
