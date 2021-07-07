@@ -23,8 +23,10 @@ const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceH
             const api: AxiosInstance = axios.create(await getAxiosRequestConfig(weatherApiHost, authServiceHost, secret));
 
             api.get<ILastData>(url)
-                .then((response) => setData(response.data))
-                .catch(e => {
+                .then((response) => {
+                    console.debug(response);
+                    setData(response.data);
+                }).catch(e => {
                     setData((() => { throw e }) as any);
                 });
         };

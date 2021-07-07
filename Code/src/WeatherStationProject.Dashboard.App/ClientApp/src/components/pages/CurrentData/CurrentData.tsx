@@ -20,7 +20,7 @@ const CurrentData: React.FC = () => {
             <br />
             <h1>{t("current_data.forecast_title")}</h1>
             <ErrorBoundary>
-                <ForecastData />
+                <ForecastData openWeatherApiKey={(process.env.REACT_APP_OPEN_WEATHER_API_KEY as string)} />
             </ErrorBoundary>
         </div>
     );
