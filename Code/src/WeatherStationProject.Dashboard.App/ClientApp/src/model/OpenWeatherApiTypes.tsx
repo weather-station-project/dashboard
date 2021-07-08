@@ -1,43 +1,41 @@
-﻿export interface ILastData
-{
-    airParameters: IAirParameters;
-    ambientTemperatures: IAmbientTemperatures;
-    groundTemperatures: IGroundTemperatures;
-    rainfall: IRainfall;
-    windMeasurements: IWindMeasurements;
-    windMeasurementsGust: IWindMeasurementsGust;
+﻿export interface IOpenWeatherApiResponse {
+    current: ICurrent;
 }
 
-interface IAirParameters {
-    dateTime: Date;
-    pressure: Number;
-    humidity: Number;
+interface ICurrent {
+    dt: number;
+    temp: number;
+    pressure: number;
+    humidity: number;
+    wind_speed: number;
+    wind_gust: number;
+    wind_deg: number;
+    rain: IRainLastHour;
+    weather: IWeather[];
 }
 
-interface IAmbientTemperatures {
-    dateTime: Date;
-    temperature: Number;
+interface IRainLastHour {
+    "1h": number;
 }
 
-interface IGroundTemperatures {
-    dateTime: Date;
-    temperature: Number;
+interface IWeather {
+    id: number;
+    icon: string;
 }
 
-interface IRainfall {
-    fromDateTime: Date;
-    toDateTime: Date;
-    amount: Number;
+interface IDaily {
+    dt: number;
+    temp: ITemp;
+    pressure: number;
+    humidity: number;
+    wind_speed: number;
+    wind_gust: number;
+    wind_deg: number;
+    rain: number;
+    weather: IWeather[];
 }
 
-interface IWindMeasurements {
-    dateTime: Date;
-    speed: Number;
-    direction: String;
-}
-
-interface IWindMeasurementsGust {
-    dateTime: Date;
-    speed: Number;
-    direction: String;
+interface ITemp {
+    min: number;
+    max: number;
 }

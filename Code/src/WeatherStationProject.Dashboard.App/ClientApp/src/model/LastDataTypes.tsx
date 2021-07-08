@@ -1,5 +1,4 @@
-﻿export interface ILastData
-{
+﻿export interface ILastData {
     airParameters: IAirParameters;
     ambientTemperatures: IAmbientTemperatures;
     groundTemperatures: IGroundTemperatures;

@@ -5,7 +5,7 @@
   "navmenu.language_selector.english": "Inglés",
   "navmenu.language_selector.spanish": "Español",
   "current_data.last_data_title": "Últimas lecturas de los sensores",
-  "current_data.forecast_title": "Previsión a 7 días según OpenWeather API",
+  "current_data.forecast_title": "Previsión a 7 días",
   "current_data.last_data.air_parameters": "Presión atmosférica de {{pressure}}hPa con {{humidity}}% de humedad el {{dateTime, LLLL}}",
   "current_data.last_data.ambient_temperature": "Temperatura ambiental de {{temperature}}ºC el {{dateTime, LLLL}}",
   "current_data.last_data.ground_temperature": "Temperatura de suelo de {{temperature}}ºC el {{dateTime, LLLL}}",
