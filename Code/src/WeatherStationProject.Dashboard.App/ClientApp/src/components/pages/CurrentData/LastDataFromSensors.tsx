@@ -75,7 +75,8 @@ const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceH
                 </ListGroup>
                 : <Loading />
             }
-        </div>);
+        </div>
+    );
 }
 
 export default CurrentData;

@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import Loading from "../../../Loading";
 import axios from "axios";
 import { IOpenWeatherApiResponse } from "../../../model/OpenWeatherApiTypes";
+import { Carousel } from "react-bootstrap";
+import CurrentDayData from "../../carousel/CurrentDayData";
 
 interface IForecastDataProps {
     openWeatherApiKey: string;
@@ -56,11 +58,18 @@ const ForecastData: React.FC<IForecastDataProps> = ({ openWeatherApiKey }) => {
         };
 
         fetchData();
-    }, []);
+    }, [i18n.language]);
 
     return (
         <div>
-            <h1>Coming soon!</h1>
+            {data.hasOwnProperty("current") ?
+                <Carousel>
+                    <Carousel.Item>
+                        <CurrentDayData data={data.current} />
+                    </Carousel.Item>
+                </Carousel>
+                : <Loading />
+            }
         </div>
     );
 }

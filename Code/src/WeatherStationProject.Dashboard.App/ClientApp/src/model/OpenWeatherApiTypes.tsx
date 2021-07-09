@@ -1,8 +1,9 @@
 ﻿export interface IOpenWeatherApiResponse {
-    current: ICurrent;
+    current: IOpenWeatherApiCurrentDayData;
+    daily: IOpenWeatherApiDailyData[];
 }
 
-interface ICurrent {
+export interface IOpenWeatherApiCurrentDayData {
     dt: number;
     temp: number;
     pressure: number;
@@ -10,32 +11,34 @@ interface ICurrent {
     wind_speed: number;
     wind_gust: number;
     wind_deg: number;
-    rain: IRainLastHour;
-    weather: IWeather[];
+    rain: IOpenWeatherApiRainLastHourData;
+    weather: IOpenWeatherApiWeatherData[];
 }
 
-interface IRainLastHour {
+interface IOpenWeatherApiRainLastHourData {
     "1h": number;
 }
 
-interface IWeather {
+interface IOpenWeatherApiWeatherData {
     id: number;
+    main: string;
+    description: string;
     icon: string;
 }
 
-interface IDaily {
+export interface IOpenWeatherApiDailyData {
     dt: number;
-    temp: ITemp;
+    temp: IOpenWeatherApiDailyTempData;
     pressure: number;
     humidity: number;
     wind_speed: number;
     wind_gust: number;
     wind_deg: number;
     rain: number;
-    weather: IWeather[];
+    weather: IOpenWeatherApiWeatherData[];
 }
 
-interface ITemp {
+interface IOpenWeatherApiDailyTempData {
     min: number;
     max: number;
 }
