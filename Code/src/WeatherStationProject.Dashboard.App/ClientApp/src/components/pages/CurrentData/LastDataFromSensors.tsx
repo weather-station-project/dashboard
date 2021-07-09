@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { ListGroup, Button } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 import Loading from "../../../Loading";
 import axios, { AxiosInstance } from "axios";
 import { getAxiosRequestConfig } from "../../../consumers/AuthenticationApiHelper";
@@ -32,12 +32,12 @@ const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceH
         };
 
         fetchData();
-    }, []);
+    });
 
     return (
         <div>
             {data.hasOwnProperty("airParameters") ?
-                <ListGroup>
+                <ListGroup variant="flush">
                     <ListGroup.Item>
                         {t("current_data.last_data.air_parameters", {
                             pressure: data.airParameters.pressure,

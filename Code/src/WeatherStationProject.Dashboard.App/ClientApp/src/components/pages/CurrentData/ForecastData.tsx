@@ -16,7 +16,7 @@ interface ICoordinates {
 }
 
 const ForecastData: React.FC<IForecastDataProps> = ({ openWeatherApiKey }) => {
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const [data, setData] = useState({} as IOpenWeatherApiResponse);
     const url = "https://api.openweathermap.org/data/2.5/onecall";
 
@@ -58,7 +58,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({ openWeatherApiKey }) => {
         };
 
         fetchData();
-    }, [i18n.language]);
+    }, [i18n.language, openWeatherApiKey]);
 
     return (
         <div>

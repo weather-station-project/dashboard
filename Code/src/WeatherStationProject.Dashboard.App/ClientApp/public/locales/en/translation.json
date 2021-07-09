@@ -13,5 +13,11 @@
   "current_data.last_data.rainfall": "Rainfall in the last hour {{amount}}mm from {{fromDateTime, LLLL}} to {{toDateTime, LLLL}}",
   "current_data.last_data.wind_measurement": "Wind speed {{speed}}km/h direction {{direction}} on {{dateTime, LLLL}}",
   "current_data.last_data.wind_measurement_gust": "Wind gust during the last hour {{speed}}km/h direction {{direction}} on {{dateTime, LLLL}}",
-  "current_data.last_data.wind_measurement_gust_not_found": "Gust not found"
+  "current_data.last_data.wind_measurement_gust_not_found": "Gust not found",
+  "current_data.forecast_data.temperature": "Temperature {{temperature}}ºC",
+  "current_data.forecast_data.pressure": "Pressure {{pressure}}hPa",
+  "current_data.forecast_data.humidity": "Humidity {{humidity}}%",
+  "current_data.forecast_data.wind_speed": "Wind speed {{windSpeed}}km/h",
+  "current_data.forecast_data.wind_gust": "Gust {{windSpeed}}km/h",
+  "current_data.forecast_data.rain": "Rain (1h) {{amount}}mm"
 }

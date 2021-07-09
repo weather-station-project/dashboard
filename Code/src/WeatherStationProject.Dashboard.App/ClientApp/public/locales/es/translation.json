@@ -13,5 +13,11 @@
   "current_data.last_data.rainfall": "Lluvia en la última hora {{amount}}mm desde {{fromDateTime, LLLL}} hasta {{toDateTime, LLLL}}",
   "current_data.last_data.wind_measurement": "Velocidad del viento {{speed}}km/h dirección {{direction}} el {{dateTime, LLLL}}",
   "current_data.last_data.wind_measurement_gust": "Máxima ráfaga viento en la última hora de {{speed}}km/h dirección {{direction}} el {{dateTime, LLLL}}",
-  "current_data.last_data.wind_measurement_gust_not_found": "No se detectó ningúna ráfaga de viento"
+  "current_data.last_data.wind_measurement_gust_not_found": "No se detectó ningúna ráfaga de viento",
+  "current_data.forecast_data.temperature": "Temperatura {{temperature}}ºC",
+  "current_data.forecast_data.pressure": "Presión {{pressure}}hPa",
+  "current_data.forecast_data.humidity": "Humedad {{humidity}}%",
+  "current_data.forecast_data.wind_speed": "Viento {{windSpeed}}km/h",
+  "current_data.forecast_data.wind_gust": "Ráfaga {{windSpeed}}km/h",
+  "current_data.forecast_data.rain": "Lluvia (1h) {{amount}}mm"
 }

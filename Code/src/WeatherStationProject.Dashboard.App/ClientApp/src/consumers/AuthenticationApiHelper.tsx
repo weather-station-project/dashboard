@@ -1,4 +1,4 @@
-﻿import { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
 
 interface IAuthenticationToken {
     accessToken: string;

@@ -13,10 +13,6 @@ interface IErrorInformation {
 export class ErrorBoundary extends React.Component<IProps> {
     state: IErrorInformation = {} as IErrorInformation;
 
-    constructor(props: IProps) {
-        super(props);
-    }
-
     componentDidCatch(error: Error, errorInfo: ErrorInfo) {
         this.setState({
             error: error,

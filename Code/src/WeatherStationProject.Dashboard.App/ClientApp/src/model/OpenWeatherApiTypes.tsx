@@ -20,8 +20,6 @@ interface IOpenWeatherApiRainLastHourData {
 }
 
 interface IOpenWeatherApiWeatherData {
-    id: number;
-    main: string;
     description: string;
     icon: string;
 }
