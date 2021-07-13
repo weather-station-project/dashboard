@@ -39,7 +39,7 @@ const DailyData: React.FC<IDailyDataProps> = ({ data }) => {
                     }
                     {data.hasOwnProperty("rain") &&
                         <ListGroup.Item variant="light">
-                        {t("current_data.forecast_data.rain_day", { amount: data.rain })}
+                            {t("current_data.forecast_data.rain_day", { amount: data.rain })}
                         </ListGroup.Item>
                     }
                 </ListGroup>

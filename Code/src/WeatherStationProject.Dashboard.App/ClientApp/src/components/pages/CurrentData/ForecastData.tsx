@@ -64,7 +64,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({ openWeatherApiKey }) => {
     return (
         <div>
             {data.hasOwnProperty("current") ?
-                <Carousel>
+                <Carousel fade>
                     <Carousel.Item>
                         <CurrentDayData data={data.current} />
                     </Carousel.Item>

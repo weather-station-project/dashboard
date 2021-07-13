@@ -13,7 +13,7 @@ const CurrentDayData: React.FC<ICurrentDayDataProps> = ({ data }) => {
     return (
         <Card bg="light" style={{ width: "18rem" }}>
             <Card.Body>
-                <Card.Title>{t("date.long", { date: new Date(data.dt * 1000) })}</Card.Title>
+                <Card.Title>{t("date.today") + ", " + t("date.long", { date: new Date(data.dt * 1000) })}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{data.weather[0].description}</Card.Subtitle>
                 <Card.Img variant="bottom" src={"http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"} />
                 <ListGroup variant="flush">
