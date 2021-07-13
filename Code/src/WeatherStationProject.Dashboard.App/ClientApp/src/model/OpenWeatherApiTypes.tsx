@@ -8,6 +8,7 @@ export interface IOpenWeatherApiCurrentDayData {
     temp: number;
     pressure: number;
     humidity: number;
+    uvi: number;
     wind_speed: number;
     wind_gust: number;
     wind_deg: number;
@@ -34,6 +35,7 @@ export interface IOpenWeatherApiDailyData {
     wind_deg: number;
     rain: number;
     weather: IOpenWeatherApiWeatherData[];
+    uvi: number;
 }
 
 interface IOpenWeatherApiDailyTempData {

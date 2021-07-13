@@ -5,6 +5,7 @@ import axios from "axios";
 import { IOpenWeatherApiResponse } from "../../../model/OpenWeatherApiTypes";
 import { Carousel } from "react-bootstrap";
 import CurrentDayData from "../../carousel/CurrentDayData";
+import DailyData from "../../carousel/DailyData";
 
 interface IForecastDataProps {
     openWeatherApiKey: string;
@@ -67,6 +68,10 @@ const ForecastData: React.FC<IForecastDataProps> = ({ openWeatherApiKey }) => {
                     <Carousel.Item>
                         <CurrentDayData data={data.current} />
                     </Carousel.Item>
+                    {data.daily.map(dayData => 
+                        <Carousel.Item>
+                            <DailyData data={dayData} />
+                        </Carousel.Item>)}
                 </Carousel>
                 : <Loading />
             }

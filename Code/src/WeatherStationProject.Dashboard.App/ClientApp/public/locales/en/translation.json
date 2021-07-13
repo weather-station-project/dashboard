@@ -1,5 +1,6 @@
 {
   "date.long": "{{date, LLLL}}",
+  "date.date": "{{date, L}}",
   "navmenu.current_data": "Current data",
   "navmenu.historical_data": "Historical data",
   "navmenu.measurements_list": "Measurements list",
@@ -17,7 +18,10 @@
   "current_data.forecast_data.temperature": "Temperature {{temperature}}ºC",
   "current_data.forecast_data.pressure": "Pressure {{pressure}}hPa",
   "current_data.forecast_data.humidity": "Humidity {{humidity}}%",
+  "current_data.forecast_data.uv": "UV {{uv}}",
   "current_data.forecast_data.wind_speed": "Wind speed {{windSpeed}}km/h",
   "current_data.forecast_data.wind_gust": "Gust {{windSpeed}}km/h",
-  "current_data.forecast_data.rain": "Rain (1h) {{amount}}mm"
+  "current_data.forecast_data.rain": "Rain (1h) {{amount}}mm",
+  "current_data.forecast_data.temperature_day": "Temps. {{temperature.min}}ºC | {{temperature.max}}ºC",
+  "current_data.forecast_data.rain_day": "Rain {{amount}}mm"
 }
