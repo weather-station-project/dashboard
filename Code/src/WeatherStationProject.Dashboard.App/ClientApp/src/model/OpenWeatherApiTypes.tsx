@@ -1,9 +1,9 @@
 ﻿export interface IOpenWeatherApiResponse {
-    current: IOpenWeatherApiCurrentDayData;
+    current: IOpenWeatherApiCurrentData;
     daily: IOpenWeatherApiDailyData[];
 }
 
-export interface IOpenWeatherApiCurrentDayData {
+export interface IOpenWeatherApiCurrentData {
     dt: number;
     temp: number;
     pressure: number;

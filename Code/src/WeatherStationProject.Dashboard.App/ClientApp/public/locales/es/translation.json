@@ -1,7 +1,7 @@
 {
   "date.long": "{{date, LLLL}}",
   "date.date": "{{date, L}}",
-  "date.today": "Hoy",
+  "date.now": "Ahora",
   "navmenu.current_data": "Datos actuales",
   "navmenu.historical_data": "Datos históricos",
   "navmenu.measurements_list": "Lista de mediciones",

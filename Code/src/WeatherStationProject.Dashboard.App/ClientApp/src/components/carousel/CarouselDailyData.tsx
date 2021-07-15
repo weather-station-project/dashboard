@@ -1,24 +1,24 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Card, ListGroup } from "react-bootstrap";
-import { IOpenWeatherApiCurrentDayData } from "../../model/OpenWeatherApiTypes";
+import { IOpenWeatherApiDailyData } from "../../model/OpenWeatherApiTypes";
 
-interface ICurrentDayDataProps {
-    data: IOpenWeatherApiCurrentDayData;
+interface ICarouselDailyDataProps {
+    data: IOpenWeatherApiDailyData;
 }
 
-const CurrentDayData: React.FC<ICurrentDayDataProps> = ({ data }) => {
+const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({ data }) => {
     const { t } = useTranslation();
 
     return (
         <Card bg="light" style={{ width: "18rem" }}>
             <Card.Body>
-                <Card.Title>{t("date.today") + ", " + t("date.long", { date: new Date(data.dt * 1000) })}</Card.Title>
+                <Card.Title>{t("date.date", { date: new Date(data.dt * 1000) })}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{data.weather[0].description}</Card.Subtitle>
-                <Card.Img variant="bottom" src={"http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"} />
+                <Card.Img variant="bottom" src={"https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"} />
                 <ListGroup variant="flush">
                     <ListGroup.Item variant="light">
-                        {t("current_data.forecast_data.temperature", { temperature: data.temp })}
+                        {t("current_data.forecast_data.temperature_day", { temperature: data.temp })}
                     </ListGroup.Item>
                     <ListGroup.Item variant="light">
                         {t("current_data.forecast_data.pressure", { pressure: data.pressure })}
@@ -39,7 +39,7 @@ const CurrentDayData: React.FC<ICurrentDayDataProps> = ({ data }) => {
                     }
                     {data.hasOwnProperty("rain") &&
                         <ListGroup.Item variant="light">
-                            {t("current_data.forecast_data.rain", { amount: data.rain["1h"] })}
+                            {t("current_data.forecast_data.rain_day", { amount: data.rain })}
                         </ListGroup.Item>
                     }
                 </ListGroup>
@@ -48,4 +48,4 @@ const CurrentDayData: React.FC<ICurrentDayDataProps> = ({ data }) => {
     );
 }
 
-export default CurrentDayData;
+export default CarouselDailyData;
