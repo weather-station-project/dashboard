@@ -7,6 +7,8 @@
   "navmenu.measurements_list": "Lista de mediciones",
   "navmenu.language_selector.english": "Inglés",
   "navmenu.language_selector.spanish": "Español",
+  "home.introduction": "Este proyecto consiste en un visor y consulta de datos obtenidos mediante una serie de sensores conectados a una Raspberry Pi.",
+  "home.more_information": "Más información sobre el proyecto en el siguiente ",
   "current_data.last_data_title": "Últimas lecturas de los sensores",
   "current_data.forecast_title": "Previsión a 7 días",
   "current_data.last_data.air_parameters": "Presión atmosférica de {{pressure}}hPa con {{humidity}}% de humedad el {{dateTime, LLLL}}",

@@ -1,10 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Card, ListGroup } from "react-bootstrap";
-import { IOpenWeatherApiDailyData } from "../../model/OpenWeatherApiTypes";
+import { IAccuWeatherForecastResponse } from "../../model/OpenWeatherApiTypes";
 
 interface ICarouselDailyDataProps {
-    data: IOpenWeatherApiDailyData;
+    data: IAccuWeatherForecastResponse;
 }
 
 const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({ data }) => {

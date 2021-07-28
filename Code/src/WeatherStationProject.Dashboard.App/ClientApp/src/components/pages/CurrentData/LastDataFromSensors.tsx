@@ -32,7 +32,7 @@ const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceH
         };
 
         fetchData();
-    });
+    }, []);
 
     return (
         <div>
