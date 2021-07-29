@@ -22,8 +22,8 @@
   "current_data.forecast_data.pressure": "Presión {{pressure}}hPa",
   "current_data.forecast_data.humidity": "Humedad {{humidity}}%",
   "current_data.forecast_data.uv": "UV {{uv}}",
-  "current_data.forecast_data.wind_speed": "Viento {{windSpeed}}km/h",
-  "current_data.forecast_data.wind_gust": "Ráfaga {{windSpeed}}km/h",
+  "current_data.forecast_data.wind": "Viento {{speed}}km/h {{direction}}",
+  "current_data.forecast_data.wind_gust": "Ráfaga {{speed}}km/h",
   "current_data.forecast_data.rain": "Lluvia (1h) {{amount}}mm",
   "current_data.forecast_data.temperature_day": "Temps. {{temperature.min}}ºC | {{temperature.max}}ºC",
   "current_data.forecast_data.rain_day": "Lluvia {{amount}}mm"

@@ -116,7 +116,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
                     removeArrowOnDeviceType={["tablet", "mobile"]}
                     dotListClass="custom-dot-list-style"
                 >
-                    <div><CarouselCurrentData data={currentData.current} /></div>
+                    <div><CarouselCurrentData data={currentData} /></div>
                     {currentData.daily.map((dayData, idx) => <div key="idx"><CarouselDailyData data={dayData} /></div>)}
                 </Carousel>
                 : <Loading />
