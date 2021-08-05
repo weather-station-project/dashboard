@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Card, ListGroup } from "react-bootstrap";
 import { IAccuWeatherCurrentConditionsResponse } from "../../model/OpenWeatherApiTypes";
+import { Link } from "react-router-dom";
 
 interface ICarouselCurrentDataProps {
     data: IAccuWeatherCurrentConditionsResponse;
@@ -39,7 +40,7 @@ const CarouselCurrentData: React.FC<ICarouselCurrentDataProps> = ({ data }) => {
                         {t("current_data.forecast_data.rain", { amount: data.Precip1hr.Metric.Value })}
                     </ListGroup.Item>
                     <ListGroup.Item variant="light">
-                        PONER EL LINK
+                        <Link to={data.Link}></Link>
                     </ListGroup.Item>
                 </ListGroup>
             </Card.Body>

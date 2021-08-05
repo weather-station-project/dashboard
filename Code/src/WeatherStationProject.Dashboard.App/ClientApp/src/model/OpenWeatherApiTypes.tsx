@@ -44,5 +44,44 @@ export interface IAccuWeatherCurrentConditionsResponse {
 }
 
 export interface IAccuWeatherForecastResponse {
+    DailyForecasts: IAccuWeatherDailyForecast[];
+}
 
+export interface IAccuWeatherDailyForecast {
+    EpochDate: number;
+    Temperature: {
+        Minimum: {
+            Value: number;
+        };
+        Maximum: {
+            Value: number;
+        };
+    };
+    Day: IAccuWeatherForecastDayNightData;
+    Night: IAccuWeatherForecastDayNightData;
+    Link: string;
+}
+
+interface IAccuWeatherForecastDayNightData {
+    Icon: number;
+    ShortPhrase: string;
+    Wind: {
+        Speed: {
+            Value: number;
+        };
+        Direction: {
+            Localized: string;
+        };
+    };
+    WindGust: {
+        Speed: {
+            Value: number;
+        };
+        Direction: {
+            Localized: string;
+        };
+    };
+    Rain: {
+        Value: number;
+    };
 }

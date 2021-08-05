@@ -75,17 +75,18 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
         };
 
         async function fetchForecastData(locationKey: string) {
-            axios.get<IAccuWeatherCurrentConditionsResponse>("http://dataservice.accuweather.com/currentconditions/v1/" + locationKey, {
+            axios.get<IAccuWeatherForecastResponse>("http://dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey, {
                 params: {
                     apikey: weatherApiKey,
+                    language: i18n.language,
                     details: true,
-                    language: i18n.language
+                    metric: true
                 }
             }).then((response) => {
                 console.debug(response);
-                setCurrentData(response.data);
+                setForecastData(response.data);
             }).catch(e => {
-                setCurrentData((() => { throw e }) as any);
+                setForecastData((() => { throw e }) as any);
             });
         };
         
@@ -117,7 +118,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
                     dotListClass="custom-dot-list-style"
                 >
                     <div><CarouselCurrentData data={currentData} /></div>
-                    {currentData.daily.map((dayData, idx) => <div key="idx"><CarouselDailyData data={dayData} /></div>)}
+                        {forecastData.DailyForecasts.map((dayData, idx) => <div key="idx"><CarouselDailyData data={dayData} /></div>)}
                 </Carousel>
                 : <Loading />
             }
