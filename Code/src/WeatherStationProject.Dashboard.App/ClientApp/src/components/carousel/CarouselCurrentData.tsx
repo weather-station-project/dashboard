@@ -40,7 +40,7 @@ const CarouselCurrentData: React.FC<ICarouselCurrentDataProps> = ({ data }) => {
                         {t("current_data.forecast_data.rain", { amount: data.Precip1hr.Metric.Value })}
                     </ListGroup.Item>
                     <ListGroup.Item variant="light">
-                        <Link to={data.Link}></Link>
+                        <Link to={data.Link}>Link</Link>
                     </ListGroup.Item>
                 </ListGroup>
             </Card.Body>

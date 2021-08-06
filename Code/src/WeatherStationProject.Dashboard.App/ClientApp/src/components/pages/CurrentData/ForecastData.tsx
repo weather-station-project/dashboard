@@ -36,31 +36,34 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
     };
 
     useEffect(() => {
-        async function getLocationKeyByCityName(): Promise<string> {
-            axios.get<IAccuWeatherLocationSearchResponse>("http://dataservice.accuweather.com/locations/v1/search", {
-                params: {
-                    apikey: weatherApiKey,
-                    q: cityName,
-                    details: false,
-                    language: i18n.language
-                }
-            }).then((response) => {
-                console.debug(response);
-                return response.data.Key;
-            }).catch(e => {
-                setCurrentData((() => { throw e }) as any);
-            });
-
-            return "";
-        }
-
         async function fetchData() {
             const locationKey = await getLocationKeyByCityName();
-            await Promise.all([fetchCurrentData(locationKey), fetchForecastData(locationKey)]);
+            if (locationKey !== undefined) {
+                await Promise.all([fetchCurrentData(locationKey), fetchForecastData(locationKey)]);
+            }
         };
 
+        async function getLocationKeyByCityName(): Promise<string | undefined> {
+            try {
+                const response = await axios.get<IAccuWeatherLocationSearchResponse[]>("//dataservice.accuweather.com/locations/v1/search",
+                    {
+                        params: {
+                            apikey: weatherApiKey,
+                            q: cityName,
+                            details: false,
+                            language: i18n.language
+                        }
+                    });
+
+                console.debug(response);
+                return response.data[0].Key;
+            } catch (e) {
+                setCurrentData((() => { throw e }) as any);
+            }
+        }
+
         async function fetchCurrentData(locationKey: string) {
-            axios.get<IAccuWeatherCurrentConditionsResponse>("http://dataservice.accuweather.com/currentconditions/v1/" + locationKey, {
+            axios.get<IAccuWeatherCurrentConditionsResponse>("//dataservice.accuweather.com/currentconditions/v1/" + locationKey, {
                 params: {
                     apikey: weatherApiKey,
                     details: true,
@@ -75,7 +78,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
         };
 
         async function fetchForecastData(locationKey: string) {
-            axios.get<IAccuWeatherForecastResponse>("http://dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey, {
+            axios.get<IAccuWeatherForecastResponse>("//dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey, {
                 params: {
                     apikey: weatherApiKey,
                     language: i18n.language,
@@ -89,9 +92,9 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
                 setForecastData((() => { throw e }) as any);
             });
         };
-        
+
         fetchData();
-    }, [i18n.language, weatherApiKey]);
+    }, [i18n.language, weatherApiKey, cityName]);
 
     return (
         <div>
@@ -101,26 +104,26 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
                 // https://developer.accuweather.com/accuweather-current-conditions-api/apis/get/currentconditions/v1/%7BlocationKey%7D
                 // https://developer.accuweather.com/accuweather-forecast-api/apis/get/forecasts/v1/daily/5day/%7BlocationKey%7D
 
-                currentData.hasOwnProperty("current") ?
-                <Carousel
-                    swipeable={true}
-                    draggable={false}
-                    showDots={true}
-                    responsive={responsive}
-                    ssr={true}
-                    infinite={true}
-                    autoPlay={false}
-                    keyBoardControl={true}
-                    customTransition="all .5"
-                    transitionDuration={500}
-                    containerClass="carousel-container"
-                    removeArrowOnDeviceType={["tablet", "mobile"]}
-                    dotListClass="custom-dot-list-style"
-                >
-                    <div><CarouselCurrentData data={currentData} /></div>
+                currentData.hasOwnProperty("EpochTime") ?
+                    <Carousel
+                        swipeable={true}
+                        draggable={false}
+                        showDots={true}
+                        responsive={responsive}
+                        ssr={true}
+                        infinite={true}
+                        autoPlay={false}
+                        keyBoardControl={true}
+                        customTransition="all .5"
+                        transitionDuration={500}
+                        containerClass="carousel-container"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        dotListClass="custom-dot-list-style"
+                    >
+                        <div><CarouselCurrentData data={currentData} /></div>
                         {forecastData.DailyForecasts.map((dayData, idx) => <div key="idx"><CarouselDailyData data={dayData} /></div>)}
-                </Carousel>
-                : <Loading />
+                    </Carousel>
+                    : <Loading />
             }
         </div>
     );

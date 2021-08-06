@@ -19,7 +19,7 @@ const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({ data }) => {
         } else {
             setDayNightData(data.Night);
         }
-    }, [showDay]);
+    }, [showDay, data.Day, data.Night]);
 
     return (
         <Card bg="light" style={{ width: "18rem" }}>
@@ -52,7 +52,7 @@ const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({ data }) => {
                         {t("current_data.forecast_data.rain_day", { amount: dayNightData.Rain.Value })}
                     </ListGroup.Item>
                     <ListGroup.Item variant="light">
-                        <Link to={data.Link}></Link>
+                        <Link to={data.Link}>Link</Link>
                     </ListGroup.Item>
                 </ListGroup>
             </Card.Body>

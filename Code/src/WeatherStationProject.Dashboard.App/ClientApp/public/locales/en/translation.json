@@ -18,13 +18,17 @@
   "current_data.last_data.wind_measurement": "Wind speed {{speed}}km/h direction {{direction}} on {{dateTime, LLLL}}",
   "current_data.last_data.wind_measurement_gust": "Wind gust during the last hour {{speed}}km/h direction {{direction}} on {{dateTime, LLLL}}",
   "current_data.last_data.wind_measurement_gust_not_found": "Gust not found",
+  "current_data.forecast_data.day": "Day",
+  "current_data.forecast_data.night": "Night",
   "current_data.forecast_data.temperature": "Temperature {{temperature}}ºC",
   "current_data.forecast_data.pressure": "Pressure {{pressure}}hPa",
   "current_data.forecast_data.humidity": "Humidity {{humidity}}%",
   "current_data.forecast_data.uv": "UV {{uv}}",
   "current_data.forecast_data.wind": "Wind {{speed}}km/h {{direction}}",
   "current_data.forecast_data.wind_gust": "Gust {{speed}}km/h",
+  "current_data.forecast_data.wind_gust_day": "Gust {{speed}}km/h {{direction}}",
   "current_data.forecast_data.rain": "Rain (1h) {{amount}}mm",
-  "current_data.forecast_data.temperature_day": "Temps. {{temperature.min}}ºC | {{temperature.max}}ºC",
+  "current_data.forecast_data.temperature_day": "Max. temp. {{temperature}}ºC",
+  "current_data.forecast_data.temperature_night": "Min temp. {{temperature}}ºC",
   "current_data.forecast_data.rain_day": "Rain {{amount}}mm"
 }
