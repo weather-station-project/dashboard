@@ -25,8 +25,8 @@ const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({ data }) => {
         <Card bg="light" style={{ width: "18rem" }}>
             <Card.Body>
                 {showDay ?
-                    <Button variant="outline-secondary" onClick={() => setShowDay(false)}>t("current_data.forecast_data.night")</Button> :
-                    <Button variant="outline-primary" onClick={() => setShowDay(true)}>t("current_data.forecast_data.day")</Button>}
+                    <Button variant="outline-secondary" onClick={() => setShowDay(false)}>{t("current_data.forecast_data.night")}</Button> :
+                    <Button variant="outline-primary" onClick={() => setShowDay(true)}>{t("current_data.forecast_data.day")}</Button>}
                 <Card.Title>{t("date.date", { date: new Date(data.EpochDate * 1000) })}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{dayNightData.ShortPhrase}</Card.Subtitle>
                 <Card.Img variant="bottom" src={"https://developer.accuweather.com/sites/default/files/" + dayNightData.Icon + "-s.png"} />
@@ -52,7 +52,7 @@ const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({ data }) => {
                         {t("current_data.forecast_data.rain_day", { amount: dayNightData.Rain.Value })}
                     </ListGroup.Item>
                     <ListGroup.Item variant="light">
-                        <Link to={data.Link}>Link</Link>
+                        <Link to={{ pathname: data.Link }} target="_blank">Link</Link>
                     </ListGroup.Item>
                 </ListGroup>
             </Card.Body>

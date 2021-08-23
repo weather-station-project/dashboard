@@ -63,7 +63,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
         }
 
         async function fetchCurrentData(locationKey: string) {
-            axios.get<IAccuWeatherCurrentConditionsResponse>("//dataservice.accuweather.com/currentconditions/v1/" + locationKey, {
+            axios.get<IAccuWeatherCurrentConditionsResponse[]>("//dataservice.accuweather.com/currentconditions/v1/" + locationKey, {
                 params: {
                     apikey: weatherApiKey,
                     details: true,
@@ -71,7 +71,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
                 }
             }).then((response) => {
                 console.debug(response);
-                setCurrentData(response.data);
+                setCurrentData(response.data[0]);
             }).catch(e => {
                 setCurrentData((() => { throw e }) as any);
             });
@@ -104,7 +104,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
                 // https://developer.accuweather.com/accuweather-current-conditions-api/apis/get/currentconditions/v1/%7BlocationKey%7D
                 // https://developer.accuweather.com/accuweather-forecast-api/apis/get/forecasts/v1/daily/5day/%7BlocationKey%7D
 
-                currentData.hasOwnProperty("EpochTime") ?
+                currentData.hasOwnProperty("EpochTime") && forecastData.hasOwnProperty("DailyForecasts") ?
                     <Carousel
                         swipeable={true}
                         draggable={false}
