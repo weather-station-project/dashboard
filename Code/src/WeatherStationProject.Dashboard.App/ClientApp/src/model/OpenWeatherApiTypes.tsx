@@ -64,7 +64,7 @@ export interface IAccuWeatherDailyForecast {
 
 interface IAccuWeatherForecastDayNightData {
     Icon: number;
-    ShortPhrase: string;
+    LongPhrase: string;
     Wind: {
         Speed: {
             Value: number;

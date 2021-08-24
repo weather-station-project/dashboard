@@ -22,14 +22,16 @@ const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({ data }) => {
     }, [showDay, data.Day, data.Night]);
 
     return (
-        <Card bg="light" style={{ width: "18rem" }}>
+        <Card bg="light" style={{ width: "17rem" }}>
             <Card.Body>
                 {showDay ?
                     <Button variant="outline-secondary" onClick={() => setShowDay(false)}>{t("current_data.forecast_data.night")}</Button> :
                     <Button variant="outline-primary" onClick={() => setShowDay(true)}>{t("current_data.forecast_data.day")}</Button>}
+                <br />
                 <Card.Title>{t("date.date", { date: new Date(data.EpochDate * 1000) })}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{dayNightData.ShortPhrase}</Card.Subtitle>
-                <Card.Img variant="bottom" src={"https://developer.accuweather.com/sites/default/files/" + dayNightData.Icon + "-s.png"} />
+                <Card.Img variant="top" src={"https://developer.accuweather.com/sites/default/files/" + dayNightData.Icon.toString().padStart(2, "0") + "-s.png"} />
+                <Card.Subtitle className="mb-2 text-muted">{dayNightData.LongPhrase}</Card.Subtitle>
+                <br />
                 <ListGroup variant="flush">
                     <ListGroup.Item variant="light">
                         {showDay ?

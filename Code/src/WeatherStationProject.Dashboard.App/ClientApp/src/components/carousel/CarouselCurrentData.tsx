@@ -12,11 +12,12 @@ const CarouselCurrentData: React.FC<ICarouselCurrentDataProps> = ({ data }) => {
     const { t } = useTranslation();
 
     return (
-        <Card bg="light" style={{ width: "18rem" }}>
+        <Card bg="light" style={{ width: "17rem" }}>
             <Card.Body>
                 <Card.Title>{t("date.now") + ", " + t("date.long", { date: new Date(data.EpochTime * 1000) })}</Card.Title>
+                <Card.Img variant="top" src={"https://developer.accuweather.com/sites/default/files/" + data.WeatherIcon.toString().padStart(2, "0") + "-s.png"} />
                 <Card.Subtitle className="mb-2 text-muted">{data.WeatherText}</Card.Subtitle>
-                <Card.Img variant="bottom" src={"https://developer.accuweather.com/sites/default/files/" + data.WeatherIcon + "-s.png"} />
+                <br />
                 <ListGroup variant="flush">
                     <ListGroup.Item variant="light">
                         {t("current_data.forecast_data.temperature", { temperature: data.Temperature.Metric.Value })}

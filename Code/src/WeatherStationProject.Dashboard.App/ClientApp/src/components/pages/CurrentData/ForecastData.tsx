@@ -99,11 +99,6 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
     return (
         <div>
             {
-                // https://developer.accuweather.com/user/me/apps
-                // https://developer.accuweather.com/accuweather-locations-api/apis/get/locations/v1/search
-                // https://developer.accuweather.com/accuweather-current-conditions-api/apis/get/currentconditions/v1/%7BlocationKey%7D
-                // https://developer.accuweather.com/accuweather-forecast-api/apis/get/forecasts/v1/daily/5day/%7BlocationKey%7D
-
                 currentData.hasOwnProperty("EpochTime") && forecastData.hasOwnProperty("DailyForecasts") ?
                     <Carousel
                         swipeable={true}
