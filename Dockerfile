@@ -6,14 +6,14 @@ LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 RUN apk add --no-cache nodejs npm
 
 # Copy the source from the repository onto the container and set it as working directory
-COPY /Code/src/WeatherStationProject.App /src
+COPY /Code/src/WeatherStationProject.Dashboard.App /src
 WORKDIR /src
 
 # Install dependencies
-RUN dotnet restore "./WeatherStationProject.App.csproj"
+RUN dotnet restore "./WeatherStationProject.Dashboard.App.csproj"
 
 # Deploy the app and dependencies into a deployable unit
-RUN dotnet publish "./WeatherStationProject.App.csproj" --configuration Release --output /app/publish
+RUN dotnet publish "./WeatherStationProject.Dashboard.App.csproj" --configuration Release --output /app/publish
 
 # Pull down the image which includes only the ASP.NET core runtime
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.5-alpine3.13-amd64
@@ -32,4 +32,4 @@ WORKDIR /app
 # HEALTHCHECK --interval=60s --start-period=60s CMD ["python", "-u", "-m", "health_check.health_check"] || exit 1
 
 # Run the application
-ENTRYPOINT ["dotnet", "WeatherStationProject.App.dll"]
+ENTRYPOINT ["dotnet", "WeatherStationProject.Dashboard.App.dll"]
