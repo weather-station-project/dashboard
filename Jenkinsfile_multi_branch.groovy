@@ -64,11 +64,11 @@ pipeline {
     stage('Deploy on staging') {
       steps {
         script {
-          deployImageOnDockerRegistry(registryAddress: "${GlobalVariables.StagingDockerRegistry}",
-                                      registryName: "${WeatherStationDashboardVariables.DockerRegistryName}",
-                                      credentialsKey: "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                      imageTag: '1.0.0',
-                                      dockerfile: './Dockerfile')
+          deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                      "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                      "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                      '1.0.0',
+                                      './Dockerfile')
         }
       }
     }
