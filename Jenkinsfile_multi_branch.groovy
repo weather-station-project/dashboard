@@ -1,5 +1,6 @@
 @Library('shared-library') _
 import com.davidleonm.WeatherStationDashboardVariables
+import com.davidleonm.GlobalVariables
 
 pipeline {
   agent { label 'net-core-slave' }
@@ -63,9 +64,9 @@ pipeline {
     stage('Deploy on staging') {
       steps {
         script {
-          deployImageOnDockerRegistry(registryAddress: "${WeatherStationDashboardVariables.StagingDockerRegistry}",
+          deployImageOnDockerRegistry(registryAddress: "${GlobalVariables.StagingDockerRegistry}",
                                       registryName: "${WeatherStationDashboardVariables.DockerRegistryName}",
-                                      credentialsKey: "${WeatherStationDashboardVariables.StagingCredentialsDockerRegistryKey}",
+                                      credentialsKey: "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                       imageTag: '1.0.0',
                                       dockerfile: './Dockerfile')
         }
