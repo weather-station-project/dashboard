@@ -1,7 +1,7 @@
 # Pull down the image with .NET Core SDK
 FROM mcr.microsoft.com/dotnet/sdk:5.0.400-alpine3.13-amd64 AS Build
 LABEL maintainer="David Leon <david.leon.m@gmail.com>"
-LABEL tag=base
+LABEL tag=pipeline
 
 # Install Node.JS
 RUN apk add --no-cache nodejs npm
@@ -18,6 +18,7 @@ RUN dotnet publish "./WeatherStationProject.Dashboard.App.csproj" --configuratio
 
 # Pull down the image which includes only the ASP.NET core runtime
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.9-alpine3.13-amd64
+LABEL tag=pipeline
 
 # Expose port 80 and 443 for http(s) access
 EXPOSE 443

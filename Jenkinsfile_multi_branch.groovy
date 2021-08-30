@@ -70,7 +70,7 @@ pipeline {
                                       '1.0.0',
                                       './Dockerfile',
                                       'tag',
-                                      'base')
+                                      'pipeline')
         }
       }
     }
