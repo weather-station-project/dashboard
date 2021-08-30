@@ -17,7 +17,7 @@ RUN dotnet restore "./WeatherStationProject.Dashboard.App.csproj"
 RUN dotnet publish "./WeatherStationProject.Dashboard.App.csproj" --configuration Release --output /app/publish
 
 # Pull down the image which includes only the ASP.NET core runtime
-FROM mcr.microsoft.com/dotnet/aspnet:5.0.400-alpine3.13-amd64
+FROM mcr.microsoft.com/dotnet/aspnet:5.0.9-alpine3.13-amd64
 
 # Expose port 80 and 443 for http(s) access
 EXPOSE 443
