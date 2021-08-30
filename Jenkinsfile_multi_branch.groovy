@@ -3,9 +3,9 @@ import com.davidleonm.WeatherStationDashboardVariables
 import com.davidleonm.GlobalVariables
 
 pipeline {
-  agent { label 'net-core-slave' }
+    agent { label 'net-core-slave' }
 
-  stages {
+    stages {
     /*stage('Prepare Python ENV') {
       steps {
         script {
@@ -61,31 +61,35 @@ pipeline {
       }
     }*/
 
-    stage('Deploy on staging') {
-      steps {
-        script {
-          deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
-                                      "${WeatherStationDashboardVariables.DockerRegistryName}",
-                                      "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                      '1.0.0',
-                                      './Dockerfile',
-                                      'tag',
-                                      'pipeline')
+        stage('Deploy on staging') {
+            steps {
+                script {
+                    deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                                "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                                '1.0.0',
+                                                './Dockerfile')
+                }
+            }
         }
-      }
     }
-  }
-  post {
-    success {
-      script {
-        setBuildStatus('success', "${WeatherStationDashboardVariables.RepositoryName}")
-      }
-    }
+    post {
+        always {
+            script {
+                cleanImages(false, true)
+            }
+        }
 
-    failure {
-      script {
-        setBuildStatus('failure', "${WeatherStationDashboardVariables.RepositoryName}")
-      }
+        success {
+            script {
+                setBuildStatus('success', "${WeatherStationDashboardVariables.RepositoryName}")
+            }
+        }
+
+        failure {
+            script {
+                setBuildStatus('failure', "${WeatherStationDashboardVariables.RepositoryName}")
+            }
+        }
     }
-  }
 }
