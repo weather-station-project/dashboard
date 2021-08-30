@@ -68,7 +68,9 @@ pipeline {
                                       "${WeatherStationDashboardVariables.DockerRegistryName}",
                                       "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                       '1.0.0',
-                                      './Dockerfile')
+                                      './Dockerfile',
+                                      'tag',
+                                      'base')
         }
       }
     }
