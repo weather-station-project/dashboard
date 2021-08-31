@@ -41,25 +41,25 @@ pipeline {
     }
     */
 
-    /*stage('SonarQube analysis') {
-      environment {
-        def scannerHome = tool 'Sonarqube'
-      }
+        stage('SonarQube analysis') {
+            environment {
+                def scannerHome = tool 'Sonarqube'
+            }
 
-      steps {
-        script {
-          sh "ENV/bin/coverage xml"
-        }
+            steps {
+                /*script {
+                    sh "ENV/bin/coverage xml"
+                }*/
 
-        withSonarQubeEnv('Sonarqube') {
-          sh "${scannerHome}/bin/sonar-scanner"
-        }
+                withSonarQubeEnv('Sonarqube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
 
-        timeout(time: 10, unit: 'MINUTES') {
-          waitForQualityGate abortPipeline: true
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
         }
-      }
-    }*/
 
         stage('Deploy on staging') {
             steps {
@@ -73,6 +73,7 @@ pipeline {
             }
         }
     }
+
     post {
         always {
             script {
