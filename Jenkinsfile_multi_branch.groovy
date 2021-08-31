@@ -44,6 +44,7 @@ pipeline {
         stage('SonarQube analysis') {
             environment {
                 def scannerHome = tool 'Sonarqube'
+                def scannerHomeDotNet = tool 'Sonarqube-dotnet'
             }
 
             steps {
@@ -53,6 +54,7 @@ pipeline {
 
                 withSonarQubeEnv('Sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner"
+                    sh "${scannerHomeDotNet}/bin/sonar-scanner"
                 }
 
                 timeout(time: 10, unit: 'MINUTES') {
