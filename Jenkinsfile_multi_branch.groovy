@@ -54,7 +54,7 @@ pipeline {
 
                 withSonarQubeEnv('Sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner"
-                    sh "${scannerHomeDotNet}/bin/sonar-scanner"
+                    sh "${scannerHomeDotNet}/sonar-scanner-4.6.1.2450/bin/sonar-scanner"
                 }
 
                 timeout(time: 10, unit: 'MINUTES') {
