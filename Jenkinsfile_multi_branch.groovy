@@ -75,7 +75,7 @@ pipeline {
                     steps {
                         script {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
-                                                        "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                        "${WeatherStationDashboardVariables.DashboardDockerRegistryName}",
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                                         '1.0.0',
                                                         './Dockerfile',
