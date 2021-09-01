@@ -4,6 +4,10 @@ import com.davidleonm.GlobalVariables
 
 pipeline {
     agent { label 'net-core-slave' }
+    
+    environment {
+        SONAR_CREDENTIALS = credentials('sonarqube-token')
+    }
 
     stages {
     /*stage('Prepare Python ENV') {
@@ -52,7 +56,11 @@ pipeline {
                 }*/
 
                 withSonarQubeEnv('Sonarqube') {
-                    sh "${scannerHome}/sonar-scanner-4.6.1.2450/bin/sonar-scanner"
+                    sh """
+                       dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:Dashboard /d:sonar.login=${SONAR_CREDENTIALS}
+                       dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
+                       dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}
+                       """
                 }
 
                 timeout(time: 10, unit: 'MINUTES') {
