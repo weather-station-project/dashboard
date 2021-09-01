@@ -10,9 +10,9 @@ ARG PROJECT_NAME
 RUN if [[ "$INCLUDE_NPM" == "true" ]] ; then apk add --no-cache nodejs npm ; fi
 
 # Copy the source and library projects from the repository onto the container and set it as working directory
-COPY "/Code/src/$PROJECT_NAME" /src
-COPY "/Code/src/WeatherStationProject.Dashboard.Core" /
-COPY "/Code/src/WeatherStationProject.Dashboard.Data" /
+COPY "/Code/src/$PROJECT_NAME" "/src/$PROJECT_NAME"
+COPY "/Code/src/WeatherStationProject.Dashboard.Core" "/src/WeatherStationProject.Dashboard.Core"
+COPY "/Code/src/WeatherStationProject.Dashboard.Data" "/src/WeatherStationProject.Dashboard.Data"
 WORKDIR /src
 
 # Install dependencies
