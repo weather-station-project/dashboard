@@ -71,7 +71,7 @@ pipeline {
 
         stage('Deploy on staging') {
             stages {
-               stage('App') {
+               stage('Client App') {
                    steps {
                        script {
                            deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
