@@ -71,19 +71,109 @@ pipeline {
 
         stage('Deploy on staging') {
             stages {
-               stage('Client App') {
-                   steps {
-                       script {
-                           deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
-                                                       "${WeatherStationDashboardVariables.DockerRegistryName}",
-                                                       "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                       '1.0.0',
-                                                       './Dockerfile',
-                                                       '--build-arg INCLUDE_NPM=true --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.App')
-                       }
-                   }
-               }
+                stage('Client App') {
+                    steps {
+                        script {
+                            deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                                        "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                        "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                                        '1.0.0',
+                                                        './Dockerfile',
+                                                        '--build-arg INCLUDE_NPM=true --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.App')
+                        }
+                    }
+                }
 
+                stage('AirParametersService') {
+                    steps {
+                        script {
+                            deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                                        "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                        "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                                        '1.0.0',
+                                                        './Dockerfile',
+                                                        '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.AirParametersService')
+                        }
+                    }
+                }
+
+                stage('AmbientTemperatureService') {
+                    steps {
+                        script {
+                            deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                                        "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                        "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                                        '1.0.0',
+                                                        './Dockerfile',
+                                                        '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.AmbientTemperatureService')
+                        }
+                    }
+                }
+
+                stage('AuthenticationService') {
+                    steps {
+                        script {
+                            deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                                        "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                        "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                                        '1.0.0',
+                                                        './Dockerfile',
+                                                        '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.AuthenticationService')
+                        }
+                    }
+                }
+
+                stage('GatewayService') {
+                    steps {
+                        script {
+                            deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                                        "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                        "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                                        '1.0.0',
+                                                        './Dockerfile',
+                                                        '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.GatewayService')
+                        }
+                    }
+                }
+
+                stage('GroundTemperatureService') {
+                    steps {
+                        script {
+                            deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                                        "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                        "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                                        '1.0.0',
+                                                        './Dockerfile',
+                                                        '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.GroundTemperatureService')
+                        }
+                    }
+                }
+
+                stage('RainfallService') {
+                    steps {
+                        script {
+                            deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                                        "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                        "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                                        '1.0.0',
+                                                        './Dockerfile',
+                                                        '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.RainfallService')
+                        }
+                    }
+                }
+
+                stage('WindMeasurementsService') {
+                    steps {
+                        script {
+                            deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                                        "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                        "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                                        '1.0.0',
+                                                        './Dockerfile',
+                                                        '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.WindMeasurementsService')
+                        }
+                    }
+                }
             }
         }
     }
