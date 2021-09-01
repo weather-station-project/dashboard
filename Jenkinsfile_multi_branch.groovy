@@ -69,16 +69,21 @@ pipeline {
             }
         }
 
-        stage('Deploy App on staging') {
-            steps {
-                script {
-                    deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
-                                                "${WeatherStationDashboardVariables.DockerRegistryName}",
-                                                "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                '1.0.0',
-                                                './Dockerfile',
-                                                '--build-arg INCLUDE_NPM=true --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.App')
-                }
+        stage('Deploy on staging') {
+            stages {
+               stage('WeatherStationProject.Dashboard.App') {
+                   steps {
+                       script {
+                           deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
+                                                       "${WeatherStationDashboardVariables.DockerRegistryName}",
+                                                       "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                                       '1.0.0',
+                                                       './Dockerfile',
+                                                       '--build-arg INCLUDE_NPM=true --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.App')
+                       }
+                   }
+               }
+
             }
         }
     }
