@@ -4,7 +4,7 @@ import com.davidleonm.GlobalVariables
 
 pipeline {
     agent { label 'net-core-slave' }
-    
+
     environment {
         SONAR_CREDENTIALS = credentials('sonarqube-token')
     }
@@ -69,14 +69,15 @@ pipeline {
             }
         }
 
-        stage('Deploy on staging') {
+        stage('Deploy App on staging') {
             steps {
                 script {
                     deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
                                                 "${WeatherStationDashboardVariables.DockerRegistryName}",
                                                 "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                                 '1.0.0',
-                                                './Dockerfile')
+                                                './Dockerfile',
+                                                '--build-arg INCLUDE_NPM=true --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.App')
                 }
             }
         }
