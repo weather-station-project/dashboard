@@ -71,7 +71,7 @@ pipeline {
 
         stage('Deploy on staging') {
             stages {
-               stage('WeatherStationProject.Dashboard.App') {
+               stage('App') {
                    steps {
                        script {
                            deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
