@@ -16,7 +16,7 @@ COPY "/Code/src/WeatherStationProject.Dashboard.Data" "/src/WeatherStationProjec
 WORKDIR "/src/$PROJECT_NAME"
 
 # Install dependencies
-RUN if [[ "$INCLUDE_NPM" == "true" ]] ; then cd ClientApp && npm install --production ; fi
+RUN if [[ "$INCLUDE_NPM" == "true" ]] ; then cd ClientApp && npm cache clean --force && npm install --production ; fi
 WORKDIR "/src/$PROJECT_NAME"
 RUN dotnet restore "./$PROJECT_NAME.csproj"
 
