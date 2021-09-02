@@ -13,13 +13,13 @@ RUN if [[ "$INCLUDE_NPM" == "true" ]] ; then apk add --no-cache nodejs npm ; fi
 COPY "/Code/src/$PROJECT_NAME" "/src/$PROJECT_NAME"
 COPY "/Code/src/WeatherStationProject.Dashboard.Core" "/src/WeatherStationProject.Dashboard.Core"
 COPY "/Code/src/WeatherStationProject.Dashboard.Data" "/src/WeatherStationProject.Dashboard.Data"
-WORKDIR /src
+WORKDIR "/src/$PROJECT_NAME"
 
 # Install dependencies
 RUN dotnet restore "./$PROJECT_NAME.csproj"
 
 # Deploy the app and dependencies into a deployable unit
-RUN dotnet publish "./$PROJECT_NAME.csproj" --configuration Release --output /app/publish
+RUN dotnet publish "./$PROJECT_NAME.csproj" --configuration Release --output "/app/publish"
 
 # Pull down the image which includes only the ASP.NET core runtime
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.9-alpine3.13-amd64
@@ -29,10 +29,10 @@ EXPOSE 443
 EXPOSE 80
 
 # Copy the published app to this new runtime-only container
-COPY --from=Build /app/publish /app
+COPY --from=Build "/app/publish" "/app"
 
 # Change working directory to the app binaries
-WORKDIR /app
+WORKDIR "/app"
 
 # Configure the health check command
 # HEALTHCHECK --interval=60s --start-period=60s CMD ["python", "-u", "-m", "health_check.health_check"] || exit 1
