@@ -45,15 +45,12 @@ pipeline {
     }
     */
 
-        stage('SonarQube analysis') {
+        /*stage('SonarQube analysis') {
             environment {
                 def scannerHome = tool 'Sonarqube'
             }
 
             steps {
-                /*script {
-                    sh "ENV/bin/coverage xml"
-                }*/
 
                 withSonarQubeEnv('Sonarqube') {
                     sh """
@@ -67,7 +64,7 @@ pipeline {
                     waitForQualityGate abortPipeline: true
                 }
             }
-        }
+        }*/
 
         stage('Deploy on staging') {
             stages {
