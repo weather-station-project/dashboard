@@ -16,7 +16,7 @@ COPY "/Code/src/WeatherStationProject.Dashboard.Data" "/src/WeatherStationProjec
 WORKDIR "/src/$PROJECT_NAME"
 
 # Install dependencies
-RUN if [[ "$INCLUDE_NPM" == "true" ]] ; then npm install ; fi
+RUN if [[ "$INCLUDE_NPM" == "true" ]] ; then npm install --production ClientApp ; fi
 RUN dotnet restore "./$PROJECT_NAME.csproj"
 
 # Deploy the app and dependencies into a deployable unit
