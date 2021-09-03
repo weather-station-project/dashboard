@@ -10,10 +10,10 @@ bower_components/
 node_modules/
 .build/
 
-**/Obj/
-**/obj/
-**/bin/
-**/Bin/
+/Obj/
+/obj/
+/bin/
+/Bin/
 
 *.xap
 *.user
