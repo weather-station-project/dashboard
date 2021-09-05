@@ -45,7 +45,7 @@ pipeline {
     }
     */
 
-        /*stage('SonarQube analysis') {
+        stage('SonarQube analysis') {
             environment {
                 def scannerHome = tool 'Sonarqube'
             }
@@ -64,7 +64,7 @@ pipeline {
                     waitForQualityGate abortPipeline: true
                 }
             }
-        }*/
+        }
 
         stage('Deploy on staging') {
             stages {
