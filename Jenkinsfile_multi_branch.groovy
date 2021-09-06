@@ -61,7 +61,13 @@ pipeline {
                 }
 
                 timeout(time: 10, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
+                    sleep(10)
+
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        input "Quality gate failed with status: ${qg.status}. \n" +
+                        "Check the sonar report, and click proceed ONLY if it can be ignored."
+                    }
                 }
             }
         }
