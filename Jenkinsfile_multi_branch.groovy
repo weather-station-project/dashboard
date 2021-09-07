@@ -51,22 +51,21 @@ pipeline {
             }
 
             steps {
-                withSonarQubeEnv('Sonarqube') {
-                    sh """
-                       dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:Dashboard /d:sonar.login=${SONAR_CREDENTIALS}
-                       dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
-                       dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}
-                       """
-                }
-
                 script {
+                    withSonarQubeEnv('Sonarqube') {
+                        sh """
+                           dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:Dashboard /d:sonar.login=${SONAR_CREDENTIALS}
+                           dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
+                           dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}
+                           """
+                    }
+
                     timeout(time: 10, unit: 'MINUTES') {
                         sleep(10)
 
                         def qg = waitForQualityGate()
                         if (qg.status != 'OK') {
-                            input "Quality gate failed with status: ${qg.status}. \n" +
-                            "Check the sonar report, and click proceed ONLY if it can be ignored."
+                            input "Quality gate failed with status: ${qg.status}. Continue?"
                         }
                     }
                 }
