@@ -58,17 +58,17 @@ pipeline {
                        dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}
                        """
                 }
-            }
-        }
 
-        stage('SonarQube QG') {
-            timeout(time: 10, unit: 'MINUTES') {
-                sleep(10)
+                script {
+                    timeout(time: 10, unit: 'MINUTES') {
+                        sleep(10)
 
-                def qg = waitForQualityGate()
-                if (qg.status != 'OK') {
-                    input "Quality gate failed with status: ${qg.status}. \n" +
-                    "Check the sonar report, and click proceed ONLY if it can be ignored."
+                        def qg = waitForQualityGate()
+                        if (qg.status != 'OK') {
+                            input "Quality gate failed with status: ${qg.status}. \n" +
+                            "Check the sonar report, and click proceed ONLY if it can be ignored."
+                        }
+                    }
                 }
             }
         }
