@@ -51,7 +51,6 @@ pipeline {
             }
 
             steps {
-
                 withSonarQubeEnv('Sonarqube') {
                     sh """
                        dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:Dashboard /d:sonar.login=${SONAR_CREDENTIALS}
@@ -59,7 +58,11 @@ pipeline {
                        dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}
                        """
                 }
+            }
+        }
 
+        stage('SonarQube QG') {
+            steps {
                 timeout(time: 10, unit: 'MINUTES') {
                     sleep(10)
 
