@@ -80,7 +80,7 @@ pipeline {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
                                                         "${WeatherStationDashboardVariables.DashboardDockerRegistryName}",
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                        '1.0.0',
+                                                        "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.App/WeatherStationProject.Dashboard.App.csproj')}",
                                                         './Dockerfile',
                                                         '--build-arg INCLUDE_NPM=true --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.App')
                         }
