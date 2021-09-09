@@ -126,7 +126,7 @@ pipeline {
                     }
                 }
 
-                stage('GatewayService') {
+                stage('Deploy GatewayService') {
                     steps {
                         script {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
