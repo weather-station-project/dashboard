@@ -7,6 +7,8 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0.400-alpine3.13-amd64 AS Build
 LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 
 # Variables from global args
+ARG INCLUDE_NPM
+ARG PROJECT_NAME
 ENV INCLUDE_NPM_VAR=$INCLUDE_NPM
 ENV PROJECT_NAME_VAR=$PROJECT_NAME
 
@@ -29,6 +31,7 @@ RUN dotnet publish "./$PROJECT_NAME_VAR.csproj" --configuration Release --output
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.9-alpine3.13-amd64
 
 # Variable from global args
+ARG PROJECT_NAME
 ENV PROJECT_NAME_VAR=$PROJECT_NAME
 
 # Expose port 80 and 443 for http(s) access
