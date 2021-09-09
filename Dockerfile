@@ -5,27 +5,27 @@ LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 # Arguments needed to parametrize the build
 ARG INCLUDE_NPM
 ARG PROJECT_NAME
+ENV INCLUDE_NPM_VAR=$INCLUDE_NPM
+ENV PROJECT_NAME_VAR=$PROJECT_NAME
+
 
 # Install Node.JS if required
-RUN if [[ "$INCLUDE_NPM" == "true" ]] ; then apk add --no-cache nodejs npm ; fi
+RUN if [[ "$INCLUDE_NPM_VAR" == "true" ]] ; then apk add --no-cache nodejs npm ; fi
 
 # Copy the source and library projects from the repository onto the container and set it as working directory
-COPY "/Code/src/$PROJECT_NAME" "/src/$PROJECT_NAME"
+COPY "/Code/src/$PROJECT_NAME_VAR" "/src/$PROJECT_NAME_VAR"
 COPY "/Code/src/WeatherStationProject.Dashboard.Core" "/src/WeatherStationProject.Dashboard.Core"
 COPY "/Code/src/WeatherStationProject.Dashboard.Data" "/src/WeatherStationProject.Dashboard.Data"
-WORKDIR "/src/$PROJECT_NAME"
+WORKDIR "/src/$PROJECT_NAME_VAR"
 
 # Install dependencies
-RUN dotnet restore "./$PROJECT_NAME.csproj"
+RUN dotnet restore "./$PROJECT_NAME_VAR.csproj"
 
 # Deploy the app and dependencies into a deployable unit
-RUN dotnet publish "./$PROJECT_NAME.csproj" --configuration Release --output "/app/publish"
+RUN dotnet publish "./$PROJECT_NAME_VAR.csproj" --configuration Release --output "/app/publish"
 
 # Pull down the image which includes only the ASP.NET core runtime
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.9-alpine3.13-amd64
-
-# Argument needed to parametrize the build
-ARG PROJECT_NAME
 
 # Expose port 80 and 443 for http(s) access
 EXPOSE 443
@@ -41,4 +41,4 @@ WORKDIR "/app"
 # HEALTHCHECK --interval=60s --start-period=60s CMD ["python", "-u", "-m", "health_check.health_check"] || exit 1
 
 # Run the application
-ENTRYPOINT ["dotnet", "$PROJECT_NAME.dll"]
+ENTRYPOINT ["dotnet", "$PROJECT_NAME_VAR.dll"]
