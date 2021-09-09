@@ -24,6 +24,9 @@ RUN dotnet publish "./$PROJECT_NAME.csproj" --configuration Release --output "/a
 # Pull down the image which includes only the ASP.NET core runtime
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.9-alpine3.13-amd64
 
+# Argument needed to parametrize the build
+ARG PROJECT_NAME
+
 # Expose port 80 and 443 for http(s) access
 EXPOSE 443
 EXPOSE 80
