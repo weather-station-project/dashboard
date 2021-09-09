@@ -74,7 +74,7 @@ pipeline {
 
         stage('Deploy on staging') {
             stages {
-                stage('Client App') {
+                stage('Deploy Client App') {
                     steps {
                         script {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
@@ -87,39 +87,39 @@ pipeline {
                     }
                 }
 
-                stage('AirParametersService') {
+                stage('Deploy AirParametersService') {
                     steps {
                         script {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
                                                         "${WeatherStationDashboardVariables.AirParametersServiceDockerRegistryName}",
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                        '1.0.0',
+                                                        "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.AirParametersService/WeatherStationProject.Dashboard.AirParametersService.csproj')}",
                                                         './Dockerfile',
                                                         '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.AirParametersService')
                         }
                     }
                 }
 
-                stage('AmbientTemperatureService') {
+                stage('Deploy AmbientTemperatureService') {
                     steps {
                         script {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
                                                         "${WeatherStationDashboardVariables.AmbientTemperatureServiceDockerRegistryName}",
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                        '1.0.0',
+                                                        "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.AmbientTemperatureService/WeatherStationProject.Dashboard.AmbientTemperatureService.csproj')}",
                                                         './Dockerfile',
                                                         '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.AmbientTemperatureService')
                         }
                     }
                 }
 
-                stage('AuthenticationService') {
+                stage('Deploy AuthenticationService') {
                     steps {
                         script {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
                                                         "${WeatherStationDashboardVariables.AuthenticationServiceDockerRegistryName}",
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                        '1.0.0',
+                                                        "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.AuthenticationService/WeatherStationProject.Dashboard.AuthenticationService.csproj')}",
                                                         './Dockerfile',
                                                         '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.AuthenticationService')
                         }
@@ -132,46 +132,46 @@ pipeline {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
                                                         "${WeatherStationDashboardVariables.GatewayServiceDockerRegistryName}",
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                        '1.0.0',
+                                                        "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.GatewayService/WeatherStationProject.Dashboard.GatewayService.csproj')}",
                                                         './Dockerfile',
                                                         '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.GatewayService')
                         }
                     }
                 }
 
-                stage('GroundTemperatureService') {
+                stage('Deploy GroundTemperatureService') {
                     steps {
                         script {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
                                                         "${WeatherStationDashboardVariables.GroundTemperatureServiceDockerRegistryName}",
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                        '1.0.0',
+                                                        "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.GroundTemperatureService/WeatherStationProject.Dashboard.GroundTemperatureService.csproj')}",
                                                         './Dockerfile',
                                                         '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.GroundTemperatureService')
                         }
                     }
                 }
 
-                stage('RainfallService') {
+                stage('Deploy RainfallService') {
                     steps {
                         script {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
                                                         "${WeatherStationDashboardVariables.RainfallServiceDockerRegistryName}",
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                        '1.0.0',
+                                                        "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.RainfallService/WeatherStationProject.Dashboard.RainfallService.csproj')}",
                                                         './Dockerfile',
                                                         '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.RainfallService')
                         }
                     }
                 }
 
-                stage('WindMeasurementsService') {
+                stage('Deploy WindMeasurementsService') {
                     steps {
                         script {
                             deployImageOnDockerRegistry("${GlobalVariables.StagingDockerRegistry}",
                                                         "${WeatherStationDashboardVariables.WindMeasurementsServiceDockerRegistryName}",
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                        '1.0.0',
+                                                        "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.WindMeasurementsService/WeatherStationProject.Dashboard.WindMeasurementsService.csproj')}",
                                                         './Dockerfile',
                                                         '--build-arg INCLUDE_NPM=false --build-arg PROJECT_NAME=WeatherStationProject.Dashboard.WindMeasurementsService')
                         }
