@@ -1,13 +1,14 @@
+# Arguments needed to parametrize the build
+ARG INCLUDE_NPM
+ARG PROJECT_NAME
+
 # Pull down the image with .NET Core SDK
 FROM mcr.microsoft.com/dotnet/sdk:5.0.400-alpine3.13-amd64 AS Build
 LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 
-# Arguments needed to parametrize the build
-ARG INCLUDE_NPM
-ARG PROJECT_NAME
+# Variables from global args
 ENV INCLUDE_NPM_VAR=$INCLUDE_NPM
 ENV PROJECT_NAME_VAR=$PROJECT_NAME
-
 
 # Install Node.JS if required
 RUN if [[ "$INCLUDE_NPM_VAR" == "true" ]] ; then apk add --no-cache nodejs npm ; fi
@@ -26,6 +27,9 @@ RUN dotnet publish "./$PROJECT_NAME_VAR.csproj" --configuration Release --output
 
 # Pull down the image which includes only the ASP.NET core runtime
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.9-alpine3.13-amd64
+
+# Variable from global args
+ENV PROJECT_NAME_VAR=$PROJECT_NAME
 
 # Expose port 80 and 443 for http(s) access
 EXPOSE 443
