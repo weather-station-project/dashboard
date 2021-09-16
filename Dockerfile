@@ -48,4 +48,4 @@ WORKDIR "/app"
 # HEALTHCHECK --interval=60s --start-period=60s CMD ["python", "-u", "-m", "health_check.health_check"] || exit 1
 
 # Run the application
-ENTRYPOINT ["dotnet", "$PROJECT_NAME_VAR.dll"]
+ENTRYPOINT ["ash", "-c", "dotnet $PROJECT_NAME_VAR.dll"]
