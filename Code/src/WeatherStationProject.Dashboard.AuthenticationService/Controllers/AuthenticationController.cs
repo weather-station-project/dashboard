@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using WeatherStationProject.Dashboard.Core.Configuration;
@@ -14,7 +15,7 @@ namespace WeatherStationProject.Dashboard.AuthenticationService.Controllers
     [Route(template: "api/v{version:apiVersion}/authentication")]
     public class AuthenticationController : ControllerBase
     {
-        [HttpPost(template: "{secret}")]
+        [HttpGet(template: "{secret}")]
         public IActionResult Post(string secret)
         {
             if (secret != AppConfiguration.AuthenticationSecret) return StatusCode(403);
@@ -25,7 +26,7 @@ namespace WeatherStationProject.Dashboard.AuthenticationService.Controllers
             {
                 new Claim(JwtRegisteredClaimNames.Sub, "client"),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Iat, now.ToUniversalTime().ToString(), ClaimValueTypes.Integer64)
+                new Claim(JwtRegisteredClaimNames.Iat, now.ToUniversalTime().ToString(CultureInfo.InvariantCulture), ClaimValueTypes.Integer64)
             };
 
             var jwt = new JwtSecurityToken(

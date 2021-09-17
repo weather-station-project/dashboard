@@ -1,6 +1,5 @@
 {
   "Routes": [
-    // Wind-Measurements Service
     {
       "Key": "windMeasurements",
       "DownstreamPathTemplate": "/api/{version}/wind-measurements/{everything}",
@@ -8,7 +7,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44354
+          "Port": 5006
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/wind-measurements/{everything}",
@@ -27,9 +26,9 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
-      }
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
     },
-    // Wind-Measurements Service - last gust
     {
       "Key": "windMeasurementsGust",
       "DownstreamPathTemplate": "/api/{version}/wind-measurements/gust-in-time/60",
@@ -37,7 +36,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44354
+          "Port": 5006
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/wind-measurements/gust/last",
@@ -52,20 +51,21 @@
       "FileCacheOptions": {
         "TtlSeconds": 15,
         "Region": "wind-measurements-gust-caching"
-      }
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
     },
-    // Wind-Measurements Service (Swagger)
     {
       "DownstreamPathTemplate": "/swagger/{version}/swagger.json",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44354
+          "Port": 5006
         }
       ],
       "UpstreamPathTemplate": "/wind-measurements/{version}/swagger.json",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "DangerousAcceptAnyServerCertificateValidator": true
     }
   ]
 }

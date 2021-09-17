@@ -21,12 +21,11 @@ export async function getAxiosRequestConfig(apiHost:string, authHost: string, se
 }
 
 async function getAuthToken(host: string, secret: string): Promise<IAuthenticationToken> {
-    const url = "/api/v1/authentication/";
+    const url = `/api/v1/authentication/`;
     return fetch(host + url + secret, {
-        method: "POST", headers: {
+        method: "GET", headers: {
             'Content-Type': "application/x-www-form-urlencoded",
-        },
-        body: `secret=${secret}`, }).then((response) => {
+        }}).then((response) => {
         if (response.status !== 200) {
             throw new Error(`getAuthToken Error: Did not get a 200 back... -> ${response.status}: ${response.statusText}`);
         }

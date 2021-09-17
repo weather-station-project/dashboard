@@ -1,6 +1,5 @@
 {
   "Routes": [
-    // Rainfall Service - last measurement
     {
       "Key": "rainfall",
       "DownstreamPathTemplate": "/api/{version}/rainfall/amount-during-time/60",
@@ -8,7 +7,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44353
+          "Port": 5005
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/rainfall/last",
@@ -27,20 +26,21 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
-      }
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
     },
-    // Rainfall Service (Swagger)
     {
       "DownstreamPathTemplate": "/swagger/{version}/swagger.json",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44353
+          "Port": 5005
         }
       ],
       "UpstreamPathTemplate": "/rainfall/{version}/swagger.json",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "DangerousAcceptAnyServerCertificateValidator": true
     }
   ]
 }
