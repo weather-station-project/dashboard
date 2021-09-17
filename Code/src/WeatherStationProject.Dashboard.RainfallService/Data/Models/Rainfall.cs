@@ -3,10 +3,9 @@ using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.RainfallService.Data
 {
-    [Table(name: "rainfall")]
+    [Table("rainfall")]
     public class Rainfall : Measurement
     {
-        [Column(name: "amount")]
-        public decimal Amount { get; set; }
+        [Column("amount")] public decimal Amount { get; set; }
     }
 }

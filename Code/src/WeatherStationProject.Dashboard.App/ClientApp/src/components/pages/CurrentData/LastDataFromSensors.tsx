@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { ListGroup } from "react-bootstrap";
+import React, {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
+import {ListGroup} from "react-bootstrap";
 import Loading from "../../../Loading";
-import axios, { AxiosInstance } from "axios";
-import { getAxiosRequestConfig } from "../../../consumers/AuthenticationApiHelper";
-import { ILastData } from "../../../model/LastDataTypes";
+import axios, {AxiosInstance} from "axios";
+import {getAxiosRequestConfig} from "../../../consumers/AuthenticationApiHelper";
+import {ILastData} from "../../../model/LastDataTypes";
 
 
 interface ICurrentDataProps {
@@ -13,8 +13,8 @@ interface ICurrentDataProps {
     secret: string;
 }
 
-const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceHost, secret }) => {
-    const { t } = useTranslation();
+const CurrentData: React.FC<ICurrentDataProps> = ({weatherApiHost, authServiceHost, secret}) => {
+    const {t} = useTranslation();
     const [data, setData] = useState({} as ILastData);
     const url = "/api/v1/weather-measurements/last";
 
@@ -27,9 +27,11 @@ const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceH
                     console.debug(response);
                     setData(response.data);
                 }).catch(e => {
-                    setData((() => { throw e }) as any);
-                });
-        };
+                setData((() => {
+                    throw e
+                }) as any);
+            });
+        }
 
         fetchData();
     }, []);
@@ -73,7 +75,7 @@ const CurrentData: React.FC<ICurrentDataProps> = ({ weatherApiHost, authServiceH
                             : t("current_data.last_data.wind_measurement_gust_not_found")}
                     </ListGroup.Item>
                 </ListGroup>
-                : <Loading />
+                : <Loading/>
             }
         </div>
     );

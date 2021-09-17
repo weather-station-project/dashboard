@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.WindMeasurementsService.Data
@@ -10,7 +10,8 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Data
     {
         private readonly WindMeasurementsDbContext _windMeasurementsDbContext;
 
-        public WindMeasurementsRepository(WindMeasurementsDbContext windMeasurementsDbContext) : base(windMeasurementsDbContext)
+        public WindMeasurementsRepository(WindMeasurementsDbContext windMeasurementsDbContext) : base(
+            windMeasurementsDbContext)
         {
             _windMeasurementsDbContext = windMeasurementsDbContext;
         }

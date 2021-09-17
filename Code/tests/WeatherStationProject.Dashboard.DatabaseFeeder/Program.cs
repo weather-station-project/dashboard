@@ -1,21 +1,26 @@
 ﻿using System;
 using WeatherStationProject.Dashboard.AirParametersService.Data;
 using WeatherStationProject.Dashboard.AmbientTemperatureService.Data;
-using WeatherStationProject.Dashboard.Core.Configuration;
 using WeatherStationProject.Dashboard.GroundTemperatureService.Data;
 using WeatherStationProject.Dashboard.RainfallService.Data;
 using WeatherStationProject.Dashboard.WindMeasurementsService.Data;
 
 namespace WeatherStationProject.Dashboard.DatabaseFeeder
 {
-    class Program
+    internal class Program
     {
         private const int MinutesBetweenMeasurements = 5;
         private const int StoreInformationEachNumber = 10000;
-        private static readonly string[] WindDirections = { "N", "N-NE", "N-E", "E-NE", "E", "E-SE", "S-E", "S-SE", "S", "S-SW", "S-W", "W-SW", "W", "W-NW", "N-W", "N-NW" };
+
+        private static readonly string[] WindDirections =
+        {
+            "N", "N-NE", "N-E", "E-NE", "E", "E-SE", "S-E", "S-SE", "S", "S-SW", "S-W", "W-SW", "W", "W-NW", "N-W",
+            "N-NW"
+        };
+
         private static readonly Random random = new();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Starting test data population!");
 
@@ -32,18 +37,18 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
             var rainfallDbContext = new RainfallDbContext();
             var windMeasurementsDbContext = new WindMeasurementsDbContext();
 
-            var initialDatetime = new DateTime(year: 2018, month: 1, day: 1, hour: 0, minute: 0, second: 0, DateTimeKind.Local);
-            var finalDatetime = initialDatetime.AddYears(value: 2);
+            var initialDatetime = new DateTime(2018, 1, 1, 0, 0, 0, DateTimeKind.Local);
+            var finalDatetime = initialDatetime.AddYears(2);
 
             var i = 0;
 
             do
             {
-                InsertAirParametersData(ctx: airParametersDbContext, date: initialDatetime);
-                InsertAmbientTemperatureData(ctx: ambientTemperatureDbContext, date: initialDatetime);
-                InsertGroundTemperatureData(ctx: groundTemperatureDbContext, date: initialDatetime);
-                InsertRainfallData(ctx: rainfallDbContext, date: initialDatetime);
-                InsertWindMeasurementsData(ctx: windMeasurementsDbContext, date: initialDatetime);
+                InsertAirParametersData(airParametersDbContext, initialDatetime);
+                InsertAmbientTemperatureData(ambientTemperatureDbContext, initialDatetime);
+                InsertGroundTemperatureData(groundTemperatureDbContext, initialDatetime);
+                InsertRainfallData(rainfallDbContext, initialDatetime);
+                InsertWindMeasurementsData(windMeasurementsDbContext, initialDatetime);
 
                 i++;
                 if (i == StoreInformationEachNumber)
@@ -74,21 +79,22 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
         {
             var entity = new AirParameters
             {
-                Humidity = GetRandomDecimal(minValue: 5.0, maxValue: 95.5),
-                Pressure = GetRandomDecimal(minValue: 900.0, maxValue: 1050.0),
+                Humidity = GetRandomDecimal(5.0, 95.5),
+                Pressure = GetRandomDecimal(900.0, 1050.0),
                 DateTime = date
             };
 
             ctx.Add(entity);
 
-            Console.WriteLine($"AirParameters: Humidity {entity.Humidity} Pressure {entity.Pressure} Datetime {entity.DateTime}");
+            Console.WriteLine(
+                $"AirParameters: Humidity {entity.Humidity} Pressure {entity.Pressure} Datetime {entity.DateTime}");
         }
 
         private static void InsertAmbientTemperatureData(AmbientTemperatureDbContext ctx, DateTime date)
         {
             var entity = new AmbientTemperature
             {
-                Temperature = GetRandomDecimal(minValue: -10.0, maxValue: 40.5),
+                Temperature = GetRandomDecimal(-10.0, 40.5),
                 DateTime = date
             };
 
@@ -101,7 +107,7 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
         {
             var entity = new GroundTemperature
             {
-                Temperature = GetRandomDecimal(minValue: -10.0, maxValue: 40.5),
+                Temperature = GetRandomDecimal(-10.0, 40.5),
                 DateTime = date
             };
 
@@ -114,7 +120,7 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
         {
             var entity = new Rainfall
             {
-                Amount = GetRandomDecimal(minValue: 0.5, maxValue: 100.0),
+                Amount = GetRandomDecimal(0.5, 100.0),
                 DateTime = date
             };
 
@@ -127,20 +133,21 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
         {
             var entity = new WindMeasurements
             {
-                Speed = GetRandomDecimal(minValue: 0, maxValue: 100.0),
-                Direction = WindDirections[random.Next(minValue: 0, maxValue: WindDirections.Length)],
+                Speed = GetRandomDecimal(0, 100.0),
+                Direction = WindDirections[random.Next(0, WindDirections.Length)],
                 DateTime = date
             };
 
             ctx.Add(entity);
 
-            Console.WriteLine($"WindMeasurements: Speed {entity.Speed} Direction {entity.Direction} Datetime {entity.DateTime}");
+            Console.WriteLine(
+                $"WindMeasurements: Speed {entity.Speed} Direction {entity.Direction} Datetime {entity.DateTime}");
         }
 
         private static decimal GetRandomDecimal(double minValue, double maxValue)
         {
             var randNumber = random.NextDouble() * (maxValue - minValue) + minValue;
-            return Convert.ToDecimal(randNumber.ToString(format: "f2"));
+            return Convert.ToDecimal(randNumber.ToString("f2"));
         }
     }
 }

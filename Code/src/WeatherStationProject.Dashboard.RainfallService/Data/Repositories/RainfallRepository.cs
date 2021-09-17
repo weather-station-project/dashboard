@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.RainfallService.Data

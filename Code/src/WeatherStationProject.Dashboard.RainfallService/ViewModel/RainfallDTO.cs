@@ -12,11 +12,11 @@ namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
 
         public static RainfallDTO FromEntity(decimal amount, DateTime since, DateTime until)
         {
-            return new()
+            return new RainfallDTO
             {
                 FromDateTime = since,
                 ToDateTime = until,
-                Amount = amount,
+                Amount = amount
             };
         }
     }

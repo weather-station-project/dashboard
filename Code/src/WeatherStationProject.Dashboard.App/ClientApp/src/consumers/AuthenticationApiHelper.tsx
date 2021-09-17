@@ -1,11 +1,11 @@
-import { AxiosRequestConfig } from "axios";
+import {AxiosRequestConfig} from "axios";
 
 interface IAuthenticationToken {
     accessToken: string;
     expiresIn: number;
 }
 
-export async function getAxiosRequestConfig(apiHost:string, authHost: string, secret: string): Promise<AxiosRequestConfig> {
+export async function getAxiosRequestConfig(apiHost: string, authHost: string, secret: string): Promise<AxiosRequestConfig> {
     const authToken = await getAuthToken(authHost, secret);
     const config: AxiosRequestConfig = {
         headers: {
@@ -25,7 +25,8 @@ async function getAuthToken(host: string, secret: string): Promise<IAuthenticati
     return fetch(host + url + secret, {
         method: "GET", headers: {
             'Content-Type': "application/x-www-form-urlencoded",
-        }}).then((response) => {
+        }
+    }).then((response) => {
         if (response.status !== 200) {
             throw new Error(`getAuthToken Error: Did not get a 200 back... -> ${response.status}: ${response.statusText}`);
         }

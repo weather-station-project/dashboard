@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import React, {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
 import Loading from "../../../Loading";
 import axios from "axios";
-import { IAccuWeatherCurrentConditionsResponse, IAccuWeatherLocationSearchResponse, IAccuWeatherForecastResponse } from "../../../model/OpenWeatherApiTypes";
+import {
+    IAccuWeatherCurrentConditionsResponse,
+    IAccuWeatherForecastResponse,
+    IAccuWeatherLocationSearchResponse
+} from "../../../model/OpenWeatherApiTypes";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CarouselCurrentData from "../../carousel/CarouselCurrentData";
@@ -13,23 +17,23 @@ interface IForecastDataProps {
     cityName: string;
 }
 
-const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName }) => {
-    const { i18n } = useTranslation();
+const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) => {
+    const {i18n} = useTranslation();
     const [currentData, setCurrentData] = useState({} as IAccuWeatherCurrentConditionsResponse);
     const [forecastData, setForecastData] = useState({} as IAccuWeatherForecastResponse);
     const responsive = {
         desktop: {
-            breakpoint: { max: 3000, min: 1024 },
+            breakpoint: {max: 3000, min: 1024},
             items: 3,
             slidesToSlide: 3
         },
         tablet: {
-            breakpoint: { max: 1024, min: 464 },
+            breakpoint: {max: 1024, min: 464},
             items: 2,
             slidesToSlide: 2
         },
         mobile: {
-            breakpoint: { max: 464, min: 0 },
+            breakpoint: {max: 464, min: 0},
             items: 1,
             slidesToSlide: 1
         }
@@ -41,7 +45,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
             if (locationKey !== undefined) {
                 await Promise.all([fetchCurrentData(locationKey), fetchForecastData(locationKey)]);
             }
-        };
+        }
 
         async function getLocationKeyByCityName(): Promise<string | undefined> {
             try {
@@ -58,7 +62,9 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
                 console.debug(response);
                 return response.data[0].Key;
             } catch (e) {
-                setCurrentData((() => { throw e }) as any);
+                setCurrentData((() => {
+                    throw e
+                }) as any);
             }
         }
 
@@ -73,9 +79,11 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
                 console.debug(response);
                 setCurrentData(response.data[0]);
             }).catch(e => {
-                setCurrentData((() => { throw e }) as any);
+                setCurrentData((() => {
+                    throw e
+                }) as any);
             });
-        };
+        }
 
         async function fetchForecastData(locationKey: string) {
             axios.get<IAccuWeatherForecastResponse>("//dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey, {
@@ -89,9 +97,11 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
                 console.debug(response);
                 setForecastData(response.data);
             }).catch(e => {
-                setForecastData((() => { throw e }) as any);
+                setForecastData((() => {
+                    throw e
+                }) as any);
             });
-        };
+        }
 
         fetchData();
     }, [i18n.language, weatherApiKey, cityName]);
@@ -115,10 +125,11 @@ const ForecastData: React.FC<IForecastDataProps> = ({ weatherApiKey, cityName })
                         removeArrowOnDeviceType={["tablet", "mobile"]}
                         dotListClass="custom-dot-list-style"
                     >
-                        <div><CarouselCurrentData data={currentData} /></div>
-                        {forecastData.DailyForecasts.map((dayData, idx) => <div key="idx"><CarouselDailyData data={dayData} /></div>)}
+                        <div><CarouselCurrentData data={currentData}/></div>
+                        {forecastData.DailyForecasts.map((dayData, idx) => <div key="idx"><CarouselDailyData
+                            data={dayData}/></div>)}
                     </Carousel>
-                    : <Loading />
+                    : <Loading/>
             }
         </div>
     );

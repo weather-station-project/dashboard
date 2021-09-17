@@ -3,13 +3,11 @@ using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.WindMeasurementsService.Data
 {
-    [Table(name: "wind_measurements")]
+    [Table("wind_measurements")]
     public class WindMeasurements : Measurement
     {
-        [Column(name: "speed")]
-        public decimal Speed { get; set; }
+        [Column("speed")] public decimal Speed { get; set; }
 
-        [Column(name: "direction")]
-        public string Direction { get; set; }
+        [Column("direction")] public string Direction { get; set; }
     }
 }

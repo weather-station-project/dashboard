@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using WeatherStationProject.Dashboard.Core.Configuration;
 using WeatherStationProject.Dashboard.Core.Security;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
@@ -12,10 +12,10 @@ namespace WeatherStationProject.Dashboard.AuthenticationService.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route(template: "api/v{version:apiVersion}/authentication")]
+    [Route("api/v{version:apiVersion}/authentication")]
     public class AuthenticationController : ControllerBase
     {
-        [HttpGet(template: "{secret}")]
+        [HttpGet("{secret}")]
         public IActionResult Post(string secret)
         {
             if (secret != AppConfiguration.AuthenticationSecret) return StatusCode(403);
@@ -26,22 +26,23 @@ namespace WeatherStationProject.Dashboard.AuthenticationService.Controllers
             {
                 new Claim(JwtRegisteredClaimNames.Sub, "client"),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Iat, now.ToUniversalTime().ToString(CultureInfo.InvariantCulture), ClaimValueTypes.Integer64)
+                new Claim(JwtRegisteredClaimNames.Iat, now.ToUniversalTime().ToString(CultureInfo.InvariantCulture),
+                    ClaimValueTypes.Integer64)
             };
 
             var jwt = new JwtSecurityToken(
-                issuer: Audience.Issuer,
-                audience: Audience.ValidAudience,
-                claims: claims,
-                notBefore: now,
-                expires: now.Add(TimeSpan.FromMinutes(2)),
-                signingCredentials: new SigningCredentials(key: JwtAuthenticationConfiguration.SigningKey, algorithm: SecurityAlgorithms.HmacSha256)
+                Audience.Issuer,
+                Audience.ValidAudience,
+                claims,
+                now,
+                now.Add(TimeSpan.FromMinutes(2)),
+                new SigningCredentials(JwtAuthenticationConfiguration.SigningKey, SecurityAlgorithms.HmacSha256)
             );
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
             var responseJson = new
             {
                 accessToken = encodedJwt,
-                expiresIn = (int)TimeSpan.FromMinutes(2).TotalSeconds
+                expiresIn = (int) TimeSpan.FromMinutes(2).TotalSeconds
             };
 
             return Ok(responseJson);

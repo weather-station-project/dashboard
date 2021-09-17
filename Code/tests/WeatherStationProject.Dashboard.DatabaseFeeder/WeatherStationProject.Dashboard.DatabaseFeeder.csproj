@@ -1,17 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AirParametersService\WeatherStationProject.Dashboard.AirParametersService.csproj" />
-    <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AmbientTemperatureService\WeatherStationProject.Dashboard.AmbientTemperatureService.csproj" />
-    <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.Core\WeatherStationProject.Dashboard.Core.csproj" />
-    <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.GroundTemperatureService\WeatherStationProject.Dashboard.GroundTemperatureService.csproj" />
-    <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.RainfallService\WeatherStationProject.Dashboard.RainfallService.csproj" />
-    <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.WindMeasurementsService\WeatherStationProject.Dashboard.WindMeasurementsService.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AirParametersService\WeatherStationProject.Dashboard.AirParametersService.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AmbientTemperatureService\WeatherStationProject.Dashboard.AmbientTemperatureService.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.Core\WeatherStationProject.Dashboard.Core.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.GroundTemperatureService\WeatherStationProject.Dashboard.GroundTemperatureService.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.RainfallService\WeatherStationProject.Dashboard.RainfallService.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.WindMeasurementsService\WeatherStationProject.Dashboard.WindMeasurementsService.csproj"/>
+    </ItemGroup>
 
 </Project>

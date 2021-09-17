@@ -24,18 +24,17 @@ namespace WeatherStationProject.Dashboard.AuthenticationService
 
             services.AddApiVersioning(config =>
             {
-                config.DefaultApiVersion = new ApiVersion(majorVersion: 1, minorVersion: 0);
+                config.DefaultApiVersion = new ApiVersion(1, 0);
 
                 config.AssumeDefaultVersionWhenUnspecified = true;
 
                 config.ReportApiVersions = true;
 
                 config.ApiVersionReader = ApiVersionReader.Combine(new HeaderApiVersionReader(headerNames: "X-version"),
-                                                                   new QueryStringApiVersionReader(parameterNames: "api-version"));
+                    new QueryStringApiVersionReader(parameterNames: "api-version"));
             });
 
             if (_isDevelopment)
-            {
                 services.AddCors(options =>
                 {
                     options.AddDefaultPolicy(
@@ -45,12 +44,13 @@ namespace WeatherStationProject.Dashboard.AuthenticationService
                             builder.AllowAnyHeader();
                         });
                 });
-            }
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherStationProject - Dashboard - AuthenticationService", Version = "v1" });
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                        {Title = "WeatherStationProject - Dashboard - AuthenticationService", Version = "v1"});
             });
         }
 
@@ -72,10 +72,7 @@ namespace WeatherStationProject.Dashboard.AuthenticationService
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

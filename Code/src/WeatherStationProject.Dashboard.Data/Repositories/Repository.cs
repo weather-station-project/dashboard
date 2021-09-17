@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace WeatherStationProject.Dashboard.Data
 {
@@ -15,7 +15,8 @@ namespace WeatherStationProject.Dashboard.Data
 
         public async Task<T> GetLastMeasurement()
         {
-            return await _weatherStationDatabaseContext.Set<T>().OrderByDescending(x => x.DateTime).FirstOrDefaultAsync();
+            return await _weatherStationDatabaseContext.Set<T>().OrderByDescending(x => x.DateTime)
+                .FirstOrDefaultAsync();
         }
     }
 }

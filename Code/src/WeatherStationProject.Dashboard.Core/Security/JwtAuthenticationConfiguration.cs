@@ -1,6 +1,6 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
 using WeatherStationProject.Dashboard.Core.Configuration;
 
 namespace WeatherStationProject.Dashboard.Core.Security
@@ -14,11 +14,11 @@ namespace WeatherStationProject.Dashboard.Core.Security
             Example: 'Bearer 12345abcdef'";
 
         public static SymmetricSecurityKey SigningKey =>
-            new(Encoding.ASCII.GetBytes(Audience.Secret.PadLeft(totalWidth: SecretMinimumLength, paddingChar: '0')));
+            new(Encoding.ASCII.GetBytes(Audience.Secret.PadLeft(SecretMinimumLength, '0')));
 
         public static TokenValidationParameters GetTokenValidationParameters()
         {
-            return new()
+            return new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = SigningKey,
@@ -28,7 +28,7 @@ namespace WeatherStationProject.Dashboard.Core.Security
                 ValidAudience = Audience.ValidAudience,
                 ValidateLifetime = true,
                 ClockSkew = TimeSpan.Zero,
-                RequireExpirationTime = true,
+                RequireExpirationTime = true
             };
         }
     }

@@ -1,12 +1,12 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 const LanguageSelector: React.FC = () => {
-    const { t, i18n } = useTranslation();
+    const {t, i18n} = useTranslation();
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         i18n.changeLanguage(e.target.value);
     };
-       
+
     return (
         <select className="form-control form-control-sm" value={i18n.language} onChange={handleChange}>
             <option value="en">{t("navmenu.language_selector.english")}</option>

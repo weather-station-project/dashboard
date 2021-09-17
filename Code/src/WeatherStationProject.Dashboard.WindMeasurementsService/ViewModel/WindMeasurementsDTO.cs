@@ -13,7 +13,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
 
         public static WindMeasurementsDTO FromEntity(WindMeasurements entity)
         {
-            return new()
+            return new WindMeasurementsDTO
             {
                 DateTime = entity.DateTime,
                 Speed = entity.Speed,

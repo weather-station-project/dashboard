@@ -11,7 +11,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel
 
         public static AmbientTemperatureDTO FromEntity(AmbientTemperature entity)
         {
-            return new()
+            return new AmbientTemperatureDTO
             {
                 DateTime = entity.DateTime,
                 Temperature = entity.Temperature

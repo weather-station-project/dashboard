@@ -15,7 +15,7 @@ namespace WeatherStationProject.Dashboard.RainfallService.Services
 
         public async Task<decimal> GetRainfallDuringTime(DateTime since, DateTime until)
         {
-            return await _repository.GetRainfallDuringTime(since: since, until: until);
+            return await _repository.GetRainfallDuringTime(since, until);
         }
     }
 }

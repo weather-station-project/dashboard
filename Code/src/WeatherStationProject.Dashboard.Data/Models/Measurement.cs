@@ -6,11 +6,8 @@ namespace WeatherStationProject.Dashboard.Data
 {
     public abstract class Measurement
     {
-        [Key]
-        [Column(name: "id")]
-        public int Id { get; set; }
+        [Key] [Column("id")] public int Id { get; set; }
 
-        [Column(name: "date_time")]
-        public DateTime DateTime { get; set; }
+        [Column("date_time")] public DateTime DateTime { get; set; }
     }
 }

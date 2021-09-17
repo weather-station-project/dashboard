@@ -13,7 +13,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
 
         public static AirParametersDTO FromEntity(AirParameters entity)
         {
-            return new()
+            return new AirParametersDTO
             {
                 DateTime = entity.DateTime,
                 Pressure = entity.Pressure,

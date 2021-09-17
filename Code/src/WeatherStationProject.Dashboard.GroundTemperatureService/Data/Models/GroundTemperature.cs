@@ -3,10 +3,9 @@ using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.GroundTemperatureService.Data
 {
-    [Table(name: "ground_temperatures")]
+    [Table("ground_temperatures")]
     public class GroundTemperature : Measurement
     {
-        [Column(name: "temperature")]
-        public decimal Temperature { get; set; }
+        [Column("temperature")] public decimal Temperature { get; set; }
     }
 }

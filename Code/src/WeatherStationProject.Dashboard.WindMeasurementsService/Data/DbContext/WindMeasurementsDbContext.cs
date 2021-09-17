@@ -10,7 +10,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(connectionString: AppConfiguration.DatabaseConnectionString);
+            optionsBuilder.UseNpgsql(AppConfiguration.DatabaseConnectionString);
             base.OnConfiguring(optionsBuilder);
         }
     }

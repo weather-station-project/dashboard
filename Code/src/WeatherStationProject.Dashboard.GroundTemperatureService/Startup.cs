@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.Collections.Generic;
 using WeatherStationProject.Dashboard.Core.Security;
 using WeatherStationProject.Dashboard.Data;
 using WeatherStationProject.Dashboard.GroundTemperatureService.Data;
@@ -36,14 +36,14 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
 
             services.AddApiVersioning(config =>
             {
-                config.DefaultApiVersion = new ApiVersion(majorVersion: 1, minorVersion: 0);
+                config.DefaultApiVersion = new ApiVersion(1, 0);
 
                 config.AssumeDefaultVersionWhenUnspecified = true;
 
                 config.ReportApiVersions = true;
 
                 config.ApiVersionReader = ApiVersionReader.Combine(new HeaderApiVersionReader(headerNames: "X-version"),
-                                                                   new QueryStringApiVersionReader(parameterNames: "api-version"));
+                    new QueryStringApiVersionReader(parameterNames: "api-version"));
             });
 
             services.AddAuthentication(o =>
@@ -58,7 +58,6 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
                 });
 
             if (_isDevelopment)
-            {
                 services.AddCors(options =>
                 {
                     options.AddDefaultPolicy(
@@ -68,14 +67,15 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
                             builder.AllowAnyHeader();
                         });
                 });
-            }
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather Station Project - Dashboard - GroundTemperatureService", Version = "v1" });
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                        {Title = "Weather Station Project - Dashboard - GroundTemperatureService", Version = "v1"});
 
-                c.AddSecurityDefinition(name: JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+                c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
                 {
                     Description = JwtAuthenticationConfiguration.SwaggerDescriptionText,
                     Name = "Authorization",
@@ -84,7 +84,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
                     Scheme = JwtBearerDefaults.AuthenticationScheme
                 });
 
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
                         new OpenApiSecurityScheme
@@ -96,8 +96,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
                             },
                             Scheme = "oauth2",
                             Name = JwtBearerDefaults.AuthenticationScheme,
-                            In = ParameterLocation.Header,
-
+                            In = ParameterLocation.Header
                         },
                         new List<string>()
                     }
@@ -125,10 +124,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

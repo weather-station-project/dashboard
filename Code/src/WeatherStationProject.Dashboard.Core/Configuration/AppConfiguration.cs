@@ -10,11 +10,13 @@ namespace WeatherStationProject.Dashboard.Core.Configuration
         private const string DatabasePasswordVariableName = "PASSWORD";
         private const string AuthenticationSecretVariableName = "AUTHENTICATION_SECRET";
 
-        public static string DatabaseConnectionString => $"Host={Environment.GetEnvironmentVariable(DatabaseServerVariableName)};" +
-                                                  $"Database={Environment.GetEnvironmentVariable(DatabaseNameVariableName)};" +
-                                                  $"Username={Environment.GetEnvironmentVariable(DatabaseUserVariableName)};" +
-                                                  $"Password={Environment.GetEnvironmentVariable(DatabasePasswordVariableName)}";
+        public static string DatabaseConnectionString =>
+            $"Host={Environment.GetEnvironmentVariable(DatabaseServerVariableName)};" +
+            $"Database={Environment.GetEnvironmentVariable(DatabaseNameVariableName)};" +
+            $"Username={Environment.GetEnvironmentVariable(DatabaseUserVariableName)};" +
+            $"Password={Environment.GetEnvironmentVariable(DatabasePasswordVariableName)}";
 
-        public static string AuthenticationSecret => Environment.GetEnvironmentVariable(AuthenticationSecretVariableName);
+        public static string AuthenticationSecret =>
+            Environment.GetEnvironmentVariable(AuthenticationSecretVariableName);
     }
 }
