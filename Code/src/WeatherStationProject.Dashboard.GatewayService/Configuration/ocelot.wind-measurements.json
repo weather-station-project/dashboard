@@ -11,7 +11,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/wind-measurements/{everything}",
-      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
       "RateLimitOptions": {
         "ClientWhitelist": [],
         "EnableRateLimiting": true,
@@ -40,7 +42,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/wind-measurements/gust/last",
-      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
       "RateLimitOptions": {
         "ClientWhitelist": [],
         "EnableRateLimiting": true,
@@ -64,7 +68,9 @@
         }
       ],
       "UpstreamPathTemplate": "/wind-measurements/{version}/swagger.json",
-      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
       "DangerousAcceptAnyServerCertificateValidator": true
     }
   ]

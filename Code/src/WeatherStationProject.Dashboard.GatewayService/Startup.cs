@@ -15,8 +15,8 @@ namespace WeatherStationProject.Dashboard.GatewayService
 {
     public class Startup
     {
-        private readonly bool _isDevelopment;
         private readonly IConfiguration _configuration;
+        private readonly bool _isDevelopment;
 
         public Startup(IWebHostEnvironment env)
         {
@@ -24,9 +24,9 @@ namespace WeatherStationProject.Dashboard.GatewayService
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile(path: "appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile(path: $"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddOcelot(folder: "Configuration", env: env);
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+                .AddOcelot("Configuration", env);
 
             _configuration = builder.Build();
         }
@@ -48,17 +48,14 @@ namespace WeatherStationProject.Dashboard.GatewayService
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherStationProject - Dashboard - GatewayService", Version = "v1" });
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo {Title = "WeatherStationProject - Dashboard - GatewayService", Version = "v1"});
             });
 
-            services.AddOcelot(configuration: _configuration)
-                .AddCacheManager(x =>
-                {
-                    x.WithDictionaryHandle();
-                });
+            services.AddOcelot(_configuration)
+                .AddCacheManager(x => { x.WithDictionaryHandle(); });
 
             if (_isDevelopment)
-            {
                 services.AddCors(options =>
                 {
                     options.AddDefaultPolicy(
@@ -68,7 +65,6 @@ namespace WeatherStationProject.Dashboard.GatewayService
                             builder.AllowAnyHeader();
                         });
                 });
-            }
         }
 
         public async void Configure(IApplicationBuilder app)
@@ -79,11 +75,11 @@ namespace WeatherStationProject.Dashboard.GatewayService
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint(url: "/air-parameters/v1/swagger.json", name: "AirParametersService v1");
-                    c.SwaggerEndpoint(url: "/ambient-temperatures/v1/swagger.json", name: "AmbientTemperatureService v1");
-                    c.SwaggerEndpoint(url: "/ground-temperatures/v1/swagger.json", name: "GroundTemperatureService v1");
-                    c.SwaggerEndpoint(url: "/rainfall/v1/swagger.json", name: "RainfallService v1");
-                    c.SwaggerEndpoint(url: "/wind-measurements/v1/swagger.json", name: "WindMeasurementsService v1");
+                    c.SwaggerEndpoint("/air-parameters/v1/swagger.json", "AirParametersService v1");
+                    c.SwaggerEndpoint("/ambient-temperatures/v1/swagger.json", "AmbientTemperatureService v1");
+                    c.SwaggerEndpoint("/ground-temperatures/v1/swagger.json", "GroundTemperatureService v1");
+                    c.SwaggerEndpoint("/rainfall/v1/swagger.json", "RainfallService v1");
+                    c.SwaggerEndpoint("/wind-measurements/v1/swagger.json", "WindMeasurementsService v1");
                 });
 
                 app.UseCors();

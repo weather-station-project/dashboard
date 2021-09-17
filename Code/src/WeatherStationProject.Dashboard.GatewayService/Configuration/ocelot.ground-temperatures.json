@@ -11,7 +11,9 @@
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/ground-temperatures/{everything}",
-      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
       "RateLimitOptions": {
         "ClientWhitelist": [],
         "EnableRateLimiting": true,
@@ -39,7 +41,9 @@
         }
       ],
       "UpstreamPathTemplate": "/ground-temperatures/{version}/swagger.json",
-      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
       "DangerousAcceptAnyServerCertificateValidator": true
     }
   ]

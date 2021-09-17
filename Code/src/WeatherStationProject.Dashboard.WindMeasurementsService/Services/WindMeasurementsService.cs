@@ -19,7 +19,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Services
 
         public async Task<WindMeasurements> GetGustInTime(int minutes)
         {
-            return await _repository.GetGustInTime(minutes: minutes);
+            return await _repository.GetGustInTime(minutes);
         }
     }
 }
