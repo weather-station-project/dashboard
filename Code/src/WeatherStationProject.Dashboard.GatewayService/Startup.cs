@@ -26,7 +26,7 @@ namespace WeatherStationProject.Dashboard.GatewayService
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", true, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
-                .AddOcelot("Configuration", env);
+                .AddOcelot($"Configuration.{env.EnvironmentName}", null);
 
             _configuration = builder.Build();
         }
