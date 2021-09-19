@@ -67,7 +67,7 @@ namespace WeatherStationProject.Dashboard.GatewayService
                 });
         }
 
-        public async void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app)
         {
             if (_isDevelopment)
             {
@@ -86,12 +86,9 @@ namespace WeatherStationProject.Dashboard.GatewayService
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
-
             app.UseRouting();
-
-            await app.UseOcelot();
+            app.UseOcelot();
         }
     }
 }
