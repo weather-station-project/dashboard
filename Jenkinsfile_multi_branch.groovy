@@ -82,9 +82,7 @@ pipeline {
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                                         "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.App/WeatherStationProject.Dashboard.App.csproj')}",
                                                         './Dockerfile',
-                                                        '--build-arg INCLUDE_NPM_ARG=true 
-                                                         --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.App 
-                                                         --build-arg ENVIRONMENT_ARG=Staging')
+                                                        '--build-arg INCLUDE_NPM_ARG=true --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.App --build-arg ENVIRONMENT_ARG=Staging')
                         }
                     }
                 }
@@ -97,9 +95,7 @@ pipeline {
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                                         "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.AirParametersService/WeatherStationProject.Dashboard.AirParametersService.csproj')}",
                                                         './Dockerfile',
-                                                        '--build-arg INCLUDE_NPM_ARG=false 
-                                                         --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.AirParametersService 
-                                                         --build-arg ENVIRONMENT_ARG=Staging')
+                                                        '--build-arg INCLUDE_NPM_ARG=false --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.AirParametersService --build-arg ENVIRONMENT_ARG=Staging')
                         }
                     }
                 }
@@ -112,9 +108,7 @@ pipeline {
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                                         "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.AmbientTemperatureService/WeatherStationProject.Dashboard.AmbientTemperatureService.csproj')}",
                                                         './Dockerfile',
-                                                        '--build-arg INCLUDE_NPM_ARG=false 
-                                                         --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.AmbientTemperatureService 
-                                                         --build-arg ENVIRONMENT_ARG=Staging')
+                                                        '--build-arg INCLUDE_NPM_ARG=false --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.AmbientTemperatureService --build-arg ENVIRONMENT_ARG=Staging')
                         }
                     }
                 }
@@ -127,9 +121,7 @@ pipeline {
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                                         "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.AuthenticationService/WeatherStationProject.Dashboard.AuthenticationService.csproj')}",
                                                         './Dockerfile',
-                                                        '--build-arg INCLUDE_NPM_ARG=false 
-                                                         --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.AuthenticationService 
-                                                         --build-arg ENVIRONMENT_ARG=Staging')
+                                                        '--build-arg INCLUDE_NPM_ARG=false --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.AuthenticationService --build-arg ENVIRONMENT_ARG=Staging')
                         }
                     }
                 }
@@ -142,9 +134,7 @@ pipeline {
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                                         "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.GatewayService/WeatherStationProject.Dashboard.GatewayService.csproj')}",
                                                         './Dockerfile',
-                                                        '--build-arg INCLUDE_NPM_ARG=false 
-                                                         --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.GatewayService 
-                                                         --build-arg ENVIRONMENT_ARG=Staging')
+                                                        '--build-arg INCLUDE_NPM_ARG=false --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.GatewayService --build-arg ENVIRONMENT_ARG=Staging')
                         }
                     }
                 }
@@ -157,9 +147,7 @@ pipeline {
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                                         "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.GroundTemperatureService/WeatherStationProject.Dashboard.GroundTemperatureService.csproj')}",
                                                         './Dockerfile',
-                                                        '--build-arg INCLUDE_NPM_ARG=false 
-                                                         --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.GroundTemperatureService 
-                                                         --build-arg ENVIRONMENT_ARG=Staging')
+                                                        '--build-arg INCLUDE_NPM_ARG=false --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.GroundTemperatureService --build-arg ENVIRONMENT_ARG=Staging')
                         }
                     }
                 }
@@ -172,9 +160,7 @@ pipeline {
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                                         "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.RainfallService/WeatherStationProject.Dashboard.RainfallService.csproj')}",
                                                         './Dockerfile',
-                                                        '--build-arg INCLUDE_NPM_ARG=false 
-                                                         --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.RainfallService 
-                                                         --build-arg ENVIRONMENT_ARG=Staging')
+                                                        '--build-arg INCLUDE_NPM_ARG=false --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.RainfallService --build-arg ENVIRONMENT_ARG=Staging')
                         }
                     }
                 }
@@ -187,9 +173,7 @@ pipeline {
                                                         "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
                                                         "${getVersionFromCsproj('./Code/src/WeatherStationProject.Dashboard.WindMeasurementsService/WeatherStationProject.Dashboard.WindMeasurementsService.csproj')}",
                                                         './Dockerfile',
-                                                        '--build-arg INCLUDE_NPM_ARG=false 
-                                                         --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.WindMeasurementsService 
-                                                         --build-arg ENVIRONMENT_ARG=Staging')
+                                                        '--build-arg INCLUDE_NPM_ARG=false --build-arg PROJECT_NAME_ARG=WeatherStationProject.Dashboard.WindMeasurementsService --build-arg ENVIRONMENT_ARG=Staging')
                         }
                     }
                 }
