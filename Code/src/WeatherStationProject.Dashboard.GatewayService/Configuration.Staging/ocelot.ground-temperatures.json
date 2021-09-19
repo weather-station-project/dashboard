@@ -6,8 +6,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5004
+          "Host": "ground-temperature-service-stg",
+          "Port": 1443
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/ground-temperatures/{everything}",
@@ -36,8 +36,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5004
+          "Host": "ground-temperature-service-stg",
+          "Port": 1443
         }
       ],
       "UpstreamPathTemplate": "/ground-temperatures/{version}/swagger.json",

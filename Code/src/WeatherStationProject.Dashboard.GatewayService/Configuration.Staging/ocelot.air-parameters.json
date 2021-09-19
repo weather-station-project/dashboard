@@ -6,8 +6,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5002
+          "Host": "air-parameter-service-stg",
+          "Port": 1443
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/air-parameters/{everything}",
@@ -36,8 +36,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5002
+          "Host": "air-parameter-service-stg",
+          "Port": 1443
         }
       ],
       "UpstreamPathTemplate": "/air-parameters/{version}/swagger.json",

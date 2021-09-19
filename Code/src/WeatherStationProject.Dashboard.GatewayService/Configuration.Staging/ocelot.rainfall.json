@@ -6,8 +6,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5005
+          "Host": "rainfall-service-stg",
+          "Port": 1443
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/rainfall/last",
@@ -36,8 +36,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5005
+          "Host": "rainfall-service-stg",
+          "Port": 1443
         }
       ],
       "UpstreamPathTemplate": "/rainfall/{version}/swagger.json",

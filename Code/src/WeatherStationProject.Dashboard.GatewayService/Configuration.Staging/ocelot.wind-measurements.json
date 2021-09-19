@@ -6,8 +6,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5006
+          "Host": "wind-measurements-service-stg",
+          "Port": 1443
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/wind-measurements/{everything}",
@@ -37,8 +37,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5006
+          "Host": "wind-measurements-service-stg",
+          "Port": 1443
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/wind-measurements/gust/last",
@@ -63,8 +63,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5006
+          "Host": "wind-measurements-service-stg",
+          "Port": 1443
         }
       ],
       "UpstreamPathTemplate": "/wind-measurements/{version}/swagger.json",
