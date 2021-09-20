@@ -49,7 +49,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) =
 
         async function getLocationKeyByCityName(): Promise<string | undefined> {
             try {
-                const response = await axios.get<IAccuWeatherLocationSearchResponse[]>("//dataservice.accuweather.com/locations/v1/search",
+                const response = await axios.get<IAccuWeatherLocationSearchResponse[]>("https://dataservice.accuweather.com/locations/v1/search",
                     {
                         params: {
                             apikey: weatherApiKey,
@@ -69,7 +69,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) =
         }
 
         async function fetchCurrentData(locationKey: string) {
-            axios.get<IAccuWeatherCurrentConditionsResponse[]>("//dataservice.accuweather.com/currentconditions/v1/" + locationKey, {
+            axios.get<IAccuWeatherCurrentConditionsResponse[]>("https://dataservice.accuweather.com/currentconditions/v1/" + locationKey, {
                 params: {
                     apikey: weatherApiKey,
                     details: true,
@@ -86,7 +86,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) =
         }
 
         async function fetchForecastData(locationKey: string) {
-            axios.get<IAccuWeatherForecastResponse>("//dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey, {
+            axios.get<IAccuWeatherForecastResponse>("https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey, {
                 params: {
                     apikey: weatherApiKey,
                     language: i18n.language,

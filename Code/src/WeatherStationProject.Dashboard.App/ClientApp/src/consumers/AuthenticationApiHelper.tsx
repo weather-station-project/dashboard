@@ -24,7 +24,8 @@ async function getAuthToken(host: string, secret: string): Promise<IAuthenticati
     const url = `/api/v1/authentication/`;
     return fetch(host + url + secret, {
         method: "GET", headers: {
-            'Content-Type': "application/x-www-form-urlencoded",
+            'Accept': "application/json",
+            'Content-Type': "application/json",
         }
     }).then((response) => {
         if (response.status !== 200) {
