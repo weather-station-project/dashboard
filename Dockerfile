@@ -40,8 +40,8 @@ ENV ASPNETCORE_ENVIRONMENT=$ENVIRONMENT_ARG
 # Ports, URLS and certificate for http(s) access
 EXPOSE 1443
 ENV ASPNETCORE_URLS="https://+:1443"
-# ASPNETCORE_Kestrel__Certificates__Default__Password=password
-# ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+ASPNETCORE_Kestrel__Certificates__Default__Password=123456
+ASPNETCORE_Kestrel__Certificates__Default__Path=/https/certificate.pfx
 
 # Copy the published app to this new runtime-only container
 COPY --from=Build "/app/publish" "/app"
