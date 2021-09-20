@@ -24,12 +24,12 @@ const CurrentData: React.FC<ICurrentDataProps> = ({weatherApiHost, authServiceHo
 
             api.get<ILastData>(url)
                 .then((response) => {
-                    console.debug(response);
+                    console.debug(`${url} response: ${response}`);
                     setData(response.data);
                 }).catch(e => {
-                setData((() => {
-                    throw e
-                }) as any);
+                    setData((() => {
+                        throw e
+                    }) as any);
             });
         }
 
