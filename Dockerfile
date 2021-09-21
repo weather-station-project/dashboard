@@ -20,9 +20,6 @@ COPY "/Code/src/WeatherStationProject.Dashboard.Core" "/src/WeatherStationProjec
 COPY "/Code/src/WeatherStationProject.Dashboard.Data" "/src/WeatherStationProject.Dashboard.Data"
 WORKDIR "/src/$PROJECT_NAME_ARG"
 
-# Install dependencies
-RUN dotnet restore "./$PROJECT_NAME_ARG.csproj"
-
 # Deploy the app and dependencies into a deployable unit
 RUN dotnet publish "./$PROJECT_NAME_ARG.csproj" --configuration Release --output "/app/publish"
 
