@@ -1,0 +1,57 @@
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using WeatherStationProject.Dashboard.App.Attributes;
+using WeatherStationProject.Dashboard.Core.Configuration;
+using WeatherStationProject.Dashboard.Core.Model;
+
+namespace WeatherStationProject.Dashboard.App.Controllers
+{
+    [ApiController]
+    [Route("api/weather-measurements")]
+    [AllowOnlyFromLocalhostLocalhost]
+    public class ApiProxyController : ControllerBase
+    {
+        private const string LastMeasurementsEndPoint = "/api/v1/weather-measurements/last";
+        private const string AuthenticationServiceEndPoint = "/api/v1/authentication/";
+        
+        [HttpGet("last")]
+        public async Task<ActionResult> LastMeasurements()
+        {
+            var authToken = await GetAuthtoken();
+
+            return null == authToken ? StatusCode(500, "Auth token could not be retrieved") : Ok(GetLastMesurements(authToken));
+        }
+
+        private async Task<string> GetAuthtoken()
+        {
+            using var client = new HttpClient();
+            var response = await client.GetAsync(AppConfiguration.AuthenticationServiceHost +
+                                                  AuthenticationServiceEndPoint +
+                                                  AppConfiguration.AuthenticationSecret);
+            
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
+
+            var jsonString = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<AuthenticationToken>(jsonString).AccessToken;
+        }
+
+        private async Task<string> GetLastMesurements(string authToken)
+        {
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
+
+            var response = await client.GetAsync(AppConfiguration.WeatherApiHost + LastMeasurementsEndPoint);
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsStringAsync();
+        }
+    }
+}

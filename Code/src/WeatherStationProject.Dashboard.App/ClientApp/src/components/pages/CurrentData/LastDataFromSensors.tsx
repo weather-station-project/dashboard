@@ -3,33 +3,32 @@ import {useTranslation} from "react-i18next";
 import {ListGroup} from "react-bootstrap";
 import Loading from "../../../Loading";
 import axios, {AxiosInstance} from "axios";
-import {getAxiosRequestConfig} from "../../../consumers/AuthenticationApiHelper";
 import {ILastData} from "../../../model/LastDataTypes";
 
-
-interface ICurrentDataProps {
-    weatherApiHost: string;
-    authServiceHost: string;
-    secret: string;
-}
-
-const CurrentData: React.FC<ICurrentDataProps> = ({weatherApiHost, authServiceHost, secret}) => {
+const CurrentData: React.FC = () => {
     const {t} = useTranslation();
     const [data, setData] = useState({} as ILastData);
-    const url = "/api/v1/weather-measurements/last";
+    const url = "api/weather-measurements/last";
 
     useEffect(() => {
         async function fetchData() {
-            const api: AxiosInstance = axios.create(await getAxiosRequestConfig(weatherApiHost, authServiceHost, secret));
+            const api: AxiosInstance = axios.create({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                method: "GET",
+                baseURL: "/"
+            });
 
             api.get<ILastData>(url)
                 .then((response) => {
                     console.debug(`${url} response: ${response}`);
                     setData(response.data);
                 }).catch(e => {
-                    setData((() => {
-                        throw e
-                    }) as any);
+                setData((() => {
+                    throw e
+                }) as any);
             });
         }
 
