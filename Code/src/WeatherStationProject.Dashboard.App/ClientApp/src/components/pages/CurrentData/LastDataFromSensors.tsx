@@ -21,10 +21,9 @@ const CurrentData: React.FC = () => {
                 baseURL: "/"
             });
 
-            api.get<ILastData>(url)
+            api.get<string>(url)
                 .then((response) => {
-                    console.debug(`${url} response: ${response}`);
-                    setData(response.data);
+                    setData(JSON.parse(response.data) as ILastData);
                 }).catch(e => {
                 setData((() => {
                     throw e
