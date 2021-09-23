@@ -16,10 +16,10 @@ const CurrentData: React.FC = () => {
             </ErrorBoundary>
             <br/>
             <h1>{t("current_data.forecast_title")}</h1>
-            <ErrorBoundary>
+            {/*<ErrorBoundary>
                 <ForecastData weatherApiKey={(process.env.REACT_APP_ACCUWEATHER_API_KEY as string)}
                               cityName={(process.env.REACT_APP_ACCUWEATHER_LOCATION_NAME as string)}/>
-            </ErrorBoundary>
+            </ErrorBoundary>*/}
         </div>
     );
 }

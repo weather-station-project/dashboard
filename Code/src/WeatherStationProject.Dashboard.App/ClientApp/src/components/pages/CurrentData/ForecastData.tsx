@@ -58,8 +58,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) =
                             language: i18n.language
                         }
                     });
-
-                console.debug(response);
+                
                 return response.data[0].Key;
             } catch (e) {
                 setCurrentData((() => {
@@ -76,7 +75,6 @@ const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) =
                     language: i18n.language
                 }
             }).then((response) => {
-                console.debug(response);
                 setCurrentData(response.data[0]);
             }).catch(e => {
                 setCurrentData((() => {
@@ -94,7 +92,6 @@ const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) =
                     metric: true
                 }
             }).then((response) => {
-                console.debug(response);
                 setForecastData(response.data);
             }).catch(e => {
                 setForecastData((() => {

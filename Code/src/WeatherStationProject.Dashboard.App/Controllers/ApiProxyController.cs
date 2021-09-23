@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WeatherStationProject.Dashboard.App.Attributes;
+using WeatherStationProject.Dashboard.App.Handlers;
 using WeatherStationProject.Dashboard.Core.Configuration;
 using WeatherStationProject.Dashboard.Core.Model;
 
@@ -22,14 +23,14 @@ namespace WeatherStationProject.Dashboard.App.Controllers
         [HttpGet("last")]
         public async Task<ActionResult> LastMeasurements()
         {
-            var authToken = await GetAuthtoken();
+            var authToken = await GetAuthToken();
 
-            return null == authToken ? StatusCode(500, "Auth token could not be retrieved") : Ok(GetLastMesurements(authToken));
+            return null == authToken ? StatusCode(500, "Auth token could not be retrieved") : Ok(await GetLastMeasurements(authToken));
         }
 
-        private async Task<string> GetAuthtoken()
+        private async Task<string> GetAuthToken()
         {
-            using var client = new HttpClient();
+            using var client = new HttpClient(new SslIgnoreClientHandler());
             var response = await client.GetAsync(AppConfiguration.AuthenticationServiceHost +
                                                   AuthenticationServiceEndPoint +
                                                   AppConfiguration.AuthenticationSecret);
@@ -43,9 +44,9 @@ namespace WeatherStationProject.Dashboard.App.Controllers
             return JsonConvert.DeserializeObject<AuthenticationToken>(jsonString).AccessToken;
         }
 
-        private async Task<string> GetLastMesurements(string authToken)
+        private async Task<string> GetLastMeasurements(string authToken)
         {
-            using var client = new HttpClient();
+            using var client = new HttpClient(new SslIgnoreClientHandler());
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
 
             var response = await client.GetAsync(AppConfiguration.WeatherApiHost + LastMeasurementsEndPoint);
