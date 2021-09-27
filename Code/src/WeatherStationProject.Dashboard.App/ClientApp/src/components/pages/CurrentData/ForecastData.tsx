@@ -12,12 +12,7 @@ import "react-multi-carousel/lib/styles.css";
 import CarouselCurrentData from "../../carousel/CarouselCurrentData";
 import CarouselDailyData from "../../carousel/CarouselDailyData";
 
-interface IForecastDataProps {
-    weatherApiKey: string;
-    cityName: string;
-}
-
-const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) => {
+const ForecastData: React.FC = () => {
     const {i18n} = useTranslation();
     const [currentData, setCurrentData] = useState({} as IAccuWeatherCurrentConditionsResponse);
     const [forecastData, setForecastData] = useState({} as IAccuWeatherForecastResponse);
@@ -49,17 +44,14 @@ const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) =
 
         async function getLocationKeyByCityName(): Promise<string | undefined> {
             try {
-                const response = await axios.get<IAccuWeatherLocationSearchResponse[]>("https://dataservice.accuweather.com/locations/v1/search",
+                const response = await axios.get<string>("api/accu-weather/location-key",
                     {
                         params: {
-                            apikey: weatherApiKey,
-                            q: cityName,
-                            details: false,
                             language: i18n.language
                         }
                     });
-                
-                return response.data[0].Key;
+
+                return (JSON.parse(response.data) as IAccuWeatherLocationSearchResponse[])[0].Key;
             } catch (e) {
                 setCurrentData((() => {
                     throw e
@@ -68,14 +60,8 @@ const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) =
         }
 
         async function fetchCurrentData(locationKey: string) {
-            axios.get<IAccuWeatherCurrentConditionsResponse[]>("https://dataservice.accuweather.com/currentconditions/v1/" + locationKey, {
-                params: {
-                    apikey: weatherApiKey,
-                    details: true,
-                    language: i18n.language
-                }
-            }).then((response) => {
-                setCurrentData(response.data[0]);
+            axios.get<string>(`api/accu-weather/current-conditions/${locationKey}/${i18n.language}`).then((response) => {
+                setCurrentData((JSON.parse(response.data) as IAccuWeatherCurrentConditionsResponse[])[0]);
             }).catch(e => {
                 setCurrentData((() => {
                     throw e
@@ -84,7 +70,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) =
         }
 
         async function fetchForecastData(locationKey: string) {
-            axios.get<IAccuWeatherForecastResponse>("https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey, {
+            axios.get<IAccuWeatherForecastResponse>("" + locationKey, {
                 params: {
                     apikey: weatherApiKey,
                     language: i18n.language,
@@ -101,7 +87,7 @@ const ForecastData: React.FC<IForecastDataProps> = ({weatherApiKey, cityName}) =
         }
 
         fetchData();
-    }, [i18n.language, weatherApiKey, cityName]);
+    }, [i18n.language]);
 
     return (
         <div>
