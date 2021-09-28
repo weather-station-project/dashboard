@@ -8,7 +8,7 @@ import {ILastData} from "../../../model/LastDataTypes";
 const CurrentData: React.FC = () => {
     const {t} = useTranslation();
     const [data, setData] = useState({} as ILastData);
-    const url = "api/weather-measurements/last";
+    const url = "/api/weather-measurements/last";
 
     useEffect(() => {
         async function fetchData() {

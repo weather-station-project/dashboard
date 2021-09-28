@@ -44,14 +44,10 @@ const ForecastData: React.FC = () => {
 
         async function getLocationKeyByCityName(): Promise<string | undefined> {
             try {
-                const response = await axios.get<string>("api/accu-weather/location-key",
-                    {
-                        params: {
-                            language: i18n.language
-                        }
-                    });
-
-                return (JSON.parse(response.data) as IAccuWeatherLocationSearchResponse[])[0].Key;
+                const response = await axios.get(`/api/accu-weather/location-key/${i18n.language}`);
+                const parsedData = response.data[0] as IAccuWeatherLocationSearchResponse;
+                
+                return parsedData.Key;
             } catch (e) {
                 setCurrentData((() => {
                     throw e
@@ -60,8 +56,8 @@ const ForecastData: React.FC = () => {
         }
 
         async function fetchCurrentData(locationKey: string) {
-            axios.get<string>(`api/accu-weather/current-conditions/${locationKey}/${i18n.language}`).then((response) => {
-                setCurrentData((JSON.parse(response.data) as IAccuWeatherCurrentConditionsResponse[])[0]);
+            axios.get(`/api/accu-weather/current-conditions/${locationKey}/${i18n.language}`).then((response) => {
+                setCurrentData(response.data[0] as IAccuWeatherCurrentConditionsResponse);
             }).catch(e => {
                 setCurrentData((() => {
                     throw e
@@ -70,15 +66,8 @@ const ForecastData: React.FC = () => {
         }
 
         async function fetchForecastData(locationKey: string) {
-            axios.get<IAccuWeatherForecastResponse>("" + locationKey, {
-                params: {
-                    apikey: weatherApiKey,
-                    language: i18n.language,
-                    details: true,
-                    metric: true
-                }
-            }).then((response) => {
-                setForecastData(response.data);
+            axios.get(`/api/accu-weather/forecast-data/${locationKey}/${i18n.language}`).then((response) => {
+                setForecastData(response.data as IAccuWeatherForecastResponse);
             }).catch(e => {
                 setForecastData((() => {
                     throw e

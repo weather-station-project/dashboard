@@ -16,23 +16,17 @@ namespace WeatherStationProject.Dashboard.App.Controllers
         private const string LocationKeyByCityNameEndPoint = "https://dataservice.accuweather.com/locations/v1/search";
         private const string CurrentConditionsEndPoint = "https://dataservice.accuweather.com/currentconditions/v1/";
         private const string ForecastDataEndPoint = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/";
-        
+
         [HttpGet("location-key/{language}")]
-        public async Task<IActionResult> GetLocationKey(string language)
+        public async Task<string> GetLocationKey(string language)
         {
-            var locationKey = await GetLocationKeyByCityName(language);
-            
-            return null == locationKey
-                ? StatusCode(500, $"Location key for the city '{AppConfiguration.AccuWeatherLocationName}' could not be retrieved")
-                : Ok(await GetLocationKeyByCityName(language));
+            return await GetResponseDataByQuery(LocationKeyByCityNameEndPoint,
+                $"apikey={AppConfiguration.AccuWeatherApiKey}&q={AppConfiguration.AccuWeatherLocationName}&details=false&language={language}");
         }
 
-        private async Task<string> GetLocationKeyByCityName(string language)
+        private async Task<string> GetResponseDataByQuery(string endpoint, string query)
         {
-            var builder = new UriBuilder(LocationKeyByCityNameEndPoint)
-            {
-                Query = $"apikey={AppConfiguration.AccuWeatherApiKey}&q={AppConfiguration.AccuWeatherLocationName}&details=false&language={language}"
-            };
+            var builder = new UriBuilder(endpoint) {Query = query};
 
             using var client = new HttpClient(new SslIgnoreClientHandler());
             var response = await client.GetAsync(builder.Uri);
@@ -42,51 +36,17 @@ namespace WeatherStationProject.Dashboard.App.Controllers
         }
 
         [HttpGet("current-conditions/{locationKey}/{language}")]
-        public async Task<IActionResult> GetCurrentConditions(string locationKey, string language)
+        public async Task<string> GetCurrentConditions(string locationKey, string language)
         {
-            var currentConditions = await GetCurrentConditionsData(locationKey, language);
-            
-            return null == currentConditions
-                ? StatusCode(500, $"Current conditions for the city '{AppConfiguration.AccuWeatherLocationName}' and location key '{locationKey}' could not be retrieved")
-                : Ok(currentConditions);
+            return await GetResponseDataByQuery(CurrentConditionsEndPoint + locationKey,
+                $"apikey={AppConfiguration.AccuWeatherApiKey}&details=true&language={language}");
         }
 
-        private async Task<string> GetCurrentConditionsData(string locationKey, string language)
-        {
-            var builder = new UriBuilder(CurrentConditionsEndPoint + locationKey)
-            {
-                Query = $"apikey={AppConfiguration.AccuWeatherApiKey}&details=true&language={language}"
-            };
-
-            using var client = new HttpClient(new SslIgnoreClientHandler());
-            var response = await client.GetAsync(builder.Uri);
-            response.EnsureSuccessStatusCode();
-
-            return await response.Content.ReadAsStringAsync();
-        }
-        
         [HttpGet("forecast-data/{locationKey}/{language}")]
-        public async Task<IActionResult> GetForecast(string locationKey, string language)
+        public async Task<string> GetForecast(string locationKey, string language)
         {
-            var data = await GetForecastData(locationKey, language);
-            
-            return null == data
-                ? StatusCode(500, $"Forecast data for the city '{AppConfiguration.AccuWeatherLocationName}' and location key '{locationKey}' could not be retrieved")
-                : Ok(data);
-        }
-
-        private async Task<string> GetForecastData(string locationKey, string language)
-        {
-            var builder = new UriBuilder(ForecastDataEndPoint + locationKey)
-            {
-                Query = $"apikey={AppConfiguration.AccuWeatherApiKey}&details=true&language={language}"
-            };
-
-            using var client = new HttpClient(new SslIgnoreClientHandler());
-            var response = await client.GetAsync(builder.Uri);
-            response.EnsureSuccessStatusCode();
-
-            return await response.Content.ReadAsStringAsync();
+            return await GetResponseDataByQuery(ForecastDataEndPoint + locationKey,
+                $"apikey={AppConfiguration.AccuWeatherApiKey}&details=true&language={language}");
         }
     }
 }
