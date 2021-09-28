@@ -2,7 +2,6 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WeatherStationProject.Dashboard.App.Attributes;
 using WeatherStationProject.Dashboard.App.Handlers;
 using WeatherStationProject.Dashboard.Core.Configuration;
 
@@ -10,7 +9,6 @@ namespace WeatherStationProject.Dashboard.App.Controllers
 {
     [ApiController]
     [Route("api/accu-weather")]
-    [AllowOnlyFromLocalhostLocalhost]
     public class AccuweatherProxyController : ControllerBase
     {
         private const string LocationKeyByCityNameEndPoint = "https://dataservice.accuweather.com/locations/v1/search";
@@ -46,7 +44,7 @@ namespace WeatherStationProject.Dashboard.App.Controllers
         public async Task<string> GetForecast(string locationKey, string language)
         {
             return await GetResponseDataByQuery(ForecastDataEndPoint + locationKey,
-                $"apikey={AppConfiguration.AccuWeatherApiKey}&details=true&language={language}");
+                $"apikey={AppConfiguration.AccuWeatherApiKey}&details=true&language={language}&metric=true");
         }
     }
 }

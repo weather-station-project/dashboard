@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
-import Loading from "../../../Loading";
 import axios from "axios";
 import {
     IAccuWeatherCurrentConditionsResponse,
@@ -11,11 +10,13 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CarouselCurrentData from "../../carousel/CarouselCurrentData";
 import CarouselDailyData from "../../carousel/CarouselDailyData";
+import {Alert, Button} from "react-bootstrap";
 
 const ForecastData: React.FC = () => {
-    const {i18n} = useTranslation();
+    const {t, i18n} = useTranslation();
     const [currentData, setCurrentData] = useState({} as IAccuWeatherCurrentConditionsResponse);
     const [forecastData, setForecastData] = useState({} as IAccuWeatherForecastResponse);
+    const [retrieveDataFromAccuWeather, setRetrieveDataFromAccuWeather] = useState(false);
     const responsive = {
         desktop: {
             breakpoint: {max: 3000, min: 1024},
@@ -34,49 +35,51 @@ const ForecastData: React.FC = () => {
         }
     };
 
+    async function fetchData() {
+        const locationKey = await getLocationKeyByCityName();
+        if (locationKey !== undefined) {
+            await Promise.all([fetchCurrentData(locationKey), fetchForecastData(locationKey)]);
+        }
+    }
+
+    async function getLocationKeyByCityName(): Promise<string | undefined> {
+        try {
+            const response = await axios.get(`/api/accu-weather/location-key/${i18n.language}`);
+            const parsedData = response.data[0] as IAccuWeatherLocationSearchResponse;
+
+            return parsedData.Key;
+        } catch (e) {
+            setCurrentData((() => {
+                throw e
+            }) as any);
+        }
+    }
+
+    async function fetchCurrentData(locationKey: string) {
+        axios.get(`/api/accu-weather/current-conditions/${locationKey}/${i18n.language}`).then((response) => {
+            setCurrentData(response.data[0] as IAccuWeatherCurrentConditionsResponse);
+        }).catch(e => {
+            setCurrentData((() => {
+                throw e
+            }) as any);
+        });
+    }
+
+    async function fetchForecastData(locationKey: string) {
+        axios.get(`/api/accu-weather/forecast-data/${locationKey}/${i18n.language}`).then((response) => {
+            setForecastData(response.data as IAccuWeatherForecastResponse);
+        }).catch(e => {
+            setForecastData((() => {
+                throw e
+            }) as any);
+        });
+    }
+
     useEffect(() => {
-        async function fetchData() {
-            const locationKey = await getLocationKeyByCityName();
-            if (locationKey !== undefined) {
-                await Promise.all([fetchCurrentData(locationKey), fetchForecastData(locationKey)]);
-            }
+        if (retrieveDataFromAccuWeather) {
+            fetchData();
         }
-
-        async function getLocationKeyByCityName(): Promise<string | undefined> {
-            try {
-                const response = await axios.get(`/api/accu-weather/location-key/${i18n.language}`);
-                const parsedData = response.data[0] as IAccuWeatherLocationSearchResponse;
-                
-                return parsedData.Key;
-            } catch (e) {
-                setCurrentData((() => {
-                    throw e
-                }) as any);
-            }
-        }
-
-        async function fetchCurrentData(locationKey: string) {
-            axios.get(`/api/accu-weather/current-conditions/${locationKey}/${i18n.language}`).then((response) => {
-                setCurrentData(response.data[0] as IAccuWeatherCurrentConditionsResponse);
-            }).catch(e => {
-                setCurrentData((() => {
-                    throw e
-                }) as any);
-            });
-        }
-
-        async function fetchForecastData(locationKey: string) {
-            axios.get(`/api/accu-weather/forecast-data/${locationKey}/${i18n.language}`).then((response) => {
-                setForecastData(response.data as IAccuWeatherForecastResponse);
-            }).catch(e => {
-                setForecastData((() => {
-                    throw e
-                }) as any);
-            });
-        }
-
-        fetchData();
-    }, [i18n.language]);
+    }, [retrieveDataFromAccuWeather, i18n.language]);
 
     return (
         <div>
@@ -101,7 +104,13 @@ const ForecastData: React.FC = () => {
                         {forecastData.DailyForecasts.map((dayData, idx) => <div key="idx"><CarouselDailyData
                             data={dayData}/></div>)}
                     </Carousel>
-                    : <Loading/>
+                    : <><Button variant="outline-info"
+                                onClick={() => setRetrieveDataFromAccuWeather(true)}>{t("current_data.retrieve_data_from_accuweather_button")}</Button>
+                        https://react-bootstrap.github.io/components/overlays/#tooltips
+                        <Alert variant="warning">
+                            {t("current_data.retrieve_data_from_accuweather_alert")}
+                        </Alert>
+                    </>
             }
         </div>
     );

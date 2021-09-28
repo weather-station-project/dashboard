@@ -3,7 +3,6 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using WeatherStationProject.Dashboard.App.Attributes;
 using WeatherStationProject.Dashboard.App.Handlers;
 using WeatherStationProject.Dashboard.Core.Configuration;
 using WeatherStationProject.Dashboard.Core.Model;
@@ -12,7 +11,6 @@ namespace WeatherStationProject.Dashboard.App.Controllers
 {
     [ApiController]
     [Route("api/weather-measurements")]
-    [AllowOnlyFromLocalhostLocalhost]
     public class ApiProxyController : ControllerBase
     {
         private const string LastMeasurementsEndPoint = "/api/v1/weather-measurements/last";
