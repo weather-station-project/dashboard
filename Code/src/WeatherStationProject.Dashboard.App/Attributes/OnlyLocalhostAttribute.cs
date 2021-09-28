@@ -8,12 +8,12 @@ namespace WeatherStationProject.Dashboard.App.Attributes
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
-            if (null != remoteIp && !IPAddress.IsLoopback(remoteIp))
-            {
-                context.Result = new UnauthorizedResult();
-                return;
-            }
+            //var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
+            // if (null != remoteIp && !IPAddress.IsLoopback(remoteIp))
+            // {
+            //     context.Result = new UnauthorizedResult();
+            //     return;
+            // }
             
             base.OnActionExecuting(context);
         }
