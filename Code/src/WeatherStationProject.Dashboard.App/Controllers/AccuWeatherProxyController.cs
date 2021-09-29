@@ -22,7 +22,7 @@ namespace WeatherStationProject.Dashboard.App.Controllers
                 $"apikey={AppConfiguration.AccuWeatherApiKey}&q={AppConfiguration.AccuWeatherLocationName}&details=false&language={language}");
         }
 
-        private async Task<string> GetResponseDataByQuery(string endpoint, string query)
+        private static async Task<string> GetResponseDataByQuery(string endpoint, string query)
         {
             var builder = new UriBuilder(endpoint) {Query = query};
 

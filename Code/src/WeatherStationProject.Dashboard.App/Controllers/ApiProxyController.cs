@@ -26,7 +26,7 @@ namespace WeatherStationProject.Dashboard.App.Controllers
                 : Ok(await GetLastMeasurements(authToken));
         }
 
-        private async Task<string> GetAuthToken()
+        private static async Task<string> GetAuthToken()
         {
             using var client = new HttpClient(new SslIgnoreClientHandler());
             var response = await client.GetAsync(AppConfiguration.AuthenticationServiceHost +
@@ -39,7 +39,7 @@ namespace WeatherStationProject.Dashboard.App.Controllers
             return JsonConvert.DeserializeObject<AuthenticationToken>(jsonString).AccessToken;
         }
 
-        private async Task<string> GetLastMeasurements(string authToken)
+        private static async Task<string> GetLastMeasurements(string authToken)
         {
             using var client = new HttpClient(new SslIgnoreClientHandler());
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);

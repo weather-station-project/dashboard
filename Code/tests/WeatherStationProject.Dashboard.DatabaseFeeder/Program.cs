@@ -7,7 +7,7 @@ using WeatherStationProject.Dashboard.WindMeasurementsService.Data;
 
 namespace WeatherStationProject.Dashboard.DatabaseFeeder
 {
-    internal class Program
+    internal static class Program
     {
         private const int MinutesBetweenMeasurements = 5;
         private const int StoreInformationEachNumber = 10000;
@@ -18,9 +18,9 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
             "N-NW"
         };
 
-        private static readonly Random random = new();
+        private static readonly Random Random = new();
 
-        private static void Main(string[] args)
+        private static void Main()
         {
             Console.WriteLine("Starting test data population!");
 
@@ -134,7 +134,7 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
             var entity = new WindMeasurements
             {
                 Speed = GetRandomDecimal(0, 100.0),
-                Direction = WindDirections[random.Next(0, WindDirections.Length)],
+                Direction = WindDirections[Random.Next(0, WindDirections.Length)],
                 DateTime = date
             };
 
@@ -146,7 +146,7 @@ namespace WeatherStationProject.Dashboard.DatabaseFeeder
 
         private static decimal GetRandomDecimal(double minValue, double maxValue)
         {
-            var randNumber = random.NextDouble() * (maxValue - minValue) + minValue;
+            var randNumber = Random.NextDouble() * (maxValue - minValue) + minValue;
             return Convert.ToDecimal(randNumber.ToString("f2"));
         }
     }

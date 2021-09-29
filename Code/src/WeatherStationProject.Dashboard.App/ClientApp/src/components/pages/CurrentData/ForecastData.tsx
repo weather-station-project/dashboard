@@ -34,7 +34,7 @@ const ForecastData: React.FC = () => {
             slidesToSlide: 1
         }
     };
-    
+
     useEffect(() => {
         async function fetchData() {
             const locationKey = await getLocationKeyByCityName();
@@ -75,7 +75,7 @@ const ForecastData: React.FC = () => {
                 }) as any);
             });
         }
-        
+
         if (retrieveDataFromAccuWeather) {
             fetchData();
         }
