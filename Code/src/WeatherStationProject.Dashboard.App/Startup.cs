@@ -11,7 +11,7 @@ namespace WeatherStationProject.Dashboard.App
     public class Startup
     {
         private readonly bool _isDevelopment;
-        
+
         public Startup(IWebHostEnvironment env)
         {
             _isDevelopment = env.IsDevelopment();
@@ -30,7 +30,7 @@ namespace WeatherStationProject.Dashboard.App
                     x.RequireHttpsMetadata = false;
                     x.TokenValidationParameters = JwtAuthenticationConfiguration.GetTokenValidationParameters();
                 });
-            
+
             services.AddControllers();
 
             // In production, the React files will be served from this directory
