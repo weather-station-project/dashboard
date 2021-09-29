@@ -16,7 +16,7 @@ namespace WeatherStationProject.Dashboard.AuthenticationService.Controllers
     public class AuthenticationController : ControllerBase
     {
         [HttpGet("{secret}")]
-        public IActionResult Post(string secret)
+        public IActionResult Index(string secret)
         {
             if (secret != AppConfiguration.AuthenticationSecret) return StatusCode(403);
 
