@@ -10,7 +10,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CarouselCurrentData from "../../carousel/CarouselCurrentData";
 import CarouselDailyData from "../../carousel/CarouselDailyData";
-import {Alert, Button} from "react-bootstrap";
+import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
 
 const ForecastData: React.FC = () => {
     const {t, i18n} = useTranslation();
@@ -104,12 +104,18 @@ const ForecastData: React.FC = () => {
                         {forecastData.DailyForecasts.map((dayData, idx) => <div key="idx"><CarouselDailyData
                             data={dayData}/></div>)}
                     </Carousel>
-                    : <><Button variant="outline-info"
-                                onClick={() => setRetrieveDataFromAccuWeather(true)}>{t("current_data.retrieve_data_from_accuweather_button")}</Button>
-                        https://react-bootstrap.github.io/components/overlays/#tooltips
-                        <Alert variant="warning">
-                            {t("current_data.retrieve_data_from_accuweather_alert")}
-                        </Alert>
+                    : <>
+                        <OverlayTrigger
+                            key="right"
+                            placement="right"
+                            overlay={
+                                <Tooltip id="tooltip-right">
+                                    {t("current_data.retrieve_data_from_accuweather_alert")}
+                                </Tooltip>
+                            }>
+                            <Button variant="outline-info"
+                                    onClick={() => setRetrieveDataFromAccuWeather(true)}>{t("current_data.retrieve_data_from_accuweather_button")}</Button>
+                        </OverlayTrigger>
                     </>
             }
         </div>
