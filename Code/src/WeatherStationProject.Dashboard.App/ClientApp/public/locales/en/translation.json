@@ -19,7 +19,7 @@
   "current_data.last_data_title": "Last data obtained from sensors",
   "current_data.forecast_title": "5 days forecast",
   "current_data.retrieve_data_from_accuweather_button": "Obtain data from AccuWeather",
-  "current_data.retrieve_data_from_accuweather_alert": "The free account is limited to 50 requests per day. Once the limit is overridden, the API will respond with a 503 (Unauthorized) error.",
+  "current_data.retrieve_data_from_accuweather_alert": "The free account is limited to 50 requests per day. Once the limit is exceeded, the API will respond with a 503 (Unauthorized) error.",
   "current_data.last_data.air_parameters": "Atmospheric pressure of {{pressure}} hPa with {{humidity}}% of humidity on {{dateTime, LLLL}}",
   "current_data.last_data.ambient_temperature": "Ambient temperature of {{temperature}} ºC on {{dateTime, LLLL}}",
   "current_data.last_data.ground_temperature": "Ground temperature of {{temperature}} ºC on {{dateTime, LLLL}}",

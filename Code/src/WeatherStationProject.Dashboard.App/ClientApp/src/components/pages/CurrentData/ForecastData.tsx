@@ -34,48 +34,48 @@ const ForecastData: React.FC = () => {
             slidesToSlide: 1
         }
     };
-
-    async function fetchData() {
-        const locationKey = await getLocationKeyByCityName();
-        if (locationKey !== undefined) {
-            await Promise.all([fetchCurrentData(locationKey), fetchForecastData(locationKey)]);
-        }
-    }
-
-    async function getLocationKeyByCityName(): Promise<string | undefined> {
-        try {
-            const response = await axios.get(`/api/accu-weather/location-key/${i18n.language}`);
-            const parsedData = response.data[0] as IAccuWeatherLocationSearchResponse;
-
-            return parsedData.Key;
-        } catch (e) {
-            setCurrentData((() => {
-                throw e
-            }) as any);
-        }
-    }
-
-    async function fetchCurrentData(locationKey: string) {
-        axios.get(`/api/accu-weather/current-conditions/${locationKey}/${i18n.language}`).then((response) => {
-            setCurrentData(response.data[0] as IAccuWeatherCurrentConditionsResponse);
-        }).catch(e => {
-            setCurrentData((() => {
-                throw e
-            }) as any);
-        });
-    }
-
-    async function fetchForecastData(locationKey: string) {
-        axios.get(`/api/accu-weather/forecast-data/${locationKey}/${i18n.language}`).then((response) => {
-            setForecastData(response.data as IAccuWeatherForecastResponse);
-        }).catch(e => {
-            setForecastData((() => {
-                throw e
-            }) as any);
-        });
-    }
-
+    
     useEffect(() => {
+        async function fetchData() {
+            const locationKey = await getLocationKeyByCityName();
+            if (locationKey !== undefined) {
+                await Promise.all([fetchCurrentData(locationKey), fetchForecastData(locationKey)]);
+            }
+        }
+
+        async function getLocationKeyByCityName(): Promise<string | undefined> {
+            try {
+                const response = await axios.get(`/api/accu-weather/location-key/${i18n.language}`);
+                const parsedData = response.data[0] as IAccuWeatherLocationSearchResponse;
+
+                return parsedData.Key;
+            } catch (e) {
+                setCurrentData((() => {
+                    throw e
+                }) as any);
+            }
+        }
+
+        async function fetchCurrentData(locationKey: string) {
+            axios.get(`/api/accu-weather/current-conditions/${locationKey}/${i18n.language}`).then((response) => {
+                setCurrentData(response.data[0] as IAccuWeatherCurrentConditionsResponse);
+            }).catch(e => {
+                setCurrentData((() => {
+                    throw e
+                }) as any);
+            });
+        }
+
+        async function fetchForecastData(locationKey: string) {
+            axios.get(`/api/accu-weather/forecast-data/${locationKey}/${i18n.language}`).then((response) => {
+                setForecastData(response.data as IAccuWeatherForecastResponse);
+            }).catch(e => {
+                setForecastData((() => {
+                    throw e
+                }) as any);
+            });
+        }
+        
         if (retrieveDataFromAccuWeather) {
             fetchData();
         }
