@@ -1,5 +1,4 @@
 {
-  "loading": "Cargando",
   "date.long": "{{date, LLLL}}",
   "date.date": "{{date, L}}",
   "date.now": "Ahora",
