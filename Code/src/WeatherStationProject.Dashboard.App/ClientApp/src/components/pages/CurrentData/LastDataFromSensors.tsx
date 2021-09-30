@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {ListGroup} from "react-bootstrap";
-import Loading from "../../../Loading";
 import axios, {AxiosInstance} from "axios";
 import {ILastData} from "../../../model/LastDataTypes";
+import Loading from "../../Loading";
 
 const CurrentData: React.FC = () => {
     const {t} = useTranslation();

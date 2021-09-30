@@ -2,8 +2,8 @@ import React, {Suspense} from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import Loading from "./Loading";
 import "./i18n";
+import Loading from "./components/Loading";
 
 const BaseUrl: string = document.getElementsByTagName("base")[0].getAttribute("href") || "";
 ReactDOM.render(
