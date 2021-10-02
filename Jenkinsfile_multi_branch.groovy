@@ -29,9 +29,9 @@ pipeline {
             }
         }
 
-        stage('Deploy on staging') {
+        stage('Execute UTs & Coverage') {
             stages {
-                stage('Execute unit tests and code coverage') {
+                stage('React') {
                     steps {
                         script {
                             sh '''
