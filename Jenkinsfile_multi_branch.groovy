@@ -23,7 +23,7 @@ pipeline {
                     sh """
                        rm -rf ${REACT_ROOT_FOLDER}/node_modules
                        rm ${REACT_ROOT_FOLDER}/package-lock.json
-                       npm install --prefix ${REACT_ROOT_FOLDER} ./
+                       ( cd ${REACT_ROOT_FOLDER} && npm install )
                        """
                 }
             }
