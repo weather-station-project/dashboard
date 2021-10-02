@@ -30,21 +30,20 @@ pipeline {
       }
     }*/
 
-    /*
-    stage('Execute unit tests and code coverage') {
-      steps {
-        script {
-          sh """
-             ENV/bin/python -m unittest discover -s ${WORKSPACE}/WeatherStationSensorsReader
-             ENV/bin/coverage run -m unittest discover -s ${WORKSPACE}/WeatherStationSensorsReader
-             """
-
-          sh "dotnet test ${WORKSPACE}/Code"
+    
+        stage('Execute unit tests and code coverage') {
+            steps {
+                script {
+                    sh """
+                       npm run test
+                       npm run test-coverage
+                       """
+    
+                    // sh "dotnet test ${WORKSPACE}/Code"
+                }
+            }
         }
-      }
-    }
-    */
-
+    
         stage('SonarQube analysis') {
             environment {
                 def scannerHome = tool 'Sonarqube'
@@ -185,6 +184,9 @@ pipeline {
         always {
             script {
                 cleanImages(false, true)
+                
+                // Remove coverage report
+                sh 'rm -rf Code/src/WeatherStationProject.Dashboard.App/ClientApp/coverage'
             }
         }
 
