@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Execute UTs & Coverage') {
+        stage('Generate coverage reports') {
             stages {
                 stage('React') {
                     steps {
@@ -57,6 +57,7 @@ pipeline {
                 script {
                     withSonarQubeEnv('Sonarqube') {
                         sh """
+                           ( cd ${REACT_ROOT_FOLDER} && node sonarqube-scanner.js )
                            dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:Dashboard /d:sonar.login=${SONAR_CREDENTIALS}
                            dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
                            dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}
