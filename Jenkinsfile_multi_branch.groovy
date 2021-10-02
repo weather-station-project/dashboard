@@ -22,7 +22,6 @@ pipeline {
                     println('Cleaning and preparing node_modules ENV')
                     sh """
                        rm -rf ${REACT_ROOT_FOLDER}/node_modules
-                       rm ${REACT_ROOT_FOLDER}/package-lock.json
                        ( cd ${REACT_ROOT_FOLDER} && npm install )
                        """
                 }
@@ -34,15 +33,18 @@ pipeline {
                 stage('React') {
                     steps {
                         script {
-                            sh '''
-                               npm run test
-                               npm run test-coverage
-                               '''
-            
-                            // sh "dotnet test ${WORKSPACE}/Code"
+                            sh "( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )"
                         }
                     }
                 }
+                
+                /*stage('React') {
+                    steps {
+                        script {
+                            sh "dotnet test ${WORKSPACE}/Code"
+                        }
+                    }
+                }*/
             }
         }
     
