@@ -7,39 +7,41 @@ pipeline {
 
     environment {
         SONAR_CREDENTIALS = credentials('sonarqube-token')
+        REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
     }
 
     stages {
-    /*stage('Prepare Python ENV') {
-      steps {
-        script {
-          setBuildStatus('pending', "${WeatherStationDashboardVariables.RepositoryName}")
-
-          // Clean & Prepare new python environment
-          sh '''
-             rm -rf ENV
-             python3 -m venv ENV
-
-             ENV/bin/pip install --no-cache-dir --upgrade pip
-             ENV/bin/pip install --no-cache-dir --upgrade wheel
-             ENV/bin/pip install --no-cache-dir --upgrade setuptools
-
-             ENV/bin/pip install --no-cache-dir psycopg2 gpiozero coverage
-             '''
-        }
-      }
-    }*/
-
-    
-        stage('Execute unit tests and code coverage') {
+        stage('Prepare ENV') {
             steps {
                 script {
-                    sh """
-                       npm run test
-                       npm run test-coverage
-                       """
+                    setBuildStatus('pending', "${WeatherStationDashboardVariables.RepositoryName}")
+                    
+                    println('Cleaning coverage report folder')
+                    sh "rm -rf ${REACT_ROOT_FOLDER}/coverage"
     
-                    // sh "dotnet test ${WORKSPACE}/Code"
+                    println('Cleaning and preparing node_modules ENV')
+                    sh """
+                       rm -rf ${REACT_ROOT_FOLDER}/node_modules
+                       rm ${REACT_ROOT_FOLDER}/package-lock.json
+                       npm install --prefix ${REACT_ROOT_FOLDER} ./
+                       """
+                }
+            }
+        }
+
+        stage('Deploy on staging') {
+            stages {
+                stage('Execute unit tests and code coverage') {
+                    steps {
+                        script {
+                            sh '''
+                               npm run test
+                               npm run test-coverage
+                               '''
+            
+                            // sh "dotnet test ${WORKSPACE}/Code"
+                        }
+                    }
                 }
             }
         }
@@ -188,9 +190,6 @@ pipeline {
         always {
             script {
                 cleanImages(false, true)
-                
-                // Remove coverage report
-                sh 'rm -rf Code/src/WeatherStationProject.Dashboard.App/ClientApp/coverage'
             }
         }
 
