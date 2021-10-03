@@ -1,5 +1,5 @@
-import Loading from "../../src/components/Loading";
 import {render, screen} from "@testing-library/react";
+import Loading from "../../components/Loading";
 
 describe("Loading", () => {
     it("When_RenderingComponent_Should_RenderExpectedContent", () => {
