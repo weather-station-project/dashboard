@@ -9,34 +9,34 @@
 
 interface IAirParameters {
     dateTime: Date;
-    pressure: Number;
-    humidity: Number;
+    pressure: number;
+    humidity: number;
 }
 
 interface IAmbientTemperatures {
     dateTime: Date;
-    temperature: Number;
+    temperature: number;
 }
 
 interface IGroundTemperatures {
     dateTime: Date;
-    temperature: Number;
+    temperature: number;
 }
 
 interface IRainfall {
     fromDateTime: Date;
     toDateTime: Date;
-    amount: Number;
+    amount: number;
 }
 
 interface IWindMeasurements {
     dateTime: Date;
-    speed: Number;
-    direction: String;
+    speed: number;
+    direction: string;
 }
 
 interface IWindMeasurementsGust {
     dateTime: Date;
-    speed: Number;
-    direction: String;
+    speed: number;
+    direction: string;
 }

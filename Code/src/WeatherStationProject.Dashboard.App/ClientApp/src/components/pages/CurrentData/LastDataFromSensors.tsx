@@ -5,7 +5,7 @@ import axios, {AxiosInstance} from "axios";
 import {ILastData} from "../../../model/LastDataTypes";
 import Loading from "../../Loading";
 
-const CurrentData: React.FC = () => {
+const LastDataFromSensors: React.FC = () => {
     const {t} = useTranslation();
     const [data, setData] = useState({} as ILastData);
     const url = "/api/weather-measurements/last";
@@ -79,4 +79,4 @@ const CurrentData: React.FC = () => {
     );
 }
 
-export default CurrentData;
+export default LastDataFromSensors;
