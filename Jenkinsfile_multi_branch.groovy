@@ -27,26 +27,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Generate coverage reports') {
-            stages {
-                stage('React') {
-                    steps {
-                        script {
-                            sh "( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )"
-                        }
-                    }
-                }
-                
-                /*stage('React') {
-                    steps {
-                        script {
-                            sh "dotnet test ${WORKSPACE}/Code"
-                        }
-                    }
-                }*/
-            }
-        }
     
         stage('SonarQube analysis') {
             environment {
@@ -57,11 +37,26 @@ pipeline {
                 script {
                     withSonarQubeEnv('Sonarqube') {
                         sh """
-                           ( cd ${REACT_ROOT_FOLDER} && node sonarqube-scanner.js )
-                           dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:Dashboard /d:sonar.login=${SONAR_CREDENTIALS}
-                           dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
-                           dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}
+                           dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin \
+                                  /k:Dashboard \
+                                  /n:"Weather Station Dashboard" \
+                                  /v:"not provided" \
+                                  /d:sonar.projectDescription="Solution with the dashboard" \
+                                  /d:sonar.links.homepage="https://github.com/weather-station-project/dashboard" \
+                                  /d:sonar.links.scm="https://github.com/weather-station-project/dashboard.git" \
+                                  /d:sonar.sources="Code/src" \
+                                  /d:sonar.exclusions="**/*.spec.tsx" \
+                                  /d:sonar.test.inclusions="**/*.spec.tsx" \
+                                  /d:sonar.typescript.lcov.reportPaths="${REACT_ROOT_FOLDER}/coverage/lcov.info" \
+                                  /d:sonar.testExecutionReportPaths="${REACT_ROOT_FOLDER}/coverage/test-report.xml" \
+                                  /d:sonar.login=${SONAR_CREDENTIALS}
                            """
+                        sh """
+                           ( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )
+                           dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
+                           """
+                        sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
+                        //sh "dotnet test ${WORKSPACE}/Code"
                     }
 
                     timeout(time: 10, unit: 'MINUTES') {
