@@ -2,7 +2,7 @@ import React from "react";
 
 const Loading: React.FC = () => {
     return (
-        <div>Loading...</div>
+        <div data-testid="loading-text">Loading...</div>
     );
 };
 
