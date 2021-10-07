@@ -9,14 +9,14 @@ interface IProps {
 
 const Layout: React.FC<IProps> = (props) => {
     return (
-        <div>
+        <>
             <ErrorBoundary>
                 <NavMenu/>
             </ErrorBoundary>
             <Container>
                 {props.children}
             </Container>
-        </div>
+        </>
     );
 };
 

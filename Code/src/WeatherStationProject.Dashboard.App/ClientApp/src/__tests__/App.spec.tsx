@@ -12,16 +12,16 @@ jest.mock("../components/pages/MeasurementsList", () => () => <></>);
 
 describe("App", () => {
     beforeEach(() => {
-        const history = createMemoryHistory()
+        const history = createMemoryHistory();
         render(
             <Router history={history}>
                 <App/>
             </Router>,
-        )
-    })
+        );
+    });
     
     it("When_RenderingComponent_Should_RenderExpectedContent", () => {
-        const element = screen.queryByTestId("home-id")
+        const element = screen.queryByTestId("home-id");
         expect(element).toBeInTheDocument();
         expect(element?.tagName.toLowerCase()).toEqual("span");
     })
