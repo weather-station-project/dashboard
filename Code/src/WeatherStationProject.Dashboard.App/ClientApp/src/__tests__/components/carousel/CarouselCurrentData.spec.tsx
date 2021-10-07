@@ -58,11 +58,11 @@ describe("CarouselCurrentData", () => {
 
         // act
         const history = createMemoryHistory();
-        render(<Router history={history}><CarouselCurrentData data={response} /></Router>)
+        render(<Router history={history}><CarouselCurrentData data={response} /></Router>);
 
         // assert
-        const weatherText = screen.getByText(response.WeatherText)
-        const link = screen.getByText("Link")
+        const weatherText = screen.getByText(response.WeatherText);
+        const link = screen.getByText("Link");
 
         expect(weatherText).toBeInTheDocument();
         expect(weatherText?.tagName.toLowerCase()).toEqual("div");

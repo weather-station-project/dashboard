@@ -25,9 +25,9 @@ const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({data}) => {
         <Card bg="light" style={{width: "17rem"}}>
             <Card.Body>
                 {showDay ?
-                    <Button variant="outline-secondary"
+                    <Button data-testid="button-night" variant="outline-secondary"
                             onClick={() => setShowDay(false)}>{t("current_data.forecast_data.night")}</Button> :
-                    <Button variant="outline-primary"
+                    <Button data-testid="button-day" variant="outline-primary"
                             onClick={() => setShowDay(true)}>{t("current_data.forecast_data.day")}</Button>}
                 <br/>
                 <Card.Title>{t("date.date", {date: new Date(data.EpochDate * 1000)})}</Card.Title>
