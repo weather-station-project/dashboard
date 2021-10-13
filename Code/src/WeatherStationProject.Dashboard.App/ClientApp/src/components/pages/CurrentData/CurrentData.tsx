@@ -10,12 +10,12 @@ const CurrentData: React.FC = () => {
 
     return (
         <div style={{paddingTop: 20}}>
-            <h1>{t("current_data.last_data_title")}</h1>
+            <h1 data-testid="h1-1-id">{t("current_data.last_data_title")}</h1>
             <ErrorBoundary>
                 <LastDataFromSensors/>
             </ErrorBoundary>
             <br/>
-            <h1>{t("current_data.forecast_title")}</h1>
+            <h1 data-testid="h1-2-id">{t("current_data.forecast_title")}</h1>
             <ErrorBoundary>
                 <ForecastData/>
             </ErrorBoundary>
