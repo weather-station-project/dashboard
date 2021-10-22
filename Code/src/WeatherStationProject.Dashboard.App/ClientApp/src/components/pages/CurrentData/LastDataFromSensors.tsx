@@ -38,7 +38,7 @@ const LastDataFromSensors: React.FC = () => {
 
   return (
     <div>
-      {data.hasOwnProperty("airParameters") ? (
+      {Object.prototype.hasOwnProperty.call(data, "airParameters") ? (
         <ListGroup variant="flush">
           <ListGroup.Item>
             {t("current_data.last_data.air_parameters", {

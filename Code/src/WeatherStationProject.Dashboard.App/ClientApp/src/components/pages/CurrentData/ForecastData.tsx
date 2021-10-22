@@ -89,7 +89,8 @@ const ForecastData: React.FC = () => {
 
   return (
     <div>
-      {currentData.hasOwnProperty("EpochTime") && forecastData.hasOwnProperty("DailyForecasts") ? (
+      {Object.prototype.hasOwnProperty.call(currentData, "EpochTime") &&
+      Object.prototype.hasOwnProperty.call(forecastData, "DailyForecasts") ? (
         <Carousel
           swipeable={true}
           draggable={false}

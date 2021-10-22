@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { ErrorBoundary } from "../ErrorBoundary";
+import React from "react";
 
 describe("ErrorBoundary", () => {
   it("When_RenderingComponent_Given_No_Errors_Should_RenderExpectedContent", () => {

@@ -1,12 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import LanguageSelector from "../../../components/menu/LanguageSelector";
+import React from "react";
 
 jest.mock("react-i18next", () => ({
   useTranslation: () => {
     return {
       t: (str: string) => str,
       i18n: {
-        changeLanguage: () => new Promise(() => {}),
+        changeLanguage: () =>
+          new Promise(() => {
+            /**/
+          }),
         language: "en",
       },
     };
