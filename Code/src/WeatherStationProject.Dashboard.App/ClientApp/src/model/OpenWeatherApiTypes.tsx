@@ -1,87 +1,87 @@
 ﻿export interface IAccuWeatherLocationSearchResponse {
-    Key: string;
+  Key: string;
 }
 
 export interface IAccuWeatherCurrentConditionsResponse {
-    EpochTime: number;
-    WeatherIcon: number;
-    WeatherText: string;
-    Temperature: {
-        Metric: {
-            Value: number;
-        }
+  EpochTime: number;
+  WeatherIcon: number;
+  WeatherText: string;
+  Temperature: {
+    Metric: {
+      Value: number;
     };
-    RelativeHumidity: number;
-    Wind: {
-        Direction: {
-            Localized: string;
-        },
-        Speed: {
-            Metric: {
-                Value: number;
-            }
-        }
+  };
+  RelativeHumidity: number;
+  Wind: {
+    Direction: {
+      Localized: string;
     };
-    WindGust: {
-        Speed: {
-            Metric: {
-                Value: number;
-            }
-        }
+    Speed: {
+      Metric: {
+        Value: number;
+      };
     };
-    UVIndexText: string;
-    Pressure: {
-        Metric: {
-            Value: number;
-        }
+  };
+  WindGust: {
+    Speed: {
+      Metric: {
+        Value: number;
+      };
     };
-    Precip1hr: {
-        Metric: {
-            Value: number;
-        }
-    }
-    Link: string;
+  };
+  UVIndexText: string;
+  Pressure: {
+    Metric: {
+      Value: number;
+    };
+  };
+  Precip1hr: {
+    Metric: {
+      Value: number;
+    };
+  };
+  Link: string;
 }
 
 export interface IAccuWeatherForecastResponse {
-    DailyForecasts: IAccuWeatherDailyForecast[];
+  DailyForecasts: IAccuWeatherDailyForecast[];
 }
 
 export interface IAccuWeatherDailyForecast {
-    EpochDate: number;
-    Temperature: {
-        Minimum: {
-            Value: number;
-        };
-        Maximum: {
-            Value: number;
-        };
+  EpochDate: number;
+  Temperature: {
+    Minimum: {
+      Value: number;
     };
-    Day: IAccuWeatherForecastDayNightData;
-    Night: IAccuWeatherForecastDayNightData;
-    Link: string;
+    Maximum: {
+      Value: number;
+    };
+  };
+  Day: IAccuWeatherForecastDayNightData;
+  Night: IAccuWeatherForecastDayNightData;
+  Link: string;
 }
 
 interface IAccuWeatherForecastDayNightData {
-    Icon: number;
-    LongPhrase: string;
-    Wind: {
-        Speed: {
-            Value: number;
-        };
-        Direction: {
-            Localized: string;
-        };
+  Icon: number;
+  LongPhrase: string;
+  Wind: {
+    Speed: {
+      Value: number;
     };
-    WindGust: {
-        Speed: {
-            Value: number;
-        };
-        Direction: {
-            Localized: string;
-        };
+    Direction: {
+      Localized: string;
     };
-    Rain: {
-        Value: number;
+  };
+  WindGust: {
+    Speed: {
+      Value: number;
     };
+    Direction: {
+      Localized: string;
+    };
+  };
+  Rain: {
+    Value: number;
+  };
 }
