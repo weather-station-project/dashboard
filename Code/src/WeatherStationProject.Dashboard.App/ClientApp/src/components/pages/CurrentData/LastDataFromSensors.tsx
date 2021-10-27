@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { ListGroup } from "react-bootstrap";
 import axios, { AxiosInstance } from "axios";
@@ -7,10 +7,10 @@ import Loading from "../../Loading";
 
 const LastDataFromSensors: React.FC = () => {
   const { t } = useTranslation();
-  const [data, setData] = useState({} as ILastData);
+  const [data, setData] = React.useState({} as ILastData);
   const url = "/api/weather-measurements/last";
 
-  useEffect(() => {
+  React.useEffect(() => {
     async function fetchData() {
       const api: AxiosInstance = axios.create({
         headers: {

@@ -40,3 +40,12 @@ interface IWindMeasurementsGust {
   speed: number;
   direction: string;
 }
+
+export const FAKE_LAST_DATA: ILastData = {
+  airParameters: { dateTime: new Date(), pressure: 1, humidity: 1 },
+  ambientTemperatures: { dateTime: new Date(), temperature: 1 },
+  groundTemperatures: { dateTime: new Date(), temperature: 1 },
+  rainfall: { fromDateTime: new Date(), toDateTime: new Date(), amount: 1 },
+  windMeasurements: { dateTime: new Date(), speed: 1, direction: "N" },
+  windMeasurementsGust: { dateTime: new Date(), speed: 1, direction: "E" },
+};
