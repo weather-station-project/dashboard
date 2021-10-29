@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import {
@@ -14,9 +14,9 @@ import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const ForecastData: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const [currentData, setCurrentData] = useState({} as IAccuWeatherCurrentConditionsResponse);
-  const [forecastData, setForecastData] = useState({} as IAccuWeatherForecastResponse);
-  const [retrieveDataFromAccuWeather, setRetrieveDataFromAccuWeather] = useState(false);
+  const [currentData, setCurrentData] = React.useState({} as IAccuWeatherCurrentConditionsResponse);
+  const [forecastData, setForecastData] = React.useState({} as IAccuWeatherForecastResponse);
+  const [retrieveDataFromAccuWeather, setRetrieveDataFromAccuWeather] = React.useState(false);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -35,7 +35,7 @@ const ForecastData: React.FC = () => {
     },
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     async function fetchData() {
       const locationKey = await getLocationKeyByCityName();
       if (locationKey !== undefined) {
@@ -88,33 +88,36 @@ const ForecastData: React.FC = () => {
   }, [retrieveDataFromAccuWeather, i18n.language]);
 
   return (
-    <div>
+    <>
       {Object.prototype.hasOwnProperty.call(currentData, "EpochTime") &&
       Object.prototype.hasOwnProperty.call(forecastData, "DailyForecasts") ? (
-        <Carousel
-          swipeable={true}
-          draggable={false}
-          showDots={true}
-          responsive={responsive}
-          ssr={true}
-          infinite={true}
-          autoPlay={false}
-          keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={500}
-          containerClass="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          dotListClass="custom-dot-list-style"
-        >
-          <div>
-            <CarouselCurrentData data={currentData} />
-          </div>
-          {forecastData.DailyForecasts.map((dayData, idx) => (
-            <div key={idx}>
-              <CarouselDailyData data={dayData} />
+        <>
+          <div data-testid="carousel-id" />
+          <Carousel
+            swipeable={true}
+            draggable={false}
+            showDots={true}
+            responsive={responsive}
+            ssr={true}
+            infinite={true}
+            autoPlay={false}
+            keyBoardControl={true}
+            customTransition="all .5"
+            transitionDuration={500}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            dotListClass="custom-dot-list-style"
+          >
+            <div>
+              <CarouselCurrentData data={currentData} />
             </div>
-          ))}
-        </Carousel>
+            {forecastData.DailyForecasts.map((dayData, idx) => (
+              <div key={idx}>
+                <CarouselDailyData data={dayData} />
+              </div>
+            ))}
+          </Carousel>
+        </>
       ) : (
         <>
           <OverlayTrigger
@@ -122,13 +125,13 @@ const ForecastData: React.FC = () => {
             placement="right"
             overlay={<Tooltip id="tooltip-right">{t("current_data.retrieve_data_from_accuweather_alert")}</Tooltip>}
           >
-            <Button variant="outline-info" onClick={() => setRetrieveDataFromAccuWeather(true)}>
+            <Button data-testid="button-id" variant="outline-info" onClick={() => setRetrieveDataFromAccuWeather(true)}>
               {t("current_data.retrieve_data_from_accuweather_button")}
             </Button>
           </OverlayTrigger>
         </>
       )}
-    </div>
+    </>
   );
 };
 

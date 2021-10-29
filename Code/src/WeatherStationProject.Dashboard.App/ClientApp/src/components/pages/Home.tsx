@@ -7,7 +7,7 @@ const Home: React.FC = () => {
 
   return (
     <div style={{ paddingTop: 20 }}>
-      <h1>Weather Station Project - Dashboard</h1>
+      <h1 data-testid="home-id">Weather Station Project - Dashboard</h1>
       <p>{t("home.introduction")}.</p>
       <p>
         {t("home.more_information")}
