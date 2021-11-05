@@ -14,7 +14,7 @@ namespace WeatherStationProject.Dashboard.App.Tests
     public class AccuWeatherProxyControllerTest
     {
         private const string MockResult = "mockResult";
-        
+
         [Fact]
         public async Task When_GettingLocationKey_Should_Return_ExpectedResult()
         {
@@ -70,7 +70,7 @@ namespace WeatherStationProject.Dashboard.App.Tests
             // Assert
             Assert.Equal('"' + MockResult + '"', locationKey);
         }
-        
+
         [Fact]
         public async Task When_GettingForecast_Should_Return_ExpectedResult()
         {
@@ -98,7 +98,7 @@ namespace WeatherStationProject.Dashboard.App.Tests
             // Assert
             Assert.Equal('"' + MockResult + '"', locationKey);
         }
-        
+
         [Fact]
         public async Task When_GettingForecast_Given_HttpError_Should_ThrowException()
         {

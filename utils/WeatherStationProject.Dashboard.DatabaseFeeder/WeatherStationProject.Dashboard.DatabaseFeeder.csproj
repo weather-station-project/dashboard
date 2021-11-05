@@ -6,12 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AirParametersService\WeatherStationProject.Dashboard.AirParametersService.csproj"/>
-        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AmbientTemperatureService\WeatherStationProject.Dashboard.AmbientTemperatureService.csproj"/>
-        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.Core\WeatherStationProject.Dashboard.Core.csproj"/>
-        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.GroundTemperatureService\WeatherStationProject.Dashboard.GroundTemperatureService.csproj"/>
-        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.RainfallService\WeatherStationProject.Dashboard.RainfallService.csproj"/>
-        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.WindMeasurementsService\WeatherStationProject.Dashboard.WindMeasurementsService.csproj"/>
+        <ProjectReference Include="..\..\Code\src\WeatherStationProject.Dashboard.AirParametersService\WeatherStationProject.Dashboard.AirParametersService.csproj"/>
+        <ProjectReference Include="..\..\Code\src\WeatherStationProject.Dashboard.AmbientTemperatureService\WeatherStationProject.Dashboard.AmbientTemperatureService.csproj"/>
+        <ProjectReference Include="..\..\Code\src\WeatherStationProject.Dashboard.GroundTemperatureService\WeatherStationProject.Dashboard.GroundTemperatureService.csproj"/>
+        <ProjectReference Include="..\..\Code\src\WeatherStationProject.Dashboard.RainfallService\WeatherStationProject.Dashboard.RainfallService.csproj"/>
+        <ProjectReference Include="..\..\Code\src\WeatherStationProject.Dashboard.WindMeasurementsService\WeatherStationProject.Dashboard.WindMeasurementsService.csproj"/>
     </ItemGroup>
 
 </Project>
