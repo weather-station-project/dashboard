@@ -9,11 +9,22 @@ namespace WeatherStationProject.Dashboard.App.Controllers
 {
     [ApiController]
     [Route("api/accu-weather")]
-    public class AccuweatherProxyController : ControllerBase
+    public class AccuWeatherProxyController : ControllerBase
     {
         private const string LocationKeyByCityNameEndPoint = "https://dataservice.accuweather.com/locations/v1/search";
         private const string CurrentConditionsEndPoint = "https://dataservice.accuweather.com/currentconditions/v1/";
         private const string ForecastDataEndPoint = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/";
+
+        private readonly HttpMessageHandler _httpHandler = new SslIgnoreClientHandler();
+
+        public AccuWeatherProxyController()
+        {
+        }
+
+        public AccuWeatherProxyController(HttpMessageHandler handler)
+        {
+            _httpHandler = handler;
+        }
 
         [HttpGet("location-key/{language}")]
         public async Task<string> GetLocationKey(string language)
@@ -22,11 +33,11 @@ namespace WeatherStationProject.Dashboard.App.Controllers
                 $"apikey={AppConfiguration.AccuWeatherApiKey}&q={AppConfiguration.AccuWeatherLocationName}&details=false&language={language}");
         }
 
-        private static async Task<string> GetResponseDataByQuery(string endpoint, string query)
+        private async Task<string> GetResponseDataByQuery(string endpoint, string query)
         {
             var builder = new UriBuilder(endpoint) {Query = query};
 
-            using var client = new HttpClient(new SslIgnoreClientHandler());
+            using var client = new HttpClient(_httpHandler);
             var response = await client.GetAsync(builder.Uri);
             response.EnsureSuccessStatusCode();
 
