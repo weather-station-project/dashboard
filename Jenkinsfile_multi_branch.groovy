@@ -44,8 +44,6 @@ pipeline {
                                   /d:sonar.projectDescription="Solution with the dashboard" \
                                   /d:sonar.links.homepage="https://github.com/weather-station-project/dashboard" \
                                   /d:sonar.links.scm="https://github.com/weather-station-project/dashboard.git" \
-                                  /d:sonar.sources="Code/src" \
-                                  /d:sonar.exclusions="**/*.spec.tsx,**/*.js,**/*.json" \
                                   /d:sonar.test.inclusions="**/*.spec.tsx,Code/tests/**/*.cs" \
                                   /d:sonar.typescript.lcov.reportPaths="${REACT_ROOT_FOLDER}/coverage/lcov.info" \
                                   /d:sonar.testExecutionReportPaths="${REACT_ROOT_FOLDER}/coverage/test-report.xml" \
