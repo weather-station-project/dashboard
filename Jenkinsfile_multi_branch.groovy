@@ -28,7 +28,7 @@ pipeline {
                        """
 
                     println('Installing dotCover')
-                    sh "dotnet tool install JetBrains.dotCover.GlobalTool --global --no-cache --tool-path ${DOTCOVER_FOLDER}"
+                    sh "dotnet tool install JetBrains.dotCover.GlobalTool --no-cache --tool-path ${DOTCOVER_FOLDER}"
                 }
             }
         }
