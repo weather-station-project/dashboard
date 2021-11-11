@@ -8,6 +8,8 @@ pipeline {
     environment {
         SONAR_CREDENTIALS = credentials('sonarqube-token')
         REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
+        DOTCOVER_FOLDER = "${WORKSPACE}/tools"
+        DOTCOVER_PATH = "${DOTCOVER_FOLDER}/aaa"
     }
 
     stages {
@@ -24,6 +26,9 @@ pipeline {
                        rm -rf ${REACT_ROOT_FOLDER}/node_modules
                        ( cd ${REACT_ROOT_FOLDER} && npm install )
                        """
+
+                    println('Installing dotCover')
+                    sh "dotnet tool install JetBrains.dotCover.GlobalTool --global --no-cache --tool-path ${DOTCOVER_FOLDER}"
                 }
             }
         }
