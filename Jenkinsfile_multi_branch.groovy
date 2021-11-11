@@ -27,8 +27,11 @@ pipeline {
                        ( cd ${REACT_ROOT_FOLDER} && npm install )
                        """
 
-                    println('Installing dotCover')
-                    sh "dotnet tool install JetBrains.dotCover.GlobalTool --no-cache --tool-path ${DOTCOVER_FOLDER}"
+                    println('Cleaning and installing dotCover')
+                    sh """
+                       rm -rf ${DOTCOVER_FOLDER}
+                       dotnet tool install JetBrains.dotCover.GlobalTool --no-cache --tool-path ${DOTCOVER_FOLDER}
+                       """
                 }
             }
         }
