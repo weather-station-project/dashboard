@@ -3,7 +3,7 @@ import com.davidleonm.WeatherStationDashboardVariables
 import com.davidleonm.GlobalVariables
 
 pipeline {
-    agent { label 'net-core-slave' }
+    agent { label 'net-core-slave-test' }
 
     environment {
         SONAR_CREDENTIALS = credentials('sonarqube-token')
@@ -65,7 +65,8 @@ pipeline {
                            dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
                            ${DOTCOVER_PATH} test --no-build \
                                                  --dcReportType=JSON \
-                                                 --dcOutput="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.json"
+                                                 --dcOutput="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.json" \
+                                                 -- ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
                            """
                         sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
                     }
