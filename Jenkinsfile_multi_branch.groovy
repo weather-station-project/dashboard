@@ -63,10 +63,9 @@ pipeline {
                         sh """
                            ( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )
                            dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
-                           ${DOTCOVER_PATH} test --no-build \
-                                                 --dcReportType=JSON \
-                                                 --dcOutput="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.json" \
-                                                 -- ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
+                           ( cd ${WORKSPACE}/Code && ${DOTCOVER_PATH} test --no-build \
+                                                                           --dcReportType=JSON \
+                                                                           --dcOutput="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.json" )
                            """
                         sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
                     }
