@@ -3,7 +3,7 @@ import com.davidleonm.WeatherStationDashboardVariables
 import com.davidleonm.GlobalVariables
 
 pipeline {
-    agent { label 'net-core-slave-test' }
+    agent { label 'net-core-slave' }
 
     environment {
         SONAR_CREDENTIALS = credentials('sonarqube-token')
