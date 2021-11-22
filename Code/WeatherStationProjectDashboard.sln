@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Utils", "4 - Utils", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherStationProject.Dashboard.DatabaseFeeder", "..\utils\WeatherStationProject.Dashboard.DatabaseFeeder\WeatherStationProject.Dashboard.DatabaseFeeder.csproj", "{CEB81D37-6946-4968-AB28-88EE0560FA2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherStationProject.Dashboard.Core.Tests", "tests\WeatherStationProject.Dashboard.Core.Tests\WeatherStationProject.Dashboard.Core.Tests.csproj", "{A88FA353-F8F8-443A-A624-E44905A18C5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{CEB81D37-6946-4968-AB28-88EE0560FA2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEB81D37-6946-4968-AB28-88EE0560FA2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEB81D37-6946-4968-AB28-88EE0560FA2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A88FA353-F8F8-443A-A624-E44905A18C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A88FA353-F8F8-443A-A624-E44905A18C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A88FA353-F8F8-443A-A624-E44905A18C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A88FA353-F8F8-443A-A624-E44905A18C5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +114,7 @@ Global
 		{60D60A0C-B073-415A-B4E2-17EA025542F2} = {3890C6BC-091B-4273-AE4C-909D96CC778F}
 		{7025E33E-8740-4CBE-BCB7-816EBEC7D66B} = {DAD62F6E-C113-4B17-9F73-AAE23645BC4F}
 		{CEB81D37-6946-4968-AB28-88EE0560FA2C} = {9DDF31AE-B79E-409B-A49A-BD002C7CC94C}
+		{A88FA353-F8F8-443A-A624-E44905A18C5B} = {DAD62F6E-C113-4B17-9F73-AAE23645BC4F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86D3CEBA-7A2F-4C95-BE64-9A200C9D05F4}
