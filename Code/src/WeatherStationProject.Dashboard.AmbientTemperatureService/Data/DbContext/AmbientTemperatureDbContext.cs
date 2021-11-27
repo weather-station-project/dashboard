@@ -4,7 +4,7 @@ using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Data
 {
-    public class AmbientTemperatureDbContext : WeatherStationDatabaseContext
+    public class AmbientTemperatureDbContext : DbContext
     {
         public virtual DbSet<AmbientTemperature> AmbientTemperatures { get; set; }
 

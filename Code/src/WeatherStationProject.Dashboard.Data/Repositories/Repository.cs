@@ -6,9 +6,9 @@ namespace WeatherStationProject.Dashboard.Data
 {
     public abstract class Repository<T> : IRepository<T> where T : Measurement
     {
-        private readonly WeatherStationDatabaseContext _weatherStationDatabaseContext;
+        private readonly DbContext _weatherStationDatabaseContext;
 
-        protected Repository(WeatherStationDatabaseContext weatherStationDatabaseContext)
+        protected Repository(DbContext weatherStationDatabaseContext)
         {
             _weatherStationDatabaseContext = weatherStationDatabaseContext;
         }

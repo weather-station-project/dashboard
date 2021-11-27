@@ -4,7 +4,7 @@ using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.WindMeasurementsService.Data
 {
-    public class WindMeasurementsDbContext : WeatherStationDatabaseContext
+    public class WindMeasurementsDbContext : DbContext
     {
         public virtual DbSet<WindMeasurements> WindMeasurements { get; set; }
 

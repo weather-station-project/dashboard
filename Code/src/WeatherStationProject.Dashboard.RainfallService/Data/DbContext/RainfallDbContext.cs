@@ -4,7 +4,7 @@ using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.RainfallService.Data
 {
-    public class RainfallDbContext : WeatherStationDatabaseContext
+    public class RainfallDbContext : DbContext
     {
         public virtual DbSet<Rainfall> Rainfall { get; set; }
 
