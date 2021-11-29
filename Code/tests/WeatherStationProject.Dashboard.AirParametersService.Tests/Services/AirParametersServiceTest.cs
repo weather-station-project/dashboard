@@ -13,9 +13,9 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Tests
         {
             // Arrange
             var measurement = new AirParameters {Humidity = 5};
-            var parametersService = new Mock<IRepository<AirParameters>>();
-            parametersService.Setup(x => x.GetLastMeasurement()).Returns(Task.FromResult(measurement));
-            var service = new Services.AirParametersService(parametersService.Object);
+            var parametersRepository = new Mock<IRepository<AirParameters>>();
+            parametersRepository.Setup(x => x.GetLastMeasurement()).Returns(Task.FromResult(measurement));
+            var service = new Services.AirParametersService(parametersRepository.Object);
 
             // Act
             var result = await service.GetLastAirParameters();
