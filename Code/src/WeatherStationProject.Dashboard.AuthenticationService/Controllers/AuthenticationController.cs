@@ -16,9 +16,9 @@ namespace WeatherStationProject.Dashboard.AuthenticationService.Controllers
     public class AuthenticationController : ControllerBase
     {
         [HttpGet("{secret}")]
-        public IActionResult Index(string secret)
+        public ObjectResult Index(string secret)
         {
-            if (secret != AppConfiguration.AuthenticationSecret) return StatusCode(403);
+            if (secret != AppConfiguration.AuthenticationSecret) return StatusCode(403, "Secret invalid!");
 
             var now = DateTime.UtcNow;
 

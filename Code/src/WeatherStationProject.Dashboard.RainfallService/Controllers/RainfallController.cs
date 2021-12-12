@@ -12,11 +12,11 @@ namespace WeatherStationProject.Dashboard.RainfallService.Controllers
     [ApiVersion("1.0")]
     [Authorize]
     [Route("api/v{version:apiVersion}/rainfall")]
-    public class WindMeasurementsController : ControllerBase
+    public class RainfallController : ControllerBase
     {
         private readonly IRainfallService _rainfallService;
 
-        public WindMeasurementsController(IRainfallService rainfallService)
+        public RainfallController(IRainfallService rainfallService)
         {
             _rainfallService = rainfallService;
         }

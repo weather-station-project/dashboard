@@ -7,7 +7,7 @@ using WeatherStationProject.Dashboard.AmbientTemperatureService.Services;
 using WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel;
 using Xunit;
 
-namespace WeatherStationProject.Dashboard.AirParametersService.Tests
+namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Tests
 {
     public class AmbientTemperatureControllerTest
     {

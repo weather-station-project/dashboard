@@ -4,7 +4,7 @@ using WeatherStationProject.Dashboard.AmbientTemperatureService.Data;
 using WeatherStationProject.Dashboard.Data;
 using Xunit;
 
-namespace WeatherStationProject.Dashboard.AirParametersService.Tests
+namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Tests
 {
     public class AmbientTemperatureServiceTest
     {
