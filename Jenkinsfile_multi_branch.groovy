@@ -53,7 +53,7 @@ pipeline {
                                   /d:sonar.links.homepage="https://github.com/weather-station-project/dashboard" \
                                   /d:sonar.links.scm="https://github.com/weather-station-project/dashboard.git" \
                                   /d:sonar.inclusions="Code/src/**/*.*" \
-                                  /d:sonar.exclusions="**/*.spec.tsx,**/*.js,Code/tests/**/*.*" \
+                                  /d:sonar.exclusions="**/*.spec.tsx,**/*.js,Code/tests/**/*.*,**/Startup.cs,**/Program.cs" \
                                   /d:sonar.test.inclusions="**/*.spec.tsx,Code/tests/**/*.cs" \
                                   /d:sonar.javascript.lcov.reportPaths="${REACT_ROOT_FOLDER}/coverage/lcov.info" \
                                   /d:sonar.testExecutionReportPaths="${REACT_ROOT_FOLDER}/coverage/test-report.xml" \
