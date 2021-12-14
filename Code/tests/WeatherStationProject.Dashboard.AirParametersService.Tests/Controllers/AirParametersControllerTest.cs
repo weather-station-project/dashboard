@@ -12,7 +12,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Tests
     public class AirParametersControllerTest
     {
         [Fact]
-        public async void When_Getting_LastMeasurement_Given_Null_Should_Return_Not_Found_Response()
+        public async Task When_Getting_LastMeasurement_Given_Null_Should_Return_Not_Found_Response()
         {
             // Arrange
             var parametersService = new Mock<IAirParametersService>();
@@ -27,7 +27,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Tests
         }
 
         [Fact]
-        public async void When_Getting_LastMeasurement_Given_Result_Should_Return_RelatedDto()
+        public async Task When_Getting_LastMeasurement_Given_Result_Should_Return_RelatedDto()
         {
             // Arrange
             var measurement = new AirParameters {Humidity = 5};

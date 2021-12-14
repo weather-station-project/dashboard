@@ -9,7 +9,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.Tests
     public class RainfallServiceTest
     {
         [Fact]
-        public async void When_Getting_RainfallDuringTime_Given_Result_Should_Return_RelatedObject()
+        public async Task When_Getting_RainfallDuringTime_Given_Result_Should_Return_RelatedObject()
         {
             // Arrange
             decimal measurement = 1;

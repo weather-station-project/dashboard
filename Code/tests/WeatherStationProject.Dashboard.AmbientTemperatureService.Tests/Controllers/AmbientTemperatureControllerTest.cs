@@ -12,7 +12,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Tests
     public class AmbientTemperatureControllerTest
     {
         [Fact]
-        public async void When_Getting_LastTemperature_Given_Null_Should_Return_Not_Found_Response()
+        public async Task When_Getting_LastTemperature_Given_Null_Should_Return_Not_Found_Response()
         {
             // Arrange
             var parametersService = new Mock<IAmbientTemperatureService>();
@@ -27,7 +27,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Tests
         }
 
         [Fact]
-        public async void When_Getting_LastMeasurement_Given_Result_Should_Return_RelatedDto()
+        public async Task When_Getting_LastMeasurement_Given_Result_Should_Return_RelatedDto()
         {
             // Arrange
             var measurement = new AmbientTemperature() {Temperature = 5};

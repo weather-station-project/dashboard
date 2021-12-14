@@ -11,7 +11,7 @@ namespace WeatherStationProject.Dashboard.RainfallService.Tests
     public class RainfallControllerTest
     {
         [Fact]
-        public async void When_Getting_AmountDuringTime_Given_Result_Should_Return_RelatedDto()
+        public async Task When_Getting_AmountDuringTime_Given_Result_Should_Return_RelatedDto()
         {
             // Arrange
             decimal measurement = 7;

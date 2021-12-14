@@ -9,7 +9,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.Tests
     public class GroundTemperatureServiceTest
     {
         [Fact]
-        public async void When_Getting_LastTemperature_Given_Result_Should_Return_RelatedObject()
+        public async Task When_Getting_LastTemperature_Given_Result_Should_Return_RelatedObject()
         {
             // Arrange
             var measurement = new GroundTemperature {Temperature = 1};

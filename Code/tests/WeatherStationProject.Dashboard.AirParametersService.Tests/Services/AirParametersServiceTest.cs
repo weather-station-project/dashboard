@@ -9,7 +9,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Tests
     public class AirParametersServiceTest
     {
         [Fact]
-        public async void When_Getting_LastAirParameters_Given_Result_Should_Return_RelatedObject()
+        public async Task When_Getting_LastAirParameters_Given_Result_Should_Return_RelatedObject()
         {
             // Arrange
             var measurement = new AirParameters {Humidity = 5};
