@@ -83,10 +83,6 @@ pipeline {
         }
 
         stage('Deploy on staging') {
-            // TODO DELETE THIS!!
-            when {
-                branch 'master'
-            }
             stages {
                 stage('Deploy Client App') {
                     steps {
