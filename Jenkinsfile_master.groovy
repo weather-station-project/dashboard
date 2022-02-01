@@ -1,48 +1,61 @@
 @Library('shared-library') _
-import com.davidleonm.WeatherStationSensorsReaderVariables
+import com.davidleonm.WeatherStationDashboardVariables
+import com.davidleonm.GlobalVariables
 
 pipeline {
-  agent { label 'slave' }
-
-  stages {
-    stage('Prepare Python ENV') {
-      steps {
-        script {
-          setBuildStatus('pending', "${WeatherStationSensorsReaderVariables.RepositoryName}")
-
-          // Clean & Prepare new python environment
-          sh '''
-             rm -rf ENV
-             python3 -m venv ENV
-
-             ENV/bin/pip install --no-cache-dir --upgrade pip
-             ENV/bin/pip install --no-cache-dir --upgrade wheel
-             ENV/bin/pip install --no-cache-dir --upgrade setuptools
-
-             ENV/bin/pip install --no-cache-dir psycopg2 gpiozero coveralls
-             '''
-        }
-      }
+    agent { label 'net-core-slave' }
+    
+    environment {
+        REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
+        DOTCOVER_FOLDER = "${WORKSPACE}/tools"
+        DOTCOVER_PATH = "${DOTCOVER_FOLDER}/dotnet-dotcover"
     }
 
-    stage('Execute unit tests and code coverage') {
-      steps {
-        script {
-          sh """
-             ENV/bin/python -m unittest discover -s ${WORKSPACE}/WeatherStationSensorsReader
-             ENV/bin/coverage run -m unittest discover -s ${WORKSPACE}/WeatherStationSensorsReader
-             """
-        }
-      }
-    }
+    stages {
+        stage('Prepare Python ENV') {
+            steps {
+                script {
+                    setBuildStatus('pending', "${WeatherStationDashboardVariables.RepositoryName}")
+                    
+                    println('Cleaning coverage report folder')
+                    sh "rm -rf ${REACT_ROOT_FOLDER}/coverage"
+    
+                    println('Cleaning and preparing node_modules ENV')
+                    sh """
+                       rm -rf ${REACT_ROOT_FOLDER}/node_modules
+                       ( cd ${REACT_ROOT_FOLDER} && npm install )
+                       """
 
-    stage('Upload report to Coveralls.io') {
-      steps {
-        withCredentials([string(credentialsId: 'coveralls-sensors-reader-repo-token', variable: 'COVERALLS_REPO_TOKEN')]) {
-          sh 'ENV/bin/coveralls'
+                    println('Cleaning and installing dotCover')
+                    sh """
+                       rm -rf ${DOTCOVER_FOLDER}
+                       dotnet tool install JetBrains.dotCover.GlobalTool --no-cache --tool-path ${DOTCOVER_FOLDER}
+                       """
+                }
+            }
         }
-      }
-    }
+
+        stage('Execute unit tests and code coverage') {
+            steps {
+                script {
+                    sh """
+                       ( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )
+                       dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
+                       ( cd ${WORKSPACE}/Code && ${DOTCOVER_PATH} test --no-build \
+                                                                       --dcReportType=HTML \
+                                                                       --dcOutput="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.html" )
+                       """
+                }
+            }
+        }
+
+        stage('Upload report to Coveralls.io') {
+            steps {
+                withCredentials([string(credentialsId: 'coveralls-sensors-reader-repo-token', variable: 'COVERALLS_REPO_TOKEN')]) {
+                    sh 'ENV/bin/coveralls'
+                }
+            }
+        }
 
     stage('Build & Deploy image') {
       steps {
@@ -52,17 +65,23 @@ pipeline {
       }
     }
   }
-  post {
-    success {
-      script {
-        setBuildStatus('success', "${WeatherStationSensorsReaderVariables.RepositoryName}")
-      }
+    post {
+        always {
+            script {
+                cleanImages(false, true)
+            }
+        }
+    
+        success {
+            script {
+                setBuildStatus('success', "${WeatherStationDashboardVariables.RepositoryName}")
+            }
+        }
+    
+        failure {
+            script {
+                setBuildStatus('failure', "${WeatherStationDashboardVariables.RepositoryName}")
+            }
+        }
     }
-
-    failure {
-      script {
-        setBuildStatus('failure', "${WeatherStationSensorsReaderVariables.RepositoryName}")
-      }
-    }
-  }
 }

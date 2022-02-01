@@ -26,6 +26,8 @@ namespace WeatherStationProject.Dashboard.AirParametersService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks().AddCheck<HealthCheck.HealthCheck>("health-check");
+            
             services.AddDbContext<AirParametersDbContext>();
 
             services.AddScoped<IRepository<AirParameters>, AirParametersRepository>();
@@ -120,7 +122,10 @@ namespace WeatherStationProject.Dashboard.AirParametersService
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/api/health-check");
+            });
         }
     }
 }

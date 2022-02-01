@@ -1,9 +1,11 @@
+using System.Net.Http;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WeatherStationProject.Dashboard.App.Handlers;
 using WeatherStationProject.Dashboard.Core.Security;
 
 namespace WeatherStationProject.Dashboard.App
@@ -20,6 +22,10 @@ namespace WeatherStationProject.Dashboard.App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks().AddCheck<HealthCheck.HealthCheck>("health-check");
+            
+            services.AddScoped<HttpMessageHandler, SslIgnoreClientHandler>();
+            
             services.AddAuthentication(o =>
                 {
                     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -55,7 +61,11 @@ namespace WeatherStationProject.Dashboard.App
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseRouting();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/api/health-check");
+            });
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";

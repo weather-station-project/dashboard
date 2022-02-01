@@ -26,6 +26,8 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks().AddCheck<HealthCheck.HealthCheck>("health-check");
+            
             services.AddDbContext<AmbientTemperatureDbContext>();
 
             services.AddScoped<IRepository<AmbientTemperature>, AmbientTemperatureRepository>();
@@ -120,7 +122,11 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/api/health-check");
+            });
         }
     }
 }

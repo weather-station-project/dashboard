@@ -30,7 +30,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0.9-alpine3.13-amd64
 ARG PROJECT_NAME_ARG
 ARG ENVIRONMENT_ARG
 
-# ENV variables from args tu be used during app execution
+# ENV variables from args to be used during app execution
 ENV PROJECT_NAME=$PROJECT_NAME_ARG
 ENV ASPNETCORE_ENVIRONMENT=$ENVIRONMENT_ARG
 

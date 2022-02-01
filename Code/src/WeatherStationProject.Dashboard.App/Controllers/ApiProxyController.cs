@@ -16,11 +16,7 @@ namespace WeatherStationProject.Dashboard.App.Controllers
         private const string LastMeasurementsEndPoint = "/api/v1/weather-measurements/last";
         private const string AuthenticationServiceEndPoint = "/api/v1/authentication/";
 
-        private readonly HttpMessageHandler _httpHandler = new SslIgnoreClientHandler();
-
-        public ApiProxyController()
-        {
-        }
+        private readonly HttpMessageHandler _httpHandler;
 
         public ApiProxyController(HttpMessageHandler handler)
         {
@@ -39,7 +35,7 @@ namespace WeatherStationProject.Dashboard.App.Controllers
 
         private async Task<string> GetAuthToken()
         {
-            using var client = new HttpClient(_httpHandler);
+            using var client = new HttpClient(_httpHandler, false);
             var response = await client.GetAsync(AppConfiguration.AuthenticationServiceHost +
                                                  AuthenticationServiceEndPoint +
                                                  AppConfiguration.AuthenticationSecret);
@@ -52,7 +48,7 @@ namespace WeatherStationProject.Dashboard.App.Controllers
 
         private async Task<string> GetLastMeasurements(string authToken)
         {
-            using var client = new HttpClient(_httpHandler);
+            using var client = new HttpClient(_httpHandler, false);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
 
             var response = await client.GetAsync(AppConfiguration.WeatherApiHost + LastMeasurementsEndPoint);

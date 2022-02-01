@@ -15,11 +15,7 @@ namespace WeatherStationProject.Dashboard.App.Controllers
         private const string CurrentConditionsEndPoint = "https://dataservice.accuweather.com/currentconditions/v1/";
         private const string ForecastDataEndPoint = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/";
 
-        private readonly HttpMessageHandler _httpHandler = new SslIgnoreClientHandler();
-
-        public AccuWeatherProxyController()
-        {
-        }
+        private readonly HttpMessageHandler _httpHandler;
 
         public AccuWeatherProxyController(HttpMessageHandler handler)
         {
@@ -37,7 +33,7 @@ namespace WeatherStationProject.Dashboard.App.Controllers
         {
             var builder = new UriBuilder(endpoint) {Query = query};
 
-            using var client = new HttpClient(_httpHandler);
+            using var client = new HttpClient(_httpHandler, false);
             var response = await client.GetAsync(builder.Uri);
             response.EnsureSuccessStatusCode();
 
