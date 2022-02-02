@@ -26,7 +26,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks().AddCheck<HealthCheck.HealthCheck>("health-check");
-            
+
             services.AddDbContext<WindMeasurementsDbContext>();
 
             services.AddScoped<IWindMeasurementsRepository, WindMeasurementsRepository>();

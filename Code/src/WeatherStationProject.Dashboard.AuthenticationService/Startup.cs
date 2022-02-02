@@ -1,3 +1,4 @@
+using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WeatherStationProject.Dashboard.Core.Handlers;
 
 namespace WeatherStationProject.Dashboard.AuthenticationService
 {
@@ -21,7 +23,9 @@ namespace WeatherStationProject.Dashboard.AuthenticationService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks().AddCheck<HealthCheck.HealthCheck>("health-check");
-            
+
+            services.AddScoped<HttpMessageHandler, SslIgnoreClientHandler>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddApiVersioning(config =>

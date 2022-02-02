@@ -3,7 +3,6 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using WeatherStationProject.Dashboard.App.Handlers;
 using WeatherStationProject.Dashboard.Core.Configuration;
 using WeatherStationProject.Dashboard.Core.Model;
 
@@ -22,7 +21,7 @@ namespace WeatherStationProject.Dashboard.App.Controllers
         {
             _httpHandler = handler;
         }
-        
+
         [HttpGet("last")]
         public async Task<ObjectResult> LastMeasurements()
         {

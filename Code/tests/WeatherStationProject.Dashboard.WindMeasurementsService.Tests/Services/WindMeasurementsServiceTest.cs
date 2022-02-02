@@ -22,7 +22,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Tests
             // Assert
             Assert.Equal(measurement, result);
         }
-        
+
         [Fact]
         public async Task When_Getting_GustInTime_Given_Result_Should_Return_RelatedObject()
         {

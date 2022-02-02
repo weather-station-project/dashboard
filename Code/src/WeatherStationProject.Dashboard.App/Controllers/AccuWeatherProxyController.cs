@@ -2,7 +2,6 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WeatherStationProject.Dashboard.App.Handlers;
 using WeatherStationProject.Dashboard.Core.Configuration;
 
 namespace WeatherStationProject.Dashboard.App.Controllers

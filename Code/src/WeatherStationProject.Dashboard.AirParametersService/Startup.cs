@@ -27,7 +27,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks().AddCheck<HealthCheck.HealthCheck>("health-check");
-            
+
             services.AddDbContext<AirParametersDbContext>();
 
             services.AddScoped<IRepository<AirParameters>, AirParametersRepository>();
@@ -122,7 +122,8 @@ namespace WeatherStationProject.Dashboard.AirParametersService
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints =>
+            {
                 endpoints.MapControllers();
                 endpoints.MapHealthChecks("/api/health-check");
             });

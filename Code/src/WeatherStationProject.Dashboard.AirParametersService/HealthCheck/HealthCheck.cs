@@ -18,7 +18,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.HealthCheck
                 {
                     await dbContext.AirParameters.FirstOrDefaultAsync(cancellationToken);
                 }
-                
+
                 return await Task.FromResult(HealthCheckResult.Healthy());
             }
             catch (Exception e)

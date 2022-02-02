@@ -27,7 +27,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks().AddCheck<HealthCheck.HealthCheck>("health-check");
-            
+
             services.AddDbContext<GroundTemperatureDbContext>();
 
             services.AddScoped<IRepository<GroundTemperature>, GroundTemperatureRepository>();

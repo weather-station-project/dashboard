@@ -26,7 +26,7 @@ namespace WeatherStationProject.Dashboard.RainfallService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks().AddCheck<HealthCheck.HealthCheck>("health-check");
-            
+
             services.AddDbContext<RainfallDbContext>();
 
             services.AddScoped<IRainfallRepository, RainfallRepository>();

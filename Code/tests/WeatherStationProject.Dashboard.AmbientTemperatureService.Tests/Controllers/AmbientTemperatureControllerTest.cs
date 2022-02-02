@@ -30,7 +30,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Tests
         public async Task When_Getting_LastMeasurement_Given_Result_Should_Return_RelatedDto()
         {
             // Arrange
-            var measurement = new AmbientTemperature() {Temperature = 5};
+            var measurement = new AmbientTemperature {Temperature = 5};
             var parametersService = new Mock<IAmbientTemperatureService>();
             parametersService.Setup(x => x.GetLastTemperature()).Returns(Task.FromResult(measurement));
             var controller = new AmbientTemperatureController(parametersService.Object);

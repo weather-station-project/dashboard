@@ -72,7 +72,7 @@ namespace WeatherStationProject.Dashboard.App.Tests
 
             // Act
             var result = await controller.LastMeasurements();
-            
+
             // Assert
             Assert.Equal("Auth token could not be retrieved", result.Value);
         }

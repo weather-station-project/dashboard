@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace WeatherStationProject.Dashboard.App.Handlers
+namespace WeatherStationProject.Dashboard.Core.Handlers
 {
     public class SslIgnoreClientHandler : HttpClientHandler
     {

@@ -30,7 +30,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.Tests
         public async Task When_Getting_LastTemperature_Given_Result_Should_Return_RelatedDto()
         {
             // Arrange
-            var measurement = new GroundTemperature() {Temperature = 5};
+            var measurement = new GroundTemperature {Temperature = 5};
             var service = new Mock<IGroundTemperatureService>();
             service.Setup(x => x.GetLastTemperature()).Returns(Task.FromResult(measurement));
             var controller = new GroundTemperatureController(service.Object);

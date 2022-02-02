@@ -9,7 +9,8 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.HealthCheck
 {
     public class HealthCheck : IHealthCheck
     {
-        public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new())
+        public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context,
+            CancellationToken cancellationToken = new())
         {
             try
             {
@@ -17,7 +18,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.HealthCheck
                 {
                     await dbContext.GroundTemperatures.FirstOrDefaultAsync(cancellationToken);
                 }
-                
+
                 return await Task.FromResult(HealthCheckResult.Healthy());
             }
             catch (Exception e)

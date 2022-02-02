@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WeatherStationProject.Dashboard.App.Handlers;
+using WeatherStationProject.Dashboard.Core.Handlers;
 using WeatherStationProject.Dashboard.Core.Security;
 
 namespace WeatherStationProject.Dashboard.App
@@ -23,9 +23,9 @@ namespace WeatherStationProject.Dashboard.App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks().AddCheck<HealthCheck.HealthCheck>("health-check");
-            
+
             services.AddScoped<HttpMessageHandler, SslIgnoreClientHandler>();
-            
+
             services.AddAuthentication(o =>
                 {
                     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

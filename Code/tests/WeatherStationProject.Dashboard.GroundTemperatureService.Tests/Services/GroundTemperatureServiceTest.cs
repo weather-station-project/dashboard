@@ -15,7 +15,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.Tests
             var measurement = new GroundTemperature {Temperature = 1};
             var repository = new Mock<IRepository<GroundTemperature>>();
             repository.Setup(x => x.GetLastMeasurement()).Returns(Task.FromResult(measurement));
-            var service = new GroundTemperatureService.Services.GroundTemperatureService(repository.Object);
+            var service = new Services.GroundTemperatureService(repository.Object);
 
             // Act
             var result = await service.GetLastTemperature();

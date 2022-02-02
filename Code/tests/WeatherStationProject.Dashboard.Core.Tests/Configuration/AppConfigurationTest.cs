@@ -25,7 +25,7 @@ namespace WeatherStationProject.Dashboard.Core.Tests
             // Act & Assert
             Assert.Equal(AppConfiguration.DatabaseConnectionString, expectedValue);
         }
-        
+
         [Fact]
         public void When_GettingAuthenticationSecret_Should_Return_ExpectedResult()
         {
@@ -36,7 +36,7 @@ namespace WeatherStationProject.Dashboard.Core.Tests
             // Act & Assert
             Assert.Equal(AppConfiguration.AuthenticationSecret, value);
         }
-        
+
         [Fact]
         public void When_GettingAccuWeatherApiKey_Should_Return_ExpectedResult()
         {
@@ -47,7 +47,7 @@ namespace WeatherStationProject.Dashboard.Core.Tests
             // Act & Assert
             Assert.Equal(AppConfiguration.AccuWeatherApiKey, value);
         }
-        
+
         [Fact]
         public void When_GettingAccuWeatherLocationName_Should_Return_ExpectedResult()
         {
@@ -58,7 +58,7 @@ namespace WeatherStationProject.Dashboard.Core.Tests
             // Act & Assert
             Assert.Equal(AppConfiguration.AccuWeatherLocationName, value);
         }
-        
+
         [Fact]
         public void When_GettingAccuWeatherApiHost_Should_Return_ExpectedResult()
         {
@@ -69,7 +69,7 @@ namespace WeatherStationProject.Dashboard.Core.Tests
             // Act & Assert
             Assert.Equal(AppConfiguration.WeatherApiHost, value);
         }
-        
+
         [Fact]
         public void When_GettingAuthenticationServiceHost_Should_Return_ExpectedResult()
         {

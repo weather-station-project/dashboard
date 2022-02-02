@@ -45,7 +45,7 @@ COPY --from=Build "/app/publish" "/app"
 WORKDIR "/app"
 
 # Configure the health check command
-# HEALTHCHECK --interval=60s --start-period=60s CMD ["python", "-u", "-m", "health_check.health_check"] || exit 1
+HEALTHCHECK --interval=300s --start-period=60s CMD curl --silent --fail https://localhost:1443/api/health-check || exit 1
 
 # Run the application
 ENTRYPOINT ["ash", "-c", "dotnet $PROJECT_NAME.dll"]

@@ -1,3 +1,4 @@
+using System.Net.Http;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using WeatherStationProject.Dashboard.Core.Handlers;
 using WeatherStationProject.Dashboard.Core.Security;
 
 namespace WeatherStationProject.Dashboard.GatewayService
@@ -33,6 +35,8 @@ namespace WeatherStationProject.Dashboard.GatewayService
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<HttpMessageHandler, SslIgnoreClientHandler>();
+
             services.AddAuthentication(o =>
                 {
                     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

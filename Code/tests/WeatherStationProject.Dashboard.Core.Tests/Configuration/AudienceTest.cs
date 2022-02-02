@@ -16,7 +16,7 @@ namespace WeatherStationProject.Dashboard.Core.Tests
             // Act & Assert
             Assert.Equal(Audience.Secret, value);
         }
-        
+
         [Fact]
         public void When_GettingIssuer_Should_Return_ExpectedResult()
         {
@@ -26,7 +26,7 @@ namespace WeatherStationProject.Dashboard.Core.Tests
             // Act & Assert
             Assert.Equal(Audience.Issuer, value);
         }
-        
+
         [Fact]
         public void When_GettingValidAudience_Should_Return_ExpectedResult()
         {

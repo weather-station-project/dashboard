@@ -1,7 +1,7 @@
 module.exports = {
-  resolve: {
-    alias: {
-      moment$: "moment/moment.js",
+    resolve: {
+        alias: {
+            moment$: "moment/moment.js",
+        },
     },
-  },
 };

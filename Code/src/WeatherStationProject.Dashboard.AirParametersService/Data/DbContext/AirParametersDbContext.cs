@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WeatherStationProject.Dashboard.Core.Configuration;
-using WeatherStationProject.Dashboard.Data;
 
 namespace WeatherStationProject.Dashboard.AirParametersService.Data
 {
