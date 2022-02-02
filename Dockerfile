@@ -26,6 +26,9 @@ RUN dotnet publish "./$PROJECT_NAME_ARG.csproj" --configuration Release --output
 # Pull down the image which includes only the ASP.NET core runtime
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.9-alpine3.13-amd64
 
+# Install needed app
+RUN apk add --no-cache curl
+
 # Global args re-mapped for this stage
 ARG PROJECT_NAME_ARG
 ARG ENVIRONMENT_ARG
@@ -34,7 +37,7 @@ ARG ENVIRONMENT_ARG
 ENV PROJECT_NAME=$PROJECT_NAME_ARG
 ENV ASPNETCORE_ENVIRONMENT=$ENVIRONMENT_ARG
 
-# Ports, URLS and certificate for http(s) access
+# Ports and URL for http(s) access
 EXPOSE 1443
 ENV ASPNETCORE_URLS="https://+:1443" 
 
