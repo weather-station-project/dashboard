@@ -39,7 +39,7 @@ ENV ASPNETCORE_ENVIRONMENT=$ENVIRONMENT_ARG
 
 # Ports and URL for http(s) access
 EXPOSE 1443
-ENV ASPNETCORE_URLS="https://+:1443" 
+ENV ASPNETCORE_URLS="https://localhost:1443" 
 
 # Copy the published app to this new runtime-only container
 COPY --from=Build "/app/publish" "/app"
@@ -48,7 +48,7 @@ COPY --from=Build "/app/publish" "/app"
 WORKDIR "/app"
 
 # Configure the health check command
-HEALTHCHECK --interval=300s --start-period=60s CMD curl --silent --fail https://localhost:1443/api/health-check || exit 1
+HEALTHCHECK --interval=300s --start-period=60s CMD curl --insecure --silent --fail https://localhost:1443/api/health-check || exit 1
 
 # Run the application
 ENTRYPOINT ["ash", "-c", "dotnet $PROJECT_NAME.dll"]
