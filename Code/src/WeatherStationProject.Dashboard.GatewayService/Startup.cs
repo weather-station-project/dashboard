@@ -35,6 +35,8 @@ namespace WeatherStationProject.Dashboard.GatewayService
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks().AddCheck<HealthCheck.HealthCheck>("health-check");
+            
             services.AddScoped<HttpMessageHandler, SslIgnoreClientHandler>();
 
             services.AddAuthentication(o =>
@@ -92,6 +94,7 @@ namespace WeatherStationProject.Dashboard.GatewayService
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseRouting();
+            app.UseEndpoints(endpoints => { endpoints.MapHealthChecks("/api/health-check"); });
             app.UseOcelot();
         }
     }
