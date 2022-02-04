@@ -39,7 +39,7 @@ ENV ASPNETCORE_ENVIRONMENT=$ENVIRONMENT_ARG
 
 # Ports and URL for http(s) access
 EXPOSE 1443
-ENV ASPNETCORE_URLS="https://localhost:1443" 
+ENV ASPNETCORE_URLS="https://+:1443" 
 
 # Copy the published app to this new runtime-only container
 COPY --from=Build "/app/publish" "/app"

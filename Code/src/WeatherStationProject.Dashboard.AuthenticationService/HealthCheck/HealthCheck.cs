@@ -9,8 +9,6 @@ namespace WeatherStationProject.Dashboard.AuthenticationService.HealthCheck
 {
     public class HealthCheck : IHealthCheck
     {
-        private const string MeasurementsUrl = "/api/v1/authentication/";
-
         private readonly HttpMessageHandler _httpHandler;
 
         public HealthCheck(HttpMessageHandler handler)
@@ -24,10 +22,9 @@ namespace WeatherStationProject.Dashboard.AuthenticationService.HealthCheck
             try
             {
                 using var client = new HttpClient(_httpHandler, false);
-                var response =
-                    await client.GetAsync(new Uri(Environment.GetEnvironmentVariable("ASPNETCORE_URLS") +
-                                                  MeasurementsUrl +
-                                                  AppConfiguration.AuthenticationSecret), cancellationToken);
+                var response = await client.GetAsync(new Uri("https://localhost:1443/api/v1/authentication/" +
+                                                             AppConfiguration.AuthenticationSecret),
+                    cancellationToken);
                 response.EnsureSuccessStatusCode();
 
                 return await Task.FromResult(HealthCheckResult.Healthy());
