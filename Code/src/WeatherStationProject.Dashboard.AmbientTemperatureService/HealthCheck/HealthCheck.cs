@@ -9,15 +9,19 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.HealthCheck
 {
     public class HealthCheck : IHealthCheck
     {
+        private readonly AmbientTemperatureDbContext _dbContext;
+        
+        public HealthCheck(AmbientTemperatureDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+        
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context,
             CancellationToken cancellationToken = new())
         {
             try
             {
-                await using (var dbContext = new AmbientTemperatureDbContext())
-                {
-                    await dbContext.AmbientTemperatures.FirstOrDefaultAsync(cancellationToken);
-                }
+                await _dbContext.AmbientTemperatures.FirstOrDefaultAsync(cancellationToken);
 
                 return await Task.FromResult(HealthCheckResult.Healthy());
             }

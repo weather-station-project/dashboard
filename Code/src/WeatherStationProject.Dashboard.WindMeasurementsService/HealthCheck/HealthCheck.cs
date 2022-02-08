@@ -9,15 +9,19 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.HealthCheck
 {
     public class HealthCheck : IHealthCheck
     {
+        private readonly WindMeasurementsDbContext _dbContext;
+        
+        public HealthCheck(WindMeasurementsDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+        
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context,
             CancellationToken cancellationToken = new())
         {
             try
             {
-                await using (var dbContext = new WindMeasurementsDbContext())
-                {
-                    await dbContext.WindMeasurements.FirstOrDefaultAsync(cancellationToken);
-                }
+                await _dbContext.WindMeasurements.FirstOrDefaultAsync(cancellationToken);
 
                 return await Task.FromResult(HealthCheckResult.Healthy());
             }
