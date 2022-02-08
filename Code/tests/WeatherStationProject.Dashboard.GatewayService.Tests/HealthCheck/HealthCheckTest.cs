@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -50,13 +51,7 @@ namespace WeatherStationProject.Dashboard.GatewayService.Tests
                     ItExpr.IsAny<HttpRequestMessage>(),
                     ItExpr.IsAny<CancellationToken>()
                 )
-                .ReturnsAsync((HttpRequestMessage _, CancellationToken _) =>
-                {
-                    var response = new HttpResponseMessage();
-                    response.StatusCode = HttpStatusCode.InternalServerError;
-                    
-                    return response;
-                });
+                .Throws(new Exception());
 
             // Act
             var result =
