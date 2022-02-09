@@ -70,14 +70,12 @@ pipeline {
         }
 
         stage('Deploy on staging') {
-            stages {
-                steps {
-                    script {
-                        deployDashboardServices("${GlobalVariables.StagingDockerRegistry}",
-                                                "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                                'Staging')
-                                                
-                    }
+            steps {
+                script {
+                    deployDashboardServices("${GlobalVariables.StagingDockerRegistry}",
+                                            "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
+                                            'Staging')
+                                            
                 }
             }
         }
