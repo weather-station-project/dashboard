@@ -7,6 +7,9 @@ pipeline {
 
     environment {
         SONAR_CREDENTIALS = credentials('sonarqube-token')
+        REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
+        TOOLS_FOLDER = "${WORKSPACE}/tools"
+        DOTCOVER_PATH = "${TOOLS_FOLDER}/dotnet-dotcover"
     }
 
     stages {
