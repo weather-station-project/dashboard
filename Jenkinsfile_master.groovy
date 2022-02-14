@@ -30,20 +30,23 @@ pipeline {
 
         stage('Upload report to Coveralls.io') {
             steps {
-                withCredentials([string(credentialsId: 'coveralls-sensors-reader-repo-token', variable: 'COVERALLS_REPO_TOKEN')]) {
-                    sh 'ENV/bin/coveralls'
+                withCredentials([string(credentialsId: 'coveralls-dashboard-repo-token', variable: 'COVERALLS_REPO_TOKEN')]) {
+                    sh 'coveralls'
                 }
             }
         }
 
-    stage('Build & Deploy image') {
-      steps {
-        script {
-          deployContainerOnDockerHub("${WeatherStationSensorsReaderVariables.DockerHubRegistryName}")
+        stage('Deploy on staging') {
+            steps {
+                script {
+                    deployDashboardServices('',
+                                            "${GlobalVariables.ProductionCredentialsDockerRegistryKey}",
+                                            'Production')
+                                            
+                }
+            }
         }
-      }
     }
-  }
     post {
         always {
             script {

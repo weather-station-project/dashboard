@@ -68,6 +68,15 @@ pipeline {
                 }
             }
         }
+        
+        stage('Upload report to Coveralls.io') {
+            steps {
+                withCredentials([string(credentialsId: 'coveralls-dashboard-repo-token',
+                                        variable: 'COVERALLS_REPO_TOKEN')]) {
+                    sh 'coveralls'
+                }
+            }
+        }
 
         stage('Deploy on staging') {
             steps {
