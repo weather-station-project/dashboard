@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('Deploy on staging') {
+        stage('Deploy on production') {
             steps {
                 script {
                     deployDashboardServices('',
