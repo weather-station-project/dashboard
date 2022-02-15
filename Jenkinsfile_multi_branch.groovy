@@ -73,7 +73,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'coveralls-dashboard-repo-token',
                                         variable: 'COVERALLS_REPO_TOKEN')]) {
-                    sh 'coveralls'
+                    sh '$HOME/.dotnet/tools/csmacnz.Coveralls --repoTokenVariable COVERALLS_REPO_TOKEN'
                 }
             }
         }
