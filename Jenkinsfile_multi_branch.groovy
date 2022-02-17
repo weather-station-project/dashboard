@@ -9,7 +9,8 @@ pipeline {
         SONAR_CREDENTIALS = credentials('sonarqube-token')
         REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
         TOOLS_FOLDER = "${WORKSPACE}/tools"
-        DOTCOVER_PATH = "${TOOLS_FOLDER}/dotnet-dotcover"
+        DOTCOVER_PATH = "${HOME}/.dotnet/tools/dotnet-dotcover"
+        CODECOV_PATH = "${TOOLS_FOLDER}/codecov"
     }
 
     stages {
@@ -69,11 +70,11 @@ pipeline {
             }
         }
         
-        stage('Upload report to Coveralls.io') {
+        stage('Upload report to Codecov') {
             steps {
-                withCredentials([string(credentialsId: 'coveralls-dashboard-repo-token',
-                                        variable: 'COVERALLS_REPO_TOKEN')]) {
-                    sh '$HOME/.dotnet/tools/csmacnz.Coveralls --repoTokenVariable COVERALLS_REPO_TOKEN'
+                withCredentials([string(credentialsId: 'codecov-dashboard-token',
+                                        variable: 'CODECOV_TOKEN')]) {
+                    sh "${CODECOV_PATH} -t ${CODECOV_TOKEN}"
                 }
             }
         }
