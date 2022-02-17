@@ -10,10 +10,10 @@ pipeline {
         
         REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
         TOOLS_FOLDER = "${WORKSPACE}/tools"
-        DOTCOVER_PATH = "${HOME}/.dotnet/tools/dotnet-dotcover"
+        COVERLET_PATH = "${HOME}/.dotnet/tools/coverlet"
         CODECOV_PATH = "${TOOLS_FOLDER}/codecov"
         
-        DOTNET_COVERAGE_REPORT_PATH="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.xml"
+        DOTNET_COVERAGE_REPORT_PATH="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.json"
         REACT_COVERAGE_REPORT_PATH="${REACT_ROOT_FOLDER}/coverage/lcov.info"
     }
 
@@ -49,15 +49,16 @@ pipeline {
                                   /d:sonar.test.inclusions="**/*.spec.tsx,Code/tests/**/*.cs" \
                                   /d:sonar.javascript.lcov.reportPaths="${REACT_COVERAGE_REPORT_PATH}" \
                                   /d:sonar.testExecutionReportPaths="${REACT_ROOT_FOLDER}/coverage/test-report.xml" \
-                                  /d:sonar.cs.dotcover.reportsPaths="${DOTNET_COVERAGE_REPORT_PATH}" \
+                                  /d:sonar.cs.opencover.reportsPaths="${DOTNET_COVERAGE_REPORT_PATH}" \
                                   /d:sonar.login=${SONAR_CREDENTIALS}
                            """
                         sh """
                            ( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )
                            dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
-                           ( cd ${WORKSPACE}/Code && ${DOTCOVER_PATH} test --no-build \
-                                                                           --dcReportType=XML \
-                                                                           --dcOutput="${DOTNET_COVERAGE_REPORT_PATH}" )
+                           ( cd ${WORKSPACE}/Code && ${COVERLET_PATH} . --target "dotnet" \
+                                                                        --targetargs "test . --no-build" \
+                                                                        --format opencover \
+                                                                        --output="${DOTNET_COVERAGE_REPORT_PATH}" )
                            """
                         sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
                     }
