@@ -89,9 +89,10 @@ pipeline {
         stage('Deploy on staging') {
             steps {
                 script {
-                    deployDashboardServices("${GlobalVariables.StagingDockerRegistry}",
+                    sh 'skip'
+                    /* deployDashboardServices("${GlobalVariables.StagingDockerRegistry}",
                                             "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                            'Staging')
+                                            'Staging') */
                                             
                 }
             }
