@@ -7,10 +7,14 @@ pipeline {
 
     environment {
         SONAR_CREDENTIALS = credentials('sonarqube-token')
+        
         REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
         TOOLS_FOLDER = "${WORKSPACE}/tools"
         DOTCOVER_PATH = "${HOME}/.dotnet/tools/dotnet-dotcover"
         CODECOV_PATH = "${TOOLS_FOLDER}/codecov"
+        
+        DOTNET_COVERAGE_REPORT_PATH="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.html"
+        REACT_COVERAGE_REPORT_PATH="${REACT_ROOT_FOLDER}/coverage/lcov.info"
     }
 
     stages {
@@ -43,9 +47,9 @@ pipeline {
                                   /d:sonar.inclusions="Code/src/**/*.*" \
                                   /d:sonar.exclusions="**/*.spec.tsx,**/*.js,Code/tests/**/*.*,**/Startup.cs,**/Program.cs" \
                                   /d:sonar.test.inclusions="**/*.spec.tsx,Code/tests/**/*.cs" \
-                                  /d:sonar.javascript.lcov.reportPaths="${REACT_ROOT_FOLDER}/coverage/lcov.info" \
+                                  /d:sonar.javascript.lcov.reportPaths="${REACT_COVERAGE_REPORT_PATH}" \
                                   /d:sonar.testExecutionReportPaths="${REACT_ROOT_FOLDER}/coverage/test-report.xml" \
-                                  /d:sonar.cs.dotcover.reportsPaths="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.html" \
+                                  /d:sonar.cs.dotcover.reportsPaths="${DOTNET_COVERAGE_REPORT_PATH}" \
                                   /d:sonar.login=${SONAR_CREDENTIALS}
                            """
                         sh """
@@ -53,7 +57,7 @@ pipeline {
                            dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
                            ( cd ${WORKSPACE}/Code && ${DOTCOVER_PATH} test --no-build \
                                                                            --dcReportType=HTML \
-                                                                           --dcOutput="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.html" )
+                                                                           --dcOutput="${DOTNET_COVERAGE_REPORT_PATH}" )
                            """
                         sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
                     }
@@ -74,7 +78,10 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'codecov-dashboard-token',
                                         variable: 'CODECOV_TOKEN')]) {
-                    sh "${CODECOV_PATH} -t ${CODECOV_TOKEN}"
+                    sh """
+                       ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${DOTNET_COVERAGE_REPORT_PATH} -cF .NET
+                       ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${REACT_COVERAGE_REPORT_PATH} -cF React
+                       """
                 }
             }
         }
