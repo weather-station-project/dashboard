@@ -13,7 +13,7 @@ pipeline {
         DOTCOVER_PATH = "${HOME}/.dotnet/tools/dotnet-dotcover"
         CODECOV_PATH = "${TOOLS_FOLDER}/codecov"
         
-        DOTNET_COVERAGE_REPORT_PATH="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.html"
+        DOTNET_COVERAGE_REPORT_PATH="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.xml"
         REACT_COVERAGE_REPORT_PATH="${REACT_ROOT_FOLDER}/coverage/lcov.info"
     }
 
@@ -56,7 +56,7 @@ pipeline {
                            ( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )
                            dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
                            ( cd ${WORKSPACE}/Code && ${DOTCOVER_PATH} test --no-build \
-                                                                           --dcReportType=HTML \
+                                                                           --dcReportType=XML \
                                                                            --dcOutput="${DOTNET_COVERAGE_REPORT_PATH}" )
                            """
                         sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
