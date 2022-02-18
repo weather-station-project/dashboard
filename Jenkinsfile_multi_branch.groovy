@@ -13,7 +13,7 @@ pipeline {
         
         REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
         COVERAGE_FOLDER_PATH="${REACT_ROOT_FOLDER}/coverage/"
-        COVERAGE_TEMP_FOLDER_PATH="${COVERAGE_FOLDER_PATH}/coverage/temp/"
+        COVERAGE_TEMP_FOLDER_PATH="${COVERAGE_FOLDER_PATH}/temp/"
         DOTNET_COVERAGE_REPORT_PATH="${COVERAGE_FOLDER_PATH}coverage.opencover.xml"
         REACT_COVERAGE_REPORT_PATH="${COVERAGE_FOLDER_PATH}lcov.info"
     }
@@ -57,6 +57,7 @@ pipeline {
                            ( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )
                            dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
                            ( cd ${WORKSPACE}/Code && dotnet test WeatherStationProjectDashboard.sln \
+                                                         --no-build \
                                                          --logger:trx \
                                                          --results-directory ${COVERAGE_TEMP_FOLDER_PATH} \
                                                          "/p:CollectCoverage=true" \
