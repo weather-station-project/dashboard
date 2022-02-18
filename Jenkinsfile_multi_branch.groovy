@@ -12,9 +12,9 @@ pipeline {
         TOOLS_FOLDER = "${WORKSPACE}/tools"
         CODECOV_PATH = "${TOOLS_FOLDER}/codecov"
         
-        COVERAGE_FOLDER_PATH="${REACT_ROOT_FOLDER}/coverage"
-        DOTNET_COVERAGE_REPORT_PATH="${DOTNET_COVERAGE_REPORT_PATH}/dotnet-coverage.json"
-        REACT_COVERAGE_REPORT_PATH="${DOTNET_COVERAGE_REPORT_PATH}/lcov.info"
+        COVERAGE_FOLDER_PATH="${REACT_ROOT_FOLDER}/coverage/"
+        DOTNET_COVERAGE_REPORT_PATH="${COVERAGE_FOLDER_PATH}coverage.opencover.xml"
+        REACT_COVERAGE_REPORT_PATH="${COVERAGE_FOLDER_PATH}lcov.info"
     }
 
     stages {
