@@ -10,11 +10,11 @@ pipeline {
         
         REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
         TOOLS_FOLDER = "${WORKSPACE}/tools"
-        COVERLET_PATH = "${HOME}/.dotnet/tools/coverlet"
         CODECOV_PATH = "${TOOLS_FOLDER}/codecov"
         
-        DOTNET_COVERAGE_REPORT_PATH="${REACT_ROOT_FOLDER}/coverage/dotnet-coverage.json"
-        REACT_COVERAGE_REPORT_PATH="${REACT_ROOT_FOLDER}/coverage/lcov.info"
+        COVERAGE_FOLDER_PATH="${REACT_ROOT_FOLDER}/coverage"
+        DOTNET_COVERAGE_REPORT_PATH="${DOTNET_COVERAGE_REPORT_PATH}/dotnet-coverage.json"
+        REACT_COVERAGE_REPORT_PATH="${DOTNET_COVERAGE_REPORT_PATH}/lcov.info"
     }
 
     stages {
@@ -55,10 +55,13 @@ pipeline {
                         sh """
                            ( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )
                            dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
-                           ( cd ${WORKSPACE}/Code && ${COVERLET_PATH} . --target "dotnet" \
-                                                                        --targetargs "test . --no-build" \
-                                                                        --format opencover \
-                                                                        --output="${DOTNET_COVERAGE_REPORT_PATH}" )
+                           ( cd ${WORKSPACE}/Code && dotnet test WeatherStationProjectDashboard.sln \
+                                                         --logger:trx \
+                                                         --results-directory ${COVERAGE_FOLDER_PATH} \
+                                                         "/p:CollectCoverage=true" \
+                                                         "/p:CoverletOutput=${COVERAGE_FOLDER_PATH}" \
+                                                         "/p:MergeWith=${COVERAGE_FOLDER_PATH}/coverlet.json" \
+                                                         "/p:CoverletOutputFormat=\"opencover\"" )
                            """
                         sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
                     }
@@ -79,6 +82,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'codecov-dashboard-token',
                                         variable: 'CODECOV_TOKEN')]) {
+                    // https://github.com/csMACnz/Coveralls.net-Samples/blob/xunit-opencover-appveyor/appveyor.yml
                     sh """
                        ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${DOTNET_COVERAGE_REPORT_PATH} -cF .NET
                        ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${REACT_COVERAGE_REPORT_PATH} -cF React
