@@ -8,11 +8,12 @@ pipeline {
     environment {
         SONAR_CREDENTIALS = credentials('sonarqube-token')
         
-        REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
         TOOLS_FOLDER = "${WORKSPACE}/tools"
         CODECOV_PATH = "${TOOLS_FOLDER}/codecov"
         
+        REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
         COVERAGE_FOLDER_PATH="${REACT_ROOT_FOLDER}/coverage/"
+        COVERAGE_TEMP_FOLDER_PATH="${COVERAGE_FOLDER_PATH}/coverage/temp/"
         DOTNET_COVERAGE_REPORT_PATH="${COVERAGE_FOLDER_PATH}coverage.opencover.xml"
         REACT_COVERAGE_REPORT_PATH="${COVERAGE_FOLDER_PATH}lcov.info"
     }
@@ -48,7 +49,7 @@ pipeline {
                                   /d:sonar.exclusions="**/*.spec.tsx,**/*.js,Code/tests/**/*.*,**/Startup.cs,**/Program.cs" \
                                   /d:sonar.test.inclusions="**/*.spec.tsx,Code/tests/**/*.cs" \
                                   /d:sonar.javascript.lcov.reportPaths="${REACT_COVERAGE_REPORT_PATH}" \
-                                  /d:sonar.testExecutionReportPaths="${REACT_ROOT_FOLDER}/coverage/test-report.xml" \
+                                  /d:sonar.testExecutionReportPaths="${COVERAGE_FOLDER_PATH}test-report.xml" \
                                   /d:sonar.cs.opencover.reportsPaths="${DOTNET_COVERAGE_REPORT_PATH}" \
                                   /d:sonar.login=${SONAR_CREDENTIALS}
                            """
@@ -57,10 +58,10 @@ pipeline {
                            dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
                            ( cd ${WORKSPACE}/Code && dotnet test WeatherStationProjectDashboard.sln \
                                                          --logger:trx \
-                                                         --results-directory ${COVERAGE_FOLDER_PATH} \
+                                                         --results-directory ${COVERAGE_TEMP_FOLDER_PATH} \
                                                          "/p:CollectCoverage=true" \
                                                          "/p:CoverletOutput=${COVERAGE_FOLDER_PATH}" \
-                                                         "/p:MergeWith=${COVERAGE_FOLDER_PATH}/coverlet.json" \
+                                                         "/p:MergeWith=${COVERAGE_TEMP_FOLDER_PATH}coverlet.json" \
                                                          "/p:CoverletOutputFormat=\"opencover\"" )
                            """
                         sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
