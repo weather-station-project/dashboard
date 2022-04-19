@@ -58,9 +58,8 @@ pipeline {
                            
                         sh """
                            ( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )
-                           dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
+                           dotnet clean ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
                            ( cd ${WORKSPACE}/Code && dotnet test WeatherStationProjectDashboard.sln \
-                                                         --no-build \
                                                          "/p:CollectCoverage=true" \
                                                          "/p:CoverletOutput=${COVERAGE_FOLDER_PATH}" \
                                                          "/p:MergeWith=${COVERAGE_TEMP_FOLDER_PATH}coverlet.json" \
