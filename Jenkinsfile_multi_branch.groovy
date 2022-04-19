@@ -53,17 +53,18 @@ pipeline {
                                   /d:sonar.cs.opencover.reportsPaths="${DOTNET_COVERAGE_REPORT_PATH}" \
                                   /d:sonar.login=${SONAR_CREDENTIALS}
                            """
+                           // https://github.com/coverlet-coverage/coverlet/blob/master/Documentation/Examples/MSBuild/MergeWith/HowTo.md
+                           
                         sh """
                            ( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )
                            dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
                            ( cd ${WORKSPACE}/Code && dotnet test WeatherStationProjectDashboard.sln \
                                                          --no-build \
-                                                         --logger:trx \
-                                                         --results-directory ${COVERAGE_TEMP_FOLDER_PATH} \
                                                          "/p:CollectCoverage=true" \
                                                          "/p:CoverletOutput=${COVERAGE_FOLDER_PATH}" \
                                                          "/p:MergeWith=${COVERAGE_TEMP_FOLDER_PATH}coverlet.json" \
-                                                         "/p:CoverletOutputFormat=\"opencover\"" )
+                                                         "/p:CoverletOutputFormat=\"opencover,json\"" \
+                                                         -m:1 )
                            """
                         sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
                     }
