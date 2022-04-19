@@ -58,7 +58,7 @@ pipeline {
                            
                         sh """
                            ( cd ${REACT_ROOT_FOLDER} && npm run test-coverage )
-                           dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln
+                           dotnet build ${WORKSPACE}/Code/WeatherStationProjectDashboard.sln --no-incremental -p:DeterministicSourcePaths=true
                            ( cd ${WORKSPACE}/Code && dotnet test WeatherStationProjectDashboard.sln \
                                                          "/p:CollectCoverage=true" \
                                                          "/p:CoverletOutput=${COVERAGE_FOLDER_PATH}" \
