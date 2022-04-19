@@ -42,6 +42,7 @@ pipeline {
                                   /k:Dashboard \
                                   /n:"Weather Station Dashboard" \
                                   /v:"not provided" \
+                                  /d:sonar.verbose=true \
                                   /d:sonar.projectDescription="Solution with the dashboard" \
                                   /d:sonar.links.homepage="https://github.com/weather-station-project/dashboard" \
                                   /d:sonar.links.scm="https://github.com/weather-station-project/dashboard.git" \
