@@ -63,7 +63,7 @@ pipeline {
                                                          /p:CollectCoverage=true \
                                                          /p:CoverletOutput="${COVERAGE_FOLDER_PATH}" \
                                                          /p:MergeWith="${COVERAGE_TEMP_FOLDER_PATH}coverlet.json" \
-                                                         /p:CoverletOutputFormat=\"opencover,json\"" \
+                                                         /p:CoverletOutputFormat="opencover,json" \
                                                          -m:1 )
                            """
                         sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
