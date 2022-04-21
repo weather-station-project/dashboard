@@ -11,9 +11,9 @@ pipeline {
         TOOLS_FOLDER = "${WORKSPACE}/tools"
         CODECOV_PATH = "${TOOLS_FOLDER}/codecov"
         
-        REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
-        COVERAGE_ROOT_FOLDER_PATH="${REACT_ROOT_FOLDER}/coverage/"
-        DOTNET_COVERAGE_FOLDER_PATH="${COVERAGE_ROOT_FOLDER_PATH}/CoverageResults/"
+        REACT_ROOT_FOLDER = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp/"
+        COVERAGE_ROOT_FOLDER_PATH="${REACT_ROOT_FOLDER}coverage/"
+        DOTNET_COVERAGE_FOLDER_PATH="${COVERAGE_ROOT_FOLDER_PATH}CoverageResults/"
         
         DOTNET_COVERAGE_REPORT_PATH="${DOTNET_COVERAGE_FOLDER_PATH}coverage.opencover.xml"
         REACT_COVERAGE_REPORT_PATH="${COVERAGE_ROOT_FOLDER_PATH}lcov.info"
