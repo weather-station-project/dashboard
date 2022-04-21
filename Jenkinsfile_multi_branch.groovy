@@ -51,7 +51,7 @@ pipeline {
                                   /d:sonar.exclusions="**/*.spec.tsx,**/*.js,Code/tests/**/*.*,**/Startup.cs,**/Program.cs" \
                                   /d:sonar.test.inclusions="**/*.spec.tsx,Code/tests/**/*.cs" \
                                   /d:sonar.javascript.lcov.reportPaths="${REACT_COVERAGE_REPORT_PATH}" \
-                                  /d:sonar.testExecutionReportPaths="${DOTNET_COVERAGE_FOLDER_PATH}test-report.xml" \
+                                  /d:sonar.testExecutionReportPaths="${COVERAGE_ROOT_FOLDER_PATH}test-report.xml" \
                                   /d:sonar.cs.opencover.reportsPaths="${DOTNET_COVERAGE_REPORT_PATH}" \
                                   /d:sonar.login=${SONAR_CREDENTIALS}
                            """
