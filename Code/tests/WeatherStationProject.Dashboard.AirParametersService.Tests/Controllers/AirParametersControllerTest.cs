@@ -40,7 +40,8 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Tests
 
             // Assert
             Assert.IsType(new AirParametersDTO().GetType(), response.Value);
-            Assert.Equal(AirParametersDTO.FromEntity(measurement).Humidity, response.Value.Humidity);
+            if (response.Value != null)
+                Assert.Equal(AirParametersDTO.FromEntity(measurement).Humidity, response.Value.Humidity);
         }
     }
 }

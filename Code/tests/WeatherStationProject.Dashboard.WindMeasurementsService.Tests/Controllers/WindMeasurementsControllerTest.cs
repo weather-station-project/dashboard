@@ -40,8 +40,9 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Tests
 
             // Assert
             Assert.IsType(new WindMeasurementsDTO().GetType(), response.Value);
-            Assert.Equal(WindMeasurementsDTO.FromEntity(measurement).Direction, response.Value.Direction);
-            Assert.Equal(WindMeasurementsDTO.FromEntity(measurement).Speed, response.Value.Speed);
+            Assert.Equal(WindMeasurementsDTO.FromEntity(measurement).Direction, response.Value?.Direction);
+            if (response.Value != null)
+                Assert.Equal(WindMeasurementsDTO.FromEntity(measurement).Speed, response.Value.Speed);
         }
 
         [Fact]
@@ -74,8 +75,9 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Tests
 
             // Assert
             Assert.IsType(new WindMeasurementsDTO().GetType(), response.Value);
-            Assert.Equal(WindMeasurementsDTO.FromEntity(measurement).Direction, response.Value.Direction);
-            Assert.Equal(WindMeasurementsDTO.FromEntity(measurement).Speed, response.Value.Speed);
+            Assert.Equal(WindMeasurementsDTO.FromEntity(measurement).Direction, response.Value?.Direction);
+            if (response.Value != null)
+                Assert.Equal(WindMeasurementsDTO.FromEntity(measurement).Speed, response.Value.Speed);
         }
     }
 }

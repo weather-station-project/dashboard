@@ -40,7 +40,8 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.Tests
 
             // Assert
             Assert.IsType(new GroundTemperatureDTO().GetType(), response.Value);
-            Assert.Equal(GroundTemperatureDTO.FromEntity(measurement).Temperature, response.Value.Temperature);
+            if (response.Value != null)
+                Assert.Equal(GroundTemperatureDTO.FromEntity(measurement).Temperature, response.Value.Temperature);
         }
     }
 }

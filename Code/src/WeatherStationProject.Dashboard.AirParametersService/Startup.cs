@@ -34,8 +34,6 @@ namespace WeatherStationProject.Dashboard.AirParametersService
 
             services.AddScoped<IAirParametersService, Services.AirParametersService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-
             services.AddApiVersioning(config =>
             {
                 config.DefaultApiVersion = new ApiVersion(1, 0);

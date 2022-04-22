@@ -50,8 +50,6 @@ namespace WeatherStationProject.Dashboard.GatewayService
                     x.TokenValidationParameters = JwtAuthenticationConfiguration.GetTokenValidationParameters();
                 });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",
