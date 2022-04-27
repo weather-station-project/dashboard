@@ -25,8 +25,9 @@ namespace WeatherStationProject.Dashboard.Tests.RainfallService
 
             // Assert
             Assert.IsType(new RainfallDTO().GetType(), response.Value);
-            Assert.Equal(RainfallDTO.FromEntity(measurement, DateTime.Now, DateTime.Now).Amount,
-                response.Value.Amount);
+            if (response.Value != null)
+                Assert.Equal(RainfallDTO.FromEntity(measurement, DateTime.Now, DateTime.Now).Amount,
+                    response.Value.Amount);
         }
     }
 }
