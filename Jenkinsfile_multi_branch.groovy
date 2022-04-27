@@ -81,8 +81,8 @@ pipeline {
                 withCredentials([string(credentialsId: 'codecov-dashboard-token',
                                         variable: 'CODECOV_TOKEN')]) {
                     sh """
-                       ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${DOTNET_COVERAGE_REPORT_PATH} -cF .NET
-                       ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${REACT_COVERAGE_REPORT_PATH} -cF React
+                       ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${DOTNET_COVERAGE_REPORT_PATH} -c -F net
+                       ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${REACT_COVERAGE_REPORT_PATH} -c -F react
                        """
                 }
             }
