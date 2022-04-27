@@ -42,7 +42,6 @@ pipeline {
                                   /k:Dashboard \
                                   /n:"Weather Station Dashboard" \
                                   /v:"not provided" \
-                                  /d:sonar.verbose=true \
                                   /d:sonar.projectDescription="Solution with the dashboard" \
                                   /d:sonar.links.homepage="https://github.com/weather-station-project/dashboard" \
                                   /d:sonar.links.scm="https://github.com/weather-station-project/dashboard.git" \
@@ -60,8 +59,7 @@ pipeline {
                            ( cd ${WORKSPACE}/Code && dotnet test WeatherStationProjectDashboard.sln \
                                                          "/p:CollectCoverage=true" \
                                                          "/p:CoverletOutput=${COVERAGE_ROOT_FOLDER_PATH}" \
-                                                         "/p:CoverletOutputFormat=\"opencover\"" \
-                                                         --verbosity detailed )
+                                                         "/p:CoverletOutputFormat=\"opencover\"" )
                            """
                         sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_CREDENTIALS}"
                     }
@@ -82,7 +80,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'coveralls-dashboard-repo-token',
                                         variable: 'COVERALLS_REPO_TOKEN')]) {
-                    sh "dotnet tool run coveralls.net --opencover -i ${DOTNET_COVERAGE_REPORT_PATH} --repoTokenVariable COVERALLS_REPO_TOKEN"
+                    sh "${HOME}/.dotnet/tools/csmacnz.Coveralls --opencover -i ${DOTNET_COVERAGE_REPORT_PATH} --repoTokenVariable COVERALLS_REPO_TOKEN"
                 }
             }
         }
