@@ -78,15 +78,11 @@ pipeline {
             }
         }
         
-        stage('Upload report to Codecov') {
+        stage('Upload report to Coveralls.io') {
             steps {
-                withCredentials([string(credentialsId: 'codecov-dashboard-token',
-                                        variable: 'CODECOV_TOKEN')]) {
-                    // https://github.com/csMACnz/Coveralls.net-Samples/blob/xunit-opencover-appveyor/appveyor.yml
-                    sh """
-                       ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${DOTNET_COVERAGE_REPORT_PATH} -cF .NET
-                       ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${REACT_COVERAGE_REPORT_PATH} -cF React
-                       """
+                withCredentials([string(credentialsId: 'coveralls-dashboard-repo-token',
+                                        variable: 'COVERALLS_REPO_TOKEN')]) {
+                    sh "dotnet tool run csmacnz.Coveralls --opencover -i ${DOTNET_COVERAGE_REPORT_PATH} --repoTokenVariable COVERALLS_REPO_TOKEN"
                 }
             }
         }
