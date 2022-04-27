@@ -1,7 +1,7 @@
 # https://docs.codecov.com/docs/codecovyml-reference
 coverage:
   round: nearest
-  range: 80..100
+  range: 75..90
 ignore:
   - "**/*.spec.tsx"
   - "**/*.js"
