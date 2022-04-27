@@ -76,11 +76,14 @@ pipeline {
             }
         }
         
-        stage('Upload report to Coveralls.io') {
+        stage('Upload report to Codecov') {
             steps {
-                withCredentials([string(credentialsId: 'coveralls-dashboard-repo-token',
-                                        variable: 'COVERALLS_REPO_TOKEN')]) {
-                    sh "${HOME}/.dotnet/tools/csmacnz.Coveralls --opencover -i ${DOTNET_COVERAGE_REPORT_PATH} --repoTokenVariable COVERALLS_REPO_TOKEN"
+                withCredentials([string(credentialsId: 'codecov-dashboard-token',
+                                        variable: 'CODECOV_TOKEN')]) {
+                    sh """
+                       ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${DOTNET_COVERAGE_REPORT_PATH} -cF .NET
+                       ${CODECOV_PATH} -t ${CODECOV_TOKEN} -f ${REACT_COVERAGE_REPORT_PATH} -cF React
+                       """
                 }
             }
         }
