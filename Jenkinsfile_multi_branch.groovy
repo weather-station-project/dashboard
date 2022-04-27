@@ -82,7 +82,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'coveralls-dashboard-repo-token',
                                         variable: 'COVERALLS_REPO_TOKEN')]) {
-                    sh "dotnet tool run csmacnz.Coveralls --opencover -i ${DOTNET_COVERAGE_REPORT_PATH} --repoTokenVariable COVERALLS_REPO_TOKEN"
+                    sh "dotnet tool run coveralls.net --opencover -i ${DOTNET_COVERAGE_REPORT_PATH} --repoTokenVariable COVERALLS_REPO_TOKEN"
                 }
             }
         }
