@@ -1,4 +1,7 @@
 # https://docs.codecov.com/docs/codecovyml-reference
+codecov:
+  notify:
+    after_n_builds: 1
 coverage:
   round: nearest
   range: 75..90
