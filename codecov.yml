@@ -11,16 +11,16 @@ ignore:
 flags:
   net:
     paths:
-      - "Code/src/WeatherStationProject.Dashboard.AirParametersService"
-      - "Code/src/WeatherStationProject.Dashboard.AmbientTemperatureService"
-      - "Code/src/WeatherStationProject.Dashboard.App"
-      - "Code/src/WeatherStationProject.Dashboard.AuthenticationService"
-      - "Code/src/WeatherStationProject.Dashboard.Core"
-      - "Code/src/WeatherStationProject.Dashboard.Data"
-      - "Code/src/WeatherStationProject.Dashboard.GatewayService"
-      - "Code/src/WeatherStationProject.Dashboard.GroundTemperatureService"
-      - "Code/src/WeatherStationProject.Dashboard.RainfallService"
-      - "Code/src/WeatherStationProject.Dashboard.WindMeasurementsService"
+      - "Code/src/WeatherStationProject.Dashboard.AirParametersService/"
+      - "Code/src/WeatherStationProject.Dashboard.AmbientTemperatureService/"
+      - "Code/src/WeatherStationProject.Dashboard.App/"
+      - "Code/src/WeatherStationProject.Dashboard.AuthenticationService/"
+      - "Code/src/WeatherStationProject.Dashboard.Core/"
+      - "Code/src/WeatherStationProject.Dashboard.Data/"
+      - "Code/src/WeatherStationProject.Dashboard.GatewayService/"
+      - "Code/src/WeatherStationProject.Dashboard.GroundTemperatureService/"
+      - "Code/src/WeatherStationProject.Dashboard.RainfallService/"
+      - "Code/src/WeatherStationProject.Dashboard.WindMeasurementsService/"
   react:
     paths:
-      - "Code/src/WeatherStationProject.Dashboard.App/ClientApp"
+      - "Code/src/WeatherStationProject.Dashboard.App/ClientApp/"
