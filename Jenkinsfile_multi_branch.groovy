@@ -76,25 +76,12 @@ pipeline {
             }
         }
         
-        stage('Upload report to Codecov') {
-            steps {
-                withCredentials([string(credentialsId: 'codecov-dashboard-token',
-                                        variable: 'CODECOV_TOKEN')]) {
-                    sh """
-                       ${CODECOV_PATH} -y codecov.yml -t ${CODECOV_TOKEN} -f ${DOTNET_COVERAGE_REPORT_PATH} -F net
-                       ${CODECOV_PATH} -y codecov.yml -t ${CODECOV_TOKEN} -f ${REACT_COVERAGE_REPORT_PATH} -F react
-                       """
-                }
-            }
-        }
-
         stage('Deploy on staging') {
             steps {
                 script {
-                    sh 'skip'
-                    /* deployDashboardServices("${GlobalVariables.StagingDockerRegistry}",
+                    deployDashboardServices("${GlobalVariables.StagingDockerRegistry}",
                                             "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                            'Staging') */
+                                            'Staging')
                                             
                 }
             }
