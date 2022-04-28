@@ -4,7 +4,7 @@ ARG PROJECT_NAME_ARG
 ARG ENVIRONMENT_ARG
 
 # Pull down the image with .NET Core SDK
-FROM mcr.microsoft.com/dotnet/sdk:5.0.400-alpine3.13-amd64 AS Build
+FROM mcr.microsoft.com/dotnet/sdk:6.0.202-alpine3.15-amd64 AS Build
 LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 
 # Global args re-mapped for this stage
@@ -24,7 +24,7 @@ WORKDIR "/src/$PROJECT_NAME_ARG"
 RUN dotnet publish "./$PROJECT_NAME_ARG.csproj" --configuration Release --output "/app/publish"
 
 # Pull down the image which includes only the ASP.NET core runtime
-FROM mcr.microsoft.com/dotnet/aspnet:5.0.9-alpine3.13-amd64
+FROM mcr.microsoft.com/dotnet/aspnet:6.0.4-alpine3.15-amd64
 
 # Install needed app
 RUN apk add --no-cache curl
