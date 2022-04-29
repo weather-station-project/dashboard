@@ -18,7 +18,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Data
 
         public async Task<WindMeasurements> GetGustInTime(int minutes)
         {
-            var until = DateTime.Now;
+            var until = DateTime.UtcNow;
             var since = until.AddMinutes(-minutes);
 
             return await _windMeasurementsDbContext.WindMeasurements

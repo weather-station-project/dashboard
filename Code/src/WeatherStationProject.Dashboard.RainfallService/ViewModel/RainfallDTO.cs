@@ -14,8 +14,8 @@ namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
         {
             return new RainfallDTO
             {
-                FromDateTime = since,
-                ToDateTime = until,
+                FromDateTime = since.ToLocalTime(),
+                ToDateTime = until.ToLocalTime(),
                 Amount = amount
             };
         }

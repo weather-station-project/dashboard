@@ -15,7 +15,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
         {
             return new AirParametersDTO
             {
-                DateTime = entity.DateTime,
+                DateTime = entity.DateTime.ToLocalTime(),
                 Pressure = entity.Pressure,
                 Humidity = entity.Humidity
             };

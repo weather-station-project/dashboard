@@ -13,7 +13,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.ViewModel
         {
             return new GroundTemperatureDTO
             {
-                DateTime = entity.DateTime,
+                DateTime = entity.DateTime.ToLocalTime(),
                 Temperature = entity.Temperature
             };
         }
