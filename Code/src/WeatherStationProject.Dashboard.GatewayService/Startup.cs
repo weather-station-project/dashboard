@@ -49,6 +49,8 @@ namespace WeatherStationProject.Dashboard.GatewayService
                     x.RequireHttpsMetadata = false;
                     x.TokenValidationParameters = JwtAuthenticationConfiguration.GetTokenValidationParameters();
                 });
+            
+            services.AddMvcCore().AddApiExplorer();
 
             services.AddSwaggerGen(c =>
             {
