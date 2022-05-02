@@ -4,7 +4,7 @@ Repository with the Weather Station Dashboard solution.
 These WebApp + APIs allow you to watch and search measurements taken by the device you built and configured following the [Sensors Reader Project](https://github.com/weather-station-project/sensors-reader)
 
 ## Release information
-[![Coverage Status](https://coveralls.io/repos/github/weather-station-project/sensors-reader/badge.svg?branch=origin/master)](https://coveralls.io/github/weather-station-project/sensors-reader?branch=origin/master)
+[![codecov](https://codecov.io/gh/weather-station-project/dashboard/branch/master/graph/badge.svg?token=59OP3KE0AA)](https://codecov.io/gh/weather-station-project/dashboard)
 [![Dockerhub](https://img.shields.io/badge/dockerhub-v1.0.0-blue)](https://hub.docker.com/repository/docker/weatherstationproject/dashboard)
 
 ## ARQ Diagram
