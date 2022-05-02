@@ -1,0 +1,26 @@
+# https://docs.codecov.com/docs/codecovyml-reference
+coverage:
+  round: nearest
+  range: 75..90
+ignore:
+  - "**/*.spec.tsx"
+  - "**/*.js"
+  - "Code/tests/**/*.*"
+  - "**/Startup.cs"
+  - "**/Program.cs"
+flags:
+  net:
+    paths:
+      - "Code/src/WeatherStationProject.Dashboard.AirParametersService/"
+      - "Code/src/WeatherStationProject.Dashboard.AmbientTemperatureService/"
+      - "Code/src/WeatherStationProject.Dashboard.App/"
+      - "Code/src/WeatherStationProject.Dashboard.AuthenticationService/"
+      - "Code/src/WeatherStationProject.Dashboard.Core/"
+      - "Code/src/WeatherStationProject.Dashboard.Data/"
+      - "Code/src/WeatherStationProject.Dashboard.GatewayService/"
+      - "Code/src/WeatherStationProject.Dashboard.GroundTemperatureService/"
+      - "Code/src/WeatherStationProject.Dashboard.RainfallService/"
+      - "Code/src/WeatherStationProject.Dashboard.WindMeasurementsService/"
+  react:
+    paths:
+      - "Code/src/WeatherStationProject.Dashboard.App/ClientApp/"

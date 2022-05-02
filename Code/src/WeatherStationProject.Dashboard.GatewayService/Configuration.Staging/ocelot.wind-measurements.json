@@ -1,0 +1,77 @@
+{
+  "Routes": [
+    {
+      "Key": "windMeasurements",
+      "DownstreamPathTemplate": "/api/{version}/wind-measurements/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "wind-measurements-service-stg",
+          "Port": 1443
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/wind-measurements/{everything}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "wind-measurements-caching"
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "Key": "windMeasurementsGust",
+      "DownstreamPathTemplate": "/api/{version}/wind-measurements/gust-in-time/60",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "wind-measurements-service-stg",
+          "Port": 1443
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/wind-measurements/gust/last",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "wind-measurements-gust-caching"
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "DownstreamPathTemplate": "/swagger/{version}/swagger.json",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "wind-measurements-service-stg",
+          "Port": 1443
+        }
+      ],
+      "UpstreamPathTemplate": "/wind-measurements/{version}/swagger.json",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    }
+  ]
+}

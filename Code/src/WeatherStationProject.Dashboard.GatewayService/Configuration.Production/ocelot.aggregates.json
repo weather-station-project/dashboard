@@ -1,0 +1,15 @@
+{
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "airParameters",
+        "ambientTemperatures",
+        "groundTemperatures",
+        "rainfall",
+        "windMeasurements",
+        "windMeasurementsGust"
+      ],
+      "UpstreamPathTemplate": "/api/{version}/weather-measurements/{everything}"
+    }
+  ]
+}
