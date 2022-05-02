@@ -34,7 +34,7 @@ the AuthenticationService to compare the value passed by anybody who wants to ob
 
 A docker-compose example is provided with the solution code.
 
-### Example of an execution
+### Example of docker-compose file with basic configuration
 ```YAML
 version: '3.5'
 services:
