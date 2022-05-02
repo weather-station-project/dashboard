@@ -17,7 +17,7 @@ pipeline {
     }
 
     stages {
-        stage('Prepare Python ENV') {
+        stage('Prepare ENV') {
             steps {
                 script {
                     prepareDashboardEnvironment()
