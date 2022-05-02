@@ -8,7 +8,7 @@ These WebApp + APIs allow you to watch and search measurements taken by the devi
 [![Dockerhub](https://img.shields.io/badge/dockerhub-v1.0.0-blue)](https://hub.docker.com/repository/docker/weatherstationproject/dashboard)
 
 ## ARQ Diagram
-![ARQ diagram](https://github.com/weather-station-project/dashboard/blob/xxxx/xxxx.png)
+![ARQ diagram](https://raw.githubusercontent.com/weather-station-project/dashboard/master/dashboard-arq.png)
 
 ## Usage
 ### Create your own certificate for the WebApp
