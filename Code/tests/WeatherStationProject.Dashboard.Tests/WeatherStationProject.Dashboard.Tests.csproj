@@ -28,7 +28,6 @@
       <Folder Include="App" />
       <Folder Include="AuthenticationService" />
       <Folder Include="Core" />
-      <Folder Include="Data" />
       <Folder Include="GatewayService" />
       <Folder Include="GroundTemperatureService" />
       <Folder Include="RainfallService" />

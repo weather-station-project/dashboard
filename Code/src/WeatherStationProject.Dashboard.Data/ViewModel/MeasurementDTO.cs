@@ -2,7 +2,7 @@ using System;
 
 namespace WeatherStationProject.Dashboard.Data.ViewModel
 {
-    public abstract class SimpleDTO
+    public abstract class MeasurementDTO
     {
         public DateTime DateTime { get; set; }
     }

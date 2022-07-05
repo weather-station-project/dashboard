@@ -1,10 +1,9 @@
-﻿using System;
-using WeatherStationProject.Dashboard.AirParametersService.Data;
+﻿using WeatherStationProject.Dashboard.AirParametersService.Data;
 using WeatherStationProject.Dashboard.Data.ViewModel;
 
 namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
 {
-    public class AirParametersDTO : SimpleDTO
+    public class AirParametersDTO : MeasurementDTO
     {
         public decimal Pressure { get; set; }
 

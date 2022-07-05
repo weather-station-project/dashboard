@@ -5,7 +5,7 @@ namespace WeatherStationProject.Dashboard.Data.ViewModel
 {
     public abstract class GroupedDTO<T> where T : Measurement
     {
-        public List<SimpleDTO> Measurements;
+        public List<MeasurementDTO> Measurements;
         
         protected abstract Dictionary<string, List<T>> GroupEntities(
             List<T> entities,
