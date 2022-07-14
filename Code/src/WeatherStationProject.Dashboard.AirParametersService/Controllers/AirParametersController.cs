@@ -40,7 +40,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Controllers
             [Required] bool includeSummary,
             [Required] bool includeMeasurements)
         {
-            var records = await _airParametersService.GetAirParametersBetweenDays(since, until);
+            var records = await _airParametersService.GetAirParametersBetweenDates(since, until);
 
             if (records.Count == 0) return NotFound();
 

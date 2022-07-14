@@ -23,7 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="AirParametersService" />
       <Folder Include="AmbientTemperatureService" />
       <Folder Include="App" />
       <Folder Include="AuthenticationService" />

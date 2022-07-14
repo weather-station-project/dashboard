@@ -16,6 +16,16 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
             bool includeSummary,
             bool includeMeasurements)
         {
+            if (includeSummary)
+            {
+                SummaryByGroupingItem = new Dictionary<string, SummaryDTO>();
+            }
+
+            if (includeMeasurements)
+            {
+                Measurements = new List<MeasurementDTO>();
+            }
+            
             var groupedEntities = GroupEntities(entities,
                 grouping,
                 includeSummary,

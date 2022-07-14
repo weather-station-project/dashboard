@@ -20,7 +20,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Services
             return await _repository.GetLastMeasurement();
         }
 
-        public async Task<List<AirParameters>> GetAirParametersBetweenDays(DateTime since, DateTime until)
+        public async Task<List<AirParameters>> GetAirParametersBetweenDates(DateTime since, DateTime until)
         {
             return await _repository.GetMeasurementsBetweenDates(since, until);
         }

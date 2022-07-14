@@ -21,7 +21,7 @@ namespace WeatherStationProject.Dashboard.Data.ViewModel
             {
                 GroupingValues.Hours => $"{entity.DateTime:yyyy-MM-dd/HH}",
                 GroupingValues.Days => $"{entity.DateTime:yyyy-MM-dd}",
-                GroupingValues.Months => $"{entity.DateTime:MMMM}-{entity.DateTime.Year}",
+                GroupingValues.Months => $"{entity.DateTime.Year}-{entity.DateTime:MM}",
                 _ => string.Empty
             };
         }

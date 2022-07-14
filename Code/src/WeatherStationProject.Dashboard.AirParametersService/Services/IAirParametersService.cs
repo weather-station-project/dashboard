@@ -9,6 +9,6 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Services
     {
         Task<AirParameters> GetLastAirParameters();
 
-        Task<List<AirParameters>> GetAirParametersBetweenDays(DateTime since, DateTime until);
+        Task<List<AirParameters>> GetAirParametersBetweenDates(DateTime since, DateTime until);
     }
 }
