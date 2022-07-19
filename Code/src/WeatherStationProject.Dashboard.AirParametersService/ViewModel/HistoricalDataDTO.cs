@@ -8,7 +8,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
 {
     public sealed class HistoricalDataDTO : GroupedDTO<AirParameters>
     {
-        public Dictionary<string, SummaryDTO> SummaryByGroupingItem;
+        public Dictionary<string, SummaryDTO> SummaryByGroupingItem { get; }
 
         public HistoricalDataDTO (
             List<AirParameters> entities,
