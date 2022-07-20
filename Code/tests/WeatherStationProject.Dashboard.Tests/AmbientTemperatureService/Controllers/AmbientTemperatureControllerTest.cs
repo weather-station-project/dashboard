@@ -39,9 +39,9 @@ namespace WeatherStationProject.Dashboard.Tests.AmbientTemperatureService
             var response = await controller.LastMeasurement();
 
             // Assert
-            Assert.IsType(new AmbientTemperatureDTO().GetType(), response.Value);
+            Assert.IsType(new AmbientTemperatureDto().GetType(), response.Value);
             if (response.Value != null)
-                Assert.Equal(AmbientTemperatureDTO.FromEntity(measurement).Temperature, response.Value.Temperature);
+                Assert.Equal(AmbientTemperatureDto.FromEntity(measurement).Temperature, response.Value.Temperature);
         }
     }
 }

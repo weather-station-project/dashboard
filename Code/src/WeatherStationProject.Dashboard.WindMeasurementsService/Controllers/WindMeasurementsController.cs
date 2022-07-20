@@ -21,23 +21,23 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Controllers
         }
 
         [HttpGet("last")]
-        public async Task<ActionResult<WindMeasurementsDTO>> LastMeasurement()
+        public async Task<ActionResult<WindMeasurementsDto>> LastMeasurement()
         {
             var last = await _windMeasurementsService.GetLastWindMeasurements();
 
             if (null == last) return NotFound();
 
-            return WindMeasurementsDTO.FromEntity(last);
+            return WindMeasurementsDto.FromEntity(last);
         }
 
         [HttpGet("gust-in-time/{minutes}")]
-        public async Task<ActionResult<WindMeasurementsDTO>> GustInTime([Required] [Range(15, 60)] int minutes)
+        public async Task<ActionResult<WindMeasurementsDto>> GustInTime([Required] [Range(15, 60)] int minutes)
         {
             var gust = await _windMeasurementsService.GetGustInTime(minutes);
 
             if (null == gust) return NotFound();
 
-            return WindMeasurementsDTO.FromEntity(gust);
+            return WindMeasurementsDto.FromEntity(gust);
         }
     }
 }

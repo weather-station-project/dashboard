@@ -2,7 +2,7 @@
 
 namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
 {
-    public class RainfallDTO
+    public class RainfallDto
     {
         public DateTime FromDateTime { get; set; }
 
@@ -10,9 +10,9 @@ namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
 
         public decimal Amount { get; set; }
 
-        public static RainfallDTO FromEntity(decimal amount, DateTime since, DateTime until)
+        public static RainfallDto FromEntity(decimal amount, DateTime since, DateTime until)
         {
-            return new RainfallDTO
+            return new RainfallDto
             {
                 FromDateTime = since.ToLocalTime(),
                 ToDateTime = until.ToLocalTime(),

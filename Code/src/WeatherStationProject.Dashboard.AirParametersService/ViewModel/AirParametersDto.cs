@@ -3,15 +3,15 @@ using WeatherStationProject.Dashboard.Data.ViewModel;
 
 namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
 {
-    public class AirParametersDTO : MeasurementDTO
+    public class AirParametersDto : MeasurementDto
     {
         public decimal Pressure { get; set; }
 
         public decimal Humidity { get; set; }
 
-        public static AirParametersDTO FromEntity(AirParameters entity)
+        public static AirParametersDto FromEntity(AirParameters entity)
         {
-            return new AirParametersDTO
+            return new AirParametersDto
             {
                 DateTime = entity.DateTime.ToLocalTime(),
                 Pressure = entity.Pressure,

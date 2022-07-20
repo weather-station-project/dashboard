@@ -7,7 +7,7 @@ using Xunit;
 
 namespace WeatherStationProject.Dashboard.Tests.AirParametersService
 {
-    public class HistoricalDTOTest
+    public class HistoricalDtoTest
     {
         private readonly AirParameters _m1 = new() {Humidity = 10, Pressure = 20, DateTime = new DateTime(2022, 01, 01, 5, 0, 0)};
         private readonly AirParameters _m2 = new() {Humidity = 20, Pressure = 30, DateTime = new DateTime(2022, 01, 01, 5, 30, 0)};
@@ -18,7 +18,7 @@ namespace WeatherStationProject.Dashboard.Tests.AirParametersService
         public void When_BuildingDto_Given_Measurements_And_GroupingHours_And_NoSummary_NoMeasurements_Should_Return_ExpectedData()
         {
             // Act
-            var result = new HistoricalDataDTO(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Hours, 
+            var result = new HistoricalDataDto(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Hours, 
                 false, false);
             
             // Assert
@@ -30,21 +30,21 @@ namespace WeatherStationProject.Dashboard.Tests.AirParametersService
         public void When_BuildingDto_Given_Measurements_And_GroupingHours_And_NoSummary_WithMeasurements_Should_Return_ExpectedData()
         {
             // Act
-            var result = new HistoricalDataDTO(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Hours, 
+            var result = new HistoricalDataDto(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Hours, 
                 false, true);
             
             // Assert
             Assert.Null(result.SummaryByGroupingItem);
             Assert.NotEmpty(result.Measurements);
             Assert.Equal(4 , result.Measurements.Count);
-            Assert.Equal(_m1.Humidity , ((AirParametersDTO)result.Measurements[0]).Humidity);
+            Assert.Equal(_m1.Humidity , ((AirParametersDto)result.Measurements[0]).Humidity);
         }
         
         [Fact]
         public void When_BuildingDto_Given_Measurements_And_GroupingHours_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
         {
             // Act
-            var result = new HistoricalDataDTO(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Hours, 
+            var result = new HistoricalDataDto(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Hours, 
                 true, false);
             
             // Assert
@@ -60,7 +60,7 @@ namespace WeatherStationProject.Dashboard.Tests.AirParametersService
         public void When_BuildingDto_Given_Measurements_And_GroupingDays_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
         {
             // Act
-            var result = new HistoricalDataDTO(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Days, 
+            var result = new HistoricalDataDto(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Days, 
                 true, false);
             
             // Assert
@@ -76,7 +76,7 @@ namespace WeatherStationProject.Dashboard.Tests.AirParametersService
         public void When_BuildingDto_Given_Measurements_And_GroupingMonths_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
         {
             // Act
-            var result = new HistoricalDataDTO(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Months, 
+            var result = new HistoricalDataDto(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Months, 
                 true, false);
             
             // Assert

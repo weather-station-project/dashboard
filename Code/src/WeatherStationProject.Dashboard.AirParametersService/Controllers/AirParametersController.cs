@@ -23,17 +23,17 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Controllers
         }
 
         [HttpGet("last")]
-        public async Task<ActionResult<AirParametersDTO>> LastMeasurement()
+        public async Task<ActionResult<AirParametersDto>> LastMeasurement()
         {
             var last = await _airParametersService.GetLastAirParameters();
 
             if (null == last) return NotFound();
 
-            return AirParametersDTO.FromEntity(last);
+            return AirParametersDto.FromEntity(last);
         }
 
         [HttpGet("historical")]
-        public async Task<ActionResult<HistoricalDataDTO>> HistoricalData(
+        public async Task<ActionResult<HistoricalDataDto>> HistoricalData(
             [Required] DateTime since,
             [Required] DateTime until,
             [Required] [GroupingRange] string grouping,
@@ -45,7 +45,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Controllers
 
             if (records.Count == 0) return NotFound();
 
-            return new HistoricalDataDTO(records,
+            return new HistoricalDataDto(records,
                 (GroupingValues)Enum.Parse(typeof(GroupingValues), grouping),
                 includeSummary,
                 includeMeasurements);

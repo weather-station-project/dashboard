@@ -1,34 +1,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
-using WeatherStationProject.Dashboard.AirParametersService.Data;
+using WeatherStationProject.Dashboard.AmbientTemperatureService.Data;
 using WeatherStationProject.Dashboard.Data.Validations;
 using WeatherStationProject.Dashboard.Data.ViewModel;
 
-namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
+namespace WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel
 {
-    public sealed class HistoricalDataDTO : GroupedDTO<AirParameters>
+    public sealed class HistoricalDataDto : GroupedDto<AmbientTemperature>
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Dictionary<string, SummaryDTO> SummaryByGroupingItem { get; }
+        public Dictionary<string, SummaryDto> SummaryByGroupingItem { get; }
         
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public List<AirParametersDTO> Measurements { get; }
+        public List<AmbientTemperatureDto> Measurements { get; }
 
-        public HistoricalDataDTO (
-            List<AirParameters> entities,
+        public HistoricalDataDto (
+            List<AmbientTemperature> entities,
             GroupingValues grouping,
             bool includeSummary,
             bool includeMeasurements)
         {
             if (includeSummary)
             {
-                SummaryByGroupingItem = new Dictionary<string, SummaryDTO>();
+                SummaryByGroupingItem = new Dictionary<string, SummaryDto>();
             }
 
             if (includeMeasurements)
             {
-                Measurements = new List<AirParametersDTO>();
+                Measurements = new List<AmbientTemperatureDto>();
             }
             
             var groupedEntities = GroupEntities(entities,
@@ -39,16 +39,16 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
             PopulateGroupedSummaries(groupedEntities);
         }
         
-        protected override Dictionary<string, List<AirParameters>> GroupEntities(List<AirParameters> entities,
+        protected override Dictionary<string, List<AmbientTemperature>> GroupEntities(List<AmbientTemperature> entities,
             GroupingValues grouping,
             bool includeSummary,
             bool includeMeasurements)
         {
-            var groupedEntities = new Dictionary<string, List<AirParameters>>();
+            var groupedEntities = new Dictionary<string, List<AmbientTemperature>>();
 
             foreach (var entity in entities)
             {
-                if (includeMeasurements) Measurements.Add(AirParametersDTO.FromEntity(entity));
+                if (includeMeasurements) Measurements.Add(AmbientTemperatureDto.FromEntity(entity));
 
                 if (!includeSummary) continue;
 
@@ -56,23 +56,21 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
                 if (groupedEntities.ContainsKey(key))
                     groupedEntities[key].Add(entity);
                 else
-                    groupedEntities.Add(key, new List<AirParameters> {entity});
+                    groupedEntities.Add(key, new List<AmbientTemperature> {entity});
             }
 
             return groupedEntities;
         }
 
-        protected override void PopulateGroupedSummaries(Dictionary<string, List<AirParameters>> groupedEntities)
+        protected override void PopulateGroupedSummaries(Dictionary<string, List<AmbientTemperature>> groupedEntities)
         {
             foreach (var (key, value) in groupedEntities)
             {
-                var pressureAvg = value.Average(x => x.Pressure);
-                var humidityAvg = value.Average(x => x.Humidity);
+                var temperatureAvg = value.Average(x => x.Temperature);
                 
-                SummaryByGroupingItem.Add(key, new SummaryDTO
+                SummaryByGroupingItem.Add(key, new SummaryDto
                 {
-                    HumidityAvg = humidityAvg,
-                    PressureAvg = pressureAvg
+                    TemperatureAvg = temperatureAvg
                 });
             }
         }

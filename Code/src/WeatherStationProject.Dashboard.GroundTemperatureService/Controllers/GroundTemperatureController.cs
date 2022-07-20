@@ -20,13 +20,13 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Controllers
         }
 
         [HttpGet("last")]
-        public async Task<ActionResult<GroundTemperatureDTO>> LastMeasurement()
+        public async Task<ActionResult<GroundTemperatureDto>> LastMeasurement()
         {
             var last = await _groundTemperatureService.GetLastTemperature();
 
             if (null == last) return NotFound();
 
-            return GroundTemperatureDTO.FromEntity(last);
+            return GroundTemperatureDto.FromEntity(last);
         }
     }
 }

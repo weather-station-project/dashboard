@@ -1,6 +1,6 @@
 namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
 {
-    public class SummaryDTO
+    public class SummaryDto
     {
         public decimal PressureAvg { get; set; }
         

@@ -42,9 +42,9 @@ namespace WeatherStationProject.Dashboard.Tests.AirParametersService
             var response = await controller.LastMeasurement();
 
             // Assert
-            Assert.IsType(new AirParametersDTO().GetType(), response.Value);
+            Assert.IsType(new AirParametersDto().GetType(), response.Value);
             if (response.Value != null)
-                Assert.Equal(AirParametersDTO.FromEntity(measurement).Humidity, response.Value.Humidity);
+                Assert.Equal(AirParametersDto.FromEntity(measurement).Humidity, response.Value.Humidity);
         }
         
         [Fact]
@@ -84,7 +84,7 @@ namespace WeatherStationProject.Dashboard.Tests.AirParametersService
                 DateTime.Now, GroupingValues.Days.ToString(), false, false);
 
             // Assert
-            Assert.IsType(new HistoricalDataDTO(new List<AirParameters> {measurement}, GroupingValues.Days, false, false).GetType(), response.Value);
+            Assert.IsType(new HistoricalDataDto(new List<AirParameters> {measurement}, GroupingValues.Days, false, false).GetType(), response.Value);
         }
     }
 }

@@ -39,9 +39,9 @@ namespace WeatherStationProject.Dashboard.Tests.GroundTemperatureService
             var response = await controller.LastMeasurement();
 
             // Assert
-            Assert.IsType(new GroundTemperatureDTO().GetType(), response.Value);
+            Assert.IsType(new GroundTemperatureDto().GetType(), response.Value);
             if (response.Value != null)
-                Assert.Equal(GroundTemperatureDTO.FromEntity(measurement).Temperature, response.Value.Temperature);
+                Assert.Equal(GroundTemperatureDto.FromEntity(measurement).Temperature, response.Value.Temperature);
         }
     }
 }

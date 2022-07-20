@@ -3,7 +3,7 @@ using WeatherStationProject.Dashboard.Data.Validations;
 
 namespace WeatherStationProject.Dashboard.Data.ViewModel
 {
-    public abstract class GroupedDTO<T> where T : Measurement
+    public abstract class GroupedDto<T> where T : Measurement
     {
         protected abstract Dictionary<string, List<T>> GroupEntities(
             List<T> entities,

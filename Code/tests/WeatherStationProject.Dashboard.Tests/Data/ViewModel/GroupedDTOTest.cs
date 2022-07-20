@@ -4,7 +4,7 @@ using Xunit;
 
 namespace WeatherStationProject.Dashboard.Tests.Data
 {
-    public class GroupedDTOTest
+    public class GroupedDtoTest
     {
         [Theory]
         [InlineData(GroupingValues.Hours)]
@@ -13,7 +13,7 @@ namespace WeatherStationProject.Dashboard.Tests.Data
         public void When_GroupingByKey_Should_Return_ExpectedResult(GroupingValues groupingValue)
         {
             // Arrange
-            var dto = new GroupedDTOMock();
+            var dto = new GroupedDtoMock();
             var entity = new MeasurementMock(){Id = 1, DateTime = DateTime.Now};
             
             // Act & Assert

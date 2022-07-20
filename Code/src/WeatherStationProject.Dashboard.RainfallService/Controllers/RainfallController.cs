@@ -22,13 +22,13 @@ namespace WeatherStationProject.Dashboard.RainfallService.Controllers
         }
 
         [HttpGet("amount-during-time/{minutes}")]
-        public async Task<ActionResult<RainfallDTO>> RainfallDuringTime([Required] [Range(15, 60)] int minutes)
+        public async Task<ActionResult<RainfallDto>> RainfallDuringTime([Required] [Range(15, 60)] int minutes)
         {
             var until = DateTime.UtcNow;
             var since = until.AddMinutes(-minutes);
 
             var amount = await _rainfallService.GetRainfallDuringTime(since, until);
-            return RainfallDTO.FromEntity(amount, since, until);
+            return RainfallDto.FromEntity(amount, since, until);
         }
     }
 }

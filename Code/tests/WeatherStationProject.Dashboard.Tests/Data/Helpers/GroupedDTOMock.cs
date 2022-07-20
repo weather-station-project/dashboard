@@ -5,9 +5,9 @@ using WeatherStationProject.Dashboard.Data.ViewModel;
 
 namespace WeatherStationProject.Dashboard.Tests.Data
 {
-    public class GroupedDTOMock : GroupedDTO<Measurement>
+    public class GroupedDtoMock : GroupedDto<Measurement>
     {
-        protected override Dictionary<string, List<Measurement>> GroupEntities(List<Measurement> entities,
+        protected override Dictionary<string, List<Measurement>>? GroupEntities(List<Measurement> entities,
             GroupingValues grouping, bool includeSummary, bool includeMeasurements)
         {
             return null;
