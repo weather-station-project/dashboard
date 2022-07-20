@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using WeatherStationProject.Dashboard.AirParametersService.Data;
 using WeatherStationProject.Dashboard.Data.Validations;
 using WeatherStationProject.Dashboard.Data.ViewModel;
@@ -8,7 +9,11 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
 {
     public sealed class HistoricalDataDTO : GroupedDTO<AirParameters>
     {
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<string, SummaryDTO> SummaryByGroupingItem { get; }
+        
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<AirParametersDTO> Measurements { get; }
 
         public HistoricalDataDTO (
             List<AirParameters> entities,
@@ -23,7 +28,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
 
             if (includeMeasurements)
             {
-                Measurements = new List<MeasurementDTO>();
+                Measurements = new List<AirParametersDTO>();
             }
             
             var groupedEntities = GroupEntities(entities,
