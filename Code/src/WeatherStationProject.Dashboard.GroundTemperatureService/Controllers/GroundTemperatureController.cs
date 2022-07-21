@@ -1,10 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WeatherStationProject.Dashboard.Data.Validations;
 using WeatherStationProject.Dashboard.GroundTemperatureService.Services;
 using WeatherStationProject.Dashboard.GroundTemperatureService.ViewModel;
 
-namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Controllers
+namespace WeatherStationProject.Dashboard.GroundTemperatureService.Controllers
 {
     [ApiController]
     [Authorize]
@@ -27,6 +30,25 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Controllers
             if (null == last) return NotFound();
 
             return GroundTemperatureDto.FromEntity(last);
+        }
+        
+        [HttpGet("historical")]
+        public async Task<ActionResult<HistoricalDataDto>> HistoricalData(
+            [Required] DateTime since,
+            [Required] DateTime until,
+            [Required] [GroupingRange] string grouping,
+            [Required] bool includeSummary,
+            [Required] bool includeMeasurements)
+        {
+            var records = await _groundTemperatureService.GetGroundTemperaturesBetweenDates(since.ToUniversalTime(),
+                until.ToUniversalTime());
+
+            if (records.Count == 0) return NotFound();
+
+            return new HistoricalDataDto(records,
+                (GroupingValues)Enum.Parse(typeof(GroupingValues), grouping),
+                includeSummary,
+                includeMeasurements);
         }
     }
 }

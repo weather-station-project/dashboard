@@ -23,12 +23,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="AmbientTemperatureService" />
       <Folder Include="App" />
       <Folder Include="AuthenticationService" />
       <Folder Include="Core" />
       <Folder Include="GatewayService" />
-      <Folder Include="GroundTemperatureService" />
       <Folder Include="RainfallService" />
       <Folder Include="WindMeasurementsService" />
     </ItemGroup>
