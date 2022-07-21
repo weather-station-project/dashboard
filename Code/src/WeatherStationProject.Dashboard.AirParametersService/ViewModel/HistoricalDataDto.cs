@@ -66,13 +66,15 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
         {
             foreach (var (key, value) in groupedEntities)
             {
-                var pressureAvg = value.Average(x => x.Pressure);
-                var humidityAvg = value.Average(x => x.Humidity);
-                
                 SummaryByGroupingItem.Add(key, new SummaryDto
                 {
-                    HumidityAvg = humidityAvg,
-                    PressureAvg = pressureAvg
+                    MaxHumidity = value.Max(x => x.Humidity),
+                    AvgHumidity = value.Average(x => x.Humidity),
+                    MinHumidity = value.Min(x => x.Humidity),
+                    
+                    MaxPressure = value.Max(x => x.Pressure),
+                    AvgPressure = value.Average(x => x.Pressure),
+                    MinPressure = value.Min(x => x.Pressure)
                 });
             }
         }

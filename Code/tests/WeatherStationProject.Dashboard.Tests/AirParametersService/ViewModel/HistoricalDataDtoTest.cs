@@ -40,52 +40,33 @@ namespace WeatherStationProject.Dashboard.Tests.AirParametersService
             Assert.Equal(_m1.Humidity , ((AirParametersDto)result.Measurements[0]).Humidity);
         }
         
-        [Fact]
-        public void When_BuildingDto_Given_Measurements_And_GroupingHours_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
+        [Theory]
+        [InlineData("2022-01-01/05", "2023-02-15/01", GroupingValues.Hours)]
+        [InlineData("2022-01-01", "2023-02-15", GroupingValues.Days)]
+        [InlineData("2022-01", "2023-02", GroupingValues.Months)]
+        public void When_BuildingDto_Given_Measurements_And_Grouping_And_WithSummary_NoMeasurements_Should_Return_ExpectedData(string keyGroup1,
+            string keyGroup2, GroupingValues groupingValues)
         {
             // Act
-            var result = new HistoricalDataDto(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Hours, 
-                true, false);
+            var result = new HistoricalDataDto(new List<AirParameters>() {_m1, _m2, _m3, _m4}, groupingValues, true, false);
             
             // Assert
             Assert.Null(result.Measurements);
             Assert.NotEmpty(result.SummaryByGroupingItem);
-            Assert.Equal((_m1.Humidity + _m2.Humidity) / 2, result.SummaryByGroupingItem["2022-01-01/05"].HumidityAvg);
-            Assert.Equal((_m1.Pressure + _m2.Pressure) / 2, result.SummaryByGroupingItem["2022-01-01/05"].PressureAvg);
-            Assert.Equal((_m3.Humidity + _m4.Humidity) / 2, result.SummaryByGroupingItem["2023-02-15/01"].HumidityAvg);
-            Assert.Equal((_m3.Pressure + _m4.Pressure) / 2, result.SummaryByGroupingItem["2023-02-15/01"].PressureAvg);
-        }
-        
-        [Fact]
-        public void When_BuildingDto_Given_Measurements_And_GroupingDays_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
-        {
-            // Act
-            var result = new HistoricalDataDto(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Days, 
-                true, false);
             
-            // Assert
-            Assert.Null(result.Measurements);
-            Assert.NotEmpty(result.SummaryByGroupingItem);
-            Assert.Equal((_m1.Humidity + _m2.Humidity) / 2, result.SummaryByGroupingItem["2022-01-01"].HumidityAvg);
-            Assert.Equal((_m1.Pressure + _m2.Pressure) / 2, result.SummaryByGroupingItem["2022-01-01"].PressureAvg);
-            Assert.Equal((_m3.Humidity + _m4.Humidity) / 2, result.SummaryByGroupingItem["2023-02-15"].HumidityAvg);
-            Assert.Equal((_m3.Pressure + _m4.Pressure) / 2, result.SummaryByGroupingItem["2023-02-15"].PressureAvg);
-        }
-        
-        [Fact]
-        public void When_BuildingDto_Given_Measurements_And_GroupingMonths_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
-        {
-            // Act
-            var result = new HistoricalDataDto(new List<AirParameters>() {_m1, _m2, _m3, _m4}, GroupingValues.Months, 
-                true, false);
+            Assert.Equal(_m2.Humidity, result.SummaryByGroupingItem[keyGroup1].MaxHumidity);
+            Assert.Equal(_m2.Pressure, result.SummaryByGroupingItem[keyGroup1].MaxPressure);
+            Assert.Equal((_m1.Humidity + _m2.Humidity) / 2, result.SummaryByGroupingItem[keyGroup1].AvgHumidity);
+            Assert.Equal((_m1.Pressure + _m2.Pressure) / 2, result.SummaryByGroupingItem[keyGroup1].AvgPressure);
+            Assert.Equal(_m1.Humidity, result.SummaryByGroupingItem[keyGroup1].MinHumidity);
+            Assert.Equal(_m1.Pressure, result.SummaryByGroupingItem[keyGroup1].MinPressure);
             
-            // Assert
-            Assert.Null(result.Measurements);
-            Assert.NotEmpty(result.SummaryByGroupingItem);
-            Assert.Equal((_m1.Humidity + _m2.Humidity) / 2, result.SummaryByGroupingItem["2022-01"].HumidityAvg);
-            Assert.Equal((_m1.Pressure + _m2.Pressure) / 2, result.SummaryByGroupingItem["2022-01"].PressureAvg);
-            Assert.Equal((_m3.Humidity + _m4.Humidity) / 2, result.SummaryByGroupingItem["2023-02"].HumidityAvg);
-            Assert.Equal((_m3.Pressure + _m4.Pressure) / 2, result.SummaryByGroupingItem["2023-02"].PressureAvg);
+            Assert.Equal(_m4.Humidity, result.SummaryByGroupingItem[keyGroup2].MaxHumidity);
+            Assert.Equal(_m4.Pressure, result.SummaryByGroupingItem[keyGroup2].MaxPressure);
+            Assert.Equal((_m3.Humidity + _m4.Humidity) / 2, result.SummaryByGroupingItem[keyGroup2].AvgHumidity);
+            Assert.Equal((_m3.Pressure + _m4.Pressure) / 2, result.SummaryByGroupingItem[keyGroup2].AvgPressure);
+            Assert.Equal(_m3.Humidity, result.SummaryByGroupingItem[keyGroup2].MinHumidity);
+            Assert.Equal(_m3.Pressure, result.SummaryByGroupingItem[keyGroup2].MinPressure);
         }
     }
 }

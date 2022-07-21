@@ -66,8 +66,6 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
         {
             foreach (var (key, value) in groupedEntities)
             {
-                var avgSpeed = value.Average(x => x.Speed);
-                var maxGust = value.Max(x => x.Speed);
                 var predominantDirection = value.GroupBy(x => x.Direction)
                     .OrderByDescending(c => c.Count())
                     .Take(1)
@@ -76,8 +74,8 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
                 
                 SummaryByGroupingItem.Add(key, new SummaryDto
                 {
-                    AvgSpeed = avgSpeed,
-                    MaxGust = maxGust,
+                    AvgSpeed = value.Average(x => x.Speed),
+                    MaxGust = value.Max(x => x.Speed),
                     PredominantDirection = predominantDirection
                 });
             }
