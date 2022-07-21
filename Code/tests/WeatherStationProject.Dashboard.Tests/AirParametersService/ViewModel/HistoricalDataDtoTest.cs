@@ -7,7 +7,7 @@ using Xunit;
 
 namespace WeatherStationProject.Dashboard.Tests.AirParametersService
 {
-    public class HistoricalDtoTest
+    public class HistoricalDataDtoTest
     {
         private readonly AirParameters _m1 = new() {Humidity = 10, Pressure = 20, DateTime = new DateTime(2022, 01, 01, 5, 0, 0)};
         private readonly AirParameters _m2 = new() {Humidity = 20, Pressure = 30, DateTime = new DateTime(2022, 01, 01, 5, 30, 0)};

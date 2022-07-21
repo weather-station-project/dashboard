@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Moq;
 using WeatherStationProject.Dashboard.RainfallService.Data;
@@ -23,6 +24,25 @@ namespace WeatherStationProject.Dashboard.Tests.RainfallService
 
             // Assert
             Assert.Equal(measurement, result);
+        }
+        
+        [Fact]
+        public async Task When_Getting_RainfallMeasurementsBetweenDates_Given_Result_Should_Return_RelatedObject()
+        {
+            // Arrange
+            var measurement1 = new Rainfall {Amount = 5};
+            var measurement2 = new Rainfall {Amount = 15};
+            var parametersRepository = new Mock<IRainfallRepository>();
+            parametersRepository.Setup(x => x.GetMeasurementsBetweenDates(It.IsAny<DateTime>(), 
+                It.IsAny<DateTime>())).Returns(Task.FromResult(new List<Rainfall> {measurement1, measurement2}));
+            var service = new Dashboard.RainfallService.Services.RainfallService(parametersRepository.Object);
+
+            // Act
+            var result = await service.GetRainfallMeasurementsBetweenDates(DateTime.Now, DateTime.Now);
+
+            // Assert
+            Assert.Equal(2, result.Count);
+            Assert.Equal(measurement1.Amount, result[0].Amount);
         }
     }
 }

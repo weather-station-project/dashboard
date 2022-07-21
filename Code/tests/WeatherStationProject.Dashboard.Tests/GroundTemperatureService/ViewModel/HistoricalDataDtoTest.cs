@@ -7,7 +7,7 @@ using Xunit;
 
 namespace WeatherStationProject.Dashboard.Tests.GroundTemperatureService
 {
-    public class HistoricalDtoTest
+    public class HistoricalDataDtoTest
     {
         private readonly GroundTemperature _m1 = new() {Temperature = 25, DateTime = new DateTime(2022, 01, 01, 5, 0, 0)};
         private readonly GroundTemperature _m2 = new() {Temperature = 30, DateTime = new DateTime(2022, 01, 01, 5, 30, 0)};

@@ -8,7 +8,7 @@ using HistoricalDataDto = WeatherStationProject.Dashboard.AmbientTemperatureServ
 
 namespace WeatherStationProject.Dashboard.Tests.AmbientTemperatureService
 {
-    public class HistoricalDtoTest
+    public class HistoricalDataDtoTest
     {
         private readonly AmbientTemperature _m1 = new() {Temperature = 10, DateTime = new DateTime(2022, 01, 01, 5, 0, 0)};
         private readonly AmbientTemperature _m2 = new() {Temperature = 20, DateTime = new DateTime(2022, 01, 01, 5, 30, 0)};

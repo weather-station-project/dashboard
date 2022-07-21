@@ -1,6 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using WeatherStationProject.Dashboard.Data.Validations;
 using WeatherStationProject.Dashboard.WindMeasurementsService.Controllers;
 using WeatherStationProject.Dashboard.WindMeasurementsService.Data;
 using WeatherStationProject.Dashboard.WindMeasurementsService.Services;
@@ -78,6 +81,45 @@ namespace WeatherStationProject.Dashboard.Tests.WindMeasurementsService
             Assert.Equal(WindMeasurementsDto.FromEntity(measurement).Direction, response.Value?.Direction);
             if (response.Value != null)
                 Assert.Equal(WindMeasurementsDto.FromEntity(measurement).Speed, response.Value.Speed);
+        }
+        
+        [Fact]
+        public async Task When_Getting_HistoricalData_Given_Empty_Should_Return_Not_Found_Response()
+        {
+            // Arrange
+            var parametersService = new Mock<IWindMeasurementsService>();
+            parametersService.Setup(x => x.GetWindMeasurementsBetweenDates(It.IsAny<DateTime>(), 
+                It.IsAny<DateTime>())).Returns(Task.FromResult(new List<WindMeasurements>()));
+            var controller = new WindMeasurementsController(parametersService.Object);
+
+            // Act
+            var response = await controller.HistoricalData(DateTime.Now, 
+                DateTime.Now, GroupingValues.Days.ToString(), false, false);
+
+            // Assert
+            Assert.IsType(new NotFoundResult().GetType(), response.Result);
+        }
+        
+        [Fact]
+        public async Task When_Getting_HistoricalData_Given_Result_Should_Return_Expected_Response()
+        {
+            // Arrange
+            var measurement = new WindMeasurements
+            {
+                Speed = 2,
+                DateTime = DateTime.UtcNow
+            };
+            var parametersService = new Mock<IWindMeasurementsService>();
+            parametersService.Setup(x => x.GetWindMeasurementsBetweenDates(It.IsAny<DateTime>(), 
+                It.IsAny<DateTime>())).Returns(Task.FromResult(new List<WindMeasurements> {measurement}));
+            var controller = new WindMeasurementsController(parametersService.Object);
+
+            // Act
+            var response = await controller.HistoricalData(DateTime.Now, 
+                DateTime.Now, GroupingValues.Days.ToString(), false, false);
+
+            // Assert
+            Assert.IsType(new HistoricalDataDto(new List<WindMeasurements> {measurement}, GroupingValues.Days, false, false).GetType(), response.Value);
         }
     }
 }

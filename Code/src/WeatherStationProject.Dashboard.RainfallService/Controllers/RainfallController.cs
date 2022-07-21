@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WeatherStationProject.Dashboard.Data.Validations;
 using WeatherStationProject.Dashboard.RainfallService.Services;
 using WeatherStationProject.Dashboard.RainfallService.ViewModel;
 
@@ -29,6 +30,25 @@ namespace WeatherStationProject.Dashboard.RainfallService.Controllers
 
             var amount = await _rainfallService.GetRainfallDuringTime(since, until);
             return RainfallDto.FromEntity(amount, since, until);
+        }
+        
+        [HttpGet("historical")]
+        public async Task<ActionResult<HistoricalDataDto>> HistoricalData(
+            [Required] DateTime since,
+            [Required] DateTime until,
+            [Required] [GroupingRange] string grouping,
+            [Required] bool includeSummary,
+            [Required] bool includeMeasurements)
+        {
+            var records = await _rainfallService.GetRainfallMeasurementsBetweenDates(since.ToUniversalTime(),
+                until.ToUniversalTime());
+
+            if (records.Count == 0) return NotFound();
+
+            return new HistoricalDataDto(records,
+                (GroupingValues)Enum.Parse(typeof(GroupingValues), grouping),
+                includeSummary,
+                includeMeasurements);
         }
     }
 }

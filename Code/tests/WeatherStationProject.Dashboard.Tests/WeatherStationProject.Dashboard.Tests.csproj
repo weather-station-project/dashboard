@@ -27,8 +27,6 @@
       <Folder Include="AuthenticationService" />
       <Folder Include="Core" />
       <Folder Include="GatewayService" />
-      <Folder Include="RainfallService" />
-      <Folder Include="WindMeasurementsService" />
     </ItemGroup>
 
     <ItemGroup>

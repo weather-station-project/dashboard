@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using WeatherStationProject.Dashboard.Data.Validations;
+using WeatherStationProject.Dashboard.WindMeasurementsService.Data;
+using WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel;
+using Xunit;
+
+namespace WeatherStationProject.Dashboard.Tests.WindMeasurementsService
+{
+    public class HistoricalDataDtoTest
+    {
+        private readonly WindMeasurements _m1 = new() {Speed = 10, Direction = "N", DateTime = new DateTime(2022, 01, 01, 5, 0, 0)};
+        private readonly WindMeasurements _m2 = new() {Speed = 20, Direction = "E", DateTime = new DateTime(2022, 01, 01, 5, 30, 0)};
+        private readonly WindMeasurements _m3 = new() {Speed = 30, Direction = "N", DateTime = new DateTime(2022, 01, 01, 5, 45, 0)};
+        private readonly WindMeasurements _m4 = new() {Speed = 50, Direction = "O", DateTime = new DateTime(2023, 02, 15, 1, 15, 0)};
+        private readonly WindMeasurements _m5 = new() {Speed = 60, Direction = "NO", DateTime = new DateTime(2023, 02, 15, 1, 45, 0)};
+        private readonly WindMeasurements _m6 = new() {Speed = 70, Direction = "NO", DateTime = new DateTime(2023, 02, 15, 1, 55, 0)};
+        
+        [Fact]
+        public void When_BuildingDto_Given_Measurements_And_GroupingHours_And_NoSummary_NoMeasurements_Should_Return_ExpectedData()
+        {
+            // Act
+            var result = new HistoricalDataDto(new List<WindMeasurements>() {_m1, _m2, _m3, _m4, _m5, _m6}, GroupingValues.Hours, 
+                false, false);
+            
+            // Assert
+            Assert.Null(result.SummaryByGroupingItem);
+            Assert.Null(result.Measurements);
+        }
+        
+        [Fact]
+        public void When_BuildingDto_Given_Measurements_And_GroupingHours_And_NoSummary_WithMeasurements_Should_Return_ExpectedData()
+        {
+            // Act
+            var result = new HistoricalDataDto(new List<WindMeasurements>() {_m1, _m2, _m3, _m4, _m5, _m6}, GroupingValues.Hours, 
+                false, true);
+            
+            // Assert
+            Assert.Null(result.SummaryByGroupingItem);
+            Assert.NotEmpty(result.Measurements);
+            Assert.Equal(6 , result.Measurements.Count);
+            Assert.Equal(_m1.Speed , ((WindMeasurementsDto)result.Measurements[0]).Speed);
+        }
+        
+        [Fact]
+        public void When_BuildingDto_Given_Measurements_And_GroupingHours_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
+        {
+            // Act
+            var result = new HistoricalDataDto(new List<WindMeasurements>() {_m1, _m2, _m3, _m4, _m5, _m6}, GroupingValues.Hours, 
+                true, false);
+            
+            // Assert
+            Assert.Null(result.Measurements);
+            Assert.NotEmpty(result.SummaryByGroupingItem);
+            Assert.Equal((_m1.Speed + _m2.Speed + _m3.Speed) / 3, result.SummaryByGroupingItem["2022-01-01/05"].AvgSpeed);
+            Assert.Equal(_m1.Direction, result.SummaryByGroupingItem["2022-01-01/05"].PredominantDirection);
+            Assert.Equal(_m3.Speed, result.SummaryByGroupingItem["2022-01-01/05"].MaxGust);
+            Assert.Equal((_m4.Speed + _m5.Speed + _m6.Speed) / 3, result.SummaryByGroupingItem["2023-02-15/01"].AvgSpeed);
+            Assert.Equal(_m6.Direction, result.SummaryByGroupingItem["2023-02-15/01"].PredominantDirection);
+            Assert.Equal(_m6.Speed, result.SummaryByGroupingItem["2023-02-15/01"].MaxGust);
+        }
+        
+        [Fact]
+        public void When_BuildingDto_Given_Measurements_And_GroupingDays_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
+        {
+            // Act
+            var result = new HistoricalDataDto(new List<WindMeasurements>() {_m1, _m2, _m3, _m4, _m5, _m6}, GroupingValues.Days, 
+                true, false);
+            
+            // Assert
+            Assert.Null(result.Measurements);
+            Assert.NotEmpty(result.SummaryByGroupingItem);
+            Assert.Equal((_m1.Speed + _m2.Speed + _m3.Speed) / 3, result.SummaryByGroupingItem["2022-01-01"].AvgSpeed);
+            Assert.Equal(_m1.Direction, result.SummaryByGroupingItem["2022-01-01"].PredominantDirection);
+            Assert.Equal(_m3.Speed, result.SummaryByGroupingItem["2022-01-01"].MaxGust);
+            Assert.Equal((_m4.Speed + _m5.Speed + _m6.Speed) / 3, result.SummaryByGroupingItem["2023-02-15"].AvgSpeed);
+            Assert.Equal(_m6.Direction, result.SummaryByGroupingItem["2023-02-15"].PredominantDirection);
+            Assert.Equal(_m6.Speed, result.SummaryByGroupingItem["2023-02-15"].MaxGust);
+        }
+        
+        [Fact]
+        public void When_BuildingDto_Given_Measurements_And_GroupingMonths_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
+        {
+            // Act
+            var result = new HistoricalDataDto(new List<WindMeasurements>() {_m1, _m2, _m3, _m4, _m5, _m6}, GroupingValues.Months, 
+                true, false);
+            
+            // Assert
+            Assert.Null(result.Measurements);
+            Assert.NotEmpty(result.SummaryByGroupingItem);
+            Assert.Equal((_m1.Speed + _m2.Speed + _m3.Speed) / 3, result.SummaryByGroupingItem["2022-01"].AvgSpeed);
+            Assert.Equal(_m1.Direction, result.SummaryByGroupingItem["2022-01"].PredominantDirection);
+            Assert.Equal(_m3.Speed, result.SummaryByGroupingItem["2022-01"].MaxGust);
+            Assert.Equal((_m4.Speed + _m5.Speed + _m6.Speed) / 3, result.SummaryByGroupingItem["2023-02"].AvgSpeed);
+            Assert.Equal(_m6.Direction, result.SummaryByGroupingItem["2023-02"].PredominantDirection);
+            Assert.Equal(_m6.Speed, result.SummaryByGroupingItem["2023-02"].MaxGust);
+        }
+    }
+}

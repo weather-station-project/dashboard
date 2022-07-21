@@ -1,12 +1,11 @@
 ﻿using System;
+using WeatherStationProject.Dashboard.Data.ViewModel;
 using WeatherStationProject.Dashboard.WindMeasurementsService.Data;
 
 namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
 {
-    public class WindMeasurementsDto
+    public class WindMeasurementsDto : MeasurementDto
     {
-        public DateTime DateTime { get; set; }
-
         public decimal Speed { get; set; }
 
         public string Direction { get; set; }

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Moq;
 using WeatherStationProject.Dashboard.WindMeasurementsService.Data;
@@ -37,6 +39,25 @@ namespace WeatherStationProject.Dashboard.Tests.WindMeasurementsService
 
             // Assert
             Assert.Equal(measurement, result);
+        }
+        
+        [Fact]
+        public async Task When_Getting_WindMeasurementsBetweenDates_Given_Result_Should_Return_RelatedObject()
+        {
+            // Arrange
+            var measurement1 = new WindMeasurements {Speed = 5};
+            var measurement2 = new WindMeasurements {Speed = 15};
+            var parametersRepository = new Mock<IWindMeasurementsRepository>();
+            parametersRepository.Setup(x => x.GetMeasurementsBetweenDates(It.IsAny<DateTime>(), 
+                It.IsAny<DateTime>())).Returns(Task.FromResult(new List<WindMeasurements>() {measurement1, measurement2}));
+            var service = new Dashboard.WindMeasurementsService.Services.WindMeasurementsService(parametersRepository.Object);
+
+            // Act
+            var result = await service.GetWindMeasurementsBetweenDates(DateTime.Now, DateTime.Now);
+
+            // Assert
+            Assert.Equal(2, result.Count);
+            Assert.Equal(measurement1.Speed, result[0].Speed);
         }
     }
 }
