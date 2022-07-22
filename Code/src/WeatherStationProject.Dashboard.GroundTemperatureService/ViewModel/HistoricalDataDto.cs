@@ -66,11 +66,11 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.ViewModel
         {
             foreach (var (key, value) in groupedEntities)
             {
-                var temperatureAvg = value.Average(x => x.Temperature);
-                
                 SummaryByGroupingItem.Add(key, new SummaryDto
                 {
-                    TemperatureAvg = temperatureAvg
+                    MaxTemperature = value.Max(x => x.Temperature),
+                    AvgTemperature = value.Average(x => x.Temperature),
+                    MinTemperature = value.Min(x => x.Temperature)
                 });
             }
         }

@@ -40,46 +40,28 @@ namespace WeatherStationProject.Dashboard.Tests.RainfallService
             Assert.Equal(_m1.Amount , ((RainfallDto)result.Measurements[0]).Amount);
         }
         
-        [Fact]
-        public void When_BuildingDto_Given_Measurements_And_GroupingHours_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
+        [Theory]
+        [InlineData("2022-01-01/05", "2023-02-15/01", GroupingValues.Hours)]
+        [InlineData("2022-01-01", "2023-02-15", GroupingValues.Days)]
+        [InlineData("2022-01", "2023-02", GroupingValues.Months)]
+        public void When_BuildingDto_Given_Measurements_And_Grouping_And_WithSummary_NoMeasurements_Should_Return_ExpectedData(string keyGroup1,
+            string keyGroup2, GroupingValues groupingValues)
         {
             // Act
-            var result = new HistoricalDataDto(new List<Rainfall>() {_m1, _m2, _m3, _m4}, GroupingValues.Hours, 
+            var result = new HistoricalDataDto(new List<Rainfall>() {_m1, _m2, _m3, _m4}, groupingValues, 
                 true, false);
             
             // Assert
             Assert.Null(result.Measurements);
             Assert.NotEmpty(result.SummaryByGroupingItem);
-            Assert.Equal((_m1.Amount + _m2.Amount) / 2, result.SummaryByGroupingItem["2022-01-01/05"].AmountAvg);
-            Assert.Equal((_m3.Amount + _m4.Amount) / 2, result.SummaryByGroupingItem["2023-02-15/01"].AmountAvg);
-        }
-        
-        [Fact]
-        public void When_BuildingDto_Given_Measurements_And_GroupingDays_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
-        {
-            // Act
-            var result = new HistoricalDataDto(new List<Rainfall>() {_m1, _m2, _m3, _m4}, GroupingValues.Days, 
-                true, false);
             
-            // Assert
-            Assert.Null(result.Measurements);
-            Assert.NotEmpty(result.SummaryByGroupingItem);
-            Assert.Equal((_m1.Amount + _m2.Amount) / 2, result.SummaryByGroupingItem["2022-01-01"].AmountAvg);
-            Assert.Equal((_m3.Amount + _m4.Amount) / 2, result.SummaryByGroupingItem["2023-02-15"].AmountAvg);
-        }
-        
-        [Fact]
-        public void When_BuildingDto_Given_Measurements_And_GroupingMonths_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
-        {
-            // Act
-            var result = new HistoricalDataDto(new List<Rainfall>() {_m1, _m2, _m3, _m4}, GroupingValues.Months, 
-                true, false);
+            Assert.Equal(_m2.Amount, result.SummaryByGroupingItem[keyGroup1].MaxAmount);
+            Assert.Equal((_m1.Amount + _m2.Amount) / 2, result.SummaryByGroupingItem[keyGroup1].AvgAmount);
+            Assert.Equal(_m1.Amount, result.SummaryByGroupingItem[keyGroup1].MinAmount);
             
-            // Assert
-            Assert.Null(result.Measurements);
-            Assert.NotEmpty(result.SummaryByGroupingItem);
-            Assert.Equal((_m1.Amount + _m2.Amount) / 2, result.SummaryByGroupingItem["2022-01"].AmountAvg);
-            Assert.Equal((_m3.Amount + _m4.Amount) / 2, result.SummaryByGroupingItem["2023-02"].AmountAvg);
+            Assert.Equal(_m4.Amount, result.SummaryByGroupingItem[keyGroup2].MaxAmount);
+            Assert.Equal((_m3.Amount + _m4.Amount) / 2, result.SummaryByGroupingItem[keyGroup2].AvgAmount);
+            Assert.Equal(_m3.Amount, result.SummaryByGroupingItem[keyGroup2].MinAmount);
         }
     }
 }

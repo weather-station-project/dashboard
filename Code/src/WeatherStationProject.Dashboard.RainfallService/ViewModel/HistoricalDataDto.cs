@@ -66,11 +66,11 @@ namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
         {
             foreach (var (key, value) in groupedEntities)
             {
-                var avg = value.Average(x => x.Amount);
-                
                 SummaryByGroupingItem.Add(key, new SummaryDto
                 {
-                    AmountAvg = avg
+                    MaxAmount = value.Max(x => x.Amount),
+                    AvgAmount = value.Average(x => x.Amount),
+                    MinAmount = value.Min(x => x.Amount)
                 });
             }
         }

@@ -42,22 +42,28 @@ namespace WeatherStationProject.Dashboard.Tests.WindMeasurementsService
             Assert.Equal(_m1.Speed , ((WindMeasurementsDto)result.Measurements[0]).Speed);
         }
         
-        [Fact]
-        public void When_BuildingDto_Given_Measurements_And_GroupingHours_And_WithSummary_NoMeasurements_Should_Return_ExpectedData()
+        [Theory]
+        [InlineData("2022-01-01/05", "2023-02-15/01", GroupingValues.Hours)]
+        [InlineData("2022-01-01", "2023-02-15", GroupingValues.Days)]
+        [InlineData("2022-01", "2023-02", GroupingValues.Months)]
+        public void When_BuildingDto_Given_Measurements_And_Grouping_And_WithSummary_NoMeasurements_Should_Return_ExpectedData(string keyGroup1,
+            string keyGroup2, GroupingValues groupingValues)
         {
             // Act
-            var result = new HistoricalDataDto(new List<WindMeasurements>() {_m1, _m2, _m3, _m4, _m5, _m6}, GroupingValues.Hours, 
+            var result = new HistoricalDataDto(new List<WindMeasurements>() {_m1, _m2, _m3, _m4, _m5, _m6}, groupingValues, 
                 true, false);
             
             // Assert
             Assert.Null(result.Measurements);
             Assert.NotEmpty(result.SummaryByGroupingItem);
-            Assert.Equal((_m1.Speed + _m2.Speed + _m3.Speed) / 3, result.SummaryByGroupingItem["2022-01-01/05"].AvgSpeed);
-            Assert.Equal(_m1.Direction, result.SummaryByGroupingItem["2022-01-01/05"].PredominantDirection);
-            Assert.Equal(_m3.Speed, result.SummaryByGroupingItem["2022-01-01/05"].MaxGust);
-            Assert.Equal((_m4.Speed + _m5.Speed + _m6.Speed) / 3, result.SummaryByGroupingItem["2023-02-15/01"].AvgSpeed);
-            Assert.Equal(_m6.Direction, result.SummaryByGroupingItem["2023-02-15/01"].PredominantDirection);
-            Assert.Equal(_m6.Speed, result.SummaryByGroupingItem["2023-02-15/01"].MaxGust);
+            
+            Assert.Equal((_m1.Speed + _m2.Speed + _m3.Speed) / 3, result.SummaryByGroupingItem[keyGroup1].AvgSpeed);
+            Assert.Equal(_m1.Direction, result.SummaryByGroupingItem[keyGroup1].PredominantDirection);
+            Assert.Equal(_m3.Speed, result.SummaryByGroupingItem[keyGroup1].MaxGust);
+            
+            Assert.Equal((_m4.Speed + _m5.Speed + _m6.Speed) / 3, result.SummaryByGroupingItem[keyGroup2].AvgSpeed);
+            Assert.Equal(_m6.Direction, result.SummaryByGroupingItem[keyGroup2].PredominantDirection);
+            Assert.Equal(_m6.Speed, result.SummaryByGroupingItem[keyGroup2].MaxGust);
         }
         
         [Fact]
