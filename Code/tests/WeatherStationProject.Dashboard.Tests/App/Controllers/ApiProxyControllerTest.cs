@@ -112,7 +112,7 @@ namespace WeatherStationProject.Dashboard.Tests.App
         }
 
         [Fact]
-        public async Task When_GettingHistorialData_Given_HttpError_Should_ThrowException()
+        public async Task When_GettingHistoricalData_Given_HttpError_Should_ThrowException()
         {
             // Arrange
             var mockMessageHandler = new Mock<HttpMessageHandler>();
