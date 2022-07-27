@@ -27,6 +27,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\WeatherStationProject.Dashboard.Core\WeatherStationProject.Dashboard.Core.csproj" />
+        <ProjectReference Include="..\WeatherStationProject.Dashboard.Data\WeatherStationProject.Dashboard.Data.csproj"/>
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

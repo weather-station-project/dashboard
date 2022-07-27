@@ -5,11 +5,21 @@
         "airParameters",
         "ambientTemperatures",
         "groundTemperatures",
-        "rainfall",
+        "rainfall-during-time",
         "windMeasurements",
         "windMeasurementsGust"
       ],
       "UpstreamPathTemplate": "/api/{version}/weather-measurements/{everything}"
+    },
+    {
+      "RouteKeys": [
+        "airParameters",
+        "ambientTemperatures",
+        "groundTemperatures",
+        "rainfall",
+        "windMeasurements"
+      ],
+      "UpstreamPathTemplate": "/api/{version}/historical-weather-measurements/{everything}"
     }
   ]
 }
