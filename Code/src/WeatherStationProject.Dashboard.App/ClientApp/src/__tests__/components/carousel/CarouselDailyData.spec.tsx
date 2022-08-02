@@ -1,11 +1,11 @@
-import { render, screen } from "@testing-library/react";
-import { Router } from "react-router-dom";
-import { IAccuWeatherDailyForecast } from "../../../model/OpenWeatherApiTypes";
-import { createMemoryHistory } from "history";
-import CarouselDailyData from "../../../components/carousel/CarouselDailyData";
-import React from "react";
+import {render, screen} from '@testing-library/react';
+import {Router} from 'react-router-dom';
+import {IAccuWeatherDailyForecast} from '../../../model/OpenWeatherApiTypes';
+import {createMemoryHistory} from 'history';
+import CarouselDailyData from '../../../components/carousel/CarouselDailyData';
+import React from 'react';
 
-jest.mock("react-i18next", () => ({
+jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
       t: (str: string) => str,
@@ -13,7 +13,7 @@ jest.mock("react-i18next", () => ({
   },
 }));
 
-describe("CarouselDailyData", () => {
+describe('CarouselDailyData', () => {
   const response: IAccuWeatherDailyForecast = {
     EpochDate: 0,
     Temperature: {
@@ -26,13 +26,13 @@ describe("CarouselDailyData", () => {
     },
     Day: {
       Icon: 1,
-      LongPhrase: "This is a test",
+      LongPhrase: 'This is a test',
       Wind: {
         Speed: {
           Value: 78,
         },
         Direction: {
-          Localized: "TEST",
+          Localized: 'TEST',
         },
       },
       WindGust: {
@@ -40,7 +40,7 @@ describe("CarouselDailyData", () => {
           Value: 99,
         },
         Direction: {
-          Localized: "N",
+          Localized: 'N',
         },
       },
       Rain: {
@@ -49,13 +49,13 @@ describe("CarouselDailyData", () => {
     },
     Night: {
       Icon: 10,
-      LongPhrase: "Tonight",
+      LongPhrase: 'Tonight',
       Wind: {
         Speed: {
           Value: 780,
         },
         Direction: {
-          Localized: "TEST-X",
+          Localized: 'TEST-X',
         },
       },
       WindGust: {
@@ -63,14 +63,14 @@ describe("CarouselDailyData", () => {
           Value: 100,
         },
         Direction: {
-          Localized: "NO",
+          Localized: 'NO',
         },
       },
       Rain: {
         Value: 1234,
       },
     },
-    Link: "testing",
+    Link: 'testing',
   };
 
   beforeEach(() => {
@@ -82,27 +82,27 @@ describe("CarouselDailyData", () => {
     );
   });
 
-  it("When_RenderingComponent_Should_RenderExpectedContent", () => {
+  it('When_RenderingComponent_Should_RenderExpectedContent', () => {
     const dayPhrase = screen.getByText(response.Day.LongPhrase);
-    const link = screen.getByText("Link");
+    const link = screen.getByText('Link');
 
     expect(dayPhrase).toBeInTheDocument();
-    expect(dayPhrase?.tagName.toLowerCase()).toEqual("div");
+    expect(dayPhrase?.tagName.toLowerCase()).toEqual('div');
 
     expect(link).toBeInTheDocument();
-    expect(link?.tagName.toLowerCase()).toEqual("a");
+    expect(link?.tagName.toLowerCase()).toEqual('a');
   });
 
-  it("When_SwitchingToNight_Should_RenderNightComponents", () => {
-    const button = screen.getByTestId("button-night");
+  it('When_SwitchingToNight_Should_RenderNightComponents', () => {
+    const button = screen.getByTestId('button-night');
     button.click();
 
-    const nightButton = screen.queryByTestId("button-night");
-    const dayButton = screen.getByTestId("button-day");
+    const nightButton = screen.queryByTestId('button-night');
+    const dayButton = screen.getByTestId('button-day');
 
     expect(nightButton).toBeNull();
 
     expect(dayButton).toBeInTheDocument();
-    expect(dayButton?.tagName.toLowerCase()).toEqual("button");
+    expect(dayButton?.tagName.toLowerCase()).toEqual('button');
   });
 });

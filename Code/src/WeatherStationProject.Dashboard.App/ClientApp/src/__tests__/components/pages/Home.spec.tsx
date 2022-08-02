@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
-import React from "react";
-import Home from "../../../components/pages/Home";
+import {render, screen} from '@testing-library/react';
+import React from 'react';
+import Home from '../../../components/pages/Home';
 
-jest.mock("react-i18next", () => ({
+jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
       t: (str: string) => str,
@@ -10,12 +10,12 @@ jest.mock("react-i18next", () => ({
   },
 }));
 
-describe("Home", () => {
-  it("When_RenderingComponent_Should_RenderExpectedContent", () => {
-    render(<Home />);
+describe('Home', () => {
+  it('When_RenderingComponent_Should_RenderExpectedContent', () => {
+    render(<Home/>);
 
-    const element = screen.queryByTestId("home-id");
+    const element = screen.queryByTestId('home-id');
     expect(element).toBeInTheDocument();
-    expect(element?.tagName.toLowerCase()).toEqual("h1");
+    expect(element?.tagName.toLowerCase()).toEqual('h1');
   });
 });

@@ -1,17 +1,17 @@
-import React, { ReactNode } from "react";
-import { Container } from "reactstrap";
-import NavMenu from "./NavMenu";
-import { ErrorBoundary } from "../../ErrorBoundary";
+import React, {ReactNode} from 'react';
+import {Container} from 'reactstrap';
+import NavMenu from './NavMenu';
+import {ErrorBoundary} from '../../ErrorBoundary';
 
 interface IProps {
-  children: ReactNode;
+    children: ReactNode;
 }
 
 const Layout: React.FC<IProps> = (props) => {
-  return (
-    <>
-      <ErrorBoundary>
-        <NavMenu />
+    return (
+        <>
+            <ErrorBoundary>
+                <NavMenu/>
       </ErrorBoundary>
       <Container>{props.children}</Container>
     </>

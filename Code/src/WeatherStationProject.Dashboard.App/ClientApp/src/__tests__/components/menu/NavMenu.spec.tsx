@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
-import NavMenu from "../../../components/menu/NavMenu";
-import React from "react";
+import {render, screen} from '@testing-library/react';
+import NavMenu from '../../../components/menu/NavMenu';
+import React from 'react';
 
-jest.mock("../../../components/menu/LanguageSelector", () => () => <span data-testid="lng-id" />);
-jest.mock("react-i18next", () => ({
+jest.mock('../../../components/menu/LanguageSelector', () => () => <span data-testid="lng-id"/>);
+jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
       t: (str: string) => str,
@@ -11,19 +11,19 @@ jest.mock("react-i18next", () => ({
   },
 }));
 
-describe("NavMenu", () => {
+describe('NavMenu', () => {
   beforeEach(() => {
-    render(<NavMenu />);
+    render(<NavMenu/>);
   });
 
-  it("When_RenderingComponent_Should_RenderExpectedContent", () => {
-    const selector = screen.queryByTestId("lng-id");
-    const image = screen.queryByAltText("Logo");
+  it('When_RenderingComponent_Should_RenderExpectedContent', () => {
+    const selector = screen.queryByTestId('lng-id');
+    const image = screen.queryByAltText('Logo');
 
     expect(selector).toBeInTheDocument();
-    expect(selector?.tagName.toLowerCase()).toEqual("span");
+    expect(selector?.tagName.toLowerCase()).toEqual('span');
 
     expect(image).toBeInTheDocument();
-    expect(image?.tagName.toLowerCase()).toEqual("img");
+    expect(image?.tagName.toLowerCase()).toEqual('img');
   });
 });

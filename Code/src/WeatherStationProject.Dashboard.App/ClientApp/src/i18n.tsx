@@ -1,18 +1,18 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import Backend from "i18next-http-backend";
-import LanguageDetector from "i18next-browser-languagedetector";
+import i18n from 'i18next';
+import {initReactI18next} from 'react-i18next';
+import Backend from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
-import moment from "moment";
+import moment from 'moment';
 
 i18n
-  .use(Backend)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    debug: false,
+    .use(Backend)
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+        debug: false,
 
-    interpolation: {
+        interpolation: {
       escapeValue: false,
       format: (value, format) => {
         if (value instanceof Date) return moment(value).format(format);
@@ -24,7 +24,7 @@ i18n
     },
   });
 
-i18n.on("languageChanged", (lng) => {
-  moment.locale(lng);
-  console.debug(`Language changed to '${lng}'`);
+i18n.on('languageChanged', (lng) => {
+    moment.locale(lng);
+    console.debug(`Language changed to '${lng}'`);
 });

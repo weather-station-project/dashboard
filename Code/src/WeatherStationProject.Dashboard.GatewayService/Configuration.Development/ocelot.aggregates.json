@@ -5,7 +5,7 @@
         "airParameters",
         "ambientTemperatures",
         "groundTemperatures",
-        "rainfall-during-time",
+        "rainfallDuringTime",
         "windMeasurements",
         "windMeasurementsGust"
       ],

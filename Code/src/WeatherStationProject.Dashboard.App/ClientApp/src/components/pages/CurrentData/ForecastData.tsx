@@ -1,25 +1,25 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import axios from "axios";
+import React from 'react';
+import {useTranslation} from 'react-i18next';
+import axios from 'axios';
 import {
   IAccuWeatherCurrentConditionsResponse,
   IAccuWeatherForecastResponse,
   IAccuWeatherLocationSearchResponse,
-} from "../../../model/OpenWeatherApiTypes";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import CarouselCurrentData from "../../carousel/CarouselCurrentData";
-import CarouselDailyData from "../../carousel/CarouselDailyData";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+} from '../../../model/OpenWeatherApiTypes';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import CarouselCurrentData from '../../carousel/CarouselCurrentData';
+import CarouselDailyData from '../../carousel/CarouselDailyData';
+import {Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 
 const ForecastData: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const {t, i18n} = useTranslation();
   const [currentData, setCurrentData] = React.useState({} as IAccuWeatherCurrentConditionsResponse);
   const [forecastData, setForecastData] = React.useState({} as IAccuWeatherForecastResponse);
   const [retrieveDataFromAccuWeather, setRetrieveDataFromAccuWeather] = React.useState(false);
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: {max: 3000, min: 1024},
       items: 3,
       slidesToSlide: 3,
     },
@@ -88,25 +88,25 @@ const ForecastData: React.FC = () => {
   }, [retrieveDataFromAccuWeather, i18n.language]);
 
   return (
-    <>
-      {Object.prototype.hasOwnProperty.call(currentData, "EpochTime") &&
-      Object.prototype.hasOwnProperty.call(forecastData, "DailyForecasts") ? (
-        <>
-          <div data-testid="carousel-id" />
-          <Carousel
-            swipeable={true}
-            draggable={false}
-            showDots={true}
-            responsive={responsive}
-            ssr={true}
-            infinite={true}
-            autoPlay={false}
-            keyBoardControl={true}
-            customTransition="all .5"
-            transitionDuration={500}
-            containerClass="carousel-container"
-            removeArrowOnDeviceType={["tablet", "mobile"]}
-            dotListClass="custom-dot-list-style"
+      <>
+        {Object.prototype.hasOwnProperty.call(currentData, 'EpochTime') &&
+        Object.prototype.hasOwnProperty.call(forecastData, 'DailyForecasts') ? (
+            <>
+              <div data-testid="carousel-id"/>
+              <Carousel
+                  swipeable={true}
+                  draggable={false}
+                  showDots={true}
+                  responsive={responsive}
+                  ssr={true}
+                  infinite={true}
+                  autoPlay={false}
+                  keyBoardControl={true}
+                  customTransition="all .5"
+                  transitionDuration={500}
+                  containerClass="carousel-container"
+                  removeArrowOnDeviceType={['tablet', 'mobile']}
+                  dotListClass="custom-dot-list-style"
           >
             <div>
               <CarouselCurrentData data={currentData} />
@@ -121,12 +121,12 @@ const ForecastData: React.FC = () => {
       ) : (
         <>
           <OverlayTrigger
-            key="right"
-            placement="right"
-            overlay={<Tooltip id="tooltip-right">{t("current_data.retrieve_data_from_accuweather_alert")}</Tooltip>}
+              key="right"
+              placement="right"
+              overlay={<Tooltip id="tooltip-right">{t('current_data.retrieve_data_from_accuweather_alert')}</Tooltip>}
           >
             <Button data-testid="button-id" variant="outline-info" onClick={() => setRetrieveDataFromAccuWeather(true)}>
-              {t("current_data.retrieve_data_from_accuweather_button")}
+              {t('current_data.retrieve_data_from_accuweather_button')}
             </Button>
           </OverlayTrigger>
         </>

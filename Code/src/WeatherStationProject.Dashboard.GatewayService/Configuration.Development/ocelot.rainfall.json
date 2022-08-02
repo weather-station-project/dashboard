@@ -32,7 +32,7 @@
       "DangerousAcceptAnyServerCertificateValidator": true
     },
     {
-      "Key": "rainfall-during-time",
+      "Key": "rainfallDuringTime",
       "DownstreamPathTemplate": "/api/{version}/rainfall/amount-during-time/60",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [

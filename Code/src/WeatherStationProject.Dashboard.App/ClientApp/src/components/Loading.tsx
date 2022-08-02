@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
+import {Spinner} from 'react-bootstrap';
 
 const Loading: React.FC = () => {
-  return <div data-testid="loading-text">Loading...</div>;
+  return <Spinner data-testid="loading-spinner" animation="border" role="status"/>;
 };
 
 export default Loading;
