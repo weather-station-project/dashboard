@@ -15,8 +15,8 @@ const App: React.FC = () => {
                 <Route path="/historicaldata" element={<HistoricalData/>}/>
                 <Route path="/measurementslist" element={<MeasurementsList/>}/>
             </Routes>
-    </Layout>
-  );
+        </Layout>
+    );
 };
 
 export default App;

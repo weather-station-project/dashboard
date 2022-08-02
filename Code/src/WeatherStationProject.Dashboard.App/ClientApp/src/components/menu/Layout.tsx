@@ -12,10 +12,10 @@ const Layout: React.FC<IProps> = (props) => {
         <>
             <ErrorBoundary>
                 <NavMenu/>
-      </ErrorBoundary>
-      <Container>{props.children}</Container>
-    </>
-  );
+            </ErrorBoundary>
+            <Container>{props.children}</Container>
+        </>
+    );
 };
 
 export default Layout;

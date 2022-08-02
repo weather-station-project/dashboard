@@ -23,17 +23,17 @@ const CarouselCurrentData: React.FC<ICarouselCurrentDataProps> = ({data}) => {
                 '-s.png'
               }
           />
-        <Card.Subtitle className="mb-2 text-muted">{data.WeatherText}</Card.Subtitle>
-        <br />
-        <ListGroup variant="flush">
-          <ListGroup.Item variant="light">
-            {t('current_data.forecast_data.temperature', {temperature: data.Temperature.Metric.Value})}
-          </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            {t('current_data.forecast_data.pressure', {pressure: data.Pressure.Metric.Value})}
-          </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            {t('current_data.forecast_data.humidity', {humidity: data.RelativeHumidity})}
+          <Card.Subtitle className="mb-2 text-muted">{data.WeatherText}</Card.Subtitle>
+          <br/>
+          <ListGroup variant="flush">
+            <ListGroup.Item variant="light">
+              {t('current_data.forecast_data.temperature', {temperature: data.Temperature.Metric.Value})}
+            </ListGroup.Item>
+            <ListGroup.Item variant="light">
+              {t('current_data.forecast_data.pressure', {pressure: data.Pressure.Metric.Value})}
+            </ListGroup.Item>
+            <ListGroup.Item variant="light">
+              {t('current_data.forecast_data.humidity', {humidity: data.RelativeHumidity})}
           </ListGroup.Item>
           <ListGroup.Item variant="light">
             {t('current_data.forecast_data.uv', {uv: data.UVIndexText})}

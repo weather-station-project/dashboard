@@ -21,8 +21,8 @@ const NavMenu: React.FC = () => {
           <Nav className="mr-sm-2">
             <LanguageSelector/>
           </Nav>
-      </Navbar>
-    </header>
+        </Navbar>
+      </header>
   );
 };
 

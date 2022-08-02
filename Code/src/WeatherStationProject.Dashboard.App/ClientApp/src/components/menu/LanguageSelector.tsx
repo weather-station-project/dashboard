@@ -11,12 +11,12 @@ const LanguageSelector: React.FC = () => {
         <select className="form-control form-control-sm" value={i18n.language} onChange={handleChange}>
             <option data-testid="en" value="en">
                 {t('navmenu.language_selector.english')}
-      </option>
-      <option data-testid="es" value="es">
-          {t('navmenu.language_selector.spanish')}
-      </option>
-    </select>
-  );
+            </option>
+            <option data-testid="es" value="es">
+                {t('navmenu.language_selector.spanish')}
+            </option>
+        </select>
+    );
 };
 
 export default LanguageSelector;

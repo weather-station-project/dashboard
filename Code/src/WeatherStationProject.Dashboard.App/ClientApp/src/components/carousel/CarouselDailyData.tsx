@@ -43,16 +43,16 @@ const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({data}) => {
                 '-s.png'
               }
           />
-        <Card.Subtitle className="mb-2 text-muted">{dayNightData.LongPhrase}</Card.Subtitle>
-        <br />
-        <ListGroup variant="flush">
-          <ListGroup.Item variant="light">
-            {showDay
-                ? t('current_data.forecast_data.temperature_day', {temperature: data.Temperature.Maximum.Value})
-                : t('current_data.forecast_data.temperature_night', {temperature: data.Temperature.Minimum.Value})}
-          </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            {t('current_data.forecast_data.wind', {
+          <Card.Subtitle className="mb-2 text-muted">{dayNightData.LongPhrase}</Card.Subtitle>
+          <br/>
+          <ListGroup variant="flush">
+            <ListGroup.Item variant="light">
+              {showDay
+                  ? t('current_data.forecast_data.temperature_day', {temperature: data.Temperature.Maximum.Value})
+                  : t('current_data.forecast_data.temperature_night', {temperature: data.Temperature.Minimum.Value})}
+            </ListGroup.Item>
+            <ListGroup.Item variant="light">
+              {t('current_data.forecast_data.wind', {
               speed: dayNightData.Wind.Speed.Value,
               direction: dayNightData.Wind.Direction.Localized,
             })}

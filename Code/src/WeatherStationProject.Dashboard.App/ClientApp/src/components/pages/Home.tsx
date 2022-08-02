@@ -25,8 +25,8 @@ const Home: React.FC = () => {
                 <ListGroup.Item>{t('home.technologies.gateway')}.</ListGroup.Item>
                 <ListGroup.Item>{t('home.technologies.docker')}.</ListGroup.Item>
             </ListGroup>
-    </div>
-  );
+        </div>
+    );
 };
 
 export default Home;

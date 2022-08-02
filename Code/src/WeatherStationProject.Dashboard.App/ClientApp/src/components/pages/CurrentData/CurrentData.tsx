@@ -18,8 +18,8 @@ const CurrentData: React.FC = () => {
             <ErrorBoundary>
                 <ForecastData/>
             </ErrorBoundary>
-    </div>
-  );
+        </div>
+    );
 };
 
 export default CurrentData;

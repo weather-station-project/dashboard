@@ -107,16 +107,16 @@ const ForecastData: React.FC = () => {
                   containerClass="carousel-container"
                   removeArrowOnDeviceType={['tablet', 'mobile']}
                   dotListClass="custom-dot-list-style"
-          >
-            <div>
-              <CarouselCurrentData data={currentData} />
-            </div>
-            {forecastData.DailyForecasts.map((dayData, idx) => (
-              <div key={idx}>
-                <CarouselDailyData data={dayData} />
-              </div>
-            ))}
-          </Carousel>
+              >
+                <div>
+                  <CarouselCurrentData data={currentData}/>
+                </div>
+                {forecastData.DailyForecasts.map((dayData, idx) => (
+                    <div key={idx}>
+                      <CarouselDailyData data={dayData}/>
+                    </div>
+                ))}
+              </Carousel>
         </>
       ) : (
         <>

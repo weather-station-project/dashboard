@@ -13,14 +13,14 @@ i18n
         debug: false,
 
         interpolation: {
-      escapeValue: false,
-      format: (value, format) => {
-        if (value instanceof Date) return moment(value).format(format);
-        return value;
-      },
-    },
-    react: {
-      useSuspense: true,
+            escapeValue: false,
+            format: (value, format) => {
+                if (value instanceof Date) return moment(value).format(format);
+                return value;
+            },
+        },
+        react: {
+            useSuspense: true,
     },
   });
 

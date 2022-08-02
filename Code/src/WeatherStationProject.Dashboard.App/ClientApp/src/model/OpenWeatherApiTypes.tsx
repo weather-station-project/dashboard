@@ -87,44 +87,44 @@ interface IAccuWeatherForecastDayNightData {
 }
 
 export const FAKE_CURRENT_CONDITIONS_DATA: IAccuWeatherCurrentConditionsResponse = {
-    EpochTime: 1,
-    WeatherIcon: 0,
-    WeatherText: '',
-    Temperature: {
-        Metric: {
-            Value: 0,
-        },
+  EpochTime: 1,
+  WeatherIcon: 0,
+  WeatherText: '',
+  Temperature: {
+    Metric: {
+      Value: 0,
     },
-    RelativeHumidity: 0,
-    Wind: {
-        Direction: {
-            Localized: 'test',
-        },
+  },
+  RelativeHumidity: 0,
+  Wind: {
+    Direction: {
+      Localized: 'test',
+    },
     Speed: {
       Metric: {
         Value: 0,
       },
     },
+  },
+  WindGust: {
+    Speed: {
+      Metric: {
+        Value: 0,
+      },
     },
-    WindGust: {
-        Speed: {
-            Metric: {
-                Value: 0,
-            },
-        },
+  },
+  UVIndexText: 'test',
+  Pressure: {
+    Metric: {
+      Value: 0,
     },
-    UVIndexText: 'test',
-    Pressure: {
-        Metric: {
-            Value: 0,
-        },
+  },
+  Precip1hr: {
+    Metric: {
+      Value: 0,
     },
-    Precip1hr: {
-        Metric: {
-            Value: 0,
-        },
-    },
-    Link: 'test',
+  },
+  Link: 'test',
 };
 
 export const FAKE_FORECAST_DATA: IAccuWeatherForecastResponse = {

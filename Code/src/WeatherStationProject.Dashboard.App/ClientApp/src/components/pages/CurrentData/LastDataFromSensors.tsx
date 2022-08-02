@@ -52,7 +52,7 @@ const LastDataFromSensors: React.FC = () => {
                 temperature: data.ambientTemperatures.temperature,
                 dateTime: new Date(data.ambientTemperatures.dateTime),
               })}
-          </ListGroup.Item>
+            </ListGroup.Item>
             <ListGroup.Item>
               {t('current_data.last_data.ground_temperature', {
                 temperature: data.groundTemperatures.temperature,
@@ -73,16 +73,16 @@ const LastDataFromSensors: React.FC = () => {
                 dateTime: new Date(data.windMeasurements.dateTime),
               })}
             </ListGroup.Item>
-          <ListGroup.Item>
-            {data.windMeasurementsGust.dateTime
-                ? t('current_data.last_data.wind_measurement_gust', {
-                  speed: data.windMeasurementsGust.speed,
-                  direction: data.windMeasurementsGust.direction,
-                  dateTime: new Date(data.windMeasurementsGust.dateTime),
-                })
-                : t('current_data.last_data.wind_measurement_gust_not_found')}
-          </ListGroup.Item>
-        </ListGroup>
+            <ListGroup.Item>
+              {data.windMeasurementsGust.dateTime
+                  ? t('current_data.last_data.wind_measurement_gust', {
+                    speed: data.windMeasurementsGust.speed,
+                    direction: data.windMeasurementsGust.direction,
+                    dateTime: new Date(data.windMeasurementsGust.dateTime),
+                  })
+                  : t('current_data.last_data.wind_measurement_gust_not_found')}
+            </ListGroup.Item>
+          </ListGroup>
       ) : (
         <Loading />
       )}
