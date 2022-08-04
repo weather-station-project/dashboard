@@ -8,8 +8,10 @@ import {
   HistoricalDataRequestValidationSchema,
   IHistoricalDataRequest,
 } from '../../model/HistoricalDataTypes';
+import { useTranslation } from 'react-i18next';
 // https://react-bootstrap.github.io/forms/validation/
 const HistoricalData: React.FC = () => {
+  const { t } = useTranslation();
   const [formValues] = useState<IHistoricalDataRequest>(DefaultHistoricalDataRequest);
 
   return (
@@ -23,7 +25,7 @@ const HistoricalData: React.FC = () => {
         <Form noValidate onSubmit={handleSubmit}>
           <Row className="mb-3 mt-5">
             <Form.Group as={Col} controlId="initialDate">
-              <Form.Label>Initial date</Form.Label>
+              <Form.Label>{t('historical_data.initial_date')}</Form.Label>
               <Form.Control
                 type="date"
                 name="initialDate"
@@ -31,10 +33,12 @@ const HistoricalData: React.FC = () => {
                 isValid={touched.initialDate && !errors.initialDate}
                 isInvalid={!!errors.initialDate}
               />
-              <Form.Control.Feedback type="invalid">{errors.initialDate}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {!!errors.initialDate && t(errors.initialDate)}
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} controlId="finalDate">
-              <Form.Label>Final Date</Form.Label>
+              <Form.Label>{t('historical_data.final_date')}</Form.Label>
               <Form.Control
                 type="date"
                 name="finalDate"
@@ -42,12 +46,12 @@ const HistoricalData: React.FC = () => {
                 isValid={touched.finalDate && !errors.finalDate}
                 isInvalid={!!errors.finalDate}
               />
-              <Form.Control.Feedback type="invalid">{errors.finalDate}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{!!errors.finalDate && t(errors.finalDate)}</Form.Control.Feedback>
             </Form.Group>
           </Row>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="chartView">
-              <Form.Label>Chart view</Form.Label>
+              <Form.Label>{t('historical_data.chart_view')}</Form.Label>
               <Field name="chartView">
                 {({ field, form: { setFieldValue } }: FieldProps) => (
                   <>
@@ -56,7 +60,7 @@ const HistoricalData: React.FC = () => {
                       id="chartView-lines"
                       checked={values.chartView === ChartValues.Lines}
                       name="chartView"
-                      label={ChartValues.Lines}
+                      label={t('historical_data.chart_view.lines')}
                       onChange={() => setFieldValue(field.name, ChartValues.Lines, false)}
                     />
                     <Form.Check
@@ -64,15 +68,16 @@ const HistoricalData: React.FC = () => {
                       id="chartView-bars"
                       checked={values.chartView === ChartValues.Bars}
                       name="chartView"
-                      label={ChartValues.Bars}
+                      label={t('historical_data.chart_view.bars')}
                       onChange={() => setFieldValue(field.name, ChartValues.Bars, false)}
                     />
                   </>
                 )}
               </Field>
+              <Form.Control.Feedback type="invalid">{!!errors.chartView && t(errors.chartView)}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} controlId="grouping">
-              <Form.Label>Grouping</Form.Label>
+              <Form.Label>{t('historical_data.grouping')}</Form.Label>
               <Field name="grouping">
                 {({ field, form: { setFieldValue } }: FieldProps) => (
                   <Form.Select
@@ -81,19 +86,19 @@ const HistoricalData: React.FC = () => {
                     isInvalid={!!errors.grouping}
                     onChange={(option) => setFieldValue(field.name, option.target.value, false)}
                   >
-                    <option value={undefined}>Open this select menu</option>
-                    <option value={GroupingValues.Hours}>{GroupingValues.Hours}</option>
-                    <option value={GroupingValues.Days}>{GroupingValues.Days}</option>
-                    <option value={GroupingValues.Months}>{GroupingValues.Months}</option>
+                    <option value={undefined}>{t('historical_data.grouping.select')}</option>
+                    <option value={GroupingValues.Hours}>{t('historical_data.grouping.hours')}</option>
+                    <option value={GroupingValues.Days}>{t('historical_data.grouping.days')}</option>
+                    <option value={GroupingValues.Months}>{t('historical_data.grouping.months')}</option>
                   </Form.Select>
                 )}
               </Field>
-              <Form.Control.Feedback type="invalid">{errors.grouping}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{!!errors.grouping && t(errors.grouping)}</Form.Control.Feedback>
             </Form.Group>
           </Row>
           <Row>
             <Col>
-              <Button type="submit">Submit form</Button>
+              <Button type="submit">{t('historical_data.submit')}</Button>
             </Col>
           </Row>
         </Form>

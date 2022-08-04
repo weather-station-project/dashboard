@@ -28,15 +28,26 @@ export const DefaultHistoricalDataRequest: IHistoricalDataRequest = {
   chartView: ChartValues.Lines,
 };
 
+const commonValidations = {
+  initialDate: date()
+    .required('historical_data.initial_date.required')
+    .max(new Date(), 'historical_data.initial_date.max_date'),
+  finalDate: date()
+    .required('historical_data.final_date.required')
+    .min(ref('initialDate'), 'historical_data.final_date.min_date')
+    .max(new Date(), 'historical_data.final_date.max_date'),
+  grouping: mixed<keyof typeof GroupingValues>()
+    .required('historical_data.grouping.required')
+    .oneOf(Object.values(GroupingValues), 'historical_data.grouping.values'),
+};
+
 export const MeasurementsListRequestValidationSchema: SchemaOf<IMeasurementsListRequest> = object({
-  initialDate: date().required().max(new Date()),
-  finalDate: date().required().min(ref('initialDate')).max(new Date()),
-  grouping: mixed<keyof typeof GroupingValues>().required().oneOf(Object.values(GroupingValues)),
+  ...commonValidations,
 });
 
 export const HistoricalDataRequestValidationSchema: SchemaOf<IHistoricalDataRequest> = object({
-  initialDate: date().required().max(new Date()),
-  finalDate: date().required().min(ref('initialDate')).max(new Date()),
-  grouping: mixed<keyof typeof GroupingValues>().required().oneOf(Object.values(GroupingValues)),
-  chartView: mixed<keyof typeof ChartValues>().required().oneOf(Object.values(ChartValues)),
+  ...commonValidations,
+  chartView: mixed<keyof typeof ChartValues>()
+    .required('historical_data.chart_view.required')
+    .oneOf(Object.values(ChartValues), 'historical_data.chart_view.values'),
 });
