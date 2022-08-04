@@ -1,8 +1,8 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import NavMenu from '../../../components/menu/NavMenu';
 import React from 'react';
 
-jest.mock('../../../components/menu/LanguageSelector', () => () => <span data-testid="lng-id"/>);
+jest.mock('../../../components/menu/LanguageSelector', () => () => <span data-testid="lng-id" />);
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
@@ -13,7 +13,7 @@ jest.mock('react-i18next', () => ({
 
 describe('NavMenu', () => {
   beforeEach(() => {
-    render(<NavMenu/>);
+    render(<NavMenu />);
   });
 
   it('When_RenderingComponent_Should_RenderExpectedContent', () => {

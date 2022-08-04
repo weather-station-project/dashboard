@@ -1,4 +1,4 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import Home from '../../../components/pages/Home';
 
@@ -12,7 +12,7 @@ jest.mock('react-i18next', () => ({
 
 describe('Home', () => {
   it('When_RenderingComponent_Should_RenderExpectedContent', () => {
-    render(<Home/>);
+    render(<Home />);
 
     const element = screen.queryByTestId('home-id');
     expect(element).toBeInTheDocument();

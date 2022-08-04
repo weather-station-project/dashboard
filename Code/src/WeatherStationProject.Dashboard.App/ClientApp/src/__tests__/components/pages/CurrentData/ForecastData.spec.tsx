@@ -1,7 +1,7 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import ForecastData from '../../../../components/pages/CurrentData/ForecastData';
-import {FAKE_CURRENT_CONDITIONS_DATA, FAKE_FORECAST_DATA} from '../../../../model/OpenWeatherApiTypes';
+import { FAKE_CURRENT_CONDITIONS_DATA, FAKE_FORECAST_DATA } from '../../../../model/OpenWeatherApiTypes';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
@@ -22,7 +22,7 @@ beforeEach(() => {
 
 describe('ForecastData', () => {
   it('When_RenderingComponent_Given_No_Obtained_Data_Should_RenderOverlayButtons', () => {
-    render(<ForecastData/>);
+    render(<ForecastData />);
 
     const div = screen.queryByTestId('carousel-id');
     expect(div).toBeNull();
@@ -34,11 +34,11 @@ describe('ForecastData', () => {
 
   it('When_RenderingComponent_Given_Data_Should_NotRenderOverlayButtons', () => {
     jest
-        .spyOn(React, 'useState')
-        .mockReturnValueOnce([FAKE_CURRENT_CONDITIONS_DATA, jest.fn()])
-        .mockReturnValueOnce([FAKE_FORECAST_DATA, jest.fn()])
-        .mockReturnValueOnce([false, jest.fn()]);
-    render(<ForecastData/>);
+      .spyOn(React, 'useState')
+      .mockReturnValueOnce([FAKE_CURRENT_CONDITIONS_DATA, jest.fn()])
+      .mockReturnValueOnce([FAKE_FORECAST_DATA, jest.fn()])
+      .mockReturnValueOnce([false, jest.fn()]);
+    render(<ForecastData />);
 
     const div = screen.queryByTestId('carousel-id');
     expect(div).toBeInTheDocument();

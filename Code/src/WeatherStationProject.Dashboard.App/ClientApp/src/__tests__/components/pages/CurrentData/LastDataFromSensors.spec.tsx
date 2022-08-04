@@ -1,9 +1,9 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import LastDataFromSensors from '../../../../components/pages/CurrentData/LastDataFromSensors';
 import React from 'react';
-import {FAKE_LAST_DATA} from '../../../../model/LastDataTypes';
+import { FAKE_LAST_DATA } from '../../../../model/LastDataTypes';
 
-jest.mock('../../../../components/Loading', () => () => <span data-testid="loading-id"/>);
+jest.mock('../../../../components/Loading', () => () => <span data-testid="loading-id" />);
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
@@ -20,7 +20,7 @@ beforeEach(() => {
 
 describe('LastDataFromSensors', () => {
   it('When_RenderingComponent_Given_Wrong_Obtained_Data_Should_RenderExpectedContent', () => {
-    render(<LastDataFromSensors/>);
+    render(<LastDataFromSensors />);
 
     const loading = screen.queryByTestId('loading-id');
     expect(loading).toBeInTheDocument();
@@ -29,7 +29,7 @@ describe('LastDataFromSensors', () => {
 
   it('When_RenderingComponent_Given_Data_Should_RenderExpectedContent', () => {
     jest.spyOn(React, 'useState').mockReturnValue([FAKE_LAST_DATA, jest.fn()]);
-    render(<LastDataFromSensors/>);
+    render(<LastDataFromSensors />);
 
     const loading = screen.queryByTestId('loading-id');
     expect(loading).toBeNull();

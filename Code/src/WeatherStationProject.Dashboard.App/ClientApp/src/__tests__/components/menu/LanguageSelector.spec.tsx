@@ -1,4 +1,4 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import LanguageSelector from '../../../components/menu/LanguageSelector';
 import React from 'react';
 
@@ -8,9 +8,9 @@ jest.mock('react-i18next', () => ({
       t: (str: string) => str,
       i18n: {
         changeLanguage: () =>
-            new Promise(() => {
-              /**/
-            }),
+          new Promise(() => {
+            /**/
+          }),
         language: 'en',
       },
     };
@@ -19,7 +19,7 @@ jest.mock('react-i18next', () => ({
 
 describe('LanguageSelector', () => {
   it('When_RenderingComponent_Should_RenderExpectedContent', () => {
-    render(<LanguageSelector/>);
+    render(<LanguageSelector />);
 
     const englishOption = screen.queryByTestId('en');
     const spanishOption = screen.queryByTestId('en');

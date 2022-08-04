@@ -1,5 +1,5 @@
-import React, {ErrorInfo, ReactNode} from 'react';
-import {Alert} from 'react-bootstrap';
+import React, { ErrorInfo, ReactNode } from 'react';
+import { Alert } from 'react-bootstrap';
 
 interface IProps {
   children: ReactNode;

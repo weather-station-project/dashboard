@@ -1,7 +1,7 @@
-import {render, screen} from '@testing-library/react';
-import {Router} from 'react-router-dom';
-import {IAccuWeatherDailyForecast} from '../../../model/OpenWeatherApiTypes';
-import {createMemoryHistory} from 'history';
+import { render, screen } from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { IAccuWeatherDailyForecast } from '../../../model/OpenWeatherApiTypes';
+import { createMemoryHistory } from 'history';
 import CarouselDailyData from '../../../components/carousel/CarouselDailyData';
 import React from 'react';
 

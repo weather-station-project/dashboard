@@ -1,8 +1,8 @@
-import {render, screen} from '@testing-library/react';
-import {Router} from 'react-router-dom';
-import {IAccuWeatherCurrentConditionsResponse} from '../../../model/OpenWeatherApiTypes';
+import { render, screen } from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { IAccuWeatherCurrentConditionsResponse } from '../../../model/OpenWeatherApiTypes';
 import CarouselCurrentData from '../../../components/carousel/CarouselCurrentData';
-import {createMemoryHistory} from 'history';
+import { createMemoryHistory } from 'history';
 import React from 'react';
 
 jest.mock('react-i18next', () => ({
