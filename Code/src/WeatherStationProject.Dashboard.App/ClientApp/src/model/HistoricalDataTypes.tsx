@@ -1,4 +1,4 @@
-import {date, mixed, object, ref, SchemaOf} from 'yup';
+import { date, mixed, object, ref, SchemaOf } from 'yup';
 
 export enum GroupingValues {
   Hours = 'Hours',
@@ -14,17 +14,17 @@ export enum ChartValues {
 export interface IMeasurementsListRequest {
   initialDate: Date | undefined;
   finalDate: Date | undefined;
-  grouping: string;
+  grouping: string | undefined;
 }
 
 export interface IHistoricalDataRequest extends IMeasurementsListRequest {
-  chartView: string;
+  chartView: string | undefined;
 }
 
 export const DefaultHistoricalDataRequest: IHistoricalDataRequest = {
   initialDate: undefined,
   finalDate: undefined,
-  grouping: GroupingValues.Hours,
+  grouping: undefined,
   chartView: ChartValues.Lines,
 };
 
