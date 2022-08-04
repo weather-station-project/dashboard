@@ -21,8 +21,8 @@ i18n
         },
         react: {
             useSuspense: true,
-    },
-  });
+        },
+    });
 
 i18n.on('languageChanged', (lng) => {
     moment.locale(lng);

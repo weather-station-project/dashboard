@@ -34,16 +34,16 @@ const CarouselCurrentData: React.FC<ICarouselCurrentDataProps> = ({data}) => {
             </ListGroup.Item>
             <ListGroup.Item variant="light">
               {t('current_data.forecast_data.humidity', {humidity: data.RelativeHumidity})}
-          </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            {t('current_data.forecast_data.uv', {uv: data.UVIndexText})}
-          </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            {t('current_data.forecast_data.wind', {
-              speed: data.Wind.Speed.Metric.Value,
-              direction: data.Wind.Direction.Localized,
-            })}
-          </ListGroup.Item>
+            </ListGroup.Item>
+            <ListGroup.Item variant="light">
+              {t('current_data.forecast_data.uv', {uv: data.UVIndexText})}
+            </ListGroup.Item>
+            <ListGroup.Item variant="light">
+              {t('current_data.forecast_data.wind', {
+                speed: data.Wind.Speed.Metric.Value,
+                direction: data.Wind.Direction.Localized,
+              })}
+            </ListGroup.Item>
           <ListGroup.Item variant="light">
             {t('current_data.forecast_data.wind_gust', {speed: data.WindGust.Speed.Metric.Value})}
           </ListGroup.Item>

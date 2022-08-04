@@ -117,18 +117,20 @@ const ForecastData: React.FC = () => {
                     </div>
                 ))}
               </Carousel>
-        </>
-      ) : (
-        <>
-          <OverlayTrigger
-              key="right"
-              placement="right"
-              overlay={<Tooltip id="tooltip-right">{t('current_data.retrieve_data_from_accuweather_alert')}</Tooltip>}
-          >
-            <Button data-testid="button-id" variant="outline-info" onClick={() => setRetrieveDataFromAccuWeather(true)}>
-              {t('current_data.retrieve_data_from_accuweather_button')}
-            </Button>
-          </OverlayTrigger>
+            </>
+        ) : (
+            <>
+              <OverlayTrigger
+                  key="right"
+                  placement="right"
+                  overlay={<Tooltip
+                      id="tooltip-right">{t('current_data.retrieve_data_from_accuweather_alert')}</Tooltip>}
+              >
+                <Button data-testid="button-id" variant="outline-info"
+                        onClick={() => setRetrieveDataFromAccuWeather(true)}>
+                  {t('current_data.retrieve_data_from_accuweather_button')}
+                </Button>
+              </OverlayTrigger>
         </>
       )}
     </>

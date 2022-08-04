@@ -8,6 +8,7 @@
     "@types/react-bootstrap": "^0.32.30",
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
+    "formik": "^2.2.9",
     "i18next": "^21.8.14",
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.4.1",
@@ -19,7 +20,6 @@
     "react-multi-carousel": "^2.8.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "reactstrap": "^9.1.2",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"

@@ -53,16 +53,16 @@ const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({data}) => {
             </ListGroup.Item>
             <ListGroup.Item variant="light">
               {t('current_data.forecast_data.wind', {
-              speed: dayNightData.Wind.Speed.Value,
-              direction: dayNightData.Wind.Direction.Localized,
-            })}
-          </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            {t('current_data.forecast_data.wind_gust_day', {
-              speed: dayNightData.WindGust.Speed.Value,
-              direction: dayNightData.WindGust.Direction.Localized,
-            })}
-          </ListGroup.Item>
+                speed: dayNightData.Wind.Speed.Value,
+                direction: dayNightData.Wind.Direction.Localized,
+              })}
+            </ListGroup.Item>
+            <ListGroup.Item variant="light">
+              {t('current_data.forecast_data.wind_gust_day', {
+                speed: dayNightData.WindGust.Speed.Value,
+                direction: dayNightData.WindGust.Direction.Localized,
+              })}
+            </ListGroup.Item>
           <ListGroup.Item variant="light">
             {t('current_data.forecast_data.rain_day', {amount: dayNightData.Rain.Value})}
           </ListGroup.Item>
