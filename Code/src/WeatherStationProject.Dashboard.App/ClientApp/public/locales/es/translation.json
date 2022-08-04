@@ -49,7 +49,7 @@
   "historical_data.final_date.min_date": "Fecha final no puede ser anterior a fecha inicial",
   "historical_data.chart_view": "Vista de gráficos",
   "historical_data.chart_view.required": "Vista de gráficos requerido",
-  "historical_data.chart_view.values": "Seleccione un tipo de opción",
+  "historical_data.chart_view.values": "Seleccione un tipo válido",
   "historical_data.chart_view.bars": "Barras",
   "historical_data.chart_view.lines": "Líneas",
   "historical_data.grouping": "Tipo de agrupamiento",
