@@ -131,9 +131,9 @@ const ForecastData: React.FC = () => {
                   {t('current_data.retrieve_data_from_accuweather_button')}
                 </Button>
               </OverlayTrigger>
-        </>
-      )}
-    </>
+            </>
+        )}
+      </>
   );
 };
 

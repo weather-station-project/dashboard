@@ -44,16 +44,16 @@ const CarouselCurrentData: React.FC<ICarouselCurrentDataProps> = ({data}) => {
                 direction: data.Wind.Direction.Localized,
               })}
             </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            {t('current_data.forecast_data.wind_gust', {speed: data.WindGust.Speed.Metric.Value})}
-          </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            {t('current_data.forecast_data.rain', {amount: data.Precip1hr.Metric.Value})}
-          </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            <Link to={{ pathname: data.Link }} target="_blank">
-              Link
-            </Link>
+            <ListGroup.Item variant="light">
+              {t('current_data.forecast_data.wind_gust', {speed: data.WindGust.Speed.Metric.Value})}
+            </ListGroup.Item>
+            <ListGroup.Item variant="light">
+              {t('current_data.forecast_data.rain', {amount: data.Precip1hr.Metric.Value})}
+            </ListGroup.Item>
+            <ListGroup.Item variant="light">
+              <Link to={{pathname: data.Link}} target="_blank">
+                Link
+              </Link>
           </ListGroup.Item>
         </ListGroup>
       </Card.Body>

@@ -63,16 +63,16 @@ const CarouselDailyData: React.FC<ICarouselDailyDataProps> = ({data}) => {
                 direction: dayNightData.WindGust.Direction.Localized,
               })}
             </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            {t('current_data.forecast_data.rain_day', {amount: dayNightData.Rain.Value})}
-          </ListGroup.Item>
-          <ListGroup.Item variant="light">
-            <Link to={{ pathname: data.Link }} target="_blank">
-              Link
-            </Link>
-          </ListGroup.Item>
-        </ListGroup>
-      </Card.Body>
+            <ListGroup.Item variant="light">
+              {t('current_data.forecast_data.rain_day', {amount: dayNightData.Rain.Value})}
+            </ListGroup.Item>
+            <ListGroup.Item variant="light">
+              <Link to={{pathname: data.Link}} target="_blank">
+                Link
+              </Link>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card.Body>
     </Card>
   );
 };
