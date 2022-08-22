@@ -11,13 +11,10 @@ export enum ChartValues {
   Lines = 'Lines',
 }
 
-export interface IMeasurementsListRequest {
+export interface IHistoricalDataRequest {
   initialDate: Date | undefined;
   finalDate: Date | undefined;
   grouping: string | undefined;
-}
-
-export interface IHistoricalDataRequest extends IMeasurementsListRequest {
   chartView: string | undefined;
 }
 
@@ -28,7 +25,7 @@ export const DefaultHistoricalDataRequest: IHistoricalDataRequest = {
   chartView: ChartValues.Lines,
 };
 
-const commonValidations = {
+export const HistoricalDataRequestValidationSchema: SchemaOf<IHistoricalDataRequest> = object({
   initialDate: date()
     .required('historical_data.initial_date.required')
     .max(new Date(), 'historical_data.initial_date.max_date'),
@@ -39,14 +36,6 @@ const commonValidations = {
   grouping: mixed<keyof typeof GroupingValues>()
     .required('historical_data.grouping.required')
     .oneOf(Object.values(GroupingValues), 'historical_data.grouping.values'),
-};
-
-export const MeasurementsListRequestValidationSchema: SchemaOf<IMeasurementsListRequest> = object({
-  ...commonValidations,
-});
-
-export const HistoricalDataRequestValidationSchema: SchemaOf<IHistoricalDataRequest> = object({
-  ...commonValidations,
   chartView: mixed<keyof typeof ChartValues>()
     .required('historical_data.chart_view.required')
     .oneOf(Object.values(ChartValues), 'historical_data.chart_view.values'),

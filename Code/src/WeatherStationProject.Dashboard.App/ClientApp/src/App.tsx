@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from './components/menu/Layout';
 import Home from './components/pages/Home';
 import CurrentData from './components/pages/CurrentData/CurrentData';
-import HistoricalData from './components/pages/HistoricalData';
+import HistoricalData from './components/pages/HistoricalData/HistoricalData';
 import MeasurementsList from './components/pages/MeasurementsList';
 
 const App: React.FC = () => {
