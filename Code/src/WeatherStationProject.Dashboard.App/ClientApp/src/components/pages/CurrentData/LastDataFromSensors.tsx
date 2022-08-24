@@ -7,11 +7,19 @@ import Loading from '../../Loading';
 
 const LastDataFromSensors: React.FC = () => {
   const { t } = useTranslation();
+  const shouldFetch = React.useRef(true);
   const [data, setData] = React.useState({} as ILastData);
+  const [loading, setLoading] = React.useState(true);
   const url = '/api/weather-measurements/last';
 
   React.useEffect(() => {
     async function fetchData() {
+      if (shouldFetch.current) {
+        shouldFetch.current = false;
+      } else {
+        return;
+      }
+
       const api: AxiosInstance = axios.create({
         headers: {
           Accept: 'application/json',
@@ -30,6 +38,9 @@ const LastDataFromSensors: React.FC = () => {
           setData((() => {
             throw e;
           }) as never);
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
 
@@ -38,7 +49,9 @@ const LastDataFromSensors: React.FC = () => {
 
   return (
     <div>
-      {Object.prototype.hasOwnProperty.call(data, 'airParameters') ? (
+      {loading ? (
+        <Loading />
+      ) : (
         <ListGroup variant="flush">
           <ListGroup.Item>
             {t('current_data.last_data.air_parameters', {
@@ -83,8 +96,6 @@ const LastDataFromSensors: React.FC = () => {
               : t('current_data.last_data.wind_measurement_gust_not_found')}
           </ListGroup.Item>
         </ListGroup>
-      ) : (
-        <Loading />
       )}
     </div>
   );

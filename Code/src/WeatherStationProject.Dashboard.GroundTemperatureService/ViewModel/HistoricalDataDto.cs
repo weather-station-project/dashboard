@@ -7,10 +7,10 @@ using WeatherStationProject.Dashboard.GroundTemperatureService.Data;
 
 namespace WeatherStationProject.Dashboard.GroundTemperatureService.ViewModel
 {
-    public class HistoricalDataDto : GroupedDto<GroundTemperature>
+    public sealed class HistoricalDataDto : GroupedDto<GroundTemperature>
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Dictionary<string, SummaryDto> SummaryByGroupingItem { get; }
+        public List<GroundTemperaturesSummaryDto> SummaryByGroupingItem { get; }
         
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<GroundTemperatureDto> Measurements { get; }
@@ -23,7 +23,7 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.ViewModel
         {
             if (includeSummary)
             {
-                SummaryByGroupingItem = new Dictionary<string, SummaryDto>();
+                SummaryByGroupingItem = new List<GroundTemperaturesSummaryDto>();
             }
 
             if (includeMeasurements)
@@ -66,8 +66,9 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.ViewModel
         {
             foreach (var (key, value) in groupedEntities)
             {
-                SummaryByGroupingItem.Add(key, new SummaryDto
+                SummaryByGroupingItem.Add(new GroundTemperaturesSummaryDto
                 {
+                    Key = key,
                     MaxTemperature = value.Max(x => x.Temperature),
                     AvgTemperature = value.Average(x => x.Temperature),
                     MinTemperature = value.Min(x => x.Temperature)

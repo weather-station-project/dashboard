@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using WeatherStationProject.Dashboard.AirParametersService.Data;
 using WeatherStationProject.Dashboard.AirParametersService.ViewModel;
 using WeatherStationProject.Dashboard.Data.Validations;
@@ -51,22 +52,33 @@ namespace WeatherStationProject.Dashboard.Tests.AirParametersService
             var result = new HistoricalDataDto(new List<AirParameters>() {_m1, _m2, _m3, _m4}, groupingValues, true, false);
             
             // Assert
+            var keyGroup1Item = result.SummaryByGroupingItem.FirstOrDefault(x => x.Key == keyGroup1);
+            var keyGroup2Item = result.SummaryByGroupingItem.FirstOrDefault(x => x.Key == keyGroup2);
+            
+            Assert.NotNull(keyGroup1Item);
+            Assert.NotNull(keyGroup2Item);
             Assert.Null(result.Measurements);
             Assert.NotEmpty(result.SummaryByGroupingItem);
             
-            Assert.Equal(_m2.Humidity, result.SummaryByGroupingItem[keyGroup1].MaxHumidity);
-            Assert.Equal(_m2.Pressure, result.SummaryByGroupingItem[keyGroup1].MaxPressure);
-            Assert.Equal((_m1.Humidity + _m2.Humidity) / 2, result.SummaryByGroupingItem[keyGroup1].AvgHumidity);
-            Assert.Equal((_m1.Pressure + _m2.Pressure) / 2, result.SummaryByGroupingItem[keyGroup1].AvgPressure);
-            Assert.Equal(_m1.Humidity, result.SummaryByGroupingItem[keyGroup1].MinHumidity);
-            Assert.Equal(_m1.Pressure, result.SummaryByGroupingItem[keyGroup1].MinPressure);
-            
-            Assert.Equal(_m4.Humidity, result.SummaryByGroupingItem[keyGroup2].MaxHumidity);
-            Assert.Equal(_m4.Pressure, result.SummaryByGroupingItem[keyGroup2].MaxPressure);
-            Assert.Equal((_m3.Humidity + _m4.Humidity) / 2, result.SummaryByGroupingItem[keyGroup2].AvgHumidity);
-            Assert.Equal((_m3.Pressure + _m4.Pressure) / 2, result.SummaryByGroupingItem[keyGroup2].AvgPressure);
-            Assert.Equal(_m3.Humidity, result.SummaryByGroupingItem[keyGroup2].MinHumidity);
-            Assert.Equal(_m3.Pressure, result.SummaryByGroupingItem[keyGroup2].MinPressure);
+            if (keyGroup1Item != null)
+            {
+                Assert.Equal(_m2.Humidity, keyGroup1Item.MaxHumidity);
+                Assert.Equal(_m2.Pressure, keyGroup1Item.MaxPressure);
+                Assert.Equal((_m1.Humidity + _m2.Humidity) / 2, keyGroup1Item.AvgHumidity);
+                Assert.Equal((_m1.Pressure + _m2.Pressure) / 2, keyGroup1Item.AvgPressure);
+                Assert.Equal(_m1.Humidity, keyGroup1Item.MinHumidity);
+                Assert.Equal(_m1.Pressure, keyGroup1Item.MinPressure);
+            }
+
+            if (keyGroup2Item != null)
+            {
+                Assert.Equal(_m4.Humidity, keyGroup2Item.MaxHumidity);
+                Assert.Equal(_m4.Pressure, keyGroup2Item.MaxPressure);
+                Assert.Equal((_m3.Humidity + _m4.Humidity) / 2, keyGroup2Item.AvgHumidity);
+                Assert.Equal((_m3.Pressure + _m4.Pressure) / 2, keyGroup2Item.AvgPressure);
+                Assert.Equal(_m3.Humidity, keyGroup2Item.MinHumidity);
+                Assert.Equal(_m3.Pressure, keyGroup2Item.MinPressure);
+            }
         }
     }
 }

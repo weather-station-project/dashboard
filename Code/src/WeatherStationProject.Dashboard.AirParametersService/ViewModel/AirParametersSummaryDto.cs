@@ -1,6 +1,8 @@
+using WeatherStationProject.Dashboard.Data.ViewModel;
+
 namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
 {
-    public class SummaryDto
+    public class AirParametersSummaryDto: SummaryDto
     {
         public decimal MaxPressure { get; set; }
         public decimal AvgPressure { get; set; }

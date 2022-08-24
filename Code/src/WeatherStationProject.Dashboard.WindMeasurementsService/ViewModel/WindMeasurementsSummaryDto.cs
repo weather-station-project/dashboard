@@ -1,6 +1,8 @@
+using WeatherStationProject.Dashboard.Data.ViewModel;
+
 namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
 {
-    public class SummaryDto
+    public class WindMeasurementsSummaryDto : SummaryDto
     {
         public decimal AvgSpeed { get; set; }
         

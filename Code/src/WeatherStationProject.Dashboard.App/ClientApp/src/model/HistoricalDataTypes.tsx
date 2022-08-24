@@ -1,4 +1,11 @@
 import { date, mixed, object, ref, SchemaOf } from 'yup';
+import {
+  IAirParameters,
+  IAmbientTemperatures,
+  IGroundTemperatures,
+  IRainfall,
+  IWindMeasurements,
+} from './LastDataTypes';
 
 export enum GroupingValues {
   Hours = 'Hours',
@@ -40,3 +47,73 @@ export const HistoricalDataRequestValidationSchema: SchemaOf<IHistoricalDataRequ
     .required('historical_data.chart_view.required')
     .oneOf(Object.values(ChartValues), 'historical_data.chart_view.values'),
 });
+
+export interface IHistoricalDataResult {
+  airParameters: IHistoricalAirParameters;
+  ambientTemperatures: IHistoricalAmbientTemperatures;
+  groundTemperatures: IHistoricalGroundTemperatures;
+  rainfall: IHistoricalRainfall;
+  windMeasurements: IHistoricalWindMeasurements;
+}
+
+interface IHistoricalAirParameters {
+  summaryByGroupingItem?: ISummaryAirParameters[];
+  measurements?: IAirParameters[];
+}
+
+interface ISummaryDto {
+  key: string;
+}
+
+interface ISummaryAirParameters extends ISummaryDto {
+  maxPressure: number;
+  avgPressure: number;
+  minPressure: number;
+  maxHumidity: number;
+  avgHumidity: number;
+  minHumidity: number;
+}
+
+interface IHistoricalAmbientTemperatures {
+  summaryByGroupingItem?: ISummaryAmbientTemperatures[];
+  measurements?: IAmbientTemperatures[];
+}
+
+interface ISummaryAmbientTemperatures extends ISummaryDto {
+  maxTemperature: number;
+  avgTemperature: number;
+  minTemperature: number;
+}
+
+interface IHistoricalGroundTemperatures {
+  summaryByGroupingItem?: ISummaryGroundTemperatures[];
+  measurements?: IGroundTemperatures[];
+}
+
+interface ISummaryGroundTemperatures extends ISummaryDto {
+  maxTemperature: number;
+  avgTemperature: number;
+  minTemperature: number;
+}
+
+interface IHistoricalRainfall {
+  summaryByGroupingItem?: ISummaryRainfall[];
+  measurements?: IRainfall[];
+}
+
+interface ISummaryRainfall extends ISummaryDto {
+  maxAmount: number;
+  avgAmount: number;
+  minAmount: number;
+}
+
+interface IHistoricalWindMeasurements {
+  SummaryByGroupingItem?: ISummaryWindMeasurements[];
+  Measurements?: IWindMeasurements[];
+}
+
+interface ISummaryWindMeasurements extends ISummaryDto {
+  avgSpeed: number;
+  maxGust: number;
+  predominantDirection: string;
+}

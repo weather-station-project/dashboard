@@ -10,7 +10,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel
     public sealed class HistoricalDataDto : GroupedDto<AmbientTemperature>
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Dictionary<string, SummaryDto> SummaryByGroupingItem { get; }
+        public List<AmbientTemperaturesSummaryDto> SummaryByGroupingItem { get; }
         
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<AmbientTemperatureDto> Measurements { get; }
@@ -23,7 +23,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel
         {
             if (includeSummary)
             {
-                SummaryByGroupingItem = new Dictionary<string, SummaryDto>();
+                SummaryByGroupingItem = new List<AmbientTemperaturesSummaryDto>();
             }
 
             if (includeMeasurements)
@@ -66,8 +66,9 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel
         {
             foreach (var (key, value) in groupedEntities)
             {
-                SummaryByGroupingItem.Add(key, new SummaryDto
+                SummaryByGroupingItem.Add(new AmbientTemperaturesSummaryDto
                 {
+                    Key = key,
                     MaxTemperature = value.Max(x => x.Temperature),
                     AvgTemperature = value.Average(x => x.Temperature),
                     MinTemperature = value.Min(x => x.Temperature)

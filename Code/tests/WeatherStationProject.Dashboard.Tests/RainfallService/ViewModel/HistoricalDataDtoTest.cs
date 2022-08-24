@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using WeatherStationProject.Dashboard.Data.Validations;
 using WeatherStationProject.Dashboard.RainfallService.Data;
 using WeatherStationProject.Dashboard.RainfallService.ViewModel;
@@ -56,16 +57,27 @@ namespace WeatherStationProject.Dashboard.Tests.RainfallService
                 true, false);
 
             // Assert
+            var keyGroup1Item = result.SummaryByGroupingItem.FirstOrDefault(x => x.Key == keyGroup1);
+            var keyGroup2Item = result.SummaryByGroupingItem.FirstOrDefault(x => x.Key == keyGroup2);
+            
+            Assert.NotNull(keyGroup1Item);
+            Assert.NotNull(keyGroup2Item);
             Assert.Null(result.Measurements);
             Assert.NotEmpty(result.SummaryByGroupingItem);
 
-            Assert.Equal(_m2.Amount, result.SummaryByGroupingItem[keyGroup1].MaxAmount);
-            Assert.Equal((_m1.Amount + _m2.Amount) / 2, result.SummaryByGroupingItem[keyGroup1].AvgAmount);
-            Assert.Equal(_m1.Amount, result.SummaryByGroupingItem[keyGroup1].MinAmount);
+            if (keyGroup1Item != null)
+            {
+                Assert.Equal(_m2.Amount, keyGroup1Item.MaxAmount);
+                Assert.Equal((_m1.Amount + _m2.Amount) / 2, keyGroup1Item.AvgAmount);
+                Assert.Equal(_m1.Amount, keyGroup1Item.MinAmount);
+            }
 
-            Assert.Equal(_m4.Amount, result.SummaryByGroupingItem[keyGroup2].MaxAmount);
-            Assert.Equal((_m3.Amount + _m4.Amount) / 2, result.SummaryByGroupingItem[keyGroup2].AvgAmount);
-            Assert.Equal(_m3.Amount, result.SummaryByGroupingItem[keyGroup2].MinAmount);
+            if (keyGroup2Item != null)
+            {
+                Assert.Equal(_m4.Amount, keyGroup2Item.MaxAmount);
+                Assert.Equal((_m3.Amount + _m4.Amount) / 2, keyGroup2Item.AvgAmount);
+                Assert.Equal(_m3.Amount, keyGroup2Item.MinAmount);
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
+using WeatherStationProject.Dashboard.Data.ViewModel;
+
 namespace WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel
 {
-    public class SummaryDto
+    public class AmbientTemperaturesSummaryDto : SummaryDto
     {
         public decimal MaxTemperature { get; set; }
         public decimal AvgTemperature { get; set; }

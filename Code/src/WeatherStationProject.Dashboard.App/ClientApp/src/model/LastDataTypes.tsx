@@ -7,29 +7,29 @@
   windMeasurementsGust: IWindMeasurementsGust;
 }
 
-interface IAirParameters {
+export interface IAirParameters {
   dateTime: Date;
   pressure: number;
   humidity: number;
 }
 
-interface IAmbientTemperatures {
+export interface IAmbientTemperatures {
   dateTime: Date;
   temperature: number;
 }
 
-interface IGroundTemperatures {
+export interface IGroundTemperatures {
   dateTime: Date;
   temperature: number;
 }
 
-interface IRainfall {
+export interface IRainfall {
   fromDateTime: Date;
   toDateTime: Date;
   amount: number;
 }
 
-interface IWindMeasurements {
+export interface IWindMeasurements {
   dateTime: Date;
   speed: number;
   direction: string;

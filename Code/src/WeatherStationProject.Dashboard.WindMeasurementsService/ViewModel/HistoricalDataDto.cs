@@ -7,10 +7,10 @@ using WeatherStationProject.Dashboard.WindMeasurementsService.Data;
 
 namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
 {
-    public class HistoricalDataDto : GroupedDto<WindMeasurements>
+    public sealed class HistoricalDataDto : GroupedDto<WindMeasurements>
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Dictionary<string, SummaryDto> SummaryByGroupingItem { get; }
+        public List<WindMeasurementsSummaryDto> SummaryByGroupingItem { get; }
         
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<WindMeasurementsDto> Measurements { get; }
@@ -23,7 +23,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
         {
             if (includeSummary)
             {
-                SummaryByGroupingItem = new Dictionary<string, SummaryDto>();
+                SummaryByGroupingItem = new List<WindMeasurementsSummaryDto>();
             }
 
             if (includeMeasurements)
@@ -72,8 +72,9 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
                     .First()
                     .Select(p => p.Direction).ToArray()[0];
                 
-                SummaryByGroupingItem.Add(key, new SummaryDto
+                SummaryByGroupingItem.Add(new WindMeasurementsSummaryDto
                 {
+                    Key = key,
                     AvgSpeed = value.Average(x => x.Speed),
                     MaxGust = value.Max(x => x.Speed),
                     PredominantDirection = predominantDirection

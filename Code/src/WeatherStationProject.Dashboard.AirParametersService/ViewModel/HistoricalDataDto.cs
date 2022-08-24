@@ -10,7 +10,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
     public sealed class HistoricalDataDto : GroupedDto<AirParameters>
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Dictionary<string, SummaryDto> SummaryByGroupingItem { get; }
+        public List<AirParametersSummaryDto> SummaryByGroupingItem { get; }
         
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<AirParametersDto> Measurements { get; }
@@ -23,7 +23,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
         {
             if (includeSummary)
             {
-                SummaryByGroupingItem = new Dictionary<string, SummaryDto>();
+                SummaryByGroupingItem = new List<AirParametersSummaryDto>();
             }
 
             if (includeMeasurements)
@@ -66,8 +66,10 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
         {
             foreach (var (key, value) in groupedEntities)
             {
-                SummaryByGroupingItem.Add(key, new SummaryDto
+                SummaryByGroupingItem.Add(new AirParametersSummaryDto
                 {
+                    Key = key,
+                    
                     MaxHumidity = value.Max(x => x.Humidity),
                     AvgHumidity = value.Average(x => x.Humidity),
                     MinHumidity = value.Min(x => x.Humidity),

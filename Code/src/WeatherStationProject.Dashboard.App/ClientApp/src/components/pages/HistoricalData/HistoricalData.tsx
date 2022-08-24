@@ -3,23 +3,41 @@ import { DefaultHistoricalDataRequest, IHistoricalDataRequest } from '../../../m
 import { FormikHelpers } from 'formik';
 import SearchForm from '../../search-form/search-form';
 import ChartsList from './ChartsList';
+import { ErrorBoundary } from '../../../ErrorBoundary';
+import moment from 'moment';
 
-const HistoricalData: React.FC = () => {
+interface IHistoricalDataProps {
+  showChartList: boolean;
+}
+
+const HistoricalData: React.FC<IHistoricalDataProps> = ({ showChartList }) => {
   const [formValues, setFormValues] = useState<IHistoricalDataRequest>(DefaultHistoricalDataRequest);
-  const [valuesCompleted, setValuesCompleted] = useState<boolean>(false);
+  const [reRenderForcedState, setReRenderForcedState] = useState<number>(0);
 
   const handleOnSubmit = (values: IHistoricalDataRequest, helpers: FormikHelpers<IHistoricalDataRequest>) => {
+    const initialDate = moment(values.initialDate);
+    const finalDate = moment(values.finalDate);
+
+    values.initialDate = new Date(Date.UTC(initialDate.year(), initialDate.month(), initialDate.date(), 0, 0, 0));
+    values.finalDate = new Date(Date.UTC(finalDate.year(), finalDate.month(), finalDate.date(), 23, 59, 59));
+
     helpers.setSubmitting(false);
     setFormValues(values);
-    setValuesCompleted(true);
+    setReRenderForcedState((rerenderForcedState) => ++rerenderForcedState);
   };
 
   return (
     <>
       <div>
-        <SearchForm showChartView={true} onSubmit={handleOnSubmit} />
+        <SearchForm showChartView={showChartList} onSubmit={handleOnSubmit} />
       </div>
-      <div className="mt-5">{valuesCompleted && <ChartsList requestData={formValues} />}</div>
+      <div className="mt-5">
+        {reRenderForcedState > 0 && (
+          <ErrorBoundary>
+            {showChartList && <ChartsList requestData={formValues} reRenderForcedState={reRenderForcedState} />}
+          </ErrorBoundary>
+        )}
+      </div>
     </>
   );
 };

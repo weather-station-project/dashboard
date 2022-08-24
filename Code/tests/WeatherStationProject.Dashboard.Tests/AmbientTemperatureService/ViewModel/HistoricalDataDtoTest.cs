@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using WeatherStationProject.Dashboard.AmbientTemperatureService.Data;
 using WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel;
 using WeatherStationProject.Dashboard.Data.Validations;
@@ -52,16 +53,27 @@ namespace WeatherStationProject.Dashboard.Tests.AmbientTemperatureService
                 true, false);
             
             // Assert
+            var keyGroup1Item = result.SummaryByGroupingItem.FirstOrDefault(x => x.Key == keyGroup1);
+            var keyGroup2Item = result.SummaryByGroupingItem.FirstOrDefault(x => x.Key == keyGroup2);
+            
+            Assert.NotNull(keyGroup1Item);
+            Assert.NotNull(keyGroup2Item);
             Assert.Null(result.Measurements);
             Assert.NotEmpty(result.SummaryByGroupingItem);
-            
-            Assert.Equal(_m2.Temperature, result.SummaryByGroupingItem[keyGroup1].MaxTemperature);
-            Assert.Equal((_m1.Temperature + _m2.Temperature) / 2, result.SummaryByGroupingItem[keyGroup1].AvgTemperature);
-            Assert.Equal(_m1.Temperature, result.SummaryByGroupingItem[keyGroup1].MinTemperature);
-            
-            Assert.Equal(_m4.Temperature, result.SummaryByGroupingItem[keyGroup2].MaxTemperature);
-            Assert.Equal((_m3.Temperature + _m4.Temperature) / 2, result.SummaryByGroupingItem[keyGroup2].AvgTemperature);
-            Assert.Equal(_m3.Temperature, result.SummaryByGroupingItem[keyGroup2].MinTemperature);
+
+            if (keyGroup1Item != null)
+            {
+                Assert.Equal(_m2.Temperature, keyGroup1Item.MaxTemperature);
+                Assert.Equal((_m1.Temperature + _m2.Temperature) / 2, keyGroup1Item.AvgTemperature);
+                Assert.Equal(_m1.Temperature, keyGroup1Item.MinTemperature);
+            }
+
+            if (keyGroup2Item != null)
+            {
+                Assert.Equal(_m4.Temperature, keyGroup2Item.MaxTemperature);
+                Assert.Equal((_m3.Temperature + _m4.Temperature) / 2, keyGroup2Item.AvgTemperature);
+                Assert.Equal(_m3.Temperature, keyGroup2Item.MinTemperature);
+            }
         }
     }
 }

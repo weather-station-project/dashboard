@@ -7,10 +7,10 @@ using WeatherStationProject.Dashboard.RainfallService.Data;
 
 namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
 {
-    public class HistoricalDataDto : GroupedDto<Rainfall>
+    public sealed class HistoricalDataDto : GroupedDto<Rainfall>
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Dictionary<string, SummaryDto> SummaryByGroupingItem { get; }
+        public List<RainfallSummaryDto> SummaryByGroupingItem { get; }
         
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<RainfallDto> Measurements { get; }
@@ -23,7 +23,7 @@ namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
         {
             if (includeSummary)
             {
-                SummaryByGroupingItem = new Dictionary<string, SummaryDto>();
+                SummaryByGroupingItem = new List<RainfallSummaryDto>();
             }
 
             if (includeMeasurements)
@@ -66,8 +66,9 @@ namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
         {
             foreach (var (key, value) in groupedEntities)
             {
-                SummaryByGroupingItem.Add(key, new SummaryDto
+                SummaryByGroupingItem.Add(new RainfallSummaryDto
                 {
+                    Key = key,
                     MaxAmount = value.Max(x => x.Amount),
                     AvgAmount = value.Average(x => x.Amount),
                     MinAmount = value.Min(x => x.Amount)

@@ -4,7 +4,6 @@ import Layout from './components/menu/Layout';
 import Home from './components/pages/Home';
 import CurrentData from './components/pages/CurrentData/CurrentData';
 import HistoricalData from './components/pages/HistoricalData/HistoricalData';
-import MeasurementsList from './components/pages/MeasurementsList';
 
 const App: React.FC = () => {
   return (
@@ -12,8 +11,8 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/currentdata" element={<CurrentData />} />
-        <Route path="/historicaldata" element={<HistoricalData />} />
-        <Route path="/measurementslist" element={<MeasurementsList />} />
+        <Route path="/historicaldata" element={<HistoricalData showChartList={true} />} />
+        <Route path="/measurementslist" element={<HistoricalData showChartList={false} />} />
       </Routes>
     </Layout>
   );
