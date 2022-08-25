@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WeatherStationProject.Dashboard.Core.DateTime;
 using WeatherStationProject.Dashboard.Data.Validations;
 using WeatherStationProject.Dashboard.GroundTemperatureService.Services;
 using WeatherStationProject.Dashboard.GroundTemperatureService.ViewModel;
@@ -40,8 +41,8 @@ namespace WeatherStationProject.Dashboard.GroundTemperatureService.Controllers
             [Required] bool includeSummary,
             [Required] bool includeMeasurements)
         {
-            var records = await _groundTemperatureService.GetGroundTemperaturesBetweenDates(since.ToUniversalTime(),
-                until.ToUniversalTime());
+            var records = await _groundTemperatureService.GetGroundTemperaturesBetweenDates(DateTimeConverter.ConvertToUtc(since),
+                DateTimeConverter.ConvertToUtc(until));
 
             if (records.Count == 0) return NotFound();
 

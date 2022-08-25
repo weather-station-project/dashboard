@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IHistoricalDataRequest, IHistoricalDataResult } from '../../../model/HistoricalDataTypes';
 import Loading from '../../Loading';
 import axios, { AxiosInstance } from 'axios';
+import AirParametersChart from './AirParametersChart';
 
 interface IChartsListProps {
   requestData: IHistoricalDataRequest;
@@ -59,16 +60,16 @@ const ChartsList: React.FC<IChartsListProps> = ({ requestData, reRenderForcedSta
     fetchData();
   }, [reRenderForcedState]);
 
+  // https://react-chartjs-2.js.org/examples/line-chart
+
   return (
     <>
       {loading ? (
         <Loading />
       ) : (
-        <p>
-          {data.airParameters.summaryByGroupingItem
-            ? data.airParameters.summaryByGroupingItem[0].key.toString()
-            : 'lala'}
-        </p>
+        <>
+          <AirParametersChart chartType={requestData.chartView as string} historicalData={data.airParameters} />
+        </>
       )}
     </>
   );

@@ -26,4 +26,4 @@ const NavMenu: React.FC = () => {
   );
 };
 
-export default NavMenu;
+export default React.memo(NavMenu);

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WeatherStationProject.Dashboard.AirParametersService.Services;
 using WeatherStationProject.Dashboard.AirParametersService.ViewModel;
+using WeatherStationProject.Dashboard.Core.DateTime;
 using WeatherStationProject.Dashboard.Data.Validations;
 
 namespace WeatherStationProject.Dashboard.AirParametersService.Controllers
@@ -40,8 +41,8 @@ namespace WeatherStationProject.Dashboard.AirParametersService.Controllers
             [Required] bool includeSummary,
             [Required] bool includeMeasurements)
         {
-            var records = await _airParametersService.GetAirParametersBetweenDates(since.ToUniversalTime(),
-                until.ToUniversalTime());
+            var records = await _airParametersService.GetAirParametersBetweenDates(DateTimeConverter.ConvertToUtc(since),
+                DateTimeConverter.ConvertToUtc(until));
 
             if (records.Count == 0) return NotFound();
 

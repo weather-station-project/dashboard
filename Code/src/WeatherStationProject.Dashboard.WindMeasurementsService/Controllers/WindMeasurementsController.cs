@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WeatherStationProject.Dashboard.Core.DateTime;
 using WeatherStationProject.Dashboard.Data.Validations;
 using WeatherStationProject.Dashboard.WindMeasurementsService.Services;
 using WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel;
@@ -50,8 +51,8 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.Controllers
             [Required] bool includeSummary,
             [Required] bool includeMeasurements)
         {
-            var records = await _windMeasurementsService.GetWindMeasurementsBetweenDates(since.ToUniversalTime(),
-                until.ToUniversalTime());
+            var records = await _windMeasurementsService.GetWindMeasurementsBetweenDates(DateTimeConverter.ConvertToUtc(since),
+                DateTimeConverter.ConvertToUtc(until));
 
             if (records.Count == 0) return NotFound();
 

@@ -12,7 +12,7 @@
   "home.technologies": "The following technologies, languages and frameworks have been used for development",
   "home.technologies.clientapp": "Dashboard made with React + Typescript",
   "home.technologies.accuweather": "For external weather data, Accuweather API has been used",
-  "home.technologies.apis": "The project API is a set of microservices made in C # with .NET 5 and EF for data access",
+  "home.technologies.apis": "The project API is a set of microservices made in C # with .NET 6 and EF for data access",
   "home.technologies.authentication": "All calls to microservices are made using JWT authentication",
   "home.technologies.gateway": "The gateway has been implemented with the Ocelot framework",
   "home.technologies.docker": "Both the dashboard and the microservices are dockerized in containers",
@@ -59,5 +59,7 @@
   "historical_data.grouping.hours": "Hours",
   "historical_data.grouping.days": "Days",
   "historical_data.grouping.months": "Months",
-  "historical_data.submit": "Search"
+  "historical_data.submit": "Search",
+  "historical_data.chart.air_parameters": "Air parameters",
+  "historical_data.chart.air_parameters.air_pressure": "Air pressure"
 }

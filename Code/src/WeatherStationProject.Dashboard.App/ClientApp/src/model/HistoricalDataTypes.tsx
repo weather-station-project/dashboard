@@ -56,7 +56,7 @@ export interface IHistoricalDataResult {
   windMeasurements: IHistoricalWindMeasurements;
 }
 
-interface IHistoricalAirParameters {
+export interface IHistoricalAirParameters {
   summaryByGroupingItem?: ISummaryAirParameters[];
   measurements?: IAirParameters[];
 }
@@ -74,7 +74,7 @@ interface ISummaryAirParameters extends ISummaryDto {
   minHumidity: number;
 }
 
-interface IHistoricalAmbientTemperatures {
+export interface IHistoricalAmbientTemperatures {
   summaryByGroupingItem?: ISummaryAmbientTemperatures[];
   measurements?: IAmbientTemperatures[];
 }
@@ -85,7 +85,7 @@ interface ISummaryAmbientTemperatures extends ISummaryDto {
   minTemperature: number;
 }
 
-interface IHistoricalGroundTemperatures {
+export interface IHistoricalGroundTemperatures {
   summaryByGroupingItem?: ISummaryGroundTemperatures[];
   measurements?: IGroundTemperatures[];
 }
@@ -96,7 +96,7 @@ interface ISummaryGroundTemperatures extends ISummaryDto {
   minTemperature: number;
 }
 
-interface IHistoricalRainfall {
+export interface IHistoricalRainfall {
   summaryByGroupingItem?: ISummaryRainfall[];
   measurements?: IRainfall[];
 }
@@ -107,7 +107,7 @@ interface ISummaryRainfall extends ISummaryDto {
   minAmount: number;
 }
 
-interface IHistoricalWindMeasurements {
+export interface IHistoricalWindMeasurements {
   SummaryByGroupingItem?: ISummaryWindMeasurements[];
   Measurements?: IWindMeasurements[];
 }
