@@ -61,5 +61,8 @@
   "historical_data.grouping.months": "Months",
   "historical_data.submit": "Search",
   "historical_data.chart.air_parameters": "Air parameters",
-  "historical_data.chart.air_parameters.air_pressure": "Air pressure"
+  "historical_data.chart.air_parameters.air_pressure": "Air pressure",
+  "historical_data.chart.air_parameters.air_pressure.max": "Max pressure",
+  "historical_data.chart.air_parameters.air_pressure.avg": "Avg pressure",
+  "historical_data.chart.air_parameters.air_pressure.min": "Min pressure"
 }

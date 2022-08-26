@@ -61,5 +61,8 @@
   "historical_data.grouping.months": "Meses",
   "historical_data.submit": "Buscar",
   "historical_data.chart.air_parameters": "Parámetros atmosféricos",
-  "historical_data.chart.air_parameters.air_pressure": "Presión atmosférica"
+  "historical_data.chart.air_parameters.air_pressure": "Presión atmosférica",
+  "historical_data.chart.air_parameters.air_pressure.max": "Presión máxima",
+  "historical_data.chart.air_parameters.air_pressure.avg": "Presión media",
+  "historical_data.chart.air_parameters.air_pressure.min": "Presión mínima"
 }

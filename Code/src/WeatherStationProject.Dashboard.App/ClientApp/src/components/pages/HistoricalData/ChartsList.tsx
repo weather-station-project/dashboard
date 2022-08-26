@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { IHistoricalDataRequest, IHistoricalDataResult } from '../../../model/HistoricalDataTypes';
+import { ChartValues, IHistoricalDataRequest, IHistoricalDataResult } from '../../../model/HistoricalDataTypes';
 import Loading from '../../Loading';
 import axios, { AxiosInstance } from 'axios';
-import AirParametersChart from './AirParametersChart';
+import BarAndLineChart from './BarAndLineChart';
+import { useTranslation } from 'react-i18next';
 
 interface IChartsListProps {
   requestData: IHistoricalDataRequest;
@@ -10,10 +11,18 @@ interface IChartsListProps {
 }
 
 const ChartsList: React.FC<IChartsListProps> = ({ requestData, reRenderForcedState }) => {
+  const { t } = useTranslation();
   const shouldFetch = React.useRef(true);
   const [data, setData] = React.useState({} as IHistoricalDataResult);
   const [loading, setLoading] = useState<boolean>(true);
   const url = '/api/weather-measurements/historical';
+
+  const blueColor = 'rgb(0, 128, 255)';
+  const blueColorAlpha = 'rgba(0, 128, 255, 0.5)';
+  const yellowColor = 'rgb(255, 178, 102)';
+  const yellowColorAlpha = 'rgba(255, 178, 102, 0.5)';
+  const redColor = 'rgb(204, 0, 0)';
+  const redColorAlpha = 'rgba(204, 0, 0, 0.5)';
 
   React.useEffect(() => {
     async function fetchData() {
@@ -68,7 +77,24 @@ const ChartsList: React.FC<IChartsListProps> = ({ requestData, reRenderForcedSta
         <Loading />
       ) : (
         <>
-          <AirParametersChart chartType={requestData.chartView as string} historicalData={data.airParameters} />
+          <BarAndLineChart
+            title={t('historical_data.chart.air_parameters')}
+            chartType={requestData.chartView === ChartValues.Lines ? 'line' : 'bar'}
+            chartTitle={t('historical_data.chart.air_parameters.air_pressure')}
+            maxTitle={t('historical_data.chart.air_parameters.air_pressure.max')}
+            avgTitle={t('historical_data.chart.air_parameters.air_pressure.avg')}
+            minTitle={t('historical_data.chart.air_parameters.air_pressure.min')}
+            maxBgColor={redColorAlpha}
+            maxBorderColor={redColor}
+            avgBgColor={yellowColorAlpha}
+            avgBorderColor={yellowColor}
+            minBgColor={blueColorAlpha}
+            minBorderColor={blueColor}
+            keys={data.airParameters.summaryByGroupingItem?.map((item) => item.key) as string[]}
+            maxValues={data.airParameters.summaryByGroupingItem?.map((item) => item.maxPressure) as number[]}
+            avgValues={data.airParameters.summaryByGroupingItem?.map((item) => item.avgPressure) as number[]}
+            minValues={data.airParameters.summaryByGroupingItem?.map((item) => item.minPressure) as number[]}
+          />
         </>
       )}
     </>
