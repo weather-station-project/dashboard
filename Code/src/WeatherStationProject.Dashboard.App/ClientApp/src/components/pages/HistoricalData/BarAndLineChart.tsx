@@ -73,7 +73,7 @@ const BarAndLineChart: React.FC<IBarAndLineChartProps> = ({
     },
   };
   const data = {
-    keys,
+    labels: keys,
     datasets: [
       {
         type: chartType,
