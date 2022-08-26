@@ -14,8 +14,6 @@ import {
 import { Chart } from 'react-chartjs-2';
 
 interface IBarAndLineChartProps {
-  title: string;
-
   chartType: keyof ChartTypeRegistry;
   chartTitle: string;
 
@@ -39,8 +37,6 @@ interface IBarAndLineChartProps {
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 const BarAndLineChart: React.FC<IBarAndLineChartProps> = ({
-  title,
-
   chartType,
   chartTitle,
 
@@ -100,12 +96,7 @@ const BarAndLineChart: React.FC<IBarAndLineChartProps> = ({
     ],
   };
 
-  return (
-    <>
-      <h2>{title}</h2>
-      <Chart type={chartType} options={options} data={data} />
-    </>
-  );
+  return <Chart type={chartType} options={options} data={data} />;
 };
 
 export default BarAndLineChart;

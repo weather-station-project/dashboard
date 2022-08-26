@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import { ChartValues, IHistoricalDataRequest, IHistoricalDataResult } from '../../../model/HistoricalDataTypes';
 import Loading from '../../Loading';
 import axios, { AxiosInstance } from 'axios';
 import BarAndLineChart from './BarAndLineChart';
 import { useTranslation } from 'react-i18next';
+import WindMeasurementsChart from './WindMeasurementsChart';
 
 interface IChartsListProps {
   requestData: IHistoricalDataRequest;
@@ -16,6 +17,8 @@ const ChartsList: React.FC<IChartsListProps> = ({ requestData, reRenderForcedSta
   const [data, setData] = React.useState({} as IHistoricalDataResult);
   const [loading, setLoading] = useState<boolean>(true);
   const url = '/api/weather-measurements/historical';
+  const sectionSeparation = { marginTop: 75 };
+  const chartType = requestData.chartView === ChartValues.Lines ? 'line' : 'bar';
 
   const blueColor = 'rgb(0, 128, 255)';
   const blueColorAlpha = 'rgba(0, 128, 255, 0.5)';
@@ -79,13 +82,13 @@ const ChartsList: React.FC<IChartsListProps> = ({ requestData, reRenderForcedSta
         <Loading />
       ) : (
         <>
+          <h2>{t('historical_data.chart.air_parameters')}</h2>
           <BarAndLineChart
-            title={t('historical_data.chart.air_parameters')}
-            chartType={requestData.chartView === ChartValues.Lines ? 'line' : 'bar'}
+            chartType={chartType}
             chartTitle={t('historical_data.chart.air_parameters.air_pressure')}
-            maxTitle={t('historical_data.chart.air_parameters.air_pressure.max')}
-            avgTitle={t('historical_data.chart.air_parameters.air_pressure.avg')}
-            minTitle={t('historical_data.chart.air_parameters.air_pressure.min')}
+            maxTitle={t('historical_data.chart.max')}
+            avgTitle={t('historical_data.chart.avg')}
+            minTitle={t('historical_data.chart.min')}
             maxBgColor={darkBlueColorAlpha}
             maxBorderColor={darkBlueColor}
             avgBgColor={yellowColorAlpha}
@@ -97,6 +100,100 @@ const ChartsList: React.FC<IChartsListProps> = ({ requestData, reRenderForcedSta
             avgValues={data.airParameters.summaryByGroupingItem?.map((item) => item.avgPressure) as number[]}
             minValues={data.airParameters.summaryByGroupingItem?.map((item) => item.minPressure) as number[]}
           />
+          <div className="mt-5">
+            <BarAndLineChart
+              chartType={chartType}
+              chartTitle={t('historical_data.chart.air_parameters.humidity')}
+              maxTitle={t('historical_data.chart.max')}
+              avgTitle={t('historical_data.chart.avg')}
+              minTitle={t('historical_data.chart.min')}
+              maxBgColor={darkBlueColorAlpha}
+              maxBorderColor={darkBlueColor}
+              avgBgColor={yellowColorAlpha}
+              avgBorderColor={yellowColor}
+              minBgColor={blueColorAlpha}
+              minBorderColor={blueColor}
+              keys={data.airParameters.summaryByGroupingItem?.map((item) => item.key) as string[]}
+              maxValues={data.airParameters.summaryByGroupingItem?.map((item) => item.maxHumidity) as number[]}
+              avgValues={data.airParameters.summaryByGroupingItem?.map((item) => item.avgHumidity) as number[]}
+              minValues={data.airParameters.summaryByGroupingItem?.map((item) => item.minHumidity) as number[]}
+            />
+          </div>
+          <div style={sectionSeparation}>
+            <h2>{t('historical_data.chart.temperatures')}</h2>
+            <BarAndLineChart
+              chartType={chartType}
+              chartTitle={t('historical_data.chart.temperatures.ambient')}
+              maxTitle={t('historical_data.chart.max')}
+              avgTitle={t('historical_data.chart.avg')}
+              minTitle={t('historical_data.chart.min')}
+              maxBgColor={redColorAlpha}
+              maxBorderColor={redColor}
+              avgBgColor={yellowColorAlpha}
+              avgBorderColor={yellowColor}
+              minBgColor={blueColorAlpha}
+              minBorderColor={blueColor}
+              keys={data.ambientTemperatures.summaryByGroupingItem?.map((item) => item.key) as string[]}
+              maxValues={data.ambientTemperatures.summaryByGroupingItem?.map((item) => item.maxTemperature) as number[]}
+              avgValues={data.ambientTemperatures.summaryByGroupingItem?.map((item) => item.avgTemperature) as number[]}
+              minValues={data.ambientTemperatures.summaryByGroupingItem?.map((item) => item.minTemperature) as number[]}
+            />
+          </div>
+          <div className="mt-5">
+            <BarAndLineChart
+              chartType={chartType}
+              chartTitle={t('historical_data.chart.temperatures.ground')}
+              maxTitle={t('historical_data.chart.max')}
+              avgTitle={t('historical_data.chart.avg')}
+              minTitle={t('historical_data.chart.min')}
+              maxBgColor={redColorAlpha}
+              maxBorderColor={redColor}
+              avgBgColor={yellowColorAlpha}
+              avgBorderColor={yellowColor}
+              minBgColor={blueColorAlpha}
+              minBorderColor={blueColor}
+              keys={data.groundTemperatures.summaryByGroupingItem?.map((item) => item.key) as string[]}
+              maxValues={data.groundTemperatures.summaryByGroupingItem?.map((item) => item.maxTemperature) as number[]}
+              avgValues={data.groundTemperatures.summaryByGroupingItem?.map((item) => item.avgTemperature) as number[]}
+              minValues={data.groundTemperatures.summaryByGroupingItem?.map((item) => item.minTemperature) as number[]}
+            />
+          </div>
+          <div style={sectionSeparation}>
+            <h2>{t('historical_data.chart.rainfall')}</h2>
+            <BarAndLineChart
+              chartType={chartType}
+              chartTitle={t('historical_data.chart.rainfall.chart')}
+              maxTitle={t('historical_data.chart.max')}
+              avgTitle={t('historical_data.chart.avg')}
+              minTitle={t('historical_data.chart.min')}
+              maxBgColor={darkBlueColorAlpha}
+              maxBorderColor={darkBlueColor}
+              avgBgColor={blueColorAlpha}
+              avgBorderColor={blueColor}
+              minBgColor={yellowColorAlpha}
+              minBorderColor={yellowColor}
+              keys={data.rainfall.summaryByGroupingItem?.map((item) => item.key) as string[]}
+              maxValues={data.rainfall.summaryByGroupingItem?.map((item) => item.maxAmount) as number[]}
+              avgValues={data.rainfall.summaryByGroupingItem?.map((item) => item.avgAmount) as number[]}
+              minValues={data.rainfall.summaryByGroupingItem?.map((item) => item.minAmount) as number[]}
+            />
+          </div>
+          <div style={sectionSeparation}>
+            <h2>{t('historical_data.chart.wind_measurements')}</h2>
+            <WindMeasurementsChart
+              chartType={chartType}
+              speedChartTitle={t('historical_data.chart.wind_measurements.speed')}
+              directionChartTitle={t('historical_data.chart.wind_measurements.direction')}
+              avgSpeedTitle={t('historical_data.chart.wind_measurements.speed.avg')}
+              gustTitle={t('historical_data.chart.wind_measurements.speed.gust')}
+              keys={data.windMeasurements.summaryByGroupingItem?.map((item) => item.key) as string[]}
+              avgSpeedValues={data.windMeasurements.summaryByGroupingItem?.map((item) => item.avgSpeed) as number[]}
+              gustValues={data.windMeasurements.summaryByGroupingItem?.map((item) => item.maxGust) as number[]}
+              directionValues={
+                data.windMeasurements.summaryByGroupingItem?.map((item) => item.predominantDirection) as string[]
+              }
+            />
+          </div>
         </>
       )}
     </>

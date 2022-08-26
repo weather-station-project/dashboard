@@ -108,8 +108,8 @@ interface ISummaryRainfall extends ISummaryDto {
 }
 
 export interface IHistoricalWindMeasurements {
-  SummaryByGroupingItem?: ISummaryWindMeasurements[];
-  Measurements?: IWindMeasurements[];
+  summaryByGroupingItem?: ISummaryWindMeasurements[];
+  measurements?: IWindMeasurements[];
 }
 
 interface ISummaryWindMeasurements extends ISummaryDto {
