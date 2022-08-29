@@ -62,18 +62,19 @@ namespace WeatherStationProject.Dashboard.Tests.WindMeasurementsService
             Assert.NotNull(keyGroup2Item);
             Assert.Null(result.Measurements);
             Assert.NotEmpty(result.SummaryByGroupingItem);
+            Assert.Equal(new[]{"N", "NO"}, result.PredominantWindDirections.Keys);
+            Assert.Equal(new[]{2, 2}, result.PredominantWindDirections.Values);
 
             if (keyGroup1Item != null)
             {
                 Assert.Equal((_m1.Speed + _m2.Speed + _m3.Speed) / 3, keyGroup1Item.AvgSpeed);
-                Assert.Equal(_m1.Direction, keyGroup1Item.PredominantDirection);
                 Assert.Equal(_m3.Speed, keyGroup1Item.MaxGust);
             }
 
             if (keyGroup2Item != null)
             {
                 Assert.Equal((_m4.Speed + _m5.Speed + _m6.Speed) / 3, keyGroup2Item.AvgSpeed);
-                Assert.Equal(_m6.Direction, keyGroup2Item.PredominantDirection);
+                // Assert.Equal(_m6.Direction, keyGroup2Item.PredominantDirection);
                 Assert.Equal(_m6.Speed, keyGroup2Item.MaxGust);
             }
         }

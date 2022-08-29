@@ -109,11 +109,15 @@ interface ISummaryRainfall extends ISummaryDto {
 
 export interface IHistoricalWindMeasurements {
   summaryByGroupingItem?: ISummaryWindMeasurements[];
+  predominantWindDirections?: IPredominantDirection;
   measurements?: IWindMeasurements[];
+}
+
+export interface IPredominantDirection {
+  [index: string]: number;
 }
 
 interface ISummaryWindMeasurements extends ISummaryDto {
   avgSpeed: number;
   maxGust: number;
-  predominantDirection: string;
 }

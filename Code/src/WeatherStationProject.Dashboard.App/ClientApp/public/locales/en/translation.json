@@ -72,8 +72,8 @@
   "historical_data.chart.rainfall": "Rainfall",
   "historical_data.chart.rainfall.chart": "Rainfall (l/m2)",
   "historical_data.chart.wind_measurements": "Wind measurements",
-  "historical_data.chart.wind_measurements.speed": "Speed",
+  "historical_data.chart.wind_measurements.speed": "Speed (km/h)",
   "historical_data.chart.wind_measurements.speed.avg": "Avg",
   "historical_data.chart.wind_measurements.speed.gust": "Gust",
-  "historical_data.chart.wind_measurements.direction": "Direction"
+  "historical_data.chart.wind_measurements.direction": "Predominant direction"
 }

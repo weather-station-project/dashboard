@@ -11,7 +11,10 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<WindMeasurementsSummaryDto> SummaryByGroupingItem { get; }
-        
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public Dictionary<string, int> PredominantWindDirections { get; }
+
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<WindMeasurementsDto> Measurements { get; }
 
@@ -24,6 +27,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
             if (includeSummary)
             {
                 SummaryByGroupingItem = new List<WindMeasurementsSummaryDto>();
+                PredominantWindDirections = new Dictionary<string, int>();
             }
 
             if (includeMeasurements)
@@ -66,19 +70,25 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
         {
             foreach (var (key, value) in groupedEntities)
             {
-                var predominantDirection = value.GroupBy(x => x.Direction)
-                    .OrderByDescending(c => c.Count())
-                    .Take(1)
-                    .First()
-                    .Select(p => p.Direction).ToArray()[0];
-                
                 SummaryByGroupingItem.Add(new WindMeasurementsSummaryDto
                 {
                     Key = key,
                     AvgSpeed = value.Average(x => x.Speed),
                     MaxGust = value.Max(x => x.Speed),
-                    PredominantDirection = predominantDirection
                 });
+
+                var predominantDirectionData = value.GroupBy(x => x.Direction)
+                    .OrderByDescending(c => c.Count())
+                    .Take(1)
+                    .First();
+                if (PredominantWindDirections.ContainsKey(predominantDirectionData.Key))
+                {
+                    PredominantWindDirections[predominantDirectionData.Key] += predominantDirectionData.Count();
+                }
+                else
+                {
+                    PredominantWindDirections.Add(predominantDirectionData.Key, predominantDirectionData.Count());
+                }
             }
         }
     }

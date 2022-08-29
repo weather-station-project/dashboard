@@ -1,10 +1,26 @@
-import React, { CSSProperties, useState } from 'react';
-import { ChartValues, IHistoricalDataRequest, IHistoricalDataResult } from '../../../model/HistoricalDataTypes';
+import React, { useState } from 'react';
+import {
+  ChartValues,
+  IHistoricalDataRequest,
+  IHistoricalDataResult,
+  IPredominantDirection,
+} from '../../../model/HistoricalDataTypes';
 import Loading from '../../Loading';
 import axios, { AxiosInstance } from 'axios';
 import BarAndLineChart from './BarAndLineChart';
 import { useTranslation } from 'react-i18next';
 import WindMeasurementsChart from './WindMeasurementsChart';
+
+export const blueColor = 'rgb(0, 128, 255)';
+export const blueColorAlpha = 'rgba(0, 128, 255, 0.5)';
+export const yellowColor = 'rgb(255, 178, 102)';
+export const yellowColorAlpha = 'rgba(255, 178, 102, 0.5)';
+const darkBlueColor = 'rgb(0, 0, 204)';
+const darkBlueColorAlpha = 'rgba(0, 0, 204, 0.5)';
+const redColor = 'rgb(204, 0, 0)';
+const redColorAlpha = 'rgba(204, 0, 0, 0.5)';
+export const greenColor = 'rgb(0, 204, 0)';
+export const greenColorAlpha = 'rgba(0, 204, 0, 0.5)';
 
 interface IChartsListProps {
   requestData: IHistoricalDataRequest;
@@ -19,15 +35,6 @@ const ChartsList: React.FC<IChartsListProps> = ({ requestData, reRenderForcedSta
   const url = '/api/weather-measurements/historical';
   const sectionSeparation = { marginTop: 75 };
   const chartType = requestData.chartView === ChartValues.Lines ? 'line' : 'bar';
-
-  const blueColor = 'rgb(0, 128, 255)';
-  const blueColorAlpha = 'rgba(0, 128, 255, 0.5)';
-  const darkBlueColor = 'rgb(0, 0, 204)';
-  const darkBlueColorAlpha = 'rgba(0, 0, 204, 0.5)';
-  const yellowColor = 'rgb(255, 178, 102)';
-  const yellowColorAlpha = 'rgba(255, 178, 102, 0.5)';
-  const redColor = 'rgb(204, 0, 0)';
-  const redColorAlpha = 'rgba(204, 0, 0, 0.5)';
 
   React.useEffect(() => {
     async function fetchData() {
@@ -189,9 +196,7 @@ const ChartsList: React.FC<IChartsListProps> = ({ requestData, reRenderForcedSta
               keys={data.windMeasurements.summaryByGroupingItem?.map((item) => item.key) as string[]}
               avgSpeedValues={data.windMeasurements.summaryByGroupingItem?.map((item) => item.avgSpeed) as number[]}
               gustValues={data.windMeasurements.summaryByGroupingItem?.map((item) => item.maxGust) as number[]}
-              directionValues={
-                data.windMeasurements.summaryByGroupingItem?.map((item) => item.predominantDirection) as string[]
-              }
+              directionValues={data.windMeasurements.predominantWindDirections as IPredominantDirection}
             />
           </div>
         </>

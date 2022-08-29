@@ -72,7 +72,7 @@
   "historical_data.chart.rainfall": "Precipitaciones",
   "historical_data.chart.rainfall.chart": "Precipitaciones (l/m2)",
   "historical_data.chart.wind_measurements": "Parámetros de viento",
-  "historical_data.chart.wind_measurements.speed": "Velocidad",
+  "historical_data.chart.wind_measurements.speed": "Velocidad (km/h)",
   "historical_data.chart.wind_measurements.speed.avg": "Media",
   "historical_data.chart.wind_measurements.speed.gust": "Máxima ráfaga",
   "historical_data.chart.wind_measurements.direction": "Dirección predominante"

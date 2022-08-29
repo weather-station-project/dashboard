@@ -7,7 +7,5 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
         public decimal AvgSpeed { get; set; }
         
         public decimal MaxGust { get; set; }
-
-        public string PredominantDirection { get; set; }
     }
 }

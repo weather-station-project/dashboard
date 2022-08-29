@@ -1,17 +1,21 @@
 import React from 'react';
 import {
   Chart as ChartJS,
+  RadialLinearScale,
   CategoryScale,
   LinearScale,
   BarElement,
   PointElement,
   LineElement,
   Title,
+  Filler,
   Tooltip,
   Legend,
   ChartTypeRegistry,
 } from 'chart.js';
-import { Chart } from 'react-chartjs-2';
+import { Chart, Radar } from 'react-chartjs-2';
+import { blueColor, blueColorAlpha, greenColor, greenColorAlpha, yellowColor, yellowColorAlpha } from './ChartsList';
+import { IPredominantDirection } from '../../../model/HistoricalDataTypes';
 
 interface IWindMeasurementsChartProps {
   chartType: keyof ChartTypeRegistry;
@@ -25,10 +29,21 @@ interface IWindMeasurementsChartProps {
   keys: string[];
   avgSpeedValues: number[];
   gustValues: number[];
-  directionValues: string[];
+  directionValues: IPredominantDirection;
 }
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  RadialLinearScale,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  Filler,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const WindMeasurementsChart: React.FC<IWindMeasurementsChartProps> = ({
   chartType,
@@ -42,13 +57,27 @@ const WindMeasurementsChart: React.FC<IWindMeasurementsChartProps> = ({
   keys,
   avgSpeedValues,
   gustValues,
+
   directionValues,
 }) => {
-  const blueColor = 'rgb(0, 128, 255)';
-  const blueColorAlpha = 'rgba(0, 128, 255, 0.5)';
-  const yellowColor = 'rgb(255, 178, 102)';
-  const yellowColorAlpha = 'rgba(255, 178, 102, 0.5)';
-
+  const cardinalPoints = [
+    'N',
+    'N-NE',
+    'N-E',
+    'E-NE',
+    'E',
+    'E-SE',
+    'S-E',
+    'S-SE',
+    'S',
+    'S-SW',
+    'S-W',
+    'W-SW',
+    'W',
+    'W-NW',
+    'N-W',
+    'N-NW',
+  ];
   const getOptions = (title: string) => {
     return {
       responsive: true,
@@ -84,7 +113,36 @@ const WindMeasurementsChart: React.FC<IWindMeasurementsChartProps> = ({
     ],
   };
 
-  return <Chart type={chartType} options={getOptions(speedChartTitle)} data={data} />;
+  const directionsData = {
+    labels: cardinalPoints,
+    datasets: [
+      {
+        label: directionChartTitle,
+        data: cardinalPoints.map((point) => (directionValues[point] !== undefined ? directionValues[point] : 0)),
+        backgroundColor: greenColorAlpha,
+        borderColor: greenColor,
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <Chart type={chartType} options={getOptions(speedChartTitle)} data={data} />
+      <div className="mt-5 mb-5">
+        <Radar
+          data={directionsData}
+          options={{
+            scales: {
+              r: {
+                suggestedMin: 0,
+              },
+            },
+          }}
+        />
+      </div>
+    </>
+  );
 };
 
 export default WindMeasurementsChart;
