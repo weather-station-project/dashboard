@@ -13,6 +13,7 @@ namespace WeatherStationProject.Dashboard.AirParametersService.ViewModel
         {
             return new AirParametersDto
             {
+                Id = entity.Id,
                 DateTime = entity.DateTime.ToLocalTime(),
                 Pressure = entity.Pressure,
                 Humidity = entity.Humidity

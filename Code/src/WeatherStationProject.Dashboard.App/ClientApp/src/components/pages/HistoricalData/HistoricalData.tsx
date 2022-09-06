@@ -5,12 +5,13 @@ import SearchForm from '../../search-form/search-form';
 import ChartsList from './ChartsList';
 import { ErrorBoundary } from '../../../ErrorBoundary';
 import moment from 'moment';
+import MeasurementsList from './MeasurementsList';
 
 interface IHistoricalDataProps {
-  showChartList: boolean;
+  showChartViewAndGrouping: boolean;
 }
 
-const HistoricalData: React.FC<IHistoricalDataProps> = ({ showChartList }) => {
+const HistoricalData: React.FC<IHistoricalDataProps> = ({ showChartViewAndGrouping }) => {
   const [formValues, setFormValues] = useState<IHistoricalDataRequest>(DefaultHistoricalDataRequest);
   const [reRenderForcedState, setReRenderForcedState] = useState<number>(0);
 
@@ -32,12 +33,16 @@ const HistoricalData: React.FC<IHistoricalDataProps> = ({ showChartList }) => {
   return (
     <>
       <div>
-        <SearchForm showChartView={showChartList} onSubmit={handleOnSubmit} />
+        <SearchForm showChartViewAndGrouping={showChartViewAndGrouping} onSubmit={handleOnSubmit} />
       </div>
       <div className="mt-5">
         {reRenderForcedState > 0 && (
           <ErrorBoundary>
-            {showChartList && <ChartsList requestData={formValues} reRenderForcedState={reRenderForcedState} />}
+            {showChartViewAndGrouping ? (
+              <ChartsList requestData={formValues} reRenderForcedState={reRenderForcedState} />
+            ) : (
+              <MeasurementsList requestData={formValues} reRenderForcedState={reRenderForcedState} />
+            )}
           </ErrorBoundary>
         )}
       </div>

@@ -81,8 +81,6 @@ const ChartsList: React.FC<IChartsListProps> = ({ requestData, reRenderForcedSta
     fetchData();
   }, [reRenderForcedState]);
 
-  // https://react-chartjs-2.js.org/examples/line-chart
-
   return (
     <>
       {loading ? (

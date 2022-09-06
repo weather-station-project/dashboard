@@ -11,8 +11,8 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/currentdata" element={<CurrentData />} />
-        <Route path="/historicaldata" element={<HistoricalData showChartList={true} />} />
-        <Route path="/measurementslist" element={<HistoricalData showChartList={false} />} />
+        <Route path="/historicaldata" element={<HistoricalData showChartViewAndGrouping={true} />} />
+        <Route path="/measurementslist" element={<HistoricalData showChartViewAndGrouping={false} />} />
       </Routes>
     </Layout>
   );

@@ -14,6 +14,7 @@ namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
         {
             return new WindMeasurementsDto
             {
+                Id = entity.Id,
                 DateTime = entity.DateTime.ToLocalTime(),
                 Speed = entity.Speed,
                 Direction = entity.Direction

@@ -11,6 +11,7 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel
         {
             return new AmbientTemperatureDto
             {
+                Id = entity.Id,
                 DateTime = entity.DateTime.ToLocalTime(),
                 Temperature = entity.Temperature
             };

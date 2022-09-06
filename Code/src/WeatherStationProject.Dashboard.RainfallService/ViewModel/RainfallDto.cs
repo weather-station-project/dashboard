@@ -4,6 +4,8 @@ namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
 {
     public class RainfallDto
     {
+        public string Id { get; set; }
+
         public DateTime FromDateTime { get; set; }
 
         public DateTime ToDateTime { get; set; }
@@ -14,6 +16,7 @@ namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
         {
             return new RainfallDto
             {
+                Id = Guid.NewGuid().ToString(),
                 FromDateTime = since.ToLocalTime(),
                 ToDateTime = until.ToLocalTime(),
                 Amount = amount
