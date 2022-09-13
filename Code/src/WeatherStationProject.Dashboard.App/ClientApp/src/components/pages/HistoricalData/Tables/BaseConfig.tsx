@@ -31,13 +31,13 @@ export const getColumn = (field: string, text: string, color: string) => {
 
 const customTotal = (from: number, to: number, size: number) => (
   <span className="react-bootstrap-table-pagination-total ml-3">
-    Showing {from} to {to} of {size} results
+    {from}-{to}/{size}
   </span>
 );
 
 export const paginationOptions = {
-  paginationSize: 4,
-  pageStartIndex: 0,
+  paginationSize: 5,
+  pageStartIndex: 1,
   showTotal: true,
   paginationTotalRenderer: customTotal,
   disablePageTitle: true,

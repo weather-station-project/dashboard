@@ -12,6 +12,7 @@ import {
   ChartTypeRegistry,
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
+import { LINE_TENSION } from '../ChartsAndListsConstants';
 
 interface IBarAndLineChartProps {
   chartType: keyof ChartTypeRegistry;
@@ -33,6 +34,8 @@ interface IBarAndLineChartProps {
   avgValues: number[];
   minValues: number[];
 }
+
+// Doc -> https://react-chartjs-2.js.org/examples
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -77,6 +80,7 @@ const BarAndLineChart: React.FC<IBarAndLineChartProps> = ({
         data: maxValues,
         backgroundColor: maxBgColor,
         borderColor: maxBorderColor,
+        tension: LINE_TENSION,
       },
       {
         type: 'line' as const,
@@ -85,6 +89,7 @@ const BarAndLineChart: React.FC<IBarAndLineChartProps> = ({
         backgroundColor: avgBgColor,
         borderColor: avgBorderColor,
         fill: false,
+        tension: LINE_TENSION,
       },
       {
         type: chartType,
@@ -92,6 +97,7 @@ const BarAndLineChart: React.FC<IBarAndLineChartProps> = ({
         data: minValues,
         backgroundColor: minBgColor,
         borderColor: minBorderColor,
+        tension: LINE_TENSION,
       },
     ],
   };

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { DefaultHistoricalDataRequest, IHistoricalDataRequest } from '../../../model/HistoricalDataTypes';
 import { FormikHelpers } from 'formik';
 import SearchForm from '../../search-form/search-form';
-import ChartsList from './ChartsList';
 import { ErrorBoundary } from '../../../ErrorBoundary';
 import moment from 'moment';
 import MeasurementsList from './MeasurementsList';
+import ChartsList from './Charts/ChartsList';
 
 interface IHistoricalDataProps {
   showChartViewAndGrouping: boolean;

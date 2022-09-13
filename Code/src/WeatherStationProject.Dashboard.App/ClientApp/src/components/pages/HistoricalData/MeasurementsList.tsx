@@ -7,6 +7,14 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import { IAirParameters, IAmbientTemperatures, IRainfall, IWindMeasurements } from '../../../model/LastDataTypes';
 import { getColumn, getDateTimeColumn } from './Tables/BaseConfig';
 import MeasurementsTable from './Tables/MeasurementsTable';
+import {
+  blueColorAlpha,
+  darkGreyColor,
+  greenColorAlpha,
+  greyColor,
+  redColorAlpha,
+  yellowColor,
+} from './ChartsAndListsConstants';
 
 interface IMeasurementsListProps {
   requestData: IHistoricalDataRequest;
@@ -77,10 +85,11 @@ const MeasurementsList: React.FC<IMeasurementsListProps> = ({ requestData, reRen
             measurements={data.airParameters.measurements as IAirParameters[]}
             columns={[
               getDateTimeColumn(t),
-              getColumn('pressure', t('historical_data.chart.air_parameters.air_pressure'), '#c8e6c9'),
-              getColumn('humidity', t('historical_data.chart.air_parameters.humidity'), '#c8e6c9'),
+              getColumn('pressure', t('historical_data.chart.air_parameters.air_pressure'), greyColor),
+              getColumn('humidity', t('historical_data.chart.air_parameters.humidity'), blueColorAlpha),
             ]}
             columnNameSort={'dateTime'}
+            csvFilename="air_parameters"
           />
           <div className="mt-5"></div>
           <div style={sectionSeparation}>
@@ -89,17 +98,19 @@ const MeasurementsList: React.FC<IMeasurementsListProps> = ({ requestData, reRen
               measurements={data.ambientTemperatures.measurements as IAmbientTemperatures[]}
               columns={[
                 getDateTimeColumn(t),
-                getColumn('temperature', t('historical_data.chart.temperatures.ambient'), '#c8e6c9'),
+                getColumn('temperature', t('historical_data.chart.temperatures.ambient'), redColorAlpha),
               ]}
               columnNameSort={'dateTime'}
+              csvFilename="ambient_temperatures"
             />
             <MeasurementsTable
               measurements={data.groundTemperatures.measurements as IAmbientTemperatures[]}
               columns={[
                 getDateTimeColumn(t),
-                getColumn('temperature', t('historical_data.chart.temperatures.ground'), '#c8e6c9'),
+                getColumn('temperature', t('historical_data.chart.temperatures.ground'), yellowColor),
               ]}
               columnNameSort={'dateTime'}
+              csvFilename="ground_temperatures"
             />
           </div>
           <div className="mt-5"></div>
@@ -109,10 +120,10 @@ const MeasurementsList: React.FC<IMeasurementsListProps> = ({ requestData, reRen
               measurements={data.rainfall.measurements as IRainfall[]}
               columns={[
                 getDateTimeColumn(t, 'fromDateTime'),
-                getDateTimeColumn(t, 'toDateTime'),
-                getColumn('amount', t('historical_data.chart.rainfall.chart'), '#c8e6c9'),
+                getColumn('amount', t('historical_data.chart.rainfall.chart'), blueColorAlpha),
               ]}
               columnNameSort={'fromDateTime'}
+              csvFilename="rainfall_measurements"
             />
           </div>
           <div style={sectionSeparation}>
@@ -121,10 +132,11 @@ const MeasurementsList: React.FC<IMeasurementsListProps> = ({ requestData, reRen
               measurements={data.windMeasurements.measurements as IWindMeasurements[]}
               columns={[
                 getDateTimeColumn(t),
-                getColumn('speed', t('historical_data.chart.wind_measurements.speed'), '#c8e6c9'),
-                getColumn('direction', t('historical_data.chart.wind_measurements.direction'), '#c8e6c9'),
+                getColumn('speed', t('historical_data.chart.wind_measurements.speed'), greenColorAlpha),
+                getColumn('direction', t('historical_data.chart.wind_measurements.direction'), darkGreyColor),
               ]}
               columnNameSort={'dateTime'}
+              csvFilename="wind_measurements"
             />
           </div>
         </>

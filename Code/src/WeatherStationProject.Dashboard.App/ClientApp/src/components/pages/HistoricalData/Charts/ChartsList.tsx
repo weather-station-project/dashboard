@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
+import axios, { AxiosInstance } from 'axios';
+import BarAndLineChart from './BarAndLineChart';
+import { useTranslation } from 'react-i18next';
+import WindMeasurementsChart from './WindMeasurementsChart';
 import {
   ChartValues,
   IHistoricalDataRequest,
   IHistoricalDataResult,
   IPredominantDirection,
-} from '../../../model/HistoricalDataTypes';
-import Loading from '../../Loading';
-import axios, { AxiosInstance } from 'axios';
-import BarAndLineChart from './BarAndLineChart';
-import { useTranslation } from 'react-i18next';
-import WindMeasurementsChart from './WindMeasurementsChart';
+} from '../../../../model/HistoricalDataTypes';
 import {
   blueColor,
   blueColorAlpha,
@@ -19,7 +18,8 @@ import {
   redColorAlpha,
   yellowColor,
   yellowColorAlpha,
-} from './Colors';
+} from '../ChartsAndListsConstants';
+import Loading from '../../../Loading';
 
 interface IChartsListProps {
   requestData: IHistoricalDataRequest;

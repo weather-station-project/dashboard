@@ -14,8 +14,16 @@ import {
   ChartTypeRegistry,
 } from 'chart.js';
 import { Chart, Radar } from 'react-chartjs-2';
-import { IPredominantDirection } from '../../../model/HistoricalDataTypes';
-import { blueColor, blueColorAlpha, greenColor, greenColorAlpha, yellowColor, yellowColorAlpha } from './Colors';
+import { IPredominantDirection } from '../../../../model/HistoricalDataTypes';
+import {
+  blueColor,
+  blueColorAlpha,
+  greenColor,
+  greenColorAlpha,
+  LINE_TENSION,
+  yellowColor,
+  yellowColorAlpha,
+} from '../ChartsAndListsConstants';
 
 interface IWindMeasurementsChartProps {
   chartType: keyof ChartTypeRegistry;
@@ -101,6 +109,7 @@ const WindMeasurementsChart: React.FC<IWindMeasurementsChartProps> = ({
         data: gustValues,
         backgroundColor: blueColorAlpha,
         borderColor: blueColor,
+        tension: LINE_TENSION,
       },
       {
         type: 'line' as const,
@@ -109,6 +118,7 @@ const WindMeasurementsChart: React.FC<IWindMeasurementsChartProps> = ({
         backgroundColor: yellowColorAlpha,
         borderColor: yellowColor,
         fill: false,
+        tension: LINE_TENSION,
       },
     ],
   };

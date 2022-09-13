@@ -8,3 +8,7 @@ export const redColor = 'rgb(204, 0, 0)';
 export const redColorAlpha = 'rgba(204, 0, 0, 0.5)';
 export const greenColor = 'rgb(0, 204, 0)';
 export const greenColorAlpha = 'rgba(0, 204, 0, 0.5)';
+export const greyColor = 'rgb(208, 205, 205)';
+export const darkGreyColor = 'rgb(145, 143, 143)';
+
+export const LINE_TENSION = 0.4;
