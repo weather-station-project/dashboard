@@ -14,8 +14,8 @@ import {
   ChartTypeRegistry,
 } from 'chart.js';
 import { Chart, Radar } from 'react-chartjs-2';
-import { blueColor, blueColorAlpha, greenColor, greenColorAlpha, yellowColor, yellowColorAlpha } from './ChartsList';
 import { IPredominantDirection } from '../../../model/HistoricalDataTypes';
+import { blueColor, blueColorAlpha, greenColor, greenColorAlpha, yellowColor, yellowColorAlpha } from './Colors';
 
 interface IWindMeasurementsChartProps {
   chartType: keyof ChartTypeRegistry;

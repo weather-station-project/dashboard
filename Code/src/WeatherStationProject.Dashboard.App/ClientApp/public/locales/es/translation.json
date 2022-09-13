@@ -75,5 +75,7 @@
   "historical_data.chart.wind_measurements.speed": "Velocidad (km/h)",
   "historical_data.chart.wind_measurements.speed.avg": "Media",
   "historical_data.chart.wind_measurements.speed.gust": "Máxima ráfaga",
-  "historical_data.chart.wind_measurements.direction": "Dirección predominante"
+  "historical_data.chart.wind_measurements.direction": "Dirección predominante",
+  "historical_data.list.datetime": "Fecha",
+  "historical_data.list.export_csv": "Exportar a CSV"
 }

@@ -75,5 +75,7 @@
   "historical_data.chart.wind_measurements.speed": "Speed (km/h)",
   "historical_data.chart.wind_measurements.speed.avg": "Avg",
   "historical_data.chart.wind_measurements.speed.gust": "Gust",
-  "historical_data.chart.wind_measurements.direction": "Predominant direction"
+  "historical_data.chart.wind_measurements.direction": "Predominant direction",
+  "historical_data.list.datetime": "Datetime",
+  "historical_data.list.export_csv": "Export to CSV"
 }

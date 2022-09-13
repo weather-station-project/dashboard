@@ -10,17 +10,16 @@ import axios, { AxiosInstance } from 'axios';
 import BarAndLineChart from './BarAndLineChart';
 import { useTranslation } from 'react-i18next';
 import WindMeasurementsChart from './WindMeasurementsChart';
-
-export const blueColor = 'rgb(0, 128, 255)';
-export const blueColorAlpha = 'rgba(0, 128, 255, 0.5)';
-export const yellowColor = 'rgb(255, 178, 102)';
-export const yellowColorAlpha = 'rgba(255, 178, 102, 0.5)';
-const darkBlueColor = 'rgb(0, 0, 204)';
-const darkBlueColorAlpha = 'rgba(0, 0, 204, 0.5)';
-const redColor = 'rgb(204, 0, 0)';
-const redColorAlpha = 'rgba(204, 0, 0, 0.5)';
-export const greenColor = 'rgb(0, 204, 0)';
-export const greenColorAlpha = 'rgba(0, 204, 0, 0.5)';
+import {
+  blueColor,
+  blueColorAlpha,
+  darkBlueColor,
+  darkBlueColorAlpha,
+  redColor,
+  redColorAlpha,
+  yellowColor,
+  yellowColorAlpha,
+} from './Colors';
 
 interface IChartsListProps {
   requestData: IHistoricalDataRequest;
