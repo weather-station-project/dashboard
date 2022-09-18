@@ -1,7 +1,6 @@
-import { render, screen } from '@testing-library/react';
-import { Router } from 'react-router-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { IAccuWeatherDailyForecast } from '../../../model/OpenWeatherApiTypes';
-import { createMemoryHistory } from 'history';
 import CarouselDailyData from '../../../components/carousel/CarouselDailyData';
 import React from 'react';
 
@@ -74,11 +73,14 @@ describe('CarouselDailyData', () => {
   };
 
   beforeEach(() => {
-    const history = createMemoryHistory();
     render(
-      <Router history={history}>
-        <CarouselDailyData data={response} />
-      </Router>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<CarouselDailyData data={response} />} />
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
     );
   });
 
@@ -95,7 +97,7 @@ describe('CarouselDailyData', () => {
 
   it('When_SwitchingToNight_Should_RenderNightComponents', () => {
     const button = screen.getByTestId('button-night');
-    button.click();
+    fireEvent.click(button);
 
     const nightButton = screen.queryByTestId('button-night');
     const dayButton = screen.getByTestId('button-day');

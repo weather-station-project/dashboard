@@ -28,7 +28,11 @@ describe('LastDataFromSensors', () => {
   });
 
   it('When_RenderingComponent_Given_Data_Should_RenderExpectedContent', () => {
-    jest.spyOn(React, 'useState').mockReturnValue([FAKE_LAST_DATA, jest.fn()]);
+    jest
+      .spyOn(React, 'useState')
+      .mockReturnValueOnce([FAKE_LAST_DATA, jest.fn()])
+      .mockReturnValueOnce([false, jest.fn()]);
+
     render(<LastDataFromSensors />);
 
     const loading = screen.queryByTestId('loading-id');

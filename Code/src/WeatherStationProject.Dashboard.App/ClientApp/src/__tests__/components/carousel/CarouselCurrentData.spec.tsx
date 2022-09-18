@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { Router } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { IAccuWeatherCurrentConditionsResponse } from '../../../model/OpenWeatherApiTypes';
 import CarouselCurrentData from '../../../components/carousel/CarouselCurrentData';
-import { createMemoryHistory } from 'history';
 import React from 'react';
 
 jest.mock('react-i18next', () => ({
@@ -58,11 +57,14 @@ describe('CarouselCurrentData', () => {
     };
 
     // act
-    const history = createMemoryHistory();
     render(
-      <Router history={history}>
-        <CarouselCurrentData data={response} />
-      </Router>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<CarouselCurrentData data={response} />} />
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
     );
 
     // assert

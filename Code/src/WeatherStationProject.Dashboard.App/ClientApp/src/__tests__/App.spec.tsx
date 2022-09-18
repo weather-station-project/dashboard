@@ -6,8 +6,8 @@ import App from '../App';
 jest.mock('../components/menu/Layout', () => ({ children }: never) => <>{children}</>);
 jest.mock('../components/pages/Home', () => () => <span data-testid="home-id" />);
 jest.mock('../components/pages/CurrentData/CurrentData', () => () => <></>);
-jest.mock('../components/pages/HistoricalData', () => () => <></>);
-jest.mock('../components/pages/MeasurementsList', () => () => <></>);
+jest.mock('../components/pages/HistoricalData/HistoricalData', () => () => <></>);
+jest.mock('../components/pages/HistoricalData/MeasurementsList', () => () => <></>);
 
 describe('App', () => {
   beforeEach(() => {
