@@ -1,16 +1,15 @@
 using WeatherStationProject.Dashboard.RainfallService.Data;
 using Xunit;
 
-namespace WeatherStationProject.Dashboard.Tests.RainfallService
+namespace WeatherStationProject.Dashboard.Tests.RainfallService;
+
+public class RainfallDbContextTest
 {
-    public class RainfallDbContextTest
+    [Fact]
+    public void When_Building_Context_Should_Have_Expected_Table()
     {
-        [Fact]
-        public void When_Building_Context_Should_Have_Expected_Table()
-        {
-            // Act & Assert
-            var context = new RainfallDbContext();
-            Assert.NotNull(context.Rainfall);
-        }
+        // Act & Assert
+        var context = new RainfallDbContext();
+        Assert.NotNull(context.Rainfall);
     }
 }

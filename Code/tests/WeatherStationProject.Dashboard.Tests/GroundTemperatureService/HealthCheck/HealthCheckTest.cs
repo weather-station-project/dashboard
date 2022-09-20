@@ -10,41 +10,40 @@ using WeatherStationProject.Dashboard.GroundTemperatureService.Data;
 using WeatherStationProject.Dashboard.GroundTemperatureService.HealthCheck;
 using Xunit;
 
-namespace WeatherStationProject.Dashboard.Tests.GroundTemperatureService
+namespace WeatherStationProject.Dashboard.Tests.GroundTemperatureService;
+
+public class HealthCheckTest
 {
-    public class HealthCheckTest
+    [Fact]
+    public async Task When_Getting_GoodStatus_Should_Return_Healthy()
     {
-        [Fact]
-        public async Task When_Getting_GoodStatus_Should_Return_Healthy()
-        {
-            // Arrange
-            var mockDbSet = new List<GroundTemperature>().AsQueryable().BuildMockDbSet();
-            var mockDbContext = new Mock<GroundTemperatureDbContext>();
-            mockDbContext.Setup(x => x.GroundTemperatures).Returns(mockDbSet.Object);
+        // Arrange
+        var mockDbSet = new List<GroundTemperature>().AsQueryable().BuildMockDbSet();
+        var mockDbContext = new Mock<GroundTemperatureDbContext>();
+        mockDbContext.Setup(x => x.GroundTemperatures).Returns(mockDbSet.Object);
 
-            // Act
-            var result =
-                await new HealthCheck(mockDbContext.Object).CheckHealthAsync(new HealthCheckContext(),
-                    CancellationToken.None);
+        // Act
+        var result =
+            await new HealthCheck(mockDbContext.Object).CheckHealthAsync(new HealthCheckContext(),
+                CancellationToken.None);
 
-            // Assert
-            Assert.Equal(HealthStatus.Healthy, result.Status);
-        }
-        
-        [Fact]
-        public async Task When_Getting_WrongStatus_Should_Return_UnHealthy()
-        {
-            // Arrange
-            var mockDbContext = new Mock<GroundTemperatureDbContext>();
-            mockDbContext.Setup(x => x.GroundTemperatures).Throws(new Exception());
+        // Assert
+        Assert.Equal(HealthStatus.Healthy, result.Status);
+    }
 
-            // Act
-            var result =
-                await new HealthCheck(mockDbContext.Object).CheckHealthAsync(new HealthCheckContext(),
-                    CancellationToken.None);
+    [Fact]
+    public async Task When_Getting_WrongStatus_Should_Return_UnHealthy()
+    {
+        // Arrange
+        var mockDbContext = new Mock<GroundTemperatureDbContext>();
+        mockDbContext.Setup(x => x.GroundTemperatures).Throws(new Exception());
 
-            // Assert
-            Assert.Equal(HealthStatus.Unhealthy, result.Status);
-        }
+        // Act
+        var result =
+            await new HealthCheck(mockDbContext.Object).CheckHealthAsync(new HealthCheckContext(),
+                CancellationToken.None);
+
+        // Assert
+        Assert.Equal(HealthStatus.Unhealthy, result.Status);
     }
 }

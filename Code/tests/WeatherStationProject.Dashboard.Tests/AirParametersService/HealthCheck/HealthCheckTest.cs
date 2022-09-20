@@ -10,41 +10,40 @@ using WeatherStationProject.Dashboard.AirParametersService.Data;
 using WeatherStationProject.Dashboard.AirParametersService.HealthCheck;
 using Xunit;
 
-namespace WeatherStationProject.Dashboard.Tests.AirParametersService
+namespace WeatherStationProject.Dashboard.Tests.AirParametersService;
+
+public class HealthCheckTest
 {
-    public class HealthCheckTest
+    [Fact]
+    public async Task When_Getting_GoodStatus_Should_Return_Healthy()
     {
-        [Fact]
-        public async Task When_Getting_GoodStatus_Should_Return_Healthy()
-        {
-            // Arrange
-            var mockDbSet = new List<AirParameters>().AsQueryable().BuildMockDbSet();
-            var mockDbContext = new Mock<AirParametersDbContext>();
-            mockDbContext.Setup(x => x.AirParameters).Returns(mockDbSet.Object);
+        // Arrange
+        var mockDbSet = new List<AirParameters>().AsQueryable().BuildMockDbSet();
+        var mockDbContext = new Mock<AirParametersDbContext>();
+        mockDbContext.Setup(x => x.AirParameters).Returns(mockDbSet.Object);
 
-            // Act
-            var result =
-                await new HealthCheck(mockDbContext.Object).CheckHealthAsync(new HealthCheckContext(),
-                    CancellationToken.None);
+        // Act
+        var result =
+            await new HealthCheck(mockDbContext.Object).CheckHealthAsync(new HealthCheckContext(),
+                CancellationToken.None);
 
-            // Assert
-            Assert.Equal(HealthStatus.Healthy, result.Status);
-        }
-        
-        [Fact]
-        public async Task When_Getting_WrongStatus_Should_Return_UnHealthy()
-        {
-            // Arrange
-            var mockDbContext = new Mock<AirParametersDbContext>();
-            mockDbContext.Setup(x => x.AirParameters).Throws(new Exception());
+        // Assert
+        Assert.Equal(HealthStatus.Healthy, result.Status);
+    }
 
-            // Act
-            var result =
-                await new HealthCheck(mockDbContext.Object).CheckHealthAsync(new HealthCheckContext(),
-                    CancellationToken.None);
+    [Fact]
+    public async Task When_Getting_WrongStatus_Should_Return_UnHealthy()
+    {
+        // Arrange
+        var mockDbContext = new Mock<AirParametersDbContext>();
+        mockDbContext.Setup(x => x.AirParameters).Throws(new Exception());
 
-            // Assert
-            Assert.Equal(HealthStatus.Unhealthy, result.Status);
-        }
+        // Act
+        var result =
+            await new HealthCheck(mockDbContext.Object).CheckHealthAsync(new HealthCheckContext(),
+                CancellationToken.None);
+
+        // Assert
+        Assert.Equal(HealthStatus.Unhealthy, result.Status);
     }
 }

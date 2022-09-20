@@ -9,13 +9,13 @@
 
     <ItemGroup>
         <PackageReference Include="coverlet.msbuild" Version="3.1.2">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-        <PackageReference Include="MockQueryable.Moq" Version="6.0.1" />
-        <PackageReference Include="Moq" Version="4.17.2" />
-        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0"/>
+        <PackageReference Include="MockQueryable.Moq" Version="6.0.1"/>
+        <PackageReference Include="Moq" Version="4.17.2"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
@@ -23,21 +23,21 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="App" />
-      <Folder Include="AuthenticationService" />
-      <Folder Include="Core" />
-      <Folder Include="GatewayService" />
+        <Folder Include="App"/>
+        <Folder Include="AuthenticationService"/>
+        <Folder Include="Core"/>
+        <Folder Include="GatewayService"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AirParametersService\WeatherStationProject.Dashboard.AirParametersService.csproj" />
-      <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AmbientTemperatureService\WeatherStationProject.Dashboard.AmbientTemperatureService.csproj" />
-      <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.App\WeatherStationProject.Dashboard.App.csproj" />
-      <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AuthenticationService\WeatherStationProject.Dashboard.AuthenticationService.csproj" />
-      <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.GatewayService\WeatherStationProject.Dashboard.GatewayService.csproj" />
-      <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.GroundTemperatureService\WeatherStationProject.Dashboard.GroundTemperatureService.csproj" />
-      <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.RainfallService\WeatherStationProject.Dashboard.RainfallService.csproj" />
-      <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.WindMeasurementsService\WeatherStationProject.Dashboard.WindMeasurementsService.csproj" />
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AirParametersService\WeatherStationProject.Dashboard.AirParametersService.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AmbientTemperatureService\WeatherStationProject.Dashboard.AmbientTemperatureService.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.App\WeatherStationProject.Dashboard.App.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.AuthenticationService\WeatherStationProject.Dashboard.AuthenticationService.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.GatewayService\WeatherStationProject.Dashboard.GatewayService.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.GroundTemperatureService\WeatherStationProject.Dashboard.GroundTemperatureService.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.RainfallService\WeatherStationProject.Dashboard.RainfallService.csproj"/>
+        <ProjectReference Include="..\..\src\WeatherStationProject.Dashboard.WindMeasurementsService\WeatherStationProject.Dashboard.WindMeasurementsService.csproj"/>
     </ItemGroup>
 
 </Project>
