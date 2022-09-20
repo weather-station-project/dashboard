@@ -19,8 +19,8 @@ describe('App', () => {
   });
 
   it('When_RenderingComponent_Should_RenderExpectedContent', () => {
-    const element = screen.queryByTestId('home-id');
+    const element = screen.getByTestId('home-id');
     expect(element).toBeInTheDocument();
-    expect(element?.tagName.toLowerCase()).toEqual('span');
+    expect(element.tagName.toLowerCase()).toEqual('span');
   });
 });

@@ -22,9 +22,9 @@ describe('LastDataFromSensors', () => {
   it('When_RenderingComponent_Given_Wrong_Obtained_Data_Should_RenderExpectedContent', () => {
     render(<LastDataFromSensors />);
 
-    const loading = screen.queryByTestId('loading-id');
+    const loading = screen.getByTestId('loading-id');
     expect(loading).toBeInTheDocument();
-    expect(loading?.tagName.toLowerCase()).toEqual('span');
+    expect(loading.tagName.toLowerCase()).toEqual('span');
   });
 
   it('When_RenderingComponent_Given_Data_Should_RenderExpectedContent', () => {

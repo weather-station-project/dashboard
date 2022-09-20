@@ -17,13 +17,13 @@ describe('NavMenu', () => {
   });
 
   it('When_RenderingComponent_Should_RenderExpectedContent', () => {
-    const selector = screen.queryByTestId('lng-id');
-    const image = screen.queryByAltText('Logo');
+    const selector = screen.getByTestId('lng-id');
+    const image = screen.getByAltText('Logo');
 
     expect(selector).toBeInTheDocument();
-    expect(selector?.tagName.toLowerCase()).toEqual('span');
+    expect(selector.tagName.toLowerCase()).toEqual('span');
 
     expect(image).toBeInTheDocument();
-    expect(image?.tagName.toLowerCase()).toEqual('img');
+    expect(image.tagName.toLowerCase()).toEqual('img');
   });
 });

@@ -21,13 +21,13 @@ describe('LanguageSelector', () => {
   it('When_RenderingComponent_Should_RenderExpectedContent', () => {
     render(<LanguageSelector />);
 
-    const englishOption = screen.queryByTestId('en');
-    const spanishOption = screen.queryByTestId('en');
+    const englishOption = screen.getByTestId('en');
+    const spanishOption = screen.getByTestId('en');
 
     expect(englishOption).toBeInTheDocument();
-    expect(englishOption?.tagName.toLowerCase()).toEqual('option');
+    expect(englishOption.tagName.toLowerCase()).toEqual('option');
 
     expect(spanishOption).toBeInTheDocument();
-    expect(spanishOption?.tagName.toLowerCase()).toEqual('option');
+    expect(spanishOption.tagName.toLowerCase()).toEqual('option');
   });
 });

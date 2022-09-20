@@ -28,9 +28,9 @@ describe('SearchForm', () => {
 
     // Assert
     Object.entries(elementsAndTypes).map(([k, v]) => {
-      const element = screen.queryByTestId(k);
+      const element = screen.getByTestId(k);
       expect(element).toBeInTheDocument();
-      expect(element?.tagName.toLowerCase()).toEqual(v);
+      expect(element.tagName.toLowerCase()).toEqual(v);
     });
   });
 
@@ -48,9 +48,9 @@ describe('SearchForm', () => {
 
     // Assert
     Object.entries(elementsAndTypesPresent).map(([k, v]) => {
-      const element = screen.queryByTestId(k);
+      const element = screen.getByTestId(k);
       expect(element).toBeInTheDocument();
-      expect(element?.tagName.toLowerCase()).toEqual(v);
+      expect(element.tagName.toLowerCase()).toEqual(v);
     });
 
     elementsNotPresent.map((x) => {
@@ -68,11 +68,11 @@ describe('SearchForm', () => {
     // Act
     render(<SearchForm showChartViewAndGrouping={true} onSubmit={onSubmitting} />);
 
-    userEvent.type(screen.queryByTestId('initial-date-input-id') as Element, initialDateValue);
-    userEvent.type(screen.queryByTestId('final-date-input-id') as Element, finalDateValue);
-    userEvent.click(screen.queryByTestId('chartView-bars-id') as Element);
-    userEvent.selectOptions(screen.queryByTestId('select-grouping-id') as Element, [GroupingValues.Months]);
-    userEvent.click(screen.queryByTestId('submit-id') as Element);
+    userEvent.type(screen.getByTestId('initial-date-input-id') as Element, initialDateValue);
+    userEvent.type(screen.getByTestId('final-date-input-id') as Element, finalDateValue);
+    userEvent.click(screen.getByTestId('chartView-bars-id') as Element);
+    userEvent.selectOptions(screen.getByTestId('select-grouping-id') as Element, [GroupingValues.Months]);
+    userEvent.click(screen.getByTestId('submit-id') as Element);
 
     // Assert
     expect(onSubmitting).toHaveBeenCalled();

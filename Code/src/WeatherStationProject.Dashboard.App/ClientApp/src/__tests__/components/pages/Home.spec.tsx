@@ -14,8 +14,8 @@ describe('Home', () => {
   it('When_RenderingComponent_Should_RenderExpectedContent', () => {
     render(<Home />);
 
-    const element = screen.queryByTestId('home-id');
+    const element = screen.getByTestId('home-id');
     expect(element).toBeInTheDocument();
-    expect(element?.tagName.toLowerCase()).toEqual('h1');
+    expect(element.tagName.toLowerCase()).toEqual('h1');
   });
 });

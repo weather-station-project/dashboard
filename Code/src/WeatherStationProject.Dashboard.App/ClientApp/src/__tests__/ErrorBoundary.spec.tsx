@@ -10,8 +10,8 @@ describe('ErrorBoundary', () => {
       </ErrorBoundary>
     );
 
-    const element = screen.queryByTestId('id');
+    const element = screen.getByTestId('id');
     expect(element).toBeInTheDocument();
-    expect(element?.tagName.toLowerCase()).toEqual('span');
+    expect(element.tagName.toLowerCase()).toEqual('span');
   });
 });

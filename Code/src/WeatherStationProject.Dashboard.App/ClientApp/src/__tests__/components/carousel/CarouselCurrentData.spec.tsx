@@ -72,9 +72,9 @@ describe('CarouselCurrentData', () => {
     const link = screen.getByText('Link');
 
     expect(weatherText).toBeInTheDocument();
-    expect(weatherText?.tagName.toLowerCase()).toEqual('div');
+    expect(weatherText.tagName.toLowerCase()).toEqual('div');
 
     expect(link).toBeInTheDocument();
-    expect(link?.tagName.toLowerCase()).toEqual('a');
+    expect(link.tagName.toLowerCase()).toEqual('a');
   });
 });

@@ -18,20 +18,20 @@ describe('CurrentData', () => {
   });
 
   it('When_RenderingComponent_Should_RenderExpectedContent', () => {
-    const lastData = screen.queryByTestId('last-id');
+    const lastData = screen.getByTestId('last-id');
     expect(lastData).toBeInTheDocument();
-    expect(lastData?.tagName.toLowerCase()).toEqual('span');
+    expect(lastData.tagName.toLowerCase()).toEqual('span');
 
-    const forecastData = screen.queryByTestId('forecast-id');
+    const forecastData = screen.getByTestId('forecast-id');
     expect(forecastData).toBeInTheDocument();
-    expect(forecastData?.tagName.toLowerCase()).toEqual('span');
+    expect(forecastData.tagName.toLowerCase()).toEqual('span');
 
-    const h11 = screen.queryByTestId('h1-1-id');
+    const h11 = screen.getByTestId('h1-1-id');
     expect(h11).toBeInTheDocument();
-    expect(h11?.tagName.toLowerCase()).toEqual('h1');
+    expect(h11.tagName.toLowerCase()).toEqual('h1');
 
-    const h12 = screen.queryByTestId('h1-2-id');
+    const h12 = screen.getByTestId('h1-2-id');
     expect(h12).toBeInTheDocument();
-    expect(h12?.tagName.toLowerCase()).toEqual('h1');
+    expect(h12.tagName.toLowerCase()).toEqual('h1');
   });
 });

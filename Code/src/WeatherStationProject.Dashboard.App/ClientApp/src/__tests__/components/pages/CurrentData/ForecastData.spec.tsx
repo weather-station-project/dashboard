@@ -27,9 +27,9 @@ describe('ForecastData', () => {
     const div = screen.queryByTestId('carousel-id');
     expect(div).toBeNull();
 
-    const button = screen.queryByTestId('button-id');
+    const button = screen.getByTestId('button-id');
     expect(button).toBeInTheDocument();
-    expect(button?.tagName.toLowerCase()).toEqual('button');
+    expect(button.tagName.toLowerCase()).toEqual('button');
   });
 
   it('When_RenderingComponent_Given_Data_Should_NotRenderOverlayButtons', () => {
@@ -40,9 +40,9 @@ describe('ForecastData', () => {
       .mockReturnValueOnce([false, jest.fn()]);
     render(<ForecastData />);
 
-    const div = screen.queryByTestId('carousel-id');
+    const div = screen.getByTestId('carousel-id');
     expect(div).toBeInTheDocument();
-    expect(div?.tagName.toLowerCase()).toEqual('div');
+    expect(div.tagName.toLowerCase()).toEqual('div');
 
     const button = screen.queryByTestId('button-id');
     expect(button).toBeNull();

@@ -6,8 +6,8 @@ describe('Loading', () => {
   it('When_RenderingComponent_Should_RenderExpectedContent', () => {
     render(<Loading />);
 
-    const element = screen.queryByTestId('loading-spinner');
+    const element = screen.getByTestId('loading-spinner');
     expect(element).toBeInTheDocument();
-    expect(element?.tagName.toLowerCase()).toEqual('div');
+    expect(element.tagName.toLowerCase()).toEqual('div');
   });
 });

@@ -89,10 +89,10 @@ describe('CarouselDailyData', () => {
     const link = screen.getByText('Link');
 
     expect(dayPhrase).toBeInTheDocument();
-    expect(dayPhrase?.tagName.toLowerCase()).toEqual('div');
+    expect(dayPhrase.tagName.toLowerCase()).toEqual('div');
 
     expect(link).toBeInTheDocument();
-    expect(link?.tagName.toLowerCase()).toEqual('a');
+    expect(link.tagName.toLowerCase()).toEqual('a');
   });
 
   it('When_SwitchingToNight_Should_RenderNightComponents', () => {
@@ -105,6 +105,6 @@ describe('CarouselDailyData', () => {
     expect(nightButton).toBeNull();
 
     expect(dayButton).toBeInTheDocument();
-    expect(dayButton?.tagName.toLowerCase()).toEqual('button');
+    expect(dayButton.tagName.toLowerCase()).toEqual('button');
   });
 });
