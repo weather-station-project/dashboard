@@ -30,10 +30,6 @@
         <ProjectReference Include="..\WeatherStationProject.Dashboard.Data\WeatherStationProject.Dashboard.Data.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="ClientApp\src\__tests__\components\search-form" />
-    </ItemGroup>
-
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
         <!-- Ensure Node.js is installed -->
         <Exec Command="node --version" ContinueOnError="true">

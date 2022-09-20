@@ -34,8 +34,9 @@ const SearchForm: React.FC<ISearchFormProps> = ({ showChartViewAndGrouping, onSu
         <Form noValidate onSubmit={handleSubmit}>
           <Row className="mb-3 mt-5">
             <Form.Group as={Col} controlId="initialDate">
-              <Form.Label>{t('historical_data.initial_date')}</Form.Label>
+              <Form.Label data-testid="initial-date-id">{t('historical_data.initial_date')}</Form.Label>
               <Form.Control
+                data-test-id="initial-date-input-id"
                 type="date"
                 name="initialDate"
                 onChange={handleChange}
@@ -48,7 +49,7 @@ const SearchForm: React.FC<ISearchFormProps> = ({ showChartViewAndGrouping, onSu
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} controlId="finalDate">
-              <Form.Label>{t('historical_data.final_date')}</Form.Label>
+              <Form.Label data-testid="final-date-id">{t('historical_data.final_date')}</Form.Label>
               <Form.Control
                 type="date"
                 name="finalDate"
@@ -64,7 +65,7 @@ const SearchForm: React.FC<ISearchFormProps> = ({ showChartViewAndGrouping, onSu
             {showChartViewAndGrouping ? (
               <>
                 <Form.Group as={Col} controlId="chartView">
-                  <Form.Label>{t('historical_data.chart_view')}</Form.Label>
+                  <Form.Label data-testid="chart-view-id">{t('historical_data.chart_view')}</Form.Label>
                   <Field name="chartView">
                     {({ field, form: { setFieldValue } }: FieldProps) => (
                       <>
@@ -80,6 +81,7 @@ const SearchForm: React.FC<ISearchFormProps> = ({ showChartViewAndGrouping, onSu
                         <Form.Check
                           type="radio"
                           id="chartView-bars"
+                          data-testid="chartView-bars-id"
                           checked={values.chartView === ChartValues.Bars}
                           name="chartView"
                           label={t('historical_data.chart_view.bars')}
@@ -94,10 +96,11 @@ const SearchForm: React.FC<ISearchFormProps> = ({ showChartViewAndGrouping, onSu
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} controlId="grouping">
-                  <Form.Label>{t('historical_data.grouping')}</Form.Label>
+                  <Form.Label data-testid="grouping-id">{t('historical_data.grouping')}</Form.Label>
                   <Field name="grouping">
                     {({ field, form: { setFieldValue } }: FieldProps) => (
                       <Form.Select
+                        data-testid="-select-grouping-id"
                         className={'form-control'}
                         isValid={touched.grouping && !errors.grouping}
                         isInvalid={!!errors.grouping}
@@ -125,7 +128,7 @@ const SearchForm: React.FC<ISearchFormProps> = ({ showChartViewAndGrouping, onSu
           </Row>
           <Row>
             <Col>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button data-testid="submit-id" type="submit" disabled={isSubmitting}>
                 {t('historical_data.submit')}
               </Button>
             </Col>
