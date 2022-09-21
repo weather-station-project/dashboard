@@ -96,8 +96,8 @@ describe('CarouselDailyData', () => {
     expect(link.tagName.toLowerCase()).toEqual('a');
   });
 
-  it('When_SwitchingToNight_Should_RenderNightComponents', () => {
-    userEvent.click(screen.getByTestId('button-night'));
+  it('When_SwitchingToNight_Should_RenderNightComponents', async () => {
+    await userEvent.click(screen.getByTestId('button-night'));
 
     const nightButton = screen.queryByTestId('button-night');
     const dayButton = screen.getByTestId('button-day');
