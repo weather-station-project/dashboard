@@ -1,8 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { IAccuWeatherDailyForecast } from '../../../model/OpenWeatherApiTypes';
 import CarouselDailyData from '../../../components/carousel/CarouselDailyData';
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
@@ -96,8 +97,7 @@ describe('CarouselDailyData', () => {
   });
 
   it('When_SwitchingToNight_Should_RenderNightComponents', () => {
-    const button = screen.getByTestId('button-night');
-    fireEvent.click(button);
+    userEvent.click(screen.getByTestId('button-night'));
 
     const nightButton = screen.queryByTestId('button-night');
     const dayButton = screen.getByTestId('button-day');

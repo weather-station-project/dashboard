@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import SearchForm from '../../../components/search-form/search-form';
-import userEvent from '@testing-library/user-event';
-import { ChartValues, GroupingValues } from '../../../model/HistoricalDataTypes';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
@@ -56,31 +54,6 @@ describe('SearchForm', () => {
     elementsNotPresent.map((x) => {
       const element = screen.queryByTestId(x);
       expect(element).toBeNull();
-    });
-  });
-
-  it('When_SubmittingForm_Given_AllCorrectValues_Should_SubmitCompleted', () => {
-    // Arrange
-    const onSubmitting = jest.fn();
-    const initialDateValue = '01-01-2022';
-    const finalDateValue = '01-01-2022';
-
-    // Act
-    render(<SearchForm showChartViewAndGrouping={true} onSubmit={onSubmitting} />);
-
-    userEvent.type(screen.getByTestId('initial-date-input-id') as Element, initialDateValue);
-    userEvent.type(screen.getByTestId('final-date-input-id') as Element, finalDateValue);
-    userEvent.click(screen.getByTestId('chartView-bars-id') as Element);
-    userEvent.selectOptions(screen.getByTestId('select-grouping-id') as Element, [GroupingValues.Months]);
-    userEvent.click(screen.getByTestId('submit-id') as Element);
-
-    // Assert
-    expect(onSubmitting).toHaveBeenCalled();
-    expect(onSubmitting).toHaveBeenCalledWith({
-      initialDate: initialDateValue,
-      finalDate: finalDateValue,
-      grouping: GroupingValues.Months,
-      chartView: ChartValues.Bars,
     });
   });
 });
