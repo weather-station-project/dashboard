@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import HistoricalData from '../../../../components/pages/HistoricalData/HistoricalData';
 import { DefaultHistoricalDataRequest } from '../../../../model/HistoricalDataTypes';
 
-jest.mock('../../../../components/search-form/search-form', () => <span data-testid="search-form-id" />);
-jest.mock('../../../../components/pages/HistoricalData/Charts/ChartsList', () => <span data-testid="chart-id" />);
-jest.mock('../../../../components/pages/HistoricalData/MeasurementsList', () => <span data-testid="list-id" />);
+jest.mock('../../../../components/search-form/search-form', () => () => <span data-testid="search-form-id" />);
+jest.mock('../../../../components/pages/HistoricalData/Charts/ChartsList', () => () => <span data-testid="chart-id" />);
+jest.mock('../../../../components/pages/HistoricalData/MeasurementsList', () => () => <span data-testid="list-id" />);
 
 describe('HistoricalData', () => {
   beforeEach(() => {

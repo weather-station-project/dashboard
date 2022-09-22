@@ -2,8 +2,8 @@ import CurrentData from '../../../../components/pages/CurrentData/CurrentData';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-jest.mock('../../../../components/pages/CurrentData/LastDataFromSensors', () => <span data-testid="last-id" />);
-jest.mock('../../../../components/pages/CurrentData/ForecastData', () => <span data-testid="forecast-id" />);
+jest.mock('../../../../components/pages/CurrentData/LastDataFromSensors', () => () => <span data-testid="last-id" />);
+jest.mock('../../../../components/pages/CurrentData/ForecastData', () => () => <span data-testid="forecast-id" />);
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {

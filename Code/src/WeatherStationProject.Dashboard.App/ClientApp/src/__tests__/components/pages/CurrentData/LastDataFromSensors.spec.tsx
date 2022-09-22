@@ -3,7 +3,7 @@ import LastDataFromSensors from '../../../../components/pages/CurrentData/LastDa
 import React from 'react';
 import { ILastData } from '../../../../model/LastDataTypes';
 
-jest.mock('../../../../components/Loading', () => <span data-testid="loading-id" />);
+jest.mock('../../../../components/Loading', () => () => <span data-testid="loading-id" />);
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {

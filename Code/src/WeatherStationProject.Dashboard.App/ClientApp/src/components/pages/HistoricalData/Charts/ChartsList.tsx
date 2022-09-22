@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios, { AxiosInstance } from 'axios';
 import BarAndLineChart from './BarAndLineChart';
 import { useTranslation } from 'react-i18next';
@@ -30,7 +30,7 @@ const ChartsList: React.FC<IChartsListProps> = ({ requestData, reRenderForcedSta
   const { t } = useTranslation();
   const shouldFetch = React.useRef(true);
   const [data, setData] = React.useState({} as IHistoricalDataResult);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = React.useState<boolean>(true);
   const url = '/api/weather-measurements/historical';
   const sectionSeparation = { marginTop: 75 };
   const chartType = requestData.chartView === ChartValues.Lines ? 'line' : 'bar';

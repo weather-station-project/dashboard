@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import NavMenu from '../../../components/menu/NavMenu';
 import React from 'react';
 
-jest.mock('../../../components/menu/LanguageSelector', () => <span data-testid="lng-id" />);
+jest.mock('../../../components/menu/LanguageSelector', () => () => <span data-testid="lng-id" />);
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
