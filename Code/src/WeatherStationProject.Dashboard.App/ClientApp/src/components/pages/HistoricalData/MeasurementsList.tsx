@@ -1,5 +1,5 @@
 import { IHistoricalDataRequest, IHistoricalDataResult } from '../../../model/HistoricalDataTypes';
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import axios, { AxiosInstance } from 'axios';
 import Loading from '../../Loading';
@@ -25,7 +25,7 @@ const MeasurementsList: React.FC<IMeasurementsListProps> = ({ requestData, reRen
   const { t } = useTranslation();
   const shouldFetch = React.useRef(true);
   const [data, setData] = React.useState({} as IHistoricalDataResult);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = React.useState<boolean>(true);
   const url = '/api/weather-measurements/historical';
   const sectionSeparation = { marginTop: 75 };
 

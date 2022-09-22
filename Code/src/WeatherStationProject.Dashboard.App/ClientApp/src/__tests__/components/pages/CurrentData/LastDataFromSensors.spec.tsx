@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import LastDataFromSensors from '../../../../components/pages/CurrentData/LastDataFromSensors';
 import React from 'react';
-import { FAKE_LAST_DATA } from '../../../../model/LastDataTypes';
+import { ILastData } from '../../../../model/LastDataTypes';
 
-jest.mock('../../../../components/Loading', () => () => <span data-testid="loading-id" />);
+jest.mock('../../../../components/Loading', () => <span data-testid="loading-id" />);
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
@@ -28,9 +28,18 @@ describe('LastDataFromSensors', () => {
   });
 
   it('When_RenderingComponent_Given_Data_Should_RenderExpectedContent', () => {
+    const FakeLastData: ILastData = {
+      airParameters: { id: 1, dateTime: new Date(), pressure: 1, humidity: 1 },
+      ambientTemperatures: { id: 1, dateTime: new Date(), temperature: 1 },
+      groundTemperatures: { id: 1, dateTime: new Date(), temperature: 1 },
+      rainfallDuringTime: { id: '1', fromDateTime: new Date(), toDateTime: new Date(), amount: 1 },
+      windMeasurements: { id: 1, dateTime: new Date(), speed: 1, direction: 'N' },
+      windMeasurementsGust: { id: 1, dateTime: new Date(), speed: 1, direction: 'E' },
+    };
+
     jest
       .spyOn(React, 'useState')
-      .mockReturnValueOnce([FAKE_LAST_DATA, jest.fn()])
+      .mockReturnValueOnce([FakeLastData, jest.fn()])
       .mockReturnValueOnce([false, jest.fn()]);
 
     render(<LastDataFromSensors />);

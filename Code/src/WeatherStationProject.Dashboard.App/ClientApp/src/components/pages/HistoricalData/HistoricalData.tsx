@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DefaultHistoricalDataRequest, IHistoricalDataRequest } from '../../../model/HistoricalDataTypes';
 import { FormikHelpers } from 'formik';
 import SearchForm from '../../search-form/search-form';
@@ -12,8 +12,8 @@ interface IHistoricalDataProps {
 }
 
 const HistoricalData: React.FC<IHistoricalDataProps> = ({ showChartViewAndGrouping }) => {
-  const [formValues, setFormValues] = useState<IHistoricalDataRequest>(DefaultHistoricalDataRequest);
-  const [reRenderForcedState, setReRenderForcedState] = useState<number>(0);
+  const [formValues, setFormValues] = React.useState<IHistoricalDataRequest>(DefaultHistoricalDataRequest);
+  const [reRenderForcedState, setReRenderForcedState] = React.useState<number>(0);
 
   const handleOnSubmit = (values: IHistoricalDataRequest, helpers: FormikHelpers<IHistoricalDataRequest>) => {
     const initialDate = moment(values.initialDate);
