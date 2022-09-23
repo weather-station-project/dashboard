@@ -10,6 +10,8 @@ import {
   Tooltip,
   Legend,
   ChartTypeRegistry,
+  BarController,
+  LineController,
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import { LINE_TENSION } from '../ChartsAndListsConstants';
@@ -37,7 +39,18 @@ interface IBarAndLineChartProps {
 
 // Doc -> https://react-chartjs-2.js.org/examples
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LineController,
+  BarController,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const BarAndLineChart: React.FC<IBarAndLineChartProps> = ({
   chartType,

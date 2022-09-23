@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
   ChartTypeRegistry,
+  LineController,
+  BarController,
 } from 'chart.js';
 import { Chart, Radar } from 'react-chartjs-2';
 import { IPredominantDirection } from '../../../../model/HistoricalDataTypes';
@@ -44,7 +46,9 @@ ChartJS.register(
   RadialLinearScale,
   CategoryScale,
   LinearScale,
+  LineController,
   BarElement,
+  BarController,
   PointElement,
   Filler,
   LineElement,
