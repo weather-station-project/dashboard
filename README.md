@@ -5,7 +5,7 @@ These WebApp + APIs allow you to watch and search measurements taken by the devi
 
 ## Release information
 [![codecov](https://codecov.io/gh/weather-station-project/dashboard/branch/master/graph/badge.svg?token=59OP3KE0AA)](https://codecov.io/gh/weather-station-project/dashboard)
-[![Dockerhub](https://img.shields.io/badge/dockerhub-v1.0.0-blue)](https://hub.docker.com/repository/docker/weatherstationproject/dashboard)
+[![Dockerhub](https://img.shields.io/badge/dockerhub-v1.1.0-blue)](https://hub.docker.com/repository/docker/weatherstationproject/dashboard)
 
 ## ARQ Diagram
 ![ARQ diagram](https://raw.githubusercontent.com/weather-station-project/dashboard/master/dashboard-arq.png)
