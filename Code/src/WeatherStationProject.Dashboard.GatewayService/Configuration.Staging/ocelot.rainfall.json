@@ -2,6 +2,37 @@
   "Routes": [
     {
       "Key": "rainfall",
+      "DownstreamPathTemplate": "/api/{version}/rainfall/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "rainfall-service-stg",
+          "Port": 1443
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/rainfall/{everything}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "rainfall-caching"
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "Key": "rainfallDuringTime",
       "DownstreamPathTemplate": "/api/{version}/rainfall/amount-during-time/60",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -23,7 +54,7 @@
       },
       "FileCacheOptions": {
         "TtlSeconds": 15,
-        "Region": "rainfall-caching"
+        "Region": "rainfall-during-time-caching"
       },
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",

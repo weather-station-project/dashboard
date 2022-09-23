@@ -1,20 +1,20 @@
 ﻿using System;
+using WeatherStationProject.Dashboard.Data.ViewModel;
 using WeatherStationProject.Dashboard.WindMeasurementsService.Data;
 
 namespace WeatherStationProject.Dashboard.WindMeasurementsService.ViewModel
 {
-    public class WindMeasurementsDTO
+    public class WindMeasurementsDto : MeasurementDto
     {
-        public DateTime DateTime { get; set; }
-
         public decimal Speed { get; set; }
 
         public string Direction { get; set; }
 
-        public static WindMeasurementsDTO FromEntity(WindMeasurements entity)
+        public static WindMeasurementsDto FromEntity(WindMeasurements entity)
         {
-            return new WindMeasurementsDTO
+            return new WindMeasurementsDto
             {
+                Id = entity.Id,
                 DateTime = entity.DateTime.ToLocalTime(),
                 Speed = entity.Speed,
                 Direction = entity.Direction

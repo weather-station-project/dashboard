@@ -1,18 +1,17 @@
-﻿using System;
-using WeatherStationProject.Dashboard.AmbientTemperatureService.Data;
+﻿using WeatherStationProject.Dashboard.AmbientTemperatureService.Data;
+using WeatherStationProject.Dashboard.Data.ViewModel;
 
 namespace WeatherStationProject.Dashboard.AmbientTemperatureService.ViewModel
 {
-    public class AmbientTemperatureDTO
+    public class AmbientTemperatureDto : MeasurementDto
     {
-        public DateTime DateTime { get; set; }
-
         public decimal Temperature { get; set; }
 
-        public static AmbientTemperatureDTO FromEntity(AmbientTemperature entity)
+        public static AmbientTemperatureDto FromEntity(AmbientTemperature entity)
         {
-            return new AmbientTemperatureDTO
+            return new AmbientTemperatureDto
             {
+                Id = entity.Id,
                 DateTime = entity.DateTime.ToLocalTime(),
                 Temperature = entity.Temperature
             };

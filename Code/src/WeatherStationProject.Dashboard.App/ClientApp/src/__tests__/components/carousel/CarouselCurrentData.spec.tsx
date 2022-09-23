@@ -1,11 +1,10 @@
-import { render, screen } from "@testing-library/react";
-import { Router } from "react-router-dom";
-import { IAccuWeatherCurrentConditionsResponse } from "../../../model/OpenWeatherApiTypes";
-import CarouselCurrentData from "../../../components/carousel/CarouselCurrentData";
-import { createMemoryHistory } from "history";
-import React from "react";
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { IAccuWeatherCurrentConditionsResponse } from '../../../model/OpenWeatherApiTypes';
+import CarouselCurrentData from '../../../components/carousel/CarouselCurrentData';
+import React from 'react';
 
-jest.mock("react-i18next", () => ({
+jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
       t: (str: string) => str,
@@ -13,13 +12,13 @@ jest.mock("react-i18next", () => ({
   },
 }));
 
-describe("CarouselCurrentData", () => {
-  it("When_RenderingComponent_Should_RenderExpectedContent", () => {
+describe('CarouselCurrentData', () => {
+  it('When_RenderingComponent_Should_RenderExpectedContent', () => {
     // arrange
     const response: IAccuWeatherCurrentConditionsResponse = {
       EpochTime: 0,
       WeatherIcon: 38,
-      WeatherText: "This is a test",
+      WeatherText: 'This is a test',
       Temperature: {
         Metric: {
           Value: 10,
@@ -28,7 +27,7 @@ describe("CarouselCurrentData", () => {
       RelativeHumidity: 20,
       Wind: {
         Direction: {
-          Localized: "ONO",
+          Localized: 'ONO',
         },
         Speed: {
           Metric: {
@@ -43,7 +42,7 @@ describe("CarouselCurrentData", () => {
           },
         },
       },
-      UVIndexText: "Low",
+      UVIndexText: 'Low',
       Pressure: {
         Metric: {
           Value: 1048,
@@ -54,25 +53,28 @@ describe("CarouselCurrentData", () => {
           Value: 10,
         },
       },
-      Link: "test",
+      Link: 'test',
     };
 
     // act
-    const history = createMemoryHistory();
     render(
-      <Router history={history}>
-        <CarouselCurrentData data={response} />
-      </Router>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<CarouselCurrentData data={response} />} />
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
     );
 
     // assert
     const weatherText = screen.getByText(response.WeatherText);
-    const link = screen.getByText("Link");
+    const link = screen.getByText('Link');
 
     expect(weatherText).toBeInTheDocument();
-    expect(weatherText?.tagName.toLowerCase()).toEqual("div");
+    expect(weatherText.tagName.toLowerCase()).toEqual('div');
 
     expect(link).toBeInTheDocument();
-    expect(link?.tagName.toLowerCase()).toEqual("a");
+    expect(link.tagName.toLowerCase()).toEqual('a');
   });
 });

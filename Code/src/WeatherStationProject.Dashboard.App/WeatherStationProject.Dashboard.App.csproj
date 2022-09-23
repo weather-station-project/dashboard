@@ -8,7 +8,7 @@
         <SpaRoot>ClientApp\</SpaRoot>
         <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
         <Authors>davidleonm</Authors>
-        <Version>1.0.0</Version>
+        <Version>1.1.0</Version>
         <LangVersion>10</LangVersion>
     </PropertyGroup>
 
@@ -27,6 +27,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\WeatherStationProject.Dashboard.Core\WeatherStationProject.Dashboard.Core.csproj" />
+        <ProjectReference Include="..\WeatherStationProject.Dashboard.Data\WeatherStationProject.Dashboard.Data.csproj" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

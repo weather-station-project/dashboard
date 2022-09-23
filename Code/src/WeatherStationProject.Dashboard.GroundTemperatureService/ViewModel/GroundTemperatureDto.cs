@@ -1,18 +1,17 @@
-﻿using System;
+﻿using WeatherStationProject.Dashboard.Data.ViewModel;
 using WeatherStationProject.Dashboard.GroundTemperatureService.Data;
 
 namespace WeatherStationProject.Dashboard.GroundTemperatureService.ViewModel
 {
-    public class GroundTemperatureDTO
+    public class GroundTemperatureDto : MeasurementDto
     {
-        public DateTime DateTime { get; set; }
-
         public decimal Temperature { get; set; }
 
-        public static GroundTemperatureDTO FromEntity(GroundTemperature entity)
+        public static GroundTemperatureDto FromEntity(GroundTemperature entity)
         {
-            return new GroundTemperatureDTO
+            return new GroundTemperatureDto
             {
+                Id = entity.Id,
                 DateTime = entity.DateTime.ToLocalTime(),
                 Temperature = entity.Temperature
             };

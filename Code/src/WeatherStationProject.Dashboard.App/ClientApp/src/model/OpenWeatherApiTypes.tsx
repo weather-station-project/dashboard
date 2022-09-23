@@ -89,7 +89,7 @@ interface IAccuWeatherForecastDayNightData {
 export const FAKE_CURRENT_CONDITIONS_DATA: IAccuWeatherCurrentConditionsResponse = {
   EpochTime: 1,
   WeatherIcon: 0,
-  WeatherText: "",
+  WeatherText: '',
   Temperature: {
     Metric: {
       Value: 0,
@@ -98,7 +98,7 @@ export const FAKE_CURRENT_CONDITIONS_DATA: IAccuWeatherCurrentConditionsResponse
   RelativeHumidity: 0,
   Wind: {
     Direction: {
-      Localized: "test",
+      Localized: 'test',
     },
     Speed: {
       Metric: {
@@ -113,7 +113,7 @@ export const FAKE_CURRENT_CONDITIONS_DATA: IAccuWeatherCurrentConditionsResponse
       },
     },
   },
-  UVIndexText: "test",
+  UVIndexText: 'test',
   Pressure: {
     Metric: {
       Value: 0,
@@ -124,7 +124,7 @@ export const FAKE_CURRENT_CONDITIONS_DATA: IAccuWeatherCurrentConditionsResponse
       Value: 0,
     },
   },
-  Link: "test",
+  Link: 'test',
 };
 
 export const FAKE_FORECAST_DATA: IAccuWeatherForecastResponse = {

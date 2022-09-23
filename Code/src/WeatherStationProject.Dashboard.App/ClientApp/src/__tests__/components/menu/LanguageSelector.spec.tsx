@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
-import LanguageSelector from "../../../components/menu/LanguageSelector";
-import React from "react";
+import { render, screen } from '@testing-library/react';
+import LanguageSelector from '../../../components/menu/LanguageSelector';
+import React from 'react';
 
-jest.mock("react-i18next", () => ({
+jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
       t: (str: string) => str,
@@ -11,23 +11,23 @@ jest.mock("react-i18next", () => ({
           new Promise(() => {
             /**/
           }),
-        language: "en",
+        language: 'en',
       },
     };
   },
 }));
 
-describe("LanguageSelector", () => {
-  it("When_RenderingComponent_Should_RenderExpectedContent", () => {
+describe('LanguageSelector', () => {
+  it('When_RenderingComponent_Should_RenderExpectedContent', () => {
     render(<LanguageSelector />);
 
-    const englishOption = screen.queryByTestId("en");
-    const spanishOption = screen.queryByTestId("en");
+    const englishOption = screen.getByTestId('en');
+    const spanishOption = screen.getByTestId('en');
 
     expect(englishOption).toBeInTheDocument();
-    expect(englishOption?.tagName.toLowerCase()).toEqual("option");
+    expect(englishOption.tagName.toLowerCase()).toEqual('option');
 
     expect(spanishOption).toBeInTheDocument();
-    expect(spanishOption?.tagName.toLowerCase()).toEqual("option");
+    expect(spanishOption.tagName.toLowerCase()).toEqual('option');
   });
 });

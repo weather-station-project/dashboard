@@ -23,7 +23,7 @@
     "prettier/prettier": [
       "error",
       {
-        "singleQuote": false
+        "singleQuote": true
       }
     ],
     "react/prop-types": "error",

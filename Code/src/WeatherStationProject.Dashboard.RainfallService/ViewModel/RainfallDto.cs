@@ -2,18 +2,21 @@
 
 namespace WeatherStationProject.Dashboard.RainfallService.ViewModel
 {
-    public class RainfallDTO
+    public class RainfallDto
     {
+        public string Id { get; set; }
+
         public DateTime FromDateTime { get; set; }
 
         public DateTime ToDateTime { get; set; }
 
         public decimal Amount { get; set; }
 
-        public static RainfallDTO FromEntity(decimal amount, DateTime since, DateTime until)
+        public static RainfallDto FromEntity(decimal amount, DateTime since, DateTime until)
         {
-            return new RainfallDTO
+            return new RainfallDto
             {
+                Id = Guid.NewGuid().ToString(),
                 FromDateTime = since.ToLocalTime(),
                 ToDateTime = until.ToLocalTime(),
                 Amount = amount

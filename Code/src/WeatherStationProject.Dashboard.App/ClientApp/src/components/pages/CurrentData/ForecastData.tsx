@@ -1,16 +1,16 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import axios from "axios";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 import {
   IAccuWeatherCurrentConditionsResponse,
   IAccuWeatherForecastResponse,
   IAccuWeatherLocationSearchResponse,
-} from "../../../model/OpenWeatherApiTypes";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import CarouselCurrentData from "../../carousel/CarouselCurrentData";
-import CarouselDailyData from "../../carousel/CarouselDailyData";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+} from '../../../model/OpenWeatherApiTypes';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import CarouselCurrentData from '../../carousel/CarouselCurrentData';
+import CarouselDailyData from '../../carousel/CarouselDailyData';
+import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const ForecastData: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -89,8 +89,8 @@ const ForecastData: React.FC = () => {
 
   return (
     <>
-      {Object.prototype.hasOwnProperty.call(currentData, "EpochTime") &&
-      Object.prototype.hasOwnProperty.call(forecastData, "DailyForecasts") ? (
+      {Object.prototype.hasOwnProperty.call(currentData, 'EpochTime') &&
+      Object.prototype.hasOwnProperty.call(forecastData, 'DailyForecasts') ? (
         <>
           <div data-testid="carousel-id" />
           <Carousel
@@ -105,7 +105,7 @@ const ForecastData: React.FC = () => {
             customTransition="all .5"
             transitionDuration={500}
             containerClass="carousel-container"
-            removeArrowOnDeviceType={["tablet", "mobile"]}
+            removeArrowOnDeviceType={['tablet', 'mobile']}
             dotListClass="custom-dot-list-style"
           >
             <div>
@@ -123,10 +123,10 @@ const ForecastData: React.FC = () => {
           <OverlayTrigger
             key="right"
             placement="right"
-            overlay={<Tooltip id="tooltip-right">{t("current_data.retrieve_data_from_accuweather_alert")}</Tooltip>}
+            overlay={<Tooltip id="tooltip-right">{t('current_data.retrieve_data_from_accuweather_alert')}</Tooltip>}
           >
             <Button data-testid="button-id" variant="outline-info" onClick={() => setRetrieveDataFromAccuWeather(true)}>
-              {t("current_data.retrieve_data_from_accuweather_button")}
+              {t('current_data.retrieve_data_from_accuweather_button')}
             </Button>
           </OverlayTrigger>
         </>

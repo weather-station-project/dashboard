@@ -169,6 +169,7 @@ services:
 ```
 
 ## Change-log
+* **v1.1.0** - Added historical data pages.
 * **v1.0.0** - First version with current data page.
 * **v0.1.0** - Some mockups with the design of the different pages.
 

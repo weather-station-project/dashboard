@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using WeatherStationProject.Dashboard.AmbientTemperatureService.Data;
 using WeatherStationProject.Dashboard.Data;
 
@@ -16,6 +18,11 @@ namespace WeatherStationProject.Dashboard.AmbientTemperatureService.Services
         public async Task<AmbientTemperature> GetLastTemperature()
         {
             return await _repository.GetLastMeasurement();
+        }
+        
+        public async Task<List<AmbientTemperature>> GetAmbientTemperaturesBetweenDates(DateTime since, DateTime until)
+        {
+            return await _repository.GetMeasurementsBetweenDates(since, until);
         }
     }
 }

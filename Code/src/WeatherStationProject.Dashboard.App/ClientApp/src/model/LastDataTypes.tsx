@@ -2,50 +2,47 @@
   airParameters: IAirParameters;
   ambientTemperatures: IAmbientTemperatures;
   groundTemperatures: IGroundTemperatures;
-  rainfall: IRainfall;
+  rainfallDuringTime: IRainfall;
   windMeasurements: IWindMeasurements;
   windMeasurementsGust: IWindMeasurementsGust;
 }
 
-interface IAirParameters {
+export interface IAirParameters {
+  id: number;
   dateTime: Date;
   pressure: number;
   humidity: number;
 }
 
-interface IAmbientTemperatures {
+export interface IAmbientTemperatures {
+  id: number;
   dateTime: Date;
   temperature: number;
 }
 
-interface IGroundTemperatures {
+export interface IGroundTemperatures {
+  id: number;
   dateTime: Date;
   temperature: number;
 }
 
-interface IRainfall {
+export interface IRainfall {
+  id: string;
   fromDateTime: Date;
   toDateTime: Date;
   amount: number;
 }
 
-interface IWindMeasurements {
+export interface IWindMeasurements {
+  id: number;
   dateTime: Date;
   speed: number;
   direction: string;
 }
 
 interface IWindMeasurementsGust {
+  id: number;
   dateTime: Date;
   speed: number;
   direction: string;
 }
-
-export const FAKE_LAST_DATA: ILastData = {
-  airParameters: { dateTime: new Date(), pressure: 1, humidity: 1 },
-  ambientTemperatures: { dateTime: new Date(), temperature: 1 },
-  groundTemperatures: { dateTime: new Date(), temperature: 1 },
-  rainfall: { fromDateTime: new Date(), toDateTime: new Date(), amount: 1 },
-  windMeasurements: { dateTime: new Date(), speed: 1, direction: "N" },
-  windMeasurementsGust: { dateTime: new Date(), speed: 1, direction: "E" },
-};
