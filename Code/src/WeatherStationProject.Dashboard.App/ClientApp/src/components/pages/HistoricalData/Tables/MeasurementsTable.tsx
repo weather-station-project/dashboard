@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import BootstrapTable, { ColumnDescription } from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider, { CSVExport, ToolkitContextType } from 'react-bootstrap-table2-toolkit';
+import ToolkitProvider, { ToolkitContextType } from 'react-bootstrap-table2-toolkit';
 import { paginationOptions } from './BaseConfig';
 
 interface IMeasurementsTablesProps {

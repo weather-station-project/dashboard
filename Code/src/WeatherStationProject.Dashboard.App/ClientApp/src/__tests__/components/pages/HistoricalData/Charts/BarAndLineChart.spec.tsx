@@ -11,7 +11,7 @@ describe('BarAndLineChart', () => {
     // Act
     render(
       <BarAndLineChart
-        chartType={'line'}
+        chartType="line"
         chartTitle=""
         maxTitle=""
         avgTitle=""
