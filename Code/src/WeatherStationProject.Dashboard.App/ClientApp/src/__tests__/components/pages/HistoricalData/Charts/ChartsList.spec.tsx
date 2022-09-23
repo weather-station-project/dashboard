@@ -56,18 +56,20 @@ describe('ChartsList', () => {
     // Arrange
     const FakeData: IHistoricalDataResult = {
       airParameters: {
-        summaryByGroupingItem: [],
+        summaryByGroupingItem: [
+          { key: '', minPressure: 0, minHumidity: 0, maxPressure: 0, maxHumidity: 0, avgPressure: 0, avgHumidity: 0 },
+        ],
       },
       ambientTemperatures: {
-        summaryByGroupingItem: [],
+        summaryByGroupingItem: [{ key: '', maxTemperature: 0, avgTemperature: 0, minTemperature: 0 }],
       },
       groundTemperatures: {
-        summaryByGroupingItem: [],
+        summaryByGroupingItem: [{ key: '', maxTemperature: 0, avgTemperature: 0, minTemperature: 0 }],
       },
-      rainfall: { summaryByGroupingItem: [] },
+      rainfall: { summaryByGroupingItem: [{ key: '', maxAmount: 0, avgAmount: 0, minAmount: 0 }] },
       windMeasurements: {
-        summaryByGroupingItem: [],
-        predominantWindDirections: {},
+        summaryByGroupingItem: [{ key: '', avgSpeed: 0, maxGust: 0 }],
+        predominantWindDirections: { NO: 1 },
       },
     };
     jest.spyOn(React, 'useState').mockReturnValueOnce([FakeData, jest.fn()]).mockReturnValueOnce([false, jest.fn()]);
