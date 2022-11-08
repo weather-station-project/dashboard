@@ -6,7 +6,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ambient-temperature-service",
+          "Host": "ambient-temperatures-service",
           "Port": 1443
         }
       ],
@@ -36,7 +36,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ambient-temperature-service",
+          "Host": "ambient-temperatures-service",
           "Port": 1443
         }
       ],

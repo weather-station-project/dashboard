@@ -6,7 +6,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "air-parameter-service",
+          "Host": "air-parameters-service",
           "Port": 1443
         }
       ],
@@ -36,7 +36,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "air-parameter-service",
+          "Host": "air-parameters-service",
           "Port": 1443
         }
       ],

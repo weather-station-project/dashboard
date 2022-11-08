@@ -81,7 +81,7 @@ pipeline {
                 script {
                     deployDashboardServices("${GlobalVariables.StagingDockerRegistry}",
                                             "${GlobalVariables.StagingCredentialsDockerRegistryKey}",
-                                            'Staging')
+                                            'Production')
                                             
                 }
             }

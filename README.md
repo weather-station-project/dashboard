@@ -55,11 +55,11 @@ services:
   gateway-service:
     depends_on:
       - authentication-service
-      - ambient-temperature-service
-      - air-parameter-service
+      - ambient-temperatures-service
+      - air-parameters-service
       - wind-measurements-service
       - rainfall-service
-      - ground-temperature-service
+      - ground-temperatures-service
     container_name: gateway-service
     image: weatherstationproject/gateway-service
     ports:
@@ -72,9 +72,9 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - /path_to_the_pfx_folder:/https:ro
-  ambient-temperature-service:
-    container_name: ambient-temperature-service
-    image: weatherstationproject/ambient-temperature-service
+  ambient-temperatures-service:
+    container_name: ambient-temperatures-service
+    image: weatherstationproject/ambient-temperatures-service
     environment:
       - AUDIENCE_SECRET=MySecret
       - SERVER=127.0.0.1
@@ -87,9 +87,9 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - /path_to_the_pfx_folder:/https:ro
-  air-parameter-service:
-    container_name: air-parameter-service
-    image: weatherstationproject/air-parameter-service
+  air-parameters-service:
+    container_name: air-parameters-service
+    image: weatherstationproject/air-parameters-service
     environment:
       - AUDIENCE_SECRET=MySecret
       - SERVER=127.0.0.1
@@ -132,9 +132,9 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - /path_to_the_pfx_folder:/https:ro
-  ground-temperature-service:
-    container_name: ground-temperature-service
-    image: weatherstationproject/ground-temperature-service
+  ground-temperatures-service:
+    container_name: ground-temperatures-service
+    image: weatherstationproject/ground-temperatures-service
     environment:
       - AUDIENCE_SECRET=MySecret
       - SERVER=127.0.0.1

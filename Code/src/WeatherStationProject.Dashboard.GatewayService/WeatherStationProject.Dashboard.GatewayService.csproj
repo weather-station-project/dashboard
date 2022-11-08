@@ -18,4 +18,14 @@
         <ProjectReference Include="..\WeatherStationProject.Dashboard.Core\WeatherStationProject.Dashboard.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Configuration.Staging\ocelot.aggregates.json" />
+      <_ContentIncludedByDefault Remove="Configuration.Staging\ocelot.air-parameters.json" />
+      <_ContentIncludedByDefault Remove="Configuration.Staging\ocelot.ambient-temperatures.json" />
+      <_ContentIncludedByDefault Remove="Configuration.Staging\ocelot.global.json" />
+      <_ContentIncludedByDefault Remove="Configuration.Staging\ocelot.ground-temperatures.json" />
+      <_ContentIncludedByDefault Remove="Configuration.Staging\ocelot.rainfall.json" />
+      <_ContentIncludedByDefault Remove="Configuration.Staging\ocelot.wind-measurements.json" />
+    </ItemGroup>
+
 </Project>
