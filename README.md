@@ -74,7 +74,7 @@ services:
       - /path_to_the_pfx_folder:/https:ro
   ambient-temperatures-service:
     container_name: ambient-temperatures-service
-    image: weatherstationproject/ambient-temperatures-service
+    image: weatherstationproject/ambient-temperature-service
     environment:
       - AUDIENCE_SECRET=MySecret
       - SERVER=127.0.0.1
@@ -134,7 +134,7 @@ services:
       - /path_to_the_pfx_folder:/https:ro
   ground-temperatures-service:
     container_name: ground-temperatures-service
-    image: weatherstationproject/ground-temperatures-service
+    image: weatherstationproject/ground-temperature-service
     environment:
       - AUDIENCE_SECRET=MySecret
       - SERVER=127.0.0.1
