@@ -9,16 +9,11 @@ namespace WeatherStationProject.Dashboard.GatewayService.HealthCheck
 {
     public class HealthCheck : IHealthCheck
     {
-        private readonly HttpMessageHandler _httpHandler;
-
-        public HealthCheck(HttpMessageHandler handler)
-        {
-            _httpHandler = handler;
-        }
-
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context,
             CancellationToken cancellationToken = new())
         {
+            // The real e2e test is in the app, which call the gateway with authentication and it connects
+            // to the rest of services.
             return await Task.FromResult(HealthCheckResult.Healthy());
         }
     }
